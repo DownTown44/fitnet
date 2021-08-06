@@ -131,18 +131,18 @@ ENGINE = InnoDB;
 CREATE TABLE IF NOT EXISTS `fitnetdb`.`group_members` (
   `group_member_id` INT NOT NULL AUTO_INCREMENT,
   `user_id` INT NOT NULL,
-  `groupd_id` INT NOT NULL,
+  `group_id` INT NOT NULL,
   PRIMARY KEY (`group_member_id`),
   UNIQUE INDEX `group_member_id_UNIQUE` (`group_member_id` ASC) VISIBLE,
   INDEX `FK_GROUPMEMBERS_USERS_idx` (`user_id` ASC) VISIBLE,
-  INDEX `FK_GROUPMEMBERS_GROUPS_idx` (`groupd_id` ASC) VISIBLE,
+  INDEX `FK_GROUPMEMBERS_GROUPS_idx` (`group_id` ASC) VISIBLE,
   CONSTRAINT `FK_GROUPMEMBERS_USERS`
     FOREIGN KEY (`user_id`)
     REFERENCES `fitnetdb`.`users` (`user_id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `FK_GROUPMEMBERS_GROUPS`
-    FOREIGN KEY (`groupd_id`)
+    FOREIGN KEY (`group_id`)
     REFERENCES `fitnetdb`.`groups` (`group_id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)

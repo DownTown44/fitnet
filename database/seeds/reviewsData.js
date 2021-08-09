@@ -18,3 +18,5 @@ const reviewsData = [
     rating: 4
   }
 ];
+
+export { reviewsData };

@@ -10,7 +10,18 @@ import {
   rolesData,
   accessibilitiesData,
   groupMembersData,
-  groupsData
+  groupsData,
+  tagsData,
+  groupTagsData,
+  facilitiesData,
+  facilityTagsData,
+  facilityPicturesData,
+  reviewsData,
+  openingHoursData,
+  fieldsData,
+  eventTypesData,
+  eventsData,
+  bookingsData
  } from './seeds/index.js';
 
 // Destructuring config
@@ -46,10 +57,21 @@ let saveToDB = async (d, type) => {
 // Reading data from seeds and creating new records
 let seedDatabase = async () => {
   await saveToDB(rolesData, 'roles');
-  await saveToDB(accessibilitiesData, 'accessibilities');
   await saveToDB(usersData, 'users');
+  await saveToDB(accessibilitiesData, 'accessibilities');
   await saveToDB(groupsData, 'groups');
+  await saveToDB(tagsData, 'tags');
+  await saveToDB(groupTagsData, 'group_tags');
   await saveToDB(groupMembersData, 'group_members');
+  await saveToDB(facilitiesData, 'facilities');
+  await saveToDB(facilityTagsData, 'facility_tags');
+  await saveToDB(facilityPicturesData, 'facility_pictures');
+  await saveToDB(fieldsData, 'fields');
+  await saveToDB(eventTypesData, 'event_types');
+  await saveToDB(eventsData, 'events');
+  await saveToDB(reviewsData, 'reviews');
+  await saveToDB(bookingsData, 'bookings');
+  await saveToDB(openingHoursData, 'opening_hours');
 };
     
 seedDatabase();

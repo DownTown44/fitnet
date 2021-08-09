@@ -27,7 +27,7 @@ export default class facilities extends Model {
       allowNull: false,
       unique: "name_UNIQUE"
     },
-    adress: {
+    address: {
       type: DataTypes.STRING(100),
       allowNull: false
     },

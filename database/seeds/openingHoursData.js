@@ -42,3 +42,5 @@ const openingHoursData = [
     closing: '10:00:00'
   }
 ];
+
+export { openingHoursData };

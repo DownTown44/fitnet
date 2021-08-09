@@ -57,8 +57,8 @@ export default function initModels(sequelize) {
   fields.hasMany(bookings, { as: "bookings", foreignKey: "field_id"});
   bookings.belongsTo(groups, { as: "group", foreignKey: "group_id"});
   groups.hasMany(bookings, { as: "bookings", foreignKey: "group_id"});
-  group_members.belongsTo(groups, { as: "groupd", foreignKey: "groupd_id"});
-  groups.hasMany(group_members, { as: "group_members", foreignKey: "groupd_id"});
+  group_members.belongsTo(groups, { as: "group", foreignKey: "group_id"});
+  groups.hasMany(group_members, { as: "group_members", foreignKey: "group_id"});
   group_tags.belongsTo(groups, { as: "group", foreignKey: "group_id"});
   groups.hasMany(group_tags, { as: "group_tags", foreignKey: "group_id"});
   users.belongsTo(roles, { as: "role", foreignKey: "role_id"});

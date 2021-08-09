@@ -18,7 +18,7 @@ export default class group_members extends Model {
         key: 'user_id'
       }
     },
-    groupd_id: {
+    group_id: {
       type: DataTypes.INTEGER,
       allowNull: false,
       references: {
@@ -58,7 +58,7 @@ export default class group_members extends Model {
         name: "FK_GROUPMEMBERS_GROUPS_idx",
         using: "BTREE",
         fields: [
-          { name: "groupd_id" },
+          { name: "group_id" },
         ]
       },
     ]

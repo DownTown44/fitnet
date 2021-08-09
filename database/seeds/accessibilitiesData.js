@@ -8,6 +8,6 @@ const data = [
   {
     accessibility_name: "invisible"
   }, 
-]
+];
 
 export default data;

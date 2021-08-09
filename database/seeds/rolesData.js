@@ -8,6 +8,6 @@ const data = [
   {
     role_name: "admin"
   }, 
-]
+];
 
 export default data;

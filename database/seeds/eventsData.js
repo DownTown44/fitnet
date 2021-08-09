@@ -10,7 +10,7 @@
  *  training
  */
 
-const data = [
+const eventsData = [
   {
     accessibility_id: 2,
     type_id: 1,
@@ -55,4 +55,4 @@ const data = [
   }
 ];
 
-export { data };
+export { eventsData };

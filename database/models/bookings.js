@@ -18,12 +18,12 @@ export default class bookings extends Model {
         key: 'user_id'
       }
     },
-    group_id: {
+    event_id: {
       type: DataTypes.INTEGER,
       allowNull: true,
       references: {
-        model: 'groups',
-        key: 'group_id'
+        model: 'events',
+        key: 'event_id'
       }
     },
     facility_id: {
@@ -83,10 +83,10 @@ export default class bookings extends Model {
         ]
       },
       {
-        name: "FK_BOOKINGS_GROUPS_idx",
+        name: "FK_BOOKINGS_EVENTS_idx",
         using: "BTREE",
         fields: [
-          { name: "group_id" },
+          { name: "event_id" },
         ]
       },
       {

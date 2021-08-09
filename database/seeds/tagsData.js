@@ -1,4 +1,4 @@
-const data = [
+const tagsData = [
   {
     name: 'Football',
     icon: 'none'
@@ -29,5 +29,5 @@ const data = [
   },
 ];
   
-export default data;
+export { tagsData };
   

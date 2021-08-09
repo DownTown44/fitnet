@@ -1,4 +1,4 @@
-const data = [
+const accessibilitiesData = [
   {
     accessibility_name: "public"
   },
@@ -10,4 +10,4 @@ const data = [
   }, 
 ];
 
-export default data;
+export { accessibilitiesData };

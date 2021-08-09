@@ -1,4 +1,4 @@
-const data = [
+const rolesData = [
   {
     role_name: "user"
   },
@@ -10,4 +10,4 @@ const data = [
   }, 
 ];
 
-export default data;
+export { rolesData };

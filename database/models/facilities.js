@@ -10,6 +10,10 @@ export default class facilities extends Model {
       allowNull: false,
       primaryKey: true
     },
+    active: {
+      type: DataTypes.TINYINT,
+      allowNull: false
+    },
     user_id: {
       type: DataTypes.INTEGER,
       allowNull: false,

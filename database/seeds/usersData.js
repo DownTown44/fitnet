@@ -3,7 +3,7 @@
  *  sport facility: 2
  *  admin: 3
 */
-const data = [
+const usersData = [
   {
     role_id: 1,
     firstname: 'Jhonas',
@@ -70,4 +70,4 @@ const data = [
   },
 ];
 
-export default data;
+export { usersData };

@@ -26,6 +26,10 @@ export default class fields extends Model {
       type: DataTypes.STRING(45),
       allowNull: false
     },
+    price: {
+      type: DataTypes.FLOAT,
+      allowNull: false
+    },
     description: {
       type: DataTypes.STRING(100),
       allowNull: true

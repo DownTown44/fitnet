@@ -1,4 +1,4 @@
-const data = [
+const groupMembersData = [
   {
     user_id: 1,
     group_id: 1
@@ -37,5 +37,5 @@ const data = [
   }
 ];
   
-export default data;
+export { groupMembersData };
   

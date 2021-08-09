@@ -1,4 +1,4 @@
-const data = [
+const eventTypesData = [
 	{
 		type_name: 'user_event'
 	},
@@ -10,4 +10,4 @@ const data = [
 	}
 ];
 
-export { data };
+export { eventTypesData };

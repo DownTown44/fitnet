@@ -3,12 +3,15 @@ import mysql from 'mysql';
 const { Sequelize, Model, DataTypes } = sequelize_all;
 
 import initModels from './models/init-models.js';
-import usersData from './seeds/usersData.js';
-import rolesData from './seeds/rolesData.js';
-import accessibilitiesData from './seeds/accessibilitiesData.js';
-import groupsData from './seeds/groupsData.js';
-import groupMembersData from './seeds/groupMembersData.js';
 import dbconfig from './dbconfig.js';
+
+import { 
+  usersData,
+  rolesData,
+  accessibilitiesData,
+  groupMembersData,
+  groupsData
+ } from './seeds/index.js';
 
 // Destructuring config
 const { host, port, user, password, database } = dbconfig;
@@ -17,6 +20,7 @@ const { host, port, user, password, database } = dbconfig;
 let initDatabase = async () => {
   const connection = await mysql.createConnection({ host, port, user, password });
   await connection.query(`CREATE DATABASE IF NOT EXISTS \`${database}\`;`);
+  connection.end();
 };
 
 initDatabase();

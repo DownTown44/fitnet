@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 
-let RadioButton = (props) => {
+const RadioButton = (props) => {
   return (
     <div>
       <input type="radio" onChange={props.onChange} checked={props.isChecked} disabled={props.isDisabled} />

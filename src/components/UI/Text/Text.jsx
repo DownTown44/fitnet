@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 
-let Text = (props) => {
+const Text = (props) => {
   let HtmlTag = props.htmlTag;
   return (
     <HtmlTag>{props.children}</HtmlTag>

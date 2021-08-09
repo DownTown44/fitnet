@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 
-let Button = (props) => {
+const Button = (props) => {
   return (
     <button onClick={props.onClick} disabled={props.isDisabled}>{props.children}</button>
   );

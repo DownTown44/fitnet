@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 
-let CheckBox = (props) => {
+const CheckBox = (props) => {
   return (
     <div>
       <input type="checkbox" onChange={props.onChange} checked={props.isChecked} disabled={props.isDisabled} />

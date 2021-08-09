@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 
-let Input = (props) => {
+const Input = (props) => {
   return (
     <input type={props.type} onChange={props.onChange} disabled={props.isDisabled} />
   );

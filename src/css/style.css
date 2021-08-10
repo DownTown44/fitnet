@@ -33,6 +33,12 @@ img {
   left: 15%;
   top: 30%;
   padding: 1.6rem;
-  background-color: wheat;
-  box-shadow: 1px 1px 1px black;
   transition: all 0.3s ease-out; }
+
+.rating__star {
+  font-size: 2.5rem;
+  cursor: pointer; }
+  .rating__star--filled {
+    color: #f5eb3b; }
+  .rating__star--unfilled {
+    color: #DCDCDC; }

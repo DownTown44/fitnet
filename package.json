@@ -26,7 +26,7 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "watch:sass": "node-sass src/sass/main.scss src/css/style.css -w",
-    "start-all": "concurrently \"npm run watch:sass\" \"npm start\" \"node index.js\""
+    "start-all": "concurrently \"npm run watch:sass\" \"npm start\" \"node ./server/index.js\""
   },
   "eslintConfig": {
     "extends": [

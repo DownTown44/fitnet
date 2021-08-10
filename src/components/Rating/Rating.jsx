@@ -1,7 +1,7 @@
 import React, { useMemo, useState } from 'react';
 import PropTypes from 'prop-types';
 
-import { AiFillStar } from 'react-icons/ai';
+import { GiSoccerBall } from 'react-icons/gi';
 
 const Rating = (props) => {
   const [hoverRating, setHoverRating] = useState(0);
@@ -28,7 +28,7 @@ const Rating = (props) => {
       .fill(0)
       .map((_, i) => i + 1)
       .map(k => (
-        <AiFillStar
+        <GiSoccerBall
           className={`rating__star ${isFilled(k)}`}
           key={k}
           onClick={() => props.onRating(k)}
@@ -59,6 +59,6 @@ Rating.defaultProps = {
 export default Rating;
 
 
-//======use ex.=========
+//======usage ex.=========
 // const [rating, setRating] = useState(0);
 // <Rating count={5} rating={rating} onRating={rate => setRating(rate)}/>

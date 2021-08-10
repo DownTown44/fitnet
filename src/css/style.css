@@ -26,6 +26,18 @@ img {
   top: 0;
   background-color: rgba(0, 0, 0, 0.4); }
 
+.cancellableImage {
+  display: flex; }
+  .cancellableImage__image {
+    max-height: 8rem; }
+  .cancellableImage__cancelButton {
+    font-size: 2rem;
+    margin-left: -2rem;
+    cursor: pointer; }
+
+.imageUpload {
+  display: flex; }
+
 .modal {
   position: fixed;
   z-index: 200;
@@ -39,6 +51,6 @@ img {
   font-size: 2.5rem;
   cursor: pointer; }
   .rating__star--filled {
-    color: #f5eb3b; }
+    color: #2c2c28; }
   .rating__star--unfilled {
     color: #DCDCDC; }

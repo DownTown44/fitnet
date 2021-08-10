@@ -1,15 +1,19 @@
 import React, {useState} from 'react';
-import { SliderData } from './SliderData';
 import {FaArrowAltCircleRight, FaArrowAltCircleLeft} from 'react-icons/fa';
 
+// Slides are the SliderData array, which stores the image objects
 const ImageSlider = ({ slides }) => {
   const [current, setCurrent] = useState(0);
   const length = slides.length;
 
+  // Sets the current slide to the next
+  // If the current is the last one, than sets it to the first
   const nextSlide = () => {
     setCurrent(current === length - 1 ? 0 : current + 1);
   }
 
+  // Sets the current slide to the previous
+  // If the current slide is the first one, than sets it to the last
   const prevSlide = () => {
     setCurrent(current === 0 ? length - 1 : current - 1);
   }
@@ -22,9 +26,10 @@ const ImageSlider = ({ slides }) => {
     <div className="slider">
       <FaArrowAltCircleLeft className="left-arrow" onClick={prevSlide} />
       <FaArrowAltCircleRight className="right-arrow" onClick={nextSlide} />
-      {SliderData.map((slide, index) => {
+      {slides.map((slide, index) => {
         return (
           <div className={index === current ? "active slide" : "slide"} key={index}>
+            {/* Render the image, if that is the current */}
             {index === current && (<img src={slide.image} alt={index} className="image" />)}
           </div>
         );

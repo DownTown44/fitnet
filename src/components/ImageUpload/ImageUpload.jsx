@@ -73,7 +73,7 @@ const ImageUpload = () => {
         ref={fileInputRef}
         accept="image/*"
         onChange={(event) => handleImageUpload(event)}
-        />
+      />
 
       {loadedPreviews}
     </div>

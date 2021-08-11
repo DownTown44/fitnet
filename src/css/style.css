@@ -35,26 +35,6 @@ img {
     margin-left: -2rem;
     cursor: pointer; }
 
-.imageUpload {
-  display: flex; }
-
-.modal {
-  position: fixed;
-  z-index: 200;
-  width: 70%;
-  left: 15%;
-  top: 30%;
-  padding: 1.6rem;
-  transition: all 0.3s ease-out; }
-
-.rating__star {
-  font-size: 2.5rem;
-  cursor: pointer; }
-  .rating__star--filled {
-    color: #2c2c28; }
-  .rating__star--unfilled {
-    color: #DCDCDC; }
-
 .slider {
   position: relative;
   height: 25rem;
@@ -93,3 +73,109 @@ img {
   left: 0rem; }
   .left-arrow:hover {
     color: black; }
+
+.imageUpload {
+  display: flex; }
+
+.modal {
+  position: fixed;
+  z-index: 200;
+  width: 70%;
+  left: 15%;
+  top: 30%;
+  padding: 1.6rem;
+  transition: all 0.3s ease-out; }
+
+.rating__star {
+  font-size: 2.5rem;
+  cursor: pointer; }
+  .rating__star--filled {
+    color: #2c2c28; }
+  .rating__star--unfilled {
+    color: #DCDCDC; }
+
+.sportFieldCreate {
+  width: 18rem;
+  background-color: #D0D0D0;
+  border-radius: 3px;
+  display: flex;
+  flex-direction: column;
+  align-items: center; }
+  .sportFieldCreate__picture {
+    height: 10rem;
+    border: 1px solid #808080;
+    width: 100%;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-bottom: none; }
+    .sportFieldCreate__picture * {
+      transition: all .2s ease;
+      margin-right: 10%; }
+    .sportFieldCreate__picture p {
+      font-size: 1.5rem;
+      color: #808080;
+      margin-right: auto;
+      margin-left: 35%; }
+    .sportFieldCreate__picture:hover * {
+      transform: translateY(-2px); }
+  .sportFieldCreate__title {
+    height: 3rem;
+    border: 1px solid #808080;
+    width: 100%;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-bottom: none; }
+    .sportFieldCreate__title * {
+      transition: all .2s ease;
+      margin-right: 10%; }
+    .sportFieldCreate__title p {
+      font-size: 1.5rem;
+      color: #808080;
+      margin-right: auto;
+      margin-left: 35%; }
+    .sportFieldCreate__title:hover * {
+      transform: translateY(-2px); }
+  .sportFieldCreate__description {
+    height: 6rem;
+    border: 1px solid #808080;
+    width: 100%;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-bottom: none; }
+    .sportFieldCreate__description * {
+      transition: all .2s ease;
+      margin-right: 10%; }
+    .sportFieldCreate__description p {
+      font-size: 1.5rem;
+      color: #808080;
+      margin-right: auto;
+      margin-left: 35%; }
+    .sportFieldCreate__description:hover * {
+      transform: translateY(-2px); }
+  .sportFieldCreate__price {
+    height: 3rem;
+    border: 1px solid #808080;
+    width: 100%;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center; }
+    .sportFieldCreate__price * {
+      transition: all .2s ease;
+      margin-right: 10%; }
+    .sportFieldCreate__price p {
+      font-size: 1.5rem;
+      color: #808080;
+      margin-right: auto;
+      margin-left: 35%; }
+    .sportFieldCreate__price:hover * {
+      transform: translateY(-2px); }
+  .sportFieldCreate__plusIcon {
+    font-size: 25px;
+    color: #808080; }

@@ -1,5 +1,6 @@
 @import
-  "abstracts/mixins";
+  "abstracts/mixins",
+  "abstracts/variables";
 
 @import 
   "base/reset",
@@ -8,7 +9,8 @@
 @import 
 "components/backdrop",
 "components/cancellableImage",
+"components/carousel",
 "components/imageUpload",
 "components/modal",
 "components/rating",
-"components/carousel";
+"components/sportField";

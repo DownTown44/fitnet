@@ -262,3 +262,9 @@ img {
     .sportFieldCreate__plusIcon {
       font-size: 25px;
       color: #808080; }
+
+.header {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between; }

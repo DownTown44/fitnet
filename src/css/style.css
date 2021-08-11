@@ -42,3 +42,42 @@ img {
     color: #f5eb3b; }
   .rating__star--unfilled {
     color: #DCDCDC; }
+
+.slider {
+  position: relative;
+  height: 25rem;
+  display: flex;
+  justify-content: center;
+  align-items: center; }
+
+.image {
+  width: 50rem;
+  height: 45rem; }
+
+.right-arrow {
+  position: absolute;
+  top: 50%;
+  font-size: 4rem;
+  z-index: 10;
+  cursor: pointer;
+  user-select: none;
+  background-color: rgba(255, 255, 255, 0.75);
+  color: grey;
+  border-radius: 50px;
+  right: 0rem; }
+  .right-arrow:hover {
+    color: black; }
+
+.left-arrow {
+  position: absolute;
+  top: 50%;
+  font-size: 4rem;
+  z-index: 10;
+  cursor: pointer;
+  user-select: none;
+  background-color: rgba(255, 255, 255, 0.75);
+  color: grey;
+  border-radius: 50px;
+  left: 0rem; }
+  .left-arrow:hover {
+    color: black; }

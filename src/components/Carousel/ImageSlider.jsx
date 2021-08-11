@@ -1,5 +1,6 @@
-import React, {useState} from 'react';
-import {FaArrowAltCircleRight, FaArrowAltCircleLeft} from 'react-icons/fa';
+import React, { useState } from 'react';
+import PropTypes from 'prop-types';
+import {MdKeyboardArrowRight, MdKeyboardArrowLeft} from 'react-icons/md';
 
 // Slides are the SliderData array, which stores the image objects
 const ImageSlider = ({ slides }) => {
@@ -24,8 +25,8 @@ const ImageSlider = ({ slides }) => {
 
   return (
     <div className="slider">
-      <FaArrowAltCircleLeft className="left-arrow" onClick={prevSlide} />
-      <FaArrowAltCircleRight className="right-arrow" onClick={nextSlide} />
+      <MdKeyboardArrowLeft className="left-arrow" onClick={prevSlide} />
+      <MdKeyboardArrowRight className="right-arrow" onClick={nextSlide} />
       {slides.map((slide, index) => {
         return (
           <div className={index === current ? "active slide" : "slide"} key={index}>
@@ -36,6 +37,10 @@ const ImageSlider = ({ slides }) => {
       })}
     </div>
   );
+}
+
+ImageSlider.propTypes = {
+  slides: PropTypes.array.isRequired,
 }
 
 export default ImageSlider;

@@ -94,88 +94,171 @@ img {
   .rating__star--unfilled {
     color: #DCDCDC; }
 
-.sportFieldCreate {
+.createdSportFields {
+  display: flex; }
+
+.sportFieldContainer {
+  position: relative; }
+  .sportFieldContainer__cancelButton {
+    font-size: 20px;
+    cursor: pointer;
+    position: absolute;
+    top: 5px;
+    right: 5px; }
+
+.sportField {
   width: 18rem;
   background-color: #D0D0D0;
-  border-radius: 3px;
+  margin-left: 4rem;
   display: flex;
   flex-direction: column;
   align-items: center; }
-  .sportFieldCreate__picture {
+  .sportField__imageBox {
     height: 10rem;
     border: 1px solid #808080;
     width: 100%;
-    cursor: pointer;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-bottom: none; }
-    .sportFieldCreate__picture * {
-      transition: all .2s ease;
-      margin-right: 10%; }
-    .sportFieldCreate__picture p {
-      font-size: 1.5rem;
-      color: #808080;
-      margin-right: auto;
-      margin-left: 35%; }
-    .sportFieldCreate__picture:hover * {
-      transform: translateY(-2px); }
-  .sportFieldCreate__title {
-    height: 3rem;
-    border: 1px solid #808080;
-    width: 100%;
-    cursor: pointer;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-bottom: none; }
-    .sportFieldCreate__title * {
-      transition: all .2s ease;
-      margin-right: 10%; }
-    .sportFieldCreate__title p {
-      font-size: 1.5rem;
-      color: #808080;
-      margin-right: auto;
-      margin-left: 35%; }
-    .sportFieldCreate__title:hover * {
-      transform: translateY(-2px); }
-  .sportFieldCreate__description {
-    height: 6rem;
-    border: 1px solid #808080;
-    width: 100%;
-    cursor: pointer;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-bottom: none; }
-    .sportFieldCreate__description * {
-      transition: all .2s ease;
-      margin-right: 10%; }
-    .sportFieldCreate__description p {
-      font-size: 1.5rem;
-      color: #808080;
-      margin-right: auto;
-      margin-left: 35%; }
-    .sportFieldCreate__description:hover * {
-      transform: translateY(-2px); }
-  .sportFieldCreate__price {
-    height: 3rem;
-    border: 1px solid #808080;
-    width: 100%;
-    cursor: pointer;
     display: flex;
     justify-content: center;
     align-items: center; }
-    .sportFieldCreate__price * {
-      transition: all .2s ease;
-      margin-right: 10%; }
-    .sportFieldCreate__price p {
+    .sportField__imageBox h3 {
+      font-size: 2rem;
+      color: #484848;
+      margin: 0 auto; }
+    .sportField__imageBox p {
       font-size: 1.5rem;
       color: #808080;
-      margin-right: auto;
-      margin-left: 35%; }
-    .sportFieldCreate__price:hover * {
-      transform: translateY(-2px); }
-  .sportFieldCreate__plusIcon {
-    font-size: 25px;
-    color: #808080; }
+      margin: 0 auto; }
+  .sportField__image {
+    max-height: 8rem; }
+  .sportField__title {
+    height: 3rem;
+    border: 1px solid #808080;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-bottom: none; }
+    .sportField__title h3 {
+      font-size: 2rem;
+      color: #484848;
+      margin: 0 auto; }
+    .sportField__title p {
+      font-size: 1.5rem;
+      color: #808080;
+      margin: 0 auto; }
+  .sportField__description {
+    height: 6rem;
+    border: 1px solid #808080;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-bottom: none; }
+    .sportField__description h3 {
+      font-size: 2rem;
+      color: #484848;
+      margin: 0 auto; }
+    .sportField__description p {
+      font-size: 1.5rem;
+      color: #808080;
+      margin: 0 auto; }
+  .sportField__price {
+    height: 3rem;
+    border: 1px solid #808080;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center; }
+    .sportField__price h3 {
+      font-size: 2rem;
+      color: #484848;
+      margin: 0 auto; }
+    .sportField__price p {
+      font-size: 1.5rem;
+      color: #808080;
+      margin: 0 auto; }
+  .sportFieldCreate {
+    width: 18rem;
+    background-color: #D0D0D0;
+    border-radius: 3px;
+    display: flex;
+    flex-direction: column;
+    align-items: center; }
+    .sportFieldCreate__picture {
+      height: 10rem;
+      border: 1px solid #808080;
+      width: 100%;
+      cursor: pointer;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border-bottom: none; }
+      .sportFieldCreate__picture * {
+        transition: all .2s ease;
+        margin-right: 10%; }
+      .sportFieldCreate__picture p {
+        font-size: 1.5rem;
+        color: #808080;
+        margin-right: auto;
+        margin-left: 35%; }
+      .sportFieldCreate__picture:hover * {
+        transform: translateY(-2px); }
+    .sportFieldCreate__title {
+      height: 3rem;
+      border: 1px solid #808080;
+      width: 100%;
+      cursor: pointer;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border-bottom: none; }
+      .sportFieldCreate__title * {
+        transition: all .2s ease;
+        margin-right: 10%; }
+      .sportFieldCreate__title p {
+        font-size: 1.5rem;
+        color: #808080;
+        margin-right: auto;
+        margin-left: 35%; }
+      .sportFieldCreate__title:hover * {
+        transform: translateY(-2px); }
+    .sportFieldCreate__description {
+      height: 6rem;
+      border: 1px solid #808080;
+      width: 100%;
+      cursor: pointer;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border-bottom: none; }
+      .sportFieldCreate__description * {
+        transition: all .2s ease;
+        margin-right: 10%; }
+      .sportFieldCreate__description p {
+        font-size: 1.5rem;
+        color: #808080;
+        margin-right: auto;
+        margin-left: 35%; }
+      .sportFieldCreate__description:hover * {
+        transform: translateY(-2px); }
+    .sportFieldCreate__price {
+      height: 3rem;
+      border: 1px solid #808080;
+      width: 100%;
+      cursor: pointer;
+      display: flex;
+      justify-content: center;
+      align-items: center; }
+      .sportFieldCreate__price * {
+        transition: all .2s ease;
+        margin-right: 10%; }
+      .sportFieldCreate__price p {
+        font-size: 1.5rem;
+        color: #808080;
+        margin-right: auto;
+        margin-left: 35%; }
+      .sportFieldCreate__price:hover * {
+        transform: translateY(-2px); }
+    .sportFieldCreate__plusIcon {
+      font-size: 25px;
+      color: #808080; }

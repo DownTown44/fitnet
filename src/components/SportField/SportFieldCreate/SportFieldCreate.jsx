@@ -1,13 +1,12 @@
 import React, { useState, } from 'react';
 import PropTypes from 'prop-types';
 
-import { AiOutlinePlus } from 'react-icons/ai'
-
-import Text from '../../UI/Text/Text';
+import Button from '../../UI/Button/Button';
 import SportFieldPicture from './SportFieldPicture';
 import CancellableImage from '../../ImageUpload/CancellableImage';
+import SportFieldInput from '../SportFieldCreate/SportFieldInput'
 
-const SportFieldCreate = () => {
+const SportFieldCreate = (props) => {
   const [picture, setPicture] = useState(null);
   const [preview, setPreview] = useState('');
   const [title, setTitle] = useState('');
@@ -20,37 +19,72 @@ const SportFieldCreate = () => {
     setPreview('');
   }
 
+  // Creating new sport field on submit, and passing it to the parents state
+  const handleNewSportField = () => {
+    if (picture && preview && title && description && price) {
+      const newField = {
+        picture: picture,
+        preview: preview,
+        title: title,
+        description: description,
+        price: price
+      };
+
+      props.addField(prevState => [...prevState, newField])
+      
+      // Resetting the state
+      setPicture(null);
+      setPreview('');
+      setTitle('');
+      setDescription('');
+      setPrice('');
+    }
+  }
+
   return (
-    <div className="sportFieldCreate">
-      {picture === null ? 
-        <SportFieldPicture 
-          setPicture={setPicture}
-          setPreview={setPreview}
-        />
-      :
-        <CancellableImage src={preview} onRemove={() => handlePictureRemove()}/>
-      }
+    <div>
+      <div className="sportFieldCreate">
+        {picture === null ? 
+          <SportFieldPicture 
+            setPicture={setPicture}
+            setPreview={setPreview}
+          />
+        :
+          <CancellableImage src={preview} onRemove={() => handlePictureRemove()}/>
+        }
+        
+        <SportFieldInput 
+          divClass="sportFieldCreate__title"
+          setTextState={setTitle}
+          stateData={title}
+          >
+          Pályanév
+        </SportFieldInput>
 
-      <div className="sportFieldCreate__title">
-        <Text>Pályanév</Text>
-        <AiOutlinePlus className="sportFieldCreate__plusIcon" />        
+        <SportFieldInput 
+          divClass="sportFieldCreate__description"
+          setTextState={setDescription}
+          stateData={description}
+          >
+          Leírás
+        </SportFieldInput>
+
+        <SportFieldInput 
+          divClass="sportFieldCreate__price"
+          setTextState={setPrice}
+          stateData={price}
+          >
+          Ár
+        </SportFieldInput>
       </div>
 
-      <div className="sportFieldCreate__description">
-        <Text>Leírás</Text>  
-        <AiOutlinePlus className="sportFieldCreate__plusIcon" />      
-      </div>
-
-      <div className="sportFieldCreate__price">
-        <Text>Ár</Text>  
-        <AiOutlinePlus className="sportFieldCreate__plusIcon" />      
-      </div>
+      <Button onClick={handleNewSportField}>Hozzáadás</Button>
     </div>
   );
 };
 
 SportFieldCreate.propTypes = {
-
+  addField: PropTypes.func.isRequired
 };
 
 export default SportFieldCreate;

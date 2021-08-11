@@ -1,5 +1,61 @@
-.sportField {
+// Sport field creation and sport fields list
+.createdSportFields {
+  display: flex;
+}
 
+// Discardable sportField container
+.sportFieldContainer {
+  position: relative;
+
+  &__cancelButton {
+    font-size: 20px;
+    cursor: pointer;
+
+    position: absolute;
+    top: 5px;
+    right: 5px;
+  }
+}
+
+.sportField {
+  width: 18rem;
+  background-color: $grey-light;
+  margin-left: 4rem;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  &__imageBox {
+    height: 10rem;
+    @include commonBox;
+  }
+
+  &__image {
+    max-height: 8rem;
+  }
+
+  &__title {
+    height: 3rem;
+    @include commonBox;
+    border-bottom: none;
+  }
+
+  &__description {
+    height: 6rem;
+    @include commonBox;
+    border-bottom: none;
+  }
+
+  &__price {
+    height: 3rem;
+    @include commonBox;
+  }
+
+
+  ////////////////
+  // CreateField
+  ///////////////
   &Create {
     width: 18rem;
     background-color: $grey-light;
@@ -11,25 +67,25 @@
     
     &__picture {
       height: 10rem;
-      @include commonBox;
+      @include commonBoxCreate;
       border-bottom: none;
     }
 
     &__title {
       height: 3rem;
-      @include commonBox;
+      @include commonBoxCreate;
       border-bottom: none;
     }
 
     &__description {
       height: 6rem;
-      @include commonBox;
+      @include commonBoxCreate;
       border-bottom: none;
     }
 
     &__price {
       height: 3rem;
-      @include commonBox;
+      @include commonBoxCreate;
     }
 
     &__plusIcon {

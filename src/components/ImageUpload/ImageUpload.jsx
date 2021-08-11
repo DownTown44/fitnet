@@ -46,7 +46,7 @@ const ImageUpload = () => {
   };
 
   // Removing images by the key we gave to them
-  const handleRemoveImage = (index) => {
+  const handleImageRemove = (index) => {
     setImages(images.filter(item => images.indexOf(item) !== index))
   };
 
@@ -54,7 +54,7 @@ const ImageUpload = () => {
   let loadedPreviews = null;
   if (previews.length) {
     loadedPreviews = previews.map((e, key) => (
-      <CancellableImage key={key} src={e} onRemove={() => handleRemoveImage(key)}/>
+      <CancellableImage key={key} src={e} onRemove={() => handleImageRemove(key)}/>
     ));
   };
 

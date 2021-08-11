@@ -19,10 +19,31 @@
 }
 
 /////////////////////
-// Sport field mixin
+// Sport field mixins
 /////////////////////
 
 @mixin commonBox {
+  border: 1px solid $grey-base;
+  width: 100%;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  h3 {
+    font-size: 2rem;
+    color: $grey-dark;
+    margin: 0 auto;
+  }
+
+  p {
+    font-size: 1.5rem;
+    color: $grey-base;
+    margin: 0 auto;
+  }
+}
+
+@mixin commonBoxCreate {
   border: 1px solid $grey-base;
   width: 100%;
   cursor: pointer;

@@ -1,0 +1,13 @@
+.cancellableImage {
+  display: flex;
+
+  &__image {
+    max-height: 8rem;
+  }
+
+  &__cancelButton {
+    font-size: 2rem;
+    margin-left: -2rem;
+    cursor: pointer;
+  }
+}

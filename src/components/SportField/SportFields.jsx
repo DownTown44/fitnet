@@ -3,7 +3,7 @@ import SportField from './SportField';
 
 import SportFieldCreate from './SportFieldCreate/SportFieldCreate';
 
-const CreatedSportFields = () => {
+const SportFields = () => {
   const [sportFields, setSportFields] = useState([]);
 
   const handleFieldRemove = (index) => {
@@ -22,11 +22,11 @@ const CreatedSportFields = () => {
     ));
 
   return (
-    <div className="createdSportFields">
+    <div className="sportFields">
       <SportFieldCreate addField={setSportFields} sportFields={sportFields} />
       {sportFieldComponents}
     </div>
   );
 }
 
-export default CreatedSportFields;
+export default SportFields;

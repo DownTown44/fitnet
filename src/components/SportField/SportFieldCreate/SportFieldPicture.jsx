@@ -7,7 +7,7 @@ import Text from '../../UI/Text/Text';
 const SportFieldPicture = (props) => {
   const fileInputRef = useRef();
 
-  // Click event on image div
+  // Click event on image div redirected to file input reference
   const onPictureClick = (event) => {
     event.preventDefault();
     fileInputRef.current.click();

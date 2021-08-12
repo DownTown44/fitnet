@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
-import PropTypes from 'prop-types';
 import Input from '../UI/Input/Input';
 
-const SearchBar = (props) => {
+const SearchBar = () => {
   const [text, setText] = useState('');
 
   return (

@@ -1,7 +1,7 @@
 import { useRef, useState, useEffect } from 'react';
 
 import Button from '../UI/Button/Button';
-import CancellableImage from './CancellableImage';
+import DiscardableImage from './DiscardableImage';
 
 const ImageUpload = () => {
   // Store file objects
@@ -54,7 +54,7 @@ const ImageUpload = () => {
   let loadedPreviews = null;
   if (previews.length) {
     loadedPreviews = previews.map((e, key) => (
-      <CancellableImage key={key} src={e} onRemove={() => handleImageRemove(key)}/>
+      <DiscardableImage key={key} src={e} onRemove={() => handleImageRemove(key)}/>
     ));
   };
 

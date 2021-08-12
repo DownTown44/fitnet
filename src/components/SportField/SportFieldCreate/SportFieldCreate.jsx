@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 import Button from '../../UI/Button/Button';
 import SportFieldPicture from './SportFieldPicture';
-import CancellableImage from '../../ImageUpload/CancellableImage';
+import DiscardableImage from '../../ImageUpload/DiscardableImage';
 import SportFieldInput from '../SportFieldCreate/SportFieldInput'
 
 const SportFieldCreate = (props) => {
@@ -50,7 +50,7 @@ const SportFieldCreate = (props) => {
             setPreview={setPreview}
           />
         :
-          <CancellableImage src={preview} onRemove={() => handlePictureRemove()}/>
+          <DiscardableImage src={preview} onRemove={() => handlePictureRemove()}/>
         }
         
         <SportFieldInput 

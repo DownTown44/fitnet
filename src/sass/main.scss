@@ -7,11 +7,19 @@
   "base/typography";
 
 @import 
-"components/backdrop",
-"components/cancellableImage",
-"components/carousel",
-"components/imageUpload",
-"components/modal",
-"components/rating",
-"components/sportField",
-"components/header";
+  "components/backdrop",
+  "components/calendarMenu",
+  "components/discardableImage",
+  "components/carousel",
+  "components/feed",
+  "components/imageUpload",
+  "components/modal",
+  "components/rating",
+  "components/sportField",
+  "components/userControls";
+
+
+@import
+  "layout/content",
+  "layout/header",
+  "layout/layout";

@@ -1,5 +1,5 @@
 // Sport field creation and sport fields list
-.createdSportFields {
+.sportFields {
   display: flex;
 }
 
@@ -17,6 +17,7 @@
   }
 }
 
+// TODO: Try out min-heights for the boxes
 .sportField {
   width: 18rem;
   background-color: $grey-light;
@@ -29,6 +30,7 @@
   &__imageBox {
     height: 10rem;
     @include commonBox;
+    border-bottom: none;
   }
 
   &__image {

@@ -7,3 +7,6 @@
 
 # dependencies
 /node_modules
+
+# uploaded files
+/server/assets

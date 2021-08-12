@@ -17,8 +17,7 @@ export default class groups extends Model {
       references: {
         model: 'users',
         key: 'user_id'
-      },
-      unique: "FK_GROUPS_USERS"
+      }
     },
     accessibility_id: {
       type: DataTypes.INTEGER,
@@ -63,7 +62,7 @@ export default class groups extends Model {
       },
       {
         name: "user_id_UNIQUE",
-        unique: true,
+        unique: false,
         using: "BTREE",
         fields: [
           { name: "user_id" },

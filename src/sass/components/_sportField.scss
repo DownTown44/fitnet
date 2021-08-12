@@ -1,0 +1,103 @@
+// Sport field creation and sport fields list
+.sport-fields {
+  display: flex;
+}
+
+// Discardable sport-field container
+.sport-field {
+
+  &__container {
+    position: relative;
+  }
+
+  &__cancel-button {
+    font-size: 20px;
+    cursor: pointer;
+
+    position: absolute;
+    top: 5px;
+    right: 5px;
+  }
+}
+
+// TODO: Try out min-heights for the boxes
+.sport-field {
+  &__card {
+    width: 18rem;
+    background-color: $grey-light;
+    margin-left: 4rem;
+  
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  &__image-box {
+    height: 10rem;
+    @include commonBox;
+    border-bottom: none;
+  }
+
+  &__image {
+    max-height: 8rem;
+  }
+
+  &__title {
+    height: 3rem;
+    @include commonBox;
+    border-bottom: none;
+  }
+
+  &__description {
+    height: 6rem;
+    @include commonBox;
+    border-bottom: none;
+  }
+
+  &__price {
+    height: 3rem;
+    @include commonBox;
+  }
+
+
+  ////////////////
+  // sport-field-create
+  ///////////////
+  &-create {
+    width: 18rem;
+    background-color: $grey-light;
+    border-radius: 3px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    
+    &__picture {
+      height: 10rem;
+      @include commonBoxCreate;
+      border-bottom: none;
+    }
+
+    &__title {
+      height: 3rem;
+      @include commonBoxCreate;
+      border-bottom: none;
+    }
+
+    &__description {
+      height: 6rem;
+      @include commonBoxCreate;
+      border-bottom: none;
+    }
+
+    &__price {
+      height: 3rem;
+      @include commonBoxCreate;
+    }
+
+    &__plus-icon {
+      font-size: 25px;
+      color: $grey-base;
+    }
+  }
+}

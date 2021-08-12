@@ -1,0 +1,72 @@
+/////////////////////
+// Slide arrow mixin
+/////////////////////
+
+@mixin arrow-design {
+  position: absolute;
+  top: 50%;
+  font-size: 4rem;
+  z-index: 10;
+  cursor: pointer;
+  user-select: none;
+  background-color: rgba(255, 255, 255, 0.75);
+  color: grey;
+  border-radius: 50px;
+
+  &:hover {
+    color: black;
+  }
+}
+
+/////////////////////
+// Sport field mixins
+/////////////////////
+
+@mixin commonBox {
+  border: 1px solid $grey-base;
+  width: 100%;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  h3 {
+    font-size: 2rem;
+    color: $grey-dark;
+    margin: 0 auto;
+  }
+
+  p {
+    font-size: 1.5rem;
+    color: $grey-base;
+    margin: 0 auto;
+  }
+}
+
+@mixin commonBoxCreate {
+  border: 1px solid $grey-base;
+  width: 100%;
+  cursor: pointer;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  * {
+    transition: all .2s ease;
+    margin-right: 10%;
+  }
+
+  p {
+    font-size: 1.5rem;
+    color: $grey-base;
+    margin-right: auto;
+    margin-left: 35%;
+  }
+
+  &:hover {
+    & * {
+      transform: translateY(-2px);
+    }
+  }
+}

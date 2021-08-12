@@ -11,8 +11,11 @@
     "mysql": "^2.18.1",
     "mysql2": "^2.3.0",
     "node-sass": "^6.0.1",
+    "prop-types": "^15.7.2",
     "react": "^17.0.2",
+    "react-calendar": "^3.4.0",
     "react-dom": "^17.0.2",
+    "react-icons": "^4.2.0",
     "react-scripts": "4.0.3",
     "sequelize": "^6.6.5",
     "sequelize-auto": "^0.8.3",
@@ -24,7 +27,7 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "watch:sass": "node-sass src/sass/main.scss src/css/style.css -w",
-    "start-all": "concurrently \"npm run watch:sass\" \"npm start\" \"node index.js\""
+    "start-all": "concurrently \"npm run watch:sass\" \"npm start\" \"node ./server/index.js\""
   },
   "eslintConfig": {
     "extends": [

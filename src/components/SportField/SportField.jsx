@@ -6,22 +6,22 @@ import Text from '../UI/Text/Text';
 
 const SportField = (props) => {
   return (
-    <div className="sportFieldContainer">
-      <div className="sportField">
-        <div className="sportField__imageBox">
-          <img src={props.image} alt="Sport field" className="sportField__image" />
+    <div className="sport-field__container">
+      <div className="sport-field__card">
+        <div className="sport-field__image-box">
+          <img src={props.image} alt="Sport field" className="sport-field__image" />
         </div>
-        <div className="sportField__title">
+        <div className="sport-field__title">
           <Text htmlTag="h3">{props.title}</Text>
         </div>
-        <div className="sportField__description">
+        <div className="sport-field__description">
           <Text>{props.description}</Text>
         </div>
-        <div className="sportField__price">
+        <div className="sport-field__price">
           <Text>{props.price}</Text>
         </div>
       </div>
-      <MdCancel className="sportFieldContainer__cancelButton" onClick={props.onRemove}/>
+      <MdCancel className="sport-field__cancel-button" onClick={props.onRemove}/>
     </div>
   );
 }

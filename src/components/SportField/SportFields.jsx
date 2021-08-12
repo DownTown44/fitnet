@@ -7,7 +7,7 @@ const SportFields = () => {
   const [sportFields, setSportFields] = useState([]);
 
   const handleFieldRemove = (index) => {
-    setSportFields(sportFields.filter(item => sportFields.indexOf(item) !== index))
+    setSportFields(sportFields.filter((item) => sportFields.indexOf(item) !== index))
   };
 
   const sportFieldComponents = sportFields.map(field => (
@@ -19,10 +19,10 @@ const SportFields = () => {
         price={field.price}
         onRemove={() => handleFieldRemove(sportFields.indexOf(field))}
       />
-    ));
+    )).reverse();
 
   return (
-    <div className="sportFields">
+    <div className="sport-fields">
       <SportFieldCreate addField={setSportFields} sportFields={sportFields} />
       {sportFieldComponents}
     </div>

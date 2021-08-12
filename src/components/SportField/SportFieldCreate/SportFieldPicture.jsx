@@ -39,11 +39,11 @@ const SportFieldPicture = (props) => {
   
   return (
     <>
-      <div className="sportFieldCreate__picture"
+      <div className="sport-field-create__picture"
         onClick={event => onPictureClick(event)}
       >
         <Text>Kép</Text>
-        <AiOutlinePlus className="sportFieldCreate__plusIcon" />
+        <AiOutlinePlus className="sport-field-create__plus-icon" />
       </div>
       <input 
       type="file"

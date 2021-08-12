@@ -43,7 +43,7 @@ const SportFieldCreate = (props) => {
 
   return (
     <div>
-      <div className="sportFieldCreate">
+      <div className="sport-field-create">
         {picture === null ? 
           <SportFieldPicture 
             setPicture={setPicture}
@@ -54,26 +54,26 @@ const SportFieldCreate = (props) => {
         }
         
         <SportFieldInput 
-          divClass="sportFieldCreate__title"
+          divClass="sport-field-create__title"
           setTextState={setTitle}
           stateData={title}
-          >
+        >
           Pályanév
         </SportFieldInput>
 
         <SportFieldInput 
-          divClass="sportFieldCreate__description"
+          divClass="sport-field-create__description"
           setTextState={setDescription}
           stateData={description}
-          >
+        >
           Leírás
         </SportFieldInput>
 
         <SportFieldInput 
-          divClass="sportFieldCreate__price"
+          divClass="sport-field-create__price"
           setTextState={setPrice}
           stateData={price}
-          >
+        >
           Ár
         </SportFieldInput>
       </div>

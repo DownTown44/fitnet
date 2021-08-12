@@ -6,12 +6,7 @@ const Modal = (props) => {
   return (
     <>
       <Backdrop isShown={props.isShown} onClick={props.closeModal}/>
-      <div 
-        className='modal'
-        style={{
-          transform: props.isShown ? 'translateY(0)' : 'translateY(-100vh)',
-          opacity: props.isShown ? '1' : '0'
-        }}>
+      <div className={props.isShown ? 'modal modal--hidden' : 'modal modal--shown'}>
         {props.children}
       </div>
     </>

@@ -18,15 +18,7 @@ const SportFieldInput = (props) => {
 
   return (
     <>
-      {!clicked ?
-        <div 
-          className={props.divClass}
-          onClick={() => setClicked(true)}
-        >
-          <Text>{props.stateData === "" ? props.children : props.stateData}</Text>
-          {!props.stateData && <AiOutlinePlus className="sportFieldCreate__plusIcon" />  }
-        </div>
-      :
+      {clicked ?
         <Input 
           type="text"
           placeholder={props.children}
@@ -35,6 +27,14 @@ const SportFieldInput = (props) => {
           value={props.stateData && props.stateData }
           focus={true}
         />
+      :
+        <div 
+          className={props.divClass}
+          onClick={() => setClicked(true)}
+        >
+          <Text>{props.stateData === "" ? props.children : props.stateData}</Text>
+          {!props.stateData && <AiOutlinePlus className="sport-field-create__plus-icon" />  }
+        </div>
       }
     </>
   );

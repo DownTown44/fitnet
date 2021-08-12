@@ -51,7 +51,6 @@ const ImageUpload = () => {
   };
 
   // Loading image previews
-  let loadedPreviews = null;
   if (previews.length) {
     loadedPreviews = previews.map((e, key) => (
       <DiscardableImage key={key} src={e} onRemove={() => handleImageRemove(key)}/>
@@ -59,7 +58,7 @@ const ImageUpload = () => {
   };
 
   return (
-    <div className="imageUpload">
+    <div className="image-upload">
       <Button onClick={(event) => {
         // We prevent the websites reload when uploading, because we reload the components by state
         event.preventDefault();
@@ -75,7 +74,10 @@ const ImageUpload = () => {
         onChange={(event) => handleImageUpload(event)}
       />
 
-      {loadedPreviews}
+      {previews.length > 0 && previews.map((data, key) => (
+        <DiscardableImage key={key} src={data} onRemove={() => handleImageRemove(key)}/>
+        ))
+      }
     </div>
   );
 };

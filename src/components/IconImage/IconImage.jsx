@@ -3,19 +3,11 @@ import CrossIcon from './CrossIcon';
 import Icon from '../Icon/Icon'
 
 const IconImage = (props) => {
-  let cross = null;
-
-  if (props.exitable) {
-    cross = (
-      <CrossIcon src={props.crossSrc} />
-    )
-  }
-  
   return (
     <div>
       <Icon src={props.src} alt={props.alt} />
       <p>{props.children}</p>
-      {cross}
+      {props.exitable && <CrossIcon src={props.crossSrc} />}
     </div>
   );
 }

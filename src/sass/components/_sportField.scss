@@ -1,13 +1,16 @@
 // Sport field creation and sport fields list
-.sportFields {
+.sport-fields {
   display: flex;
 }
 
-// Discardable sportField container
-.sportFieldContainer {
-  position: relative;
+// Discardable sport-field container
+.sport-field {
 
-  &__cancelButton {
+  &__container {
+    position: relative;
+  }
+
+  &__cancel-button {
     font-size: 20px;
     cursor: pointer;
 
@@ -18,16 +21,18 @@
 }
 
 // TODO: Try out min-heights for the boxes
-.sportField {
-  width: 18rem;
-  background-color: $grey-light;
-  margin-left: 4rem;
+.sport-field {
+  &__card {
+    width: 18rem;
+    background-color: $grey-light;
+    margin-left: 4rem;
+  
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
 
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-
-  &__imageBox {
+  &__image-box {
     height: 10rem;
     @include commonBox;
     border-bottom: none;
@@ -56,9 +61,9 @@
 
 
   ////////////////
-  // CreateField
+  // sport-field-create
   ///////////////
-  &Create {
+  &-create {
     width: 18rem;
     background-color: $grey-light;
     border-radius: 3px;
@@ -90,7 +95,7 @@
       @include commonBoxCreate;
     }
 
-    &__plusIcon {
+    &__plus-icon {
       font-size: 25px;
       color: $grey-base;
     }

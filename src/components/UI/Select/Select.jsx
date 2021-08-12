@@ -2,8 +2,8 @@ import PropTypes from 'prop-types';
 
 const Select = (props) => {
 
-  let options = props.optionList.map(o => {
-    return <option key={o} value={o}>{o}</option>
+  let options = props.optionList.map(optionValue => {
+    return <option key={optionValue} value={optionValue}>{optionValue}</option>
   });
 
   return (

@@ -24,7 +24,7 @@ const imageUpload = multer({
   storage: imageStorage,
   fileFilter(req, file, cb) {
     // Upload only png, jpg, jpeg format
-    if (!file.originalname.match(/\.(png|jpg|jpeg)$/)) {
+    if (!file.mimetype.match(/(png|jpg|jpeg)$/)) {
       // If the extention does not match than set the fileValidationError field
       req.fileValidationError = 'Forbidden extension';
       return cb(null, false, req.fileValidationError);

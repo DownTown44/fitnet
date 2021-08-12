@@ -1,4 +1,4 @@
-import CustomCalendar from '../../components/CustomCalendar/CustomCalendar';
+import CustomCalendar from '../components/CustomCalendar';
 
 const CalendarMenu = (props) => {
   return (

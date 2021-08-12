@@ -1,8 +1,7 @@
-import Header from '../components/Header/Header';
-import CalendarMenu from '../containers/CalendarMenu/CalendarMenu';
-import UserControls from '../containers/UserControls/UserControls';
-// TODO: Position with grid
-// TODO: Pass main content as children
+import Header from '../components/Header';
+import CalendarMenu from '../containers/CalendarMenu';
+import UserControls from '../containers/UserControls';
+
 const Layout = (props) => {
   return (
     <div className="layout">

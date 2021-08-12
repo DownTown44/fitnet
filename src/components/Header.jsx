@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Logo from '../Logo/Logo';
-import SearchBar from '../SearchBar/SearchBar';
-import Button from '../UI/Button/Button';
+import Logo from './Logo';
+import SearchBar from './SearchBar';
+import Button from './UI/Button';
 
 const Header = (props) => {
   return (

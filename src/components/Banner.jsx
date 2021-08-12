@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Button from '../UI/Button/Button';
-import Text from '../UI/Text/Text';
-import IconImage from '../IconImage/IconImage';
+import Button from './UI/Button';
+import Text from './UI/Text';
+import IconImage from './IconImage/IconImage';
 
 const Banner = (props) => {
   return (

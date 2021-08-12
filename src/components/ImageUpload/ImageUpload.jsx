@@ -1,6 +1,6 @@
 import { useRef, useState, useEffect } from 'react';
 
-import Button from '../UI/Button/Button';
+import Button from '../UI/Button';
 import DiscardableImage from './DiscardableImage';
 
 const ImageUpload = () => {

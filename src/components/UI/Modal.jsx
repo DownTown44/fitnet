@@ -1,4 +1,4 @@
-import Backdrop from '../Backdrop/Backdrop';
+import Backdrop from './Backdrop/';
 
 // !!! When used needs a state and an onClick handler so it can close when clicked on the backdrop
 const Modal = (props) => {

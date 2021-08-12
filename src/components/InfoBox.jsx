@@ -1,30 +1,28 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Icon from '../Icon/Icon';
-import Text from '../UI/Text/Text';
-import Button from '../UI/Button/Button';
+import Text from './UI/Text';
+import Button from './UI/Button';
 
-const NotifBox = (props) => {
+const InfoBox = (props) => {
   return (
     <div>
-      <Icon src={props.src} alt={props.alt} />
+      <img src={props.src} alt={props.alt} />
       <Text htmlTag="h3">{props.title}</Text>
       <Text htmlTag="p">{props.date}</Text>
       <Text htmlTag="p">{props.address}</Text>
-      <Button onClick={props.onDecl}></Button>
-      <Button onClick={props.onAccept}>Csatlakozas</Button>
+      <Button onClick={props.onClick}>{props.buttonText}</Button>
     </div>
   );
 }
 
-NotifBox.propTypes = {
+InfoBox.propTypes = {
   src: PropTypes.string.isRequired,
   alt: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
   date: PropTypes.string.isRequired,
   address: PropTypes.string.isRequired,
-  onDecl: PropTypes.func.isRequired,
-  onAccept: PropTypes.func.isRequired,
+  buttonText: PropTypes.string.isRequired,
+  onClick: PropTypes.func.isRequired
 }
 
-export default NotifBox;
+export default InfoBox;

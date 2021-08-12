@@ -1,5 +1,5 @@
 import Layout from './hoc/Layout';
-import Feed from './containers/Feed/Feed';
+import Feed from './containers/Feed';
 
 import './css/style.css';
 

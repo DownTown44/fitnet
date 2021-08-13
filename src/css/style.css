@@ -27,7 +27,7 @@ img {
   background-color: rgba(0, 0, 0, 0.4); }
 
 .calendar-menu {
-  grid-area: calendar-menu; }
+  grid-area: left; }
 
 .discardable-image {
   display: flex; }
@@ -80,6 +80,24 @@ img {
 .image-upload {
   display: flex; }
 
+.input-box {
+  font-size: 1.6rem;
+  margin-bottom: 25px; }
+  .input-box__field {
+    height: 35px;
+    width: 250px;
+    padding: 10px;
+    border-radius: 3px;
+    border: 1.5px solid #484848; }
+  .input-box__label {
+    margin-bottom: 5px;
+    margin-left: 3px; }
+  .input-box__validation-label {
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: #e3242b;
+    margin-top: 3px; }
+
 .modal {
   position: fixed;
   z-index: 10;
@@ -102,6 +120,19 @@ img {
     color: #2c2c28; }
   .rating__star--unfilled {
     color: #DCDCDC; }
+
+.sign-up-form {
+  padding: 6rem 12rem;
+  border-radius: 15px;
+  box-shadow: 27px 27px 54px #cccccc, -27px -27px 54px #f4f4f4;
+  height: min-content;
+  width: min-content;
+  grid-area: center;
+  justify-self: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center; }
 
 .sport-fields {
   display: flex; }
@@ -281,10 +312,10 @@ img {
     color: #808080; }
 
 .user-controls {
-  grid-area: user-controls; }
+  grid-area: right; }
 
 .content {
-  grid-area: main-content; }
+  grid-area: center; }
 
 .header {
   position: relative;
@@ -300,4 +331,4 @@ img {
   grid-auto-columns: 1fr;
   gap: 0px 0px;
   grid-auto-flow: row;
-  grid-template-areas: "header header header header header" "calendar-menu . main-content . user-controls"; }
+  grid-template-areas: "header header header header header" "left . center . right"; }

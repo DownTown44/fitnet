@@ -29,7 +29,8 @@ Input.propTypes = {
   placeholder: PropTypes.string,
   autoFocus: PropTypes.bool,
   isDisabled: PropTypes.bool,
-  label: PropTypes.string
+  label: PropTypes.string,
+  validationLabel: PropTypes.string
 };
 
 Input.defaultProps = {

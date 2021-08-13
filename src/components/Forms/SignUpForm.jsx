@@ -95,59 +95,63 @@ const SignUpForm = () => {
   };
 
   return (
-    <div>
-      <form>
-        <Input 
-          type="email" 
-          onChange={event => handleChange(event, 'email')} 
-          value={signUpData.email} 
-          label="Email"
-          validationLabel={emailError}
-        />
+    <form className="sign-up-form">
+      <Input 
+        type="email" 
+        onChange={event => handleChange(event, 'email')} 
+        value={signUpData.email} 
+        label="E-mail"
+        placeholder="E-mail"
+        validationLabel={emailError}
+      />
 
-        <Input 
-          type="text" 
-          onChange={event => handleChange(event, 'firstName')} 
-          value={signUpData.firstName}
-          label="First name"
-          validationLabel={firstNameError}
-        />
+      <Input 
+        type="text" 
+        onChange={event => handleChange(event, 'firstName')} 
+        value={signUpData.firstName}
+        label="Keresztnév"
+        placeholder="Keresztnév"
+        validationLabel={firstNameError}
+      />
 
-        <Input 
-          type="text" 
-          onChange={event => handleChange(event, 'lastName')} 
-          value={signUpData.lastName}
-          label="Last name" 
-          validationLabel={lastNameError}
-        />
+      <Input 
+        type="text" 
+        onChange={event => handleChange(event, 'lastName')} 
+        value={signUpData.lastName}
+        label="Családnév" 
+        placeholder="Családnév"
+        validationLabel={lastNameError}
+      />
 
-        <Input 
-          type="text" 
-          onChange={event => handleChange(event, 'phoneNumber')} 
-          value={signUpData.phoneNumber}
-          label="Phone number"
-          validationLabel={phoneNumberError}
-        />
+      <Input 
+        type="text" 
+        onChange={event => handleChange(event, 'phoneNumber')} 
+        value={signUpData.phoneNumber}
+        label="Telefonszám"
+        placeholder="Telefonszám"
+        validationLabel={phoneNumberError}
+      />
 
-        <Input 
-          type="password" 
-          onChange={event => handleChange(event, 'password')} 
-          value={signUpData.password}
-          label="Password" 
-          validationLabel={passwordError}
-        />
+      <Input 
+        type="password" 
+        onChange={event => handleChange(event, 'password')} 
+        value={signUpData.password}
+        label="Jelszó" 
+        placeholder="Jelszó"
+        validationLabel={passwordError}
+      />
 
-        <Input 
-          type="password" 
-          onChange={event => handleChange(event, 'repeatedPassword')} 
-          value={signUpData.repeatedPassword}
-          label="Repeat password"
-          validationLabel={repeatError}
-        />
+      <Input 
+        type="password" 
+        onChange={event => handleChange(event, 'repeatedPassword')} 
+        value={signUpData.repeatedPassword}
+        label="Ismételje meg a jelszavát" 
+        placeholder="Jelszó"
+        validationLabel={repeatError}
+      />
 
-        <Button onClick={(event) => onSubmit(event)}>Submit</Button>
-      </form>
-    </div>
+      <Button onClick={(event) => onSubmit(event)}>Regisztráció</Button>
+    </form>
   );
 }
 

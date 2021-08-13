@@ -1,0 +1,27 @@
+.input-box {
+  font-size: 1.6rem;
+  margin-bottom: 25px;
+
+  &__field {
+    height: 35px;
+    width: 250px;
+    padding: 10px;
+
+    
+    border-radius: 3px;
+    border: 1.5px solid $grey-dark;
+  }
+
+  &__label {
+    margin-bottom: 5px;
+    margin-left: 3px;
+  }
+
+  &__validation-label {
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: $red-base;
+
+    margin-top: 3px;
+  }
+}

@@ -18,7 +18,7 @@ Input.propTypes = {
   type: PropTypes.string.isRequired,
   onChange: PropTypes.func.isRequired,
   onKeyPress: PropTypes.func,
-  value: PropTypes.string,
+  value: PropTypes.string.isRequired,
   placeholder: PropTypes.string,
   autoFocus: PropTypes.bool,
   isDisabled: PropTypes.bool

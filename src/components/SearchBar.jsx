@@ -6,7 +6,7 @@ const SearchBar = () => {
 
   return (
     <div className="search-bar">
-      <Input type="text" onChange={e => setText(e.target.value)} />
+      <Input type="text" onChange={e => setText(e.target.value)} value={text} />
     </div>
   );
 };

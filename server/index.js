@@ -3,6 +3,7 @@ import morgan from 'morgan';
 import path from 'path';
 
 import groups from './routes/groups.js';
+import register from './routes/register.js';
 
 const app = express();
 const port = 8080;
@@ -14,6 +15,7 @@ app.use(morgan('tiny'));
 app.use(express.static(path.join(process.cwd(), 'server/assets')));
 
 app.use('/groups', groups);
+app.use('/register', register);
 
 app.listen(port, () => {
   console.log(`Server is listening on port ${port}`);

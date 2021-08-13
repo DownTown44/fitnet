@@ -1,9 +1,13 @@
 import sequelize_all from 'sequelize';
-const { Sequelize } = sequelize_all;
 
 import initModels from './models/init-models.js';
 import dbconfig from './dbconfig.js';
 
+import insertUser from './dbHandlers/insertUser.js';
+import insertGroup from './dbHandlers/insertGroup.js';
+import selectUserByEmail from './dbHandlers/selectUserByEmail.js';
+
+const { Sequelize } = sequelize_all;
 const { host, port, user, password, database } = dbconfig;
 
 const sequelize = new Sequelize(`mysql://${user}:${password}@${host}:${port}/${database}`, {
@@ -20,14 +24,35 @@ const sequelize = new Sequelize(`mysql://${user}:${password}@${host}:${port}/${d
 
 const models = initModels(sequelize);
 
-export const createGroups = async (data) => {
-  try {
-    const insertObject = await models['groups'].build(data);
-    const result = await insertObject.save();
+// Error messages
+const serverConnectionError = 'Server connection is broken';
 
-    return result;
-  } catch (error) {
-    console.log(error);
-    throw "Server connection is broken";
+// Data insertion
+
+export const createGroup = async (data) => {
+  try {
+    await insertGroup(data, models['groups'], serverConnectionError);
+  } catch(err) {
+    console.log(err);
+  }
+}
+
+export const registerUser = async (data) => {
+  try {
+    await insertUser(data, models['users'], serverConnectionError);
+  } catch(err) {
+    console.log(err);
+  }
+}
+
+// Data selection
+
+export const getUserByEmail = async (data) => {
+  try {
+    const result = await selectUserByEmail(models['users'], data.email, serverConnectionError);
+    return JSON.parse(result);
+  } catch(err) {
+    console.log(err);
+    throw serverConnectionError;
   }
 }

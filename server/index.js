@@ -2,6 +2,7 @@ import express from 'express';
 import morgan from 'morgan';
 import path from 'path';
 
+import snakeCasify from './middleware/snakeCasify.js';
 import groups from './routes/groups.js';
 import register from './routes/register.js';
 
@@ -10,6 +11,7 @@ const port = 8080;
 
 app.use(express.json());
 app.use(morgan('tiny'));
+app.use(snakeCasify);
 
 // Make the assests directory static
 app.use(express.static(path.join(process.cwd(), 'server/assets')));

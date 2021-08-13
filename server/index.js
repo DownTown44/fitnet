@@ -1,6 +1,7 @@
 import express from 'express';
 import morgan from 'morgan';
 import path from 'path';
+import cors from 'cors';
 
 import snakeCasify from './middleware/snakeCasify.js';
 import groups from './routes/groups.js';
@@ -8,6 +9,8 @@ import register from './routes/register.js';
 
 const app = express();
 const port = 8080;
+
+app.use(cors({ origin: 'http://localhost:3000' }));
 
 app.use(express.json());
 app.use(morgan('tiny'));

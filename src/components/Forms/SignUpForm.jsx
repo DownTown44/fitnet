@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 
 import validator from 'validator';
 
@@ -84,7 +85,12 @@ const SignUpForm = () => {
     // so when it contains an error message (string) it is considered as true
     // that's why it is reversed
     if(!emailError && !firstNameError && !lastNameError && !phoneNumberError && !passwordError && !repeatError) {
-      console.log(signUpData);
+      axios.post('http://localhost:8080/register', { ...signUpData })
+        .then( (res) => {
+          console.log(res);
+        }).catch( (error) => {
+          console.log(error.response);
+        });
     }
   };
 

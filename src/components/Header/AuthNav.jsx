@@ -7,9 +7,9 @@ import { Link } from 'react-router-dom'
 const AuthNav = () => {
   return (
     <div>
-      <Link>Sign out</Link>
-      <Link to="/signup">Sign up</Link>
-      <Link>Sign in</Link>
+      <Link>Kijelentkezés</Link>
+      <Link to="/signup">Regisztráció</Link>
+      <Link>Bejelentkezés</Link>
     </div>
   );
 }

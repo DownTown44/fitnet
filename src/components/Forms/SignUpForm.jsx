@@ -7,16 +7,6 @@ import Input from '../UI/Input';
 import Button from '../UI/Button';
 
 const SignUpForm = () => {
-  const [currentField, setCurrentField] = useState(null);
-
-  // The initial state is true, because empty fields are invalid (true = has error)
-  const [emailError, setEmailError] = useState(true);
-  const [firstNameError, setFirstNameError] = useState(true);
-  const [lastNameError, setLastNameError] = useState(true);
-  const [phoneNumberError, setPhoneNumberError] = useState(true);
-  const [passwordError, setPasswordError] = useState(true);
-  const [repeatError, setRepeatError] = useState(true);
-
   const [signUpData, setSignUpData] = useState({
     roleId: 1,
     email: '',
@@ -27,47 +17,22 @@ const SignUpForm = () => {
     repeatedPassword: ''
   });
   
-  // Validating when a field has been changed
+  const [currentField, setCurrentField] = useState(null);
+  const [errors, setErrors] = useState({
+    email: '',
+    firstName: '',
+    lastName: '',
+    phoneNumber: '',
+    password: '',
+    repeatedPassword: '',
+  });
+
+  // Validates when state changes
   useEffect(() => {
-    if(currentField === 'email') {
-      if(validator.isEmail(signUpData[currentField])) {
-        setEmailError(false);
-      } else {
-        setEmailError('Hibás e-mail cím');
-      }
-    } else if(currentField === 'firstName') {
-      if(validator.isAlpha(signUpData[currentField], 'hu-HU')) {
-        setFirstNameError(false);
-      } else {
-        setFirstNameError('A neved csak betűkből állhat.');
-      }
-    } else if(currentField === 'lastName') {
-      if(validator.isAlpha(signUpData[currentField], 'hu-HU')) {
-        setLastNameError(false);
-      } else {
-        setLastNameError('A neved csak betűkből állhat.');
-      }
-    } else if(currentField === 'phoneNumber') {
-      if(validator.isMobilePhone(signUpData[currentField], 'ro-RO')) {
-        setPhoneNumberError(false);
-      } else {
-        setPhoneNumberError('Hibás telefonszám');
-      }
-    } else if(currentField === 'password') {
-      if(validator.isStrongPassword(signUpData[currentField], {minSymbols: 0})) {
-        setPasswordError(false);
-      } else {
-        setPasswordError('Hibás jelszó, tartalmaznia kell nagy és kisbetűt és egy számot');
-      }
-    } else if(currentField === 'repeatedPassword') {
-      if(validator.equals(signUpData[currentField], signUpData.password)) {
-        setRepeatError(false);
-      } else {
-        setRepeatError('A két jelszó nem egyezik meg');
-      }
-    }
+    validation();
   }, [signUpData]);
 
+  // Updates form data on input field change
   const handleChange = (event, stateName) => {
     setCurrentField(stateName);
     setSignUpData((prevState) => {
@@ -78,13 +43,76 @@ const SignUpForm = () => {
     });
   };
 
+  // Updates error data on input field change
+  const errorUpdate = (errorField, errorMessage) => {
+    setErrors((prevState) => {
+      return {
+        ...prevState,
+        [errorField]: errorMessage
+      };
+    });
+  };
+
+  const validation = () => {
+    switch (currentField) {
+      case 'email': {
+        validator.isEmail(signUpData.email) ? errorUpdate('email', '') 
+        : errorUpdate('email', 'Hibás e-mail cím');
+        
+        break;
+      }
+        
+      case 'firstName': {
+        validator.isAlpha(signUpData.firstName, 'hu-HU') ? errorUpdate('firstName', '') 
+        : errorUpdate('firstName', 'A név csak betűkből állhat');
+
+        break;
+      }
+
+      case 'lastName': {
+        validator.isAlpha(signUpData.lastName, 'hu-HU') ? errorUpdate('lastName', '') 
+        : errorUpdate('lastName', 'A név csak betűkből állhat');
+        
+        break;
+      }
+
+      case 'phoneNumber': {
+        validator.isMobilePhone(signUpData.phoneNumber, 'ro-RO') ? errorUpdate('phoneNumber', '') 
+        : errorUpdate('phoneNumber', 'Hibás telefonszám');
+        
+        break;
+      }
+
+      case 'password': {
+        validator.isStrongPassword(signUpData.password, {minSymbols: 0}) ? errorUpdate('password', '') 
+        : errorUpdate('password', 'Hibás jelszó, tartalmaznia kell nagy és kisbetűt és egy számot');
+        
+        break;
+      }
+
+      case 'repeatedPassword': {
+        validator.equals(signUpData.repeatedPassword, signUpData.password) ? errorUpdate('repeatedPassword', '') 
+        : errorUpdate('repeatedPassword', 'A két jelszó nem egyezik meg');
+
+        break;
+      }
+    }
+  }
+
+  // Checks if we store any error in state, returns true of none found
+  const isValid = (obj) => {
+    for (let key in obj) {
+      if (obj[key] !== '')
+        return false;
+    }
+
+    return true;
+  }
+
   const onSubmit = (event) => {
     event.preventDefault();
-    // We check if all the fields are false (false = no error)
-    // We set an error message in the variables 
-    // so when it contains an error message (string) it is considered as true
-    // that's why it is reversed
-    if(!emailError && !firstNameError && !lastNameError && !phoneNumberError && !passwordError && !repeatError) {
+
+    if(isValid(errors)) {
       axios.post('/signup', signUpData)
         .then( (res) => {
           console.log(res);
@@ -102,7 +130,7 @@ const SignUpForm = () => {
         value={signUpData.email} 
         label="E-mail"
         placeholder="E-mail"
-        validationLabel={emailError}
+        validationLabel={errors.email}
       />
 
       <Input 
@@ -111,7 +139,7 @@ const SignUpForm = () => {
         value={signUpData.firstName}
         label="Keresztnév"
         placeholder="Keresztnév"
-        validationLabel={firstNameError}
+        validationLabel={errors.firstName}
       />
 
       <Input 
@@ -120,7 +148,7 @@ const SignUpForm = () => {
         value={signUpData.lastName}
         label="Családnév" 
         placeholder="Családnév"
-        validationLabel={lastNameError}
+        validationLabel={errors.lastName}
       />
 
       <Input 
@@ -129,7 +157,7 @@ const SignUpForm = () => {
         value={signUpData.phoneNumber}
         label="Telefonszám"
         placeholder="Telefonszám"
-        validationLabel={phoneNumberError}
+        validationLabel={errors.phoneNumber}
       />
 
       <Input 
@@ -138,7 +166,7 @@ const SignUpForm = () => {
         value={signUpData.password}
         label="Jelszó" 
         placeholder="Jelszó"
-        validationLabel={passwordError}
+        validationLabel={errors.password}
       />
 
       <Input 
@@ -147,7 +175,7 @@ const SignUpForm = () => {
         value={signUpData.repeatedPassword}
         label="Ismételje meg a jelszavát" 
         placeholder="Jelszó"
-        validationLabel={repeatError}
+        validationLabel={errors.repeatedPassword}
       />
 
       <Button onClick={(event) => onSubmit(event)}>Regisztráció</Button>

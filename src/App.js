@@ -16,11 +16,7 @@ function App() {
   // This useEffect on specific locations changes the property of the layout
   // ex. in some locations the sidedrawers should not be mounted
   useEffect(() => {
-    if (location.pathname === "/signup") {
-      setLayoutShown(false);
-    } else {
-      setLayoutShown(true);
-    }
+    setLayoutShown(location.pathname !== "/signup")
   }, [location]);
 
   let routes = (

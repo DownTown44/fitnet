@@ -15,7 +15,7 @@ router.post('/', async (req, res) => {
 
     if (user) {
       res.status(400);
-      res.send('The user is already exists');
+      res.send('This email address is registered already');
       return;
     }
 

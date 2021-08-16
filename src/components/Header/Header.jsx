@@ -1,14 +1,18 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Logo from './Logo';
-import SearchBar from './SearchBar';
-import Button from './UI/Button';
+
+import Logo from '../Logo';
+import SearchBar from '../SearchBar';
+import Button from '../UI/Button';
+import AuthNav from './AuthNav';
 
 const Header = (props) => {
   return (
     <div className="header">
       <Logo src={props.logoSrc} alt={props.logoAlt} onClick={props.logoOnClick} />
       <SearchBar />
+      {/* TODO: Load buttons based on isAuthenticated */}
+      <AuthNav />
       <Button onClick={props.buttonOnClick}>Menu</Button>
     </div>
   );

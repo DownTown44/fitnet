@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 const Text = (props) => {
   let HtmlTag = props.htmlTag;
   return (
-    <HtmlTag>{props.children}</HtmlTag>
+    <HtmlTag className={props.className}>{props.children}</HtmlTag>
   );
 };
 

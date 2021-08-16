@@ -18,11 +18,11 @@ export default class users extends Model {
         key: 'role_id'
       }
     },
-    firstname: {
+    first_name: {
       type: DataTypes.STRING(45),
       allowNull: false
     },
-    lastname: {
+    last_name: {
       type: DataTypes.STRING(45),
       allowNull: false
     },

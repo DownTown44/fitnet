@@ -1,9 +1,8 @@
 import express from 'express';
-import seq from 'sequelize';
 import multer from 'multer';
 import path from 'path';
 
-import { createGroups } from '../../database/dbHandler.js';
+import { createGroup } from '../../database/dbHandler.js';
 
 const router = express.Router();
 
@@ -38,6 +37,7 @@ router.post('/', imageUpload.single('image'), async (req, res) => {
   if (req.fileValidationError) {
     res.status(400);
     res.send('Forbidden file format');
+    return;
   }
 
   const fileHandler = req.file;
@@ -46,7 +46,7 @@ router.post('/', imageUpload.single('image'), async (req, res) => {
   
   try {
     // Inserting into database
-    await createGroups(data);
+    await createGroup(data);
 
     res.status(201);
     res.send();

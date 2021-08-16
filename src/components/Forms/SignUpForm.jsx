@@ -56,43 +56,49 @@ const SignUpForm = () => {
   const validation = () => {
     switch (currentField) {
       case 'email': {
-        validator.isEmail(signUpData.email) ? errorUpdate('email', '') 
-        : errorUpdate('email', 'Hibás e-mail cím');
+        validator.isEmail(signUpData.email) ?
+          errorUpdate('email', '') :
+          errorUpdate('email', 'Hibás e-mail cím');
         
         break;
       }
         
       case 'firstName': {
-        validator.isAlpha(signUpData.firstName, 'hu-HU') ? errorUpdate('firstName', '') 
-        : errorUpdate('firstName', 'A név csak betűkből állhat');
+        validator.isAlpha(signUpData.firstName, 'hu-HU') ? 
+          errorUpdate('firstName', '') : 
+          errorUpdate('firstName', 'A név csak betűkből állhat');
 
         break;
       }
 
       case 'lastName': {
-        validator.isAlpha(signUpData.lastName, 'hu-HU') ? errorUpdate('lastName', '') 
-        : errorUpdate('lastName', 'A név csak betűkből állhat');
+        validator.isAlpha(signUpData.lastName, 'hu-HU') ? 
+          errorUpdate('lastName', '') : 
+          errorUpdate('lastName', 'A név csak betűkből állhat');
         
         break;
       }
 
       case 'phoneNumber': {
-        validator.isMobilePhone(signUpData.phoneNumber, 'ro-RO') ? errorUpdate('phoneNumber', '') 
-        : errorUpdate('phoneNumber', 'Hibás telefonszám');
+        validator.isMobilePhone(signUpData.phoneNumber, 'ro-RO') ? 
+          errorUpdate('phoneNumber', '') : 
+          errorUpdate('phoneNumber', 'Hibás telefonszám');
         
         break;
       }
 
       case 'password': {
-        validator.isStrongPassword(signUpData.password, {minSymbols: 0}) ? errorUpdate('password', '') 
-        : errorUpdate('password', 'Hibás jelszó, tartalmaznia kell nagy és kisbetűt és egy számot');
+        validator.isStrongPassword(signUpData.password, {minSymbols: 0}) ? 
+          errorUpdate('password', '') : 
+          errorUpdate('password', 'Hibás jelszó, tartalmaznia kell nagy és kisbetűt és egy számot');
         
         break;
       }
 
       case 'repeatedPassword': {
-        validator.equals(signUpData.repeatedPassword, signUpData.password) ? errorUpdate('repeatedPassword', '') 
-        : errorUpdate('repeatedPassword', 'A két jelszó nem egyezik meg');
+        validator.equals(signUpData.repeatedPassword, signUpData.password) ? 
+          errorUpdate('repeatedPassword', '') : 
+          errorUpdate('repeatedPassword', 'A két jelszó nem egyezik meg');
 
         break;
       }

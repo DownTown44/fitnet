@@ -28,7 +28,6 @@ router.post('/', async (req, res) => {
   try {
     // Check if the email is registered in the database
     const user = (await getUserByEmail(data))[0];
-    const dto = userToDTO(user);
 
     // If the user isn't registered, or the given password is incorrect
     if (!user || !await bcrypt.compare(data.password, user.password)) {
@@ -46,7 +45,7 @@ router.post('/', async (req, res) => {
       userId: user.user_id,
       role: user.role.role_name,
     }, secret, {
-      expiresIn: '48h',
+      expiresIn: '1m',
     });
 
     // Store the jwt in a cookie named 'token'
@@ -56,6 +55,8 @@ router.post('/', async (req, res) => {
       httpOnly: true,
       sameSite: 'strict',
     });
+
+    const dto = userToDTO(user);
 
     res.status(200);
     res.json({

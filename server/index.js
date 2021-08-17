@@ -8,6 +8,7 @@ import snakeCasify from './middleware/snakeCasify.js';
 import groups from './routes/groups.js';
 import signup from './routes/signup.js';
 import login from './routes/login.js';
+import { checkToken, decodeToken } from './middleware/jwtCheck.js';
 
 const app = express();
 const port = 8080;
@@ -15,6 +16,7 @@ const port = 8080;
 app.use(cors({ origin: 'http://localhost:3000' }));
 
 app.use(cookieParser());
+app.use(decodeToken);
 
 app.use(express.json());
 app.use(morgan('tiny'));

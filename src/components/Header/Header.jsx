@@ -12,7 +12,7 @@ const Header = (props) => {
       <Logo src={props.logoSrc} alt={props.logoAlt} onClick={props.logoOnClick} />
       <SearchBar />
       {/* TODO: Load buttons based on isAuthenticated */}
-      <AuthNav />
+      <AuthNav isAuth={props.isAuth}/>
       <Button onClick={props.buttonOnClick}>Menu</Button>
     </div>
   );
@@ -23,6 +23,7 @@ Header.propTypes = {
   logoAlt: PropTypes.string.isRequired,
   logoOnClick: PropTypes.func.isRequired,
   buttonOnClick: PropTypes.func.isRequired,
+  isAuth: PropTypes.bool.isRequired
 };
 
 export default Header;

@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import axios from '../../axios';
-
 import validator from 'validator';
 
 import Input from '../UI/Input';

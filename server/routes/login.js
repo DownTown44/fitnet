@@ -28,8 +28,7 @@ router.post('/', async (req, res) => {
   try {
     // Check if the email is registered in the database
     const user = (await getUserByEmail(data))[0];
-    const dto = userToDTO(user);
-
+    
     // If the user isn't registered, or the given password is incorrect
     if (!user || !await bcrypt.compare(data.password, user.password)) {
       res.status(401);
@@ -39,7 +38,7 @@ router.post('/', async (req, res) => {
       });
       return;
     }
-
+    
     // If the login was succesful then sign a jwt for the user
     const token = jwt.sign({
       email: user.email,
@@ -48,7 +47,7 @@ router.post('/', async (req, res) => {
     }, secret, {
       expiresIn: '48h',
     });
-
+    
     // Store the jwt in a cookie named 'token'
     // httpOnly -> prevents XSS jwt stealing
     // sameSite -> almost the same as above
@@ -56,7 +55,9 @@ router.post('/', async (req, res) => {
       httpOnly: true,
       sameSite: 'strict',
     });
-
+    
+    const dto = userToDTO(user);
+    
     res.status(200);
     res.json({
       auth: true,

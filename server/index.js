@@ -5,6 +5,7 @@ import cors from 'cors';
 import cookieParser from 'cookie-parser';
 
 import snakeCasify from './middleware/snakeCasify.js';
+import events from './routes/events.js';
 import groups from './routes/groups.js';
 import signup from './routes/signup.js';
 import login from './routes/login.js';
@@ -26,6 +27,7 @@ app.use(snakeCasify);
 // Make the assests directory static
 app.use(express.static(path.join(process.cwd(), 'server/assets')));
 
+app.use('/events', events);
 app.use('/groups', groups);
 app.use('/signup', signup);
 app.use('/login', login);

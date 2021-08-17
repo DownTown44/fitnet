@@ -1,12 +1,14 @@
 import React, { useState, useEffect } from 'react';
-import axios from '../../axios';
+import { useHistory } from 'react-router-dom';
 
 import validator from 'validator';
 
+import { signup } from '../../services/authenticationService';
 import Input from '../UI/Input';
 import Button from '../UI/Button';
 
 const SignUpForm = () => {
+  const history = useHistory();
   const [signUpData, setSignUpData] = useState({
     roleId: 1,
     email: '',
@@ -119,12 +121,8 @@ const SignUpForm = () => {
     event.preventDefault();
 
     if(isValid(errors)) {
-      axios.post('/signup', signUpData)
-        .then( (res) => {
-          console.log(res);
-        }).catch( (error) => {
-          console.log(error.response);
-        });
+      signup(signUpData);
+      history.push('/login');
     }
   };
 

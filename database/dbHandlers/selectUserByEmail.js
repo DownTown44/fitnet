@@ -1,4 +1,5 @@
 import seq from 'sequelize';
+import roles from '../models/roles.js';
 
 const selectUserByEmail = async (model, email, errMessage) => {
   try {
@@ -8,7 +9,13 @@ const selectUserByEmail = async (model, email, errMessage) => {
         email: {
           [seq.Op.eq] : email
         }
-      }
+      },
+      include: [
+        {
+          model: roles,
+          as: 'role'
+        }
+      ]
     });
 
     return JSON.stringify(result);

@@ -7,7 +7,7 @@ import UserControls from '../containers/UserControls';
 const Layout = (props) => {
   return (
     <div className="layout">
-      <Header/>
+      <Header isAuth={props.isAuth} onLogout={props.onLogout}/>
       {props.isShown && <CalendarMenu/>}
       {props.children}
       {props.isShown && <UserControls/>}
@@ -16,7 +16,8 @@ const Layout = (props) => {
 }
 
 Layout.propTypes = {
-  isShown: PropTypes.bool
+  isShown: PropTypes.bool,
+  isAuth: PropTypes.bool.isRequired
 }
 
 Layout.defaultProps = {

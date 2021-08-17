@@ -8,6 +8,7 @@ import snakeCasify from './middleware/snakeCasify.js';
 import groups from './routes/groups.js';
 import signup from './routes/signup.js';
 import login from './routes/login.js';
+import logout from './routes/logout.js';
 import { checkToken, decodeToken } from './middleware/jwtCheck.js';
 
 const app = express();
@@ -28,6 +29,7 @@ app.use(express.static(path.join(process.cwd(), 'server/assets')));
 app.use('/groups', groups);
 app.use('/signup', signup);
 app.use('/login', login);
+app.use('/logout', logout);
 
 app.listen(port, () => {
   console.log(`Server is listening on port ${port}`);

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import { Route, Switch, useLocation, Redirect } from 'react-router-dom';
+import { Route, Switch, useLocation, Redirect, useHistory } from 'react-router-dom';
 
+import { logout } from './services/authenticationService';
 import Layout from './hoc/Layout';
 import Feed from './containers/Feed';
 import SignUpForm from './components/Forms/SignUpForm';
@@ -12,6 +13,8 @@ function App() {
   // To get the current location
   // We need it to change the layouts prop based on this
   const location = useLocation();
+  const history = useHistory();
+
   const [ layoutShown, setLayoutShown ] = useState(true);
   const [ isAuth, setIsAuth ] = useState(false);
 
@@ -19,6 +22,12 @@ function App() {
     setIsAuth(result);
     result && setLayoutShown(true);
   };
+
+  const onLogout = () => {
+    logout();
+    setIsAuth(false);
+    history.push('/');
+  }
   
   // This useEffect on specific locations changes the property of the layout
   // ex. in some locations the sidedrawers should not be mounted
@@ -66,7 +75,7 @@ function App() {
   };
 
   return (
-    <Layout isShown={layoutShown} isAuth={isAuth}>
+    <Layout isShown={layoutShown} isAuth={isAuth} onLogout={onLogout}>
       {routes}
     </Layout>
   );

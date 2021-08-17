@@ -11,8 +11,7 @@ const Header = (props) => {
     <div className="header">
       <Logo src={props.logoSrc} alt={props.logoAlt} onClick={props.logoOnClick} />
       <SearchBar />
-      {/* TODO: Load buttons based on isAuthenticated */}
-      <AuthNav isAuth={props.isAuth}/>
+      <AuthNav isAuth={props.isAuth} onLogout={props.onLogout}/>
       <Button onClick={props.buttonOnClick}>Menu</Button>
     </div>
   );

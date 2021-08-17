@@ -1,11 +1,15 @@
 import React, { useState } from 'react';
-import axios from '../../axios';
-import Cookies from 'js-cookie';
+import { useHistory } from 'react-router-dom';
 
+import { login } from '../../services/authenticationService';
 import Input from '../UI/Input';
 import Button from '../UI/Button';
+import Text from '../UI/Text';
 
-const LoginForm = () => {
+const LoginForm = (props) => {
+  const history = useHistory();
+
+  const [loginFailMessage, setLoginFailMessage] = useState('');
   const [loginData, setLoginData] = useState({
     email: '',
     password: ''
@@ -20,17 +24,17 @@ const LoginForm = () => {
     });
   };
 
-  const onSubmit = (event) => {
+  const onSubmit = async (event) => {
     event.preventDefault();
+    const authorized = await login(loginData);
 
-    axios.post('/login', loginData)
-    .then((res) => {
-      console.log(res.data);
-      Cookies.set("token", res.data.token);
+    if (authorized) {
+      history.push('/');
+    } else {
+      setLoginFailMessage("A jelszavad vagy az emailed hibás.");
+    }
 
-    }).catch( (error) => {
-      console.log(error.response);
-    });
+    props.onLoginAttempt(authorized);
   };
 
   return (
@@ -50,6 +54,7 @@ const LoginForm = () => {
         label="Password"
         placeholder="Password"
       />
+      <Text>{loginFailMessage}</Text>
 
       <Button onClick={(event) => onSubmit(event)}>Bejelentkezés</Button>
     </form>

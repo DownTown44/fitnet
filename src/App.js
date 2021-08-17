@@ -14,6 +14,11 @@ function App() {
   const location = useLocation();
   const [ layoutShown, setLayoutShown ] = useState(true);
   const [ isAuth, setIsAuth ] = useState(false);
+
+  const onLoginAttempt = (result) => {
+    setIsAuth(result);
+    result && setLayoutShown(true);
+  };
   
   // This useEffect on specific locations changes the property of the layout
   // ex. in some locations the sidedrawers should not be mounted
@@ -43,7 +48,7 @@ function App() {
         <SignUpForm/>
       </Route>
       <Route path="/login">
-        <LoginForm/>
+        <LoginForm onLoginAttempt={onLoginAttempt}/>
       </Route>
       <Redirect to="/" />
     </Switch>

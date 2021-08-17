@@ -98,6 +98,19 @@ img {
     color: #e3242b;
     margin-top: 3px; }
 
+.login-form {
+  padding: 5rem 10rem;
+  border-radius: 15px;
+  box-shadow: 27px 27px 54px #cccccc, -27px -27px 54px #f4f4f4;
+  height: min-content;
+  width: min-content;
+  grid-area: center;
+  justify-self: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center; }
+
 .modal {
   position: fixed;
   z-index: 10;

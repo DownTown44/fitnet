@@ -13,7 +13,7 @@ import { checkToken, decodeToken } from './middleware/jwtCheck.js';
 const app = express();
 const port = 8080;
 
-app.use(cors({ origin: 'http://localhost:3000' }));
+app.use(cors({ origin: 'http://localhost:3000', credentials: true }));
 
 app.use(cookieParser());
 app.use(decodeToken);

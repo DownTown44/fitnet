@@ -38,7 +38,7 @@ router.post('/', async (req, res) => {
       });
       return;
     }
-
+    
     // If the login was succesful then sign a jwt for the user
     const token = jwt.sign({
       email: user.email,
@@ -47,7 +47,7 @@ router.post('/', async (req, res) => {
     }, secret, {
       expiresIn: '1m',
     });
-
+    
     // Store the jwt in a cookie named 'token'
     // httpOnly -> prevents XSS jwt stealing
     // sameSite -> almost the same as above

@@ -29,15 +29,6 @@ img {
 .calendar-menu {
   grid-area: left; }
 
-.discardable-image {
-  display: flex; }
-  .discardable-image__image {
-    max-height: 8rem; }
-  .discardable-image__cancelButton {
-    font-size: 2rem;
-    margin-left: -2rem;
-    cursor: pointer; }
-
 .slider {
   position: relative;
   height: 25rem;
@@ -76,6 +67,21 @@ img {
   left: 0rem; }
   .left-arrow:hover {
     color: black; }
+
+.discardable-image {
+  display: flex; }
+  .discardable-image__image {
+    max-height: 8rem; }
+  .discardable-image__cancelButton {
+    font-size: 2rem;
+    margin-left: -2rem;
+    cursor: pointer; }
+
+.double-button {
+  width: 115px;
+  display: flex;
+  justify-content: space-around;
+  align-items: flex-start; }
 
 .image-upload {
   display: flex; }

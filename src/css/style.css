@@ -77,12 +77,6 @@ img {
     margin-left: -2rem;
     cursor: pointer; }
 
-.double-button {
-  width: 115px;
-  display: flex;
-  justify-content: space-around;
-  align-items: flex-start; }
-
 .image-upload {
   display: flex; }
 
@@ -332,6 +326,18 @@ img {
 
 .user-controls {
   grid-area: right; }
+
+.double-button {
+  width: 115px;
+  display: flex;
+  justify-content: space-around;
+  align-items: flex-start; }
+  .double-button__list-button {
+    cursor: pointer; }
+  .double-button__add-button {
+    cursor: pointer;
+    width: 20px;
+    height: 20px; }
 
 .content {
   grid-area: center; }

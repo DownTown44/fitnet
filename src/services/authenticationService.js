@@ -30,3 +30,6 @@ export {
   logout,
   signup
 };
+
+// BUG: On refresh, logout happens
+// TODO: If the token expires, than we have to logouted on the next request

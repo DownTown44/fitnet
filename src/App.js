@@ -6,6 +6,7 @@ import Layout from './hoc/Layout';
 import Feed from './containers/Feed';
 import SignUpForm from './components/Forms/SignUpForm';
 import LoginForm from './components/Forms/LoginForm';
+import CreateEvent from './components/Forms/CreateEvent';
 
 import './css/style.css';
 
@@ -68,6 +69,9 @@ function App() {
       <Switch>
         <Route path="/" exact>
           <Feed />
+        </Route>
+        <Route path="/groups/create">
+          <CreateEvent />
         </Route>
         <Redirect to="/" />
       </Switch>

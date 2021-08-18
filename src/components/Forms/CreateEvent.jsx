@@ -16,8 +16,8 @@ const CreateEvent = () => {
     name: '',
     description: '',
     address: '',
-    minParticipant: null,
-    maxParticipant: null,
+    minParticipant: 0,
+    maxParticipant: 30,
     repeat: false,
     startDate: '',
     endDate: ''
@@ -25,6 +25,13 @@ const CreateEvent = () => {
 
   const handleChange = (event, stateName) => {
     setEventData((prevState) => {
+      if (stateName === "repeat") {
+        return {
+          ...prevState,
+          [stateName]: event.target.checked
+        };
+      }
+
       return {
         ...prevState,
         [stateName]: event.target.value
@@ -32,10 +39,22 @@ const CreateEvent = () => {
     });
   };
 
+  const isValid = (obj) => {
+    for (let key in obj) {
+      if (obj[key] === '' || obj[key] === null) {
+        return false;
+      }
+    }
+
+    return true;
+  }
+
   const onSubmit = async (event) => {
     event.preventDefault();
     // TODO: on submit typeId and ownerType must be set 
-    const result = await createEvent(eventData);
+    if (isValid(eventData)) {
+      const result = await createEvent(eventData);
+    }
 
     // TODO: After creation redirect to /groups/:id
     // and send a requset and load the event
@@ -100,6 +119,7 @@ const CreateEvent = () => {
 
       <CheckBox
         onChange={event => handleChange(event, 'repeat')}
+        isChecked={eventData.repeat}
       >
         Ismétlődő esemény
       </CheckBox>
@@ -118,7 +138,7 @@ const CreateEvent = () => {
         label="Végzés"
       />
 
-      <Select optionList={accesibilityOptions} onChange={event => handleChange(event, 'endDate')}>Az esemény láthatósága</Select>
+      <Select optionList={accesibilityOptions} onChange={event => handleChange(event, 'accessibilityId')}>Az esemény láthatósága</Select>
 
       <Button onClick={(event) => onSubmit(event)}>Esemény létrehozása</Button>
     </form>

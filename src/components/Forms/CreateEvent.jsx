@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 import { createEvent } from '../../services/eventService';
+import { getAccessibilities } from '../../services/accessibilityService';
 
 import Input from '../UI/Input';
 import CheckBox from '../UI/CheckBox';
@@ -23,18 +24,18 @@ const CreateEvent = () => {
     endDate: ''
   });
 
+  const [accesibilityOptions, setAccesibilityOptions] = useState([]);
+
+  useEffect(async () => {
+    const result = await getAccessibilities();
+    setAccesibilityOptions(result);
+  }, []);
+
   const handleChange = (event, stateName) => {
     setEventData((prevState) => {
-      if (stateName === "repeat") {
-        return {
-          ...prevState,
-          [stateName]: event.target.checked
-        };
-      }
-
       return {
         ...prevState,
-        [stateName]: event.target.value
+        [stateName]: stateName === 'repeat' ? event.target.checked : event.target.value,
       };
     });
   };
@@ -59,21 +60,6 @@ const CreateEvent = () => {
     // TODO: After creation redirect to /groups/:id
     // and send a requset and load the event
   }
-
-  let accesibilityOptions = [
-    {
-      text: "Publikus",
-      value: 1
-    },
-    {
-      text: "Privát",
-      value: 2
-    },
-    {
-      text: "Láthatatlan",
-      value: 3
-    }
-  ]
 
   return (
     <form className="event-creation-form">
@@ -135,7 +121,7 @@ const CreateEvent = () => {
         type="date"
         onChange={event => handleChange(event, 'endDate')}
         value={eventData.endDate}
-        label="Végzés"
+        label="Befejezés"
       />
 
       <Select optionList={accesibilityOptions} onChange={event => handleChange(event, 'accessibilityId')}>Az esemény láthatósága</Select>

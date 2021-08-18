@@ -9,6 +9,7 @@ import groups from './routes/groups.js';
 import signup from './routes/signup.js';
 import login from './routes/login.js';
 import logout from './routes/logout.js';
+import accessibilityHandler from './routes/accessibilityHandler.js';
 import { checkToken, decodeToken } from './middleware/jwtCheck.js';
 
 const app = express();
@@ -30,6 +31,8 @@ app.use('/groups', groups);
 app.use('/signup', signup);
 app.use('/login', login);
 app.use('/logout', logout);
+
+app.use('/accessibilities', accessibilityHandler);
 
 app.listen(port, () => {
   console.log(`Server is listening on port ${port}`);

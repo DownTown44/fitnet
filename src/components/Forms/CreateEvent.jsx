@@ -5,12 +5,13 @@ import { createEvent } from '../../services/eventService';
 import Input from '../UI/Input';
 import CheckBox from '../UI/CheckBox';
 import Button from '../UI/Button';
+import Select from '../UI/Select';
 
 const CreateEvent = () => {
   const [eventData, setEventData] = useState({
-    accessibilityId: null,
-    typeId: null,
-    ownerType: '',
+    accessibilityId: 1,
+    typeId: 1,
+    ownerType: sessionStorage.getItem('ownerType'),
     ownerId: sessionStorage.getItem('ownerId'),
     name: '',
     description: '',
@@ -21,8 +22,6 @@ const CreateEvent = () => {
     startDate: '',
     endDate: ''
   });
-
-
 
   const handleChange = (event, stateName) => {
     setEventData((prevState) => {
@@ -35,11 +34,27 @@ const CreateEvent = () => {
 
   const onSubmit = async (event) => {
     event.preventDefault();
+    // TODO: on submit typeId and ownerType must be set 
     const result = await createEvent(eventData);
 
     // TODO: After creation redirect to /groups/:id
     // and send a requset and load the event
   }
+
+  let accesibilityOptions = [
+    {
+      text: "Publikus",
+      value: 1
+    },
+    {
+      text: "Privát",
+      value: 2
+    },
+    {
+      text: "Láthatatlan",
+      value: 3
+    }
+  ]
 
   return (
     <form className="event-creation-form">
@@ -102,6 +117,8 @@ const CreateEvent = () => {
         value={eventData.endDate}
         label="Végzés"
       />
+
+      <Select optionList={accesibilityOptions} onChange={event => handleChange(event, 'endDate')}>Az esemény láthatósága</Select>
 
       <Button onClick={(event) => onSubmit(event)}>Esemény létrehozása</Button>
     </form>

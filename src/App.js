@@ -6,6 +6,7 @@ import Layout from './hoc/Layout';
 import Feed from './containers/Feed';
 import SignUpForm from './components/Forms/SignUpForm';
 import LoginForm from './components/Forms/LoginForm';
+import CreateGroup from './components/Forms/CreateGroup';
 
 import './css/style.css';
 
@@ -51,7 +52,8 @@ function App() {
   let routes = (
     <Switch>
       <Route path="/" exact>
-        <Feed />
+        {/* <Feed /> */}
+        <CreateGroup />
       </Route>
       <Route path="/signup">
         <SignUpForm/>

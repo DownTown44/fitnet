@@ -38,7 +38,7 @@ const LoginForm = (props) => {
   };
 
   return (
-    <form className="login-form">
+    <form className="form">
       <Input 
         type="email" 
         onChange={event => handleChange(event, 'email')} 

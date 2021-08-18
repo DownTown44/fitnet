@@ -41,7 +41,8 @@ export const createEvent = async (data) => {
 
 export const createGroup = async (data) => {
   try {
-    await insertGroup(data, models['groups'], serverConnectionError);
+    const result = await insertGroup(data, models['groups'], serverConnectionError);
+    console.log(result)
   } catch(err) {
     console.log(err);
   }

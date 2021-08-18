@@ -10,10 +10,9 @@ const Input = (props) => {
         className="input-box__field"
         type={props.type} 
         onChange={props.onChange} 
-        onKeyPress={props.onKeyPress}
-        disabled={props.isDisabled} 
-        placeholder={props.placeholder}
         value={props.value}
+        placeholder={props.placeholder}
+        disabled={props.isDisabled} 
         autoFocus={props.focus}
       />
       {props.validationLabel && <Text className="input-box__validation-label">{props.validationLabel}</Text>}
@@ -24,7 +23,6 @@ const Input = (props) => {
 Input.propTypes = {
   type: PropTypes.string.isRequired,
   onChange: PropTypes.func.isRequired,
-  onKeyPress: PropTypes.func,
   value: PropTypes.string.isRequired,
   placeholder: PropTypes.string,
   autoFocus: PropTypes.bool,

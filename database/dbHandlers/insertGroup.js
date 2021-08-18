@@ -8,6 +8,6 @@ const insertGroup = async (data, model, errMessage) => {
     console.log(error);
     throw errMessage;
   }
-}
+};
 
 export default insertGroup;

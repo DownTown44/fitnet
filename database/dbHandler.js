@@ -4,6 +4,7 @@ import initModels from './models/init-models.js';
 import dbconfig from './dbconfig.js';
 
 import insertUser from './dbHandlers/insertUser.js';
+import insertEvent from './dbHandlers/insertEvent.js';
 import insertGroup from './dbHandlers/insertGroup.js';
 import selectUserByEmail from './dbHandlers/selectUserByEmail.js';
 
@@ -28,6 +29,15 @@ const models = initModels(sequelize);
 const serverConnectionError = 'Server connection is broken';
 
 // Data insertion
+// TODO: We need to validate the incoming data (ex. so users cent create events on another users id)
+
+export const createEvent = async (data) => {
+  try {
+    await insertEvent(data, models['events'], serverConnectionError);
+  } catch(err) {
+    console.log(err);
+  }
+}
 
 export const createGroup = async (data) => {
   try {

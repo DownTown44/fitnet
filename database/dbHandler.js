@@ -7,6 +7,7 @@ import insertUser from './dbHandlers/insertUser.js';
 import insertEvent from './dbHandlers/insertEvent.js';
 import insertGroup from './dbHandlers/insertGroup.js';
 import selectUserByEmail from './dbHandlers/selectUserByEmail.js';
+import selectAccessibilities from './dbHandlers/selectAccessibilities.js';
 
 const { Sequelize } = sequelize_all;
 const { host, port, user, password, database } = dbconfig;
@@ -28,6 +29,7 @@ const models = initModels(sequelize);
 // Error messages
 const serverConnectionError = 'Server connection is broken';
 
+// TODO: We need a function to check if the db connection is good
 // Data insertion
 // TODO: We need to validate the incoming data (ex. so users cent create events on another users id)
 
@@ -42,7 +44,6 @@ export const createEvent = async (data) => {
 export const createGroup = async (data) => {
   try {
     const result = await insertGroup(data, models['groups'], serverConnectionError);
-    console.log(result)
   } catch(err) {
     console.log(err);
   }
@@ -63,6 +64,16 @@ export const getUserByEmail = async (data) => {
     const result = await selectUserByEmail(models['users'], data.email, serverConnectionError);
     return JSON.parse(result);
   } catch(err) {
+    console.log(err);
+    throw serverConnectionError;
+  }
+}
+
+export const getAccessibilities = async () => {
+  try {
+    const result = await selectAccessibilities(models['accessibilities'], serverConnectionError);
+    return JSON.parse(result)
+  } catch (err) {
     console.log(err);
     throw serverConnectionError;
   }

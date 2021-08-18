@@ -7,6 +7,7 @@ import Feed from './containers/Feed';
 import SignUpForm from './components/Forms/SignUpForm';
 import LoginForm from './components/Forms/LoginForm';
 import CreateGroup from './components/Forms/CreateGroup';
+import CreateEvent from './components/Forms/CreateEvent';
 
 import './css/style.css';
 
@@ -52,8 +53,7 @@ function App() {
   let routes = (
     <Switch>
       <Route path="/" exact>
-        {/* <Feed /> */}
-        <CreateGroup />
+        <Feed />
       </Route>
       <Route path="/signup">
         <SignUpForm/>
@@ -70,6 +70,12 @@ function App() {
       <Switch>
         <Route path="/" exact>
           <Feed />
+        </Route>
+        <Route path="/groups/create" exact>
+          <CreateGroup />
+        </Route>
+        <Route path="/events/create">
+          <CreateEvent />
         </Route>
         <Redirect to="/" />
       </Switch>

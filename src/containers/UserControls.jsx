@@ -1,10 +1,11 @@
 import React from 'react';
+import UserNavigation from '../components/UserNavigation';
 
 const UserControls = (props) => {
   return (
     <div className="user-controls">
       <div>
-        User controls
+        <UserNavigation/>
       </div>
       <div>
         User notifications

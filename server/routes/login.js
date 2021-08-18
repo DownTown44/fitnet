@@ -45,7 +45,7 @@ router.post('/', async (req, res) => {
       userId: user.user_id,
       role: user.role.role_name,
     }, secret, {
-      expiresIn: '1m',
+      expiresIn: '48h',
     });
     
     // Store the jwt in a cookie named 'token'

@@ -2,7 +2,7 @@ import React, { useState, useRef, useEffect } from 'react';
 import FormData from 'form-data';
 
 import { createGroup } from '../../services/groupService';
-// import { getAccessibilities } from '../../services/accessibilityService';
+import { getAccessibilities } from '../../services/accessibilityService';
 import Input from '../UI/Input';
 import Select from '../UI/Select';
 import Text from '../UI/Text';
@@ -26,19 +26,22 @@ const CreateGroup = () => {
   */
 
   const [groupData, setGroupData] = useState({
-    userId: 1, //sessionStorage.getItem('userId'),
+    userId: sessionStorage.getItem('userId'),
     name: '',
     description: '',
-    accesibilityId: 1
+    accessibilityId: 1
   });
 
-  const [accesibilityOptions, setAccesibilityOptions] = useState([]);
+  const [accessibilityOptions, setAccessibilityOptions] = useState([]);
 
-  // useEffect(async () => {
-  //   const result = await getAccessibilities();
-  //   setAccesibilityOptions(result)
-  // }, []);
+  useEffect(() => {
+    (async () => {
+      const result = await getAccessibilities();
+      setAccessibilityOptions(result)
+    })();
+  }, []);
 
+  // Reading image for preview
   useEffect(() => {
     if(image) {
       const reader = new FileReader();
@@ -83,11 +86,12 @@ const CreateGroup = () => {
     let formData = new FormData();
     formData.append("data", JSON.stringify(groupData));
     formData.append("image", image);
-    
-    const result = await createGroup(Object.fromEntries(formData));
+
+    const result = await createGroup(formData);
     if (result) {
       console.log(result);
-      // TODO: go to correct route (push with id to history, req returns id)
+      // TODO: After creation redirect to /groups/:id
+      // and send a requset and load the group
     } else {
       console.log(result);
     }
@@ -126,7 +130,7 @@ const CreateGroup = () => {
         onChange={(event) => handleImageUpload(event)}
       />
       {preview && <DiscardableImage src={preview} onRemove={() => handleImageRemove()}/>}
-      <Select optionList={accesibilityOptions} onChange={(event) => handleChange(event, 'accesibilityId')}>A csoport láthatósága:</Select>
+      <Select optionList={accessibilityOptions} onChange={(event) => handleChange(event, 'accesibilityId')}>A csoport láthatósága:</Select>
       <Button onClick={(event) => onSubmit(event)}>Csoport létrehozása</Button>
     </form>
   );

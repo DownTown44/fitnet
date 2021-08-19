@@ -10,6 +10,7 @@ import CreateGroup from './components/Forms/CreateGroup';
 import CreateEvent from './components/Forms/CreateEvent';
 import GroupCards from './components/Cards/GroupCards/GroupCards';
 import EventCards from './components/Cards/EventCards/EventCards';
+import Event from './components/Event';
 
 import './css/style.css';
 
@@ -86,7 +87,7 @@ function App() {
           <EventCards />
         </Route>
         <Route path="/events/:id">
-          {/* TODO: Event view */}
+          <Event/>
         </Route>
         <Route path="/groups/:id">
           {/* TODO: Group view */}

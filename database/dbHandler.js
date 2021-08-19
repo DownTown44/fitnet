@@ -7,6 +7,7 @@ import insertUser from './dbHandlers/insertUser.js';
 import insertEvent from './dbHandlers/insertEvent.js';
 import insertGroup from './dbHandlers/insertGroup.js';
 import selectUserByEmail from './dbHandlers/selectUserByEmail.js';
+import selectEventById from './dbHandlers/selectEventById.js';
 import selectAll from './dbHandlers/selectAll.js';
 
 const { Sequelize } = sequelize_all;
@@ -74,6 +75,16 @@ export const getEverythingOf = async (model) => {
     const result = await selectAll(models[model], serverConnectionError);
     return JSON.parse(result);
   } catch(err) {
+    console.log(err);
+    throw serverConnectionError;
+  }
+}
+
+export const getEventById = async (id) => {
+  try {
+    const result = await selectEventById(models['events'], id, serverConnectionError);
+    return JSON.parse(result);
+  } catch (err) {
     console.log(err);
     throw serverConnectionError;
   }

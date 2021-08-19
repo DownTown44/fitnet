@@ -12,7 +12,6 @@ const eventDTO = (data) => {
     type_id,
     owner_id,
     name,
-    description,
     address,
     start_date
   } = data;
@@ -22,7 +21,6 @@ const eventDTO = (data) => {
   dto.typeId = type_id;
   dto.ownerId = owner_id;
   dto.name = name;
-  dto.description = description;
   dto.address = address;
   dto.startDate = start_date;
 

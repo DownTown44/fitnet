@@ -5,7 +5,7 @@ import Button from '../../UI/Button';
 
 const InfoBox = (props) => {
   return (
-    <div>
+    <div onClick={props.onOpen}>
       <img src={props.src} alt={props.alt} />
       <Text htmlTag="h3">{props.title}</Text>
       <Text htmlTag="p">{props.date}</Text>
@@ -22,7 +22,8 @@ InfoBox.propTypes = {
   date: PropTypes.string.isRequired,
   address: PropTypes.string.isRequired,
   buttonText: PropTypes.string.isRequired,
-  onClick: PropTypes.func.isRequired
+  onClick: PropTypes.func.isRequired,
+  onOpen: PropTypes.func.isRequired,
 }
 
 export default InfoBox;

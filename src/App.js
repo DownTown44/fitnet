@@ -73,6 +73,9 @@ function App() {
         <Route path="/groups/create">
           <CreateEvent />
         </Route>
+        <Route path="/events/:id">
+          {/* TODO: Event view */}
+        </Route>
         <Redirect to="/" />
       </Switch>
     );

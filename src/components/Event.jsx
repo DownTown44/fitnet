@@ -1,0 +1,32 @@
+import React, { useState, useEffect } from 'react';
+
+import { getEventById } from '../services/eventService';
+
+import Text from './UI/Text';
+
+const Event = () => {
+  const [eventData, setEventData] = useState({});
+
+  useEffect(() => {
+    (async () => {
+      setEventData(await getEventById());
+      console.log(eventData);
+    })()
+  }, []);
+
+  return (
+    <div>
+      <Text htmlTag="h2">{eventData.name}</Text>
+      <Text htmlTag="p">{eventData.description}</Text>
+      <Text htmlTag="p">{eventData.address}</Text>
+      <Text htmlTag="p">{`Minimum: ${eventData.minParticipant}`}</Text>
+      <Text htmlTag="p">{`Maximum: ${eventData.maxParticipant}`}</Text>
+      <Text htmlTag="p">{`Kezdő időpont: ${eventData.startDate}`}</Text>
+      <Text htmlTag="p">{`Befejezési időpont: ${eventData.endDate}`}</Text>
+      <Text htmlTag="p">{eventData.endDate === 1 ? "Ismétlődő esemény" : "Egyszeri esemény"}</Text>
+      <Text htmlTag="p">{eventData.type}</Text>
+    </div>
+  );
+}
+
+export default Event;

@@ -9,6 +9,16 @@ const createEvent = async (eventData) => {
   }
 }
 
+const getEvents = async () => {
+  try {
+    const res = await axios.get('/events');
+    return res.data;
+  } catch (err) {
+    return false;
+  }
+}
+
 export {
   createEvent,
+  getEvents,
 }

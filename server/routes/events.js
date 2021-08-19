@@ -1,6 +1,6 @@
 import express from 'express';
 
-import { createEvent } from '../../database/dbHandler.js';
+import { createEvent, getEverythingOf } from '../../database/dbHandler.js';
 
 const router = express.Router();
 
@@ -15,6 +15,17 @@ router.post('/', async (req, res) => {
   } catch (error) {
     res.status(400);
     res.send(`${error}\nPlease try again later`);
+  }
+});
+
+router.get('/', async (req, res) => {
+  try {
+    const result = await getEverythingOf('events');
+    res.json(result);
+  } catch (error) {
+    console.log(error);
+    res.status(500);
+    res.json({});
   }
 });
 

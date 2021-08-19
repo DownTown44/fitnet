@@ -7,7 +7,7 @@ import insertUser from './dbHandlers/insertUser.js';
 import insertEvent from './dbHandlers/insertEvent.js';
 import insertGroup from './dbHandlers/insertGroup.js';
 import selectUserByEmail from './dbHandlers/selectUserByEmail.js';
-import selectAccessibilities from './dbHandlers/selectAccessibilities.js';
+import selectAll from './dbHandlers/selectAll.js';
 
 const { Sequelize } = sequelize_all;
 const { host, port, user, password, database } = dbconfig;
@@ -68,11 +68,11 @@ export const getUserByEmail = async (data) => {
   }
 }
 
-export const getAccessibilities = async () => {
+export const getEverythingOf = async (model) => {
   try {
-    const result = await selectAccessibilities(models['accessibilities'], serverConnectionError);
-    return JSON.parse(result)
-  } catch (err) {
+    const result = await selectAll(models[model], serverConnectionError);
+    return JSON.parse(result);
+  } catch(err) {
     console.log(err);
     throw serverConnectionError;
   }

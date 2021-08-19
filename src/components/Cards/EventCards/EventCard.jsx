@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Text from './UI/Text';
-import Button from './UI/Button';
+import Text from '../../UI/Text';
+import Button from '../../UI/Button';
 
 const InfoBox = (props) => {
   return (

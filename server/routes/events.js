@@ -34,10 +34,10 @@ router.post('/', async (req, res) => {
     await createEvent(data);
 
     res.status(201);
-    res.send();
+    res.json({created: true});
   } catch (error) {
     res.status(400);
-    res.send(`${error}\nPlease try again later`);
+    res.json({created: false, message: `${error}\nPlease try again later`});
   }
 });
 

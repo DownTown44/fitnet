@@ -9,6 +9,7 @@ import Text from '../UI/Text';
 const LoginForm = (props) => {
   const history = useHistory();
 
+  // TODO: save owner and user id on login
   const [loginFailMessage, setLoginFailMessage] = useState('');
   const [loginData, setLoginData] = useState({
     email: '',
@@ -26,9 +27,12 @@ const LoginForm = (props) => {
 
   const onSubmit = async (event) => {
     event.preventDefault();
-    const authorized = await login(loginData);
-
+    const data = await login(loginData);
+    const authorized = data.auth
+    const userData = data.result
+    
     if (authorized) {
+      sessionStorage.setItem('userData', JSON.stringify(userData));
       history.push('/');
     } else {
       setLoginFailMessage("A jelszavad vagy az emailed hibás.");
@@ -38,7 +42,7 @@ const LoginForm = (props) => {
   };
 
   return (
-    <form className="login-form">
+    <form className="form">
       <Input 
         type="email" 
         onChange={event => handleChange(event, 'email')} 

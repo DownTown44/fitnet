@@ -12,23 +12,26 @@ const CreateEvent = () => {
   const [eventData, setEventData] = useState({
     accessibilityId: 1,
     typeId: 1,
-    ownerType: sessionStorage.getItem('ownerType'),
-    ownerId: sessionStorage.getItem('ownerId'),
+    ownerType: JSON.parse(sessionStorage.getItem('userData')).role,
+    ownerId: JSON.parse(sessionStorage.getItem('userData')).userId,
     name: '',
     description: '',
     address: '',
     minParticipant: 0,
     maxParticipant: 30,
     repeat: false,
+    // TODO: we will need to choose hours instead of days, maybe separate component
     startDate: '',
     endDate: ''
   });
 
-  const [accesibilityOptions, setAccesibilityOptions] = useState([]);
+  const [accessibilityOptions, setAccessibilityOptions] = useState([]);
 
-  useEffect(async () => {
-    const result = await getAccessibilities();
-    setAccesibilityOptions(result);
+  useEffect(() => {
+    (async () => {
+      const result = await getAccessibilities();
+      setAccessibilityOptions(result)
+    })();
   }, []);
 
   const handleChange = (event, stateName) => {
@@ -57,7 +60,7 @@ const CreateEvent = () => {
       const result = await createEvent(eventData);
     }
 
-    // TODO: After creation redirect to /groups/:id
+    // TODO: After creation redirect to /events/:id
     // and send a requset and load the event
   }
 
@@ -124,7 +127,7 @@ const CreateEvent = () => {
         label="Befejezés"
       />
 
-      <Select optionList={accesibilityOptions} onChange={event => handleChange(event, 'accessibilityId')}>Az esemény láthatósága</Select>
+      <Select optionList={accessibilityOptions} onChange={event => handleChange(event, 'accessibilityId')}>Az esemény láthatósága</Select>
 
       <Button onClick={(event) => onSubmit(event)}>Esemény létrehozása</Button>
     </form>

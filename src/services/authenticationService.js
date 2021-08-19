@@ -5,7 +5,7 @@ const login = async (loginData) => {
   try {
     const res = await axios.post('/login', loginData);
     Cookies.set('token', res.data.token);
-    return res.data.auth;
+    return res.data;
   } catch(err) {
     return false;
   }

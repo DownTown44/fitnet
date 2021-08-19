@@ -3,6 +3,7 @@ import multer from 'multer';
 import path from 'path';
 
 import { createGroup, getEverythingOf } from '../../database/dbHandler.js';
+import snakeCasify from '../util/snakeCasify.js';
 
 const router = express.Router();
 
@@ -56,7 +57,7 @@ router.post('/', imageUpload.single('image'), async (req, res) => {
   }
 
   const fileHandler = req.file;
-  const data = JSON.parse(req.body.data);
+  const data = snakeCasify(JSON.parse(req.body.data));
   data.picture = path.join('groupImages', fileHandler.filename);
   
   try {
@@ -64,12 +65,12 @@ router.post('/', imageUpload.single('image'), async (req, res) => {
     await createGroup(data);
 
     res.status(201);
-    res.send();
+    res.json({created: true});
   } catch (error) {
     console.log(error);
 
     res.status(400);
-    res.send(`${error}\nPlease try again later`);
+    res.json({created: true, message: `${error}\nPlease try again later`});
   }
 });
 

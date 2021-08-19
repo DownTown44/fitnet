@@ -18,7 +18,17 @@ const getGroups = async () => {
   }
 }
 
+const getGroupById = async (id) => {
+  try {
+    const res = await axios.get(`/groups/${id}`);
+    return res.data;
+  } catch (err) {
+    return null;
+  }
+}
+
 export {
   createGroup,
-  getGroups
+  getGroups,
+  getGroupById
 };

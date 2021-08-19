@@ -8,6 +8,8 @@ import SignUpForm from './components/Forms/SignUpForm';
 import LoginForm from './components/Forms/LoginForm';
 import CreateGroup from './components/Forms/CreateGroup';
 import CreateEvent from './components/Forms/CreateEvent';
+import GroupCards from './components/Cards/GroupCards/GroupCards';
+import EventCards from './components/Cards/EventCards/EventCards';
 
 import './css/style.css';
 
@@ -71,11 +73,23 @@ function App() {
         <Route path="/" exact>
           <Feed />
         </Route>
-        <Route path="/groups/create" exact>
+        <Route path="/groups/create">
           <CreateGroup />
         </Route>
         <Route path="/events/create">
           <CreateEvent />
+        </Route>
+        <Route path="/groups/" exact>
+          <GroupCards />
+        </Route>
+        <Route path="/events/" exact>
+          <EventCards />
+        </Route>
+        <Route path="/events/:id">
+          {/* TODO: Event view */}
+        </Route>
+        <Route path="/groups/:id">
+          {/* TODO: Group view */}
         </Route>
         <Redirect to="/" />
       </Switch>

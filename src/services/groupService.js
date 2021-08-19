@@ -9,6 +9,16 @@ const createGroup = async (groupData) => {
   }
 }
 
+const getGroups = async () => {
+  try {
+    const res = await axios.get('/groups');
+    return res.data;
+  } catch (err) {
+    return [];
+  }
+}
+
 export {
-  createGroup
+  createGroup,
+  getGroups
 };

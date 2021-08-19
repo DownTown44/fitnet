@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
-import EventCard from './EventCard';
 
 import { getEvents } from '../../../services/eventService';
-import { elementType } from 'prop-types';
+import Text from '../../UI/Text';
+import EventCard from './EventCard';
 
 const EventCards = () => {
   const [events, setEvents] = useState([]);
+  const history = useHistory();
 
   useEffect(() => {
     (async () => {
@@ -14,9 +15,8 @@ const EventCards = () => {
     })();
   }, []);
 
-  const history = useHistory();
   return (
-    <div>
+    <div className="center">
       {events.length !== 0 ? events.map((element) => {
         return (
           <EventCard
@@ -28,13 +28,9 @@ const EventCards = () => {
             onOpen={() => history.push(`/events/${element.eventId}`)}
           />
         );
-      }) : <p>There are no elemnts</p>}
+      }) : <Text>There are no events</Text>}
     </div>
   );
-};
-
-EventCards.propTypes = {
-
 };
 
 export default EventCards;

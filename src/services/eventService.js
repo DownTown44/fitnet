@@ -11,7 +11,7 @@ const createEvent = async (eventData) => {
 
 const getEventById = async (id) => {
   try {
-    const res = await axios.get(`/events/1`);
+    const res = await axios.get(`/events/${id}`);
     console.log(res.data);
     return res.data;
   } catch (err) {

@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useParams } from 'react-router-dom';
 
 import { getEventById } from '../services/eventService';
 
@@ -7,9 +8,11 @@ import Text from './UI/Text';
 const Event = () => {
   const [eventData, setEventData] = useState({});
 
+  const { id } = useParams();
+
   useEffect(() => {
     (async () => {
-      setEventData(await getEventById());
+      setEventData(await getEventById(id));
       console.log(eventData);
     })()
   }, []);

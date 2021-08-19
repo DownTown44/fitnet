@@ -9,7 +9,14 @@ const router = express.Router();
 
 const userToDTO = (user) => {
   const dto = {};
-  const { user_id, first_name, last_name, email, phone_number, role } = user;
+  const {
+    user_id,
+    first_name,
+    last_name,
+    email,
+    phone_number,
+    role
+  } = user;
   const roleName = role.role_name;
 
   dto.userId = user_id;

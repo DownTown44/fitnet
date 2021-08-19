@@ -7,14 +7,11 @@ import { GrAdd } from 'react-icons/gr';
 
 const DoubleButton = (props) => {
   const history = useHistory();
-  const handleOnClick = () => {
-    history.push('/groups/create');
-  }
 
   return (
     <div className="double-button">
-      <Button onClick={props.onClickList} additionalClass="double-button__list-button">{props.children}</Button>
-      <GrAdd onClick={handleOnClick} className="double-button__add-button"/>
+      <Button onClick={() => history.push(`/${props.path}`)} additionalClass="double-button__list-button">{props.children}</Button>
+      <GrAdd onClick={() => history.push(`/${props.path}/create`)} className="double-button__add-button"/>
     </div>
   );
 };
@@ -22,7 +19,7 @@ const DoubleButton = (props) => {
 DoubleButton.propTypes = {
   onClickList: PropTypes.func.isRequired,
   children:  PropTypes.node.isRequired,
-  onClickAdd: PropTypes.func.isRequired,
+  path: PropTypes.string.isRequired
 };
 
 export default DoubleButton;

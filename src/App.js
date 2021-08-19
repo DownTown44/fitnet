@@ -6,7 +6,11 @@ import Layout from './hoc/Layout';
 import Feed from './containers/Feed';
 import SignUpForm from './components/Forms/SignUpForm';
 import LoginForm from './components/Forms/LoginForm';
+import CreateGroup from './components/Forms/CreateGroup';
 import CreateEvent from './components/Forms/CreateEvent';
+import GroupCards from './components/Cards/GroupCards/GroupCards';
+import EventCards from './components/Cards/EventCards/EventCards';
+import Event from './components/Event';
 
 import './css/style.css';
 
@@ -71,7 +75,22 @@ function App() {
           <Feed />
         </Route>
         <Route path="/groups/create">
+          <CreateGroup />
+        </Route>
+        <Route path="/events/create">
           <CreateEvent />
+        </Route>
+        <Route path="/groups/" exact>
+          <GroupCards />
+        </Route>
+        <Route path="/events/" exact>
+          <EventCards />
+        </Route>
+        <Route path="/events/:id">
+          <Event/>
+        </Route>
+        <Route path="/groups/:id">
+          {/* TODO: Group view */}
         </Route>
         <Redirect to="/" />
       </Switch>

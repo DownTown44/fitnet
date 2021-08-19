@@ -6,6 +6,7 @@ import { getAccessibilities } from '../../services/accessibilityService';
 import Input from '../UI/Input';
 import Select from '../UI/Select';
 import Text from '../UI/Text';
+import Textarea from '../UI/Textarea';
 import Button from '../UI/Button';
 import DiscardableImage from '../ImageUpload/DiscardableImage';
 
@@ -118,7 +119,7 @@ const CreateGroup = () => {
         placeholder="Csoport neve"
       />
       <Text>Csoport leírása</Text>
-      <textarea
+      <Textarea
         onChange={(event) => handleChange(event, 'description')}
         value={groupData.description}
         placeholder="Csoport leírása"

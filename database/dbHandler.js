@@ -29,6 +29,7 @@ const models = initModels(sequelize);
 // Error messages
 const serverConnectionError = 'Server connection is broken';
 
+// TODO: We need a function to check if the db connection is good
 // Data insertion
 // TODO: We need to validate the incoming data (ex. so users cent create events on another users id)
 
@@ -42,7 +43,7 @@ export const createEvent = async (data) => {
 
 export const createGroup = async (data) => {
   try {
-    await insertGroup(data, models['groups'], serverConnectionError);
+    const result = await insertGroup(data, models['groups'], serverConnectionError);
   } catch(err) {
     console.log(err);
   }

@@ -46,11 +46,11 @@ const SportFieldPicture = (props) => {
         <AiOutlinePlus className="sport-field-create__plus-icon" />
       </div>
       <input 
-      type="file"
-      style={{display: "none"}}
-      ref={fileInputRef}
-      accept="image/*"
-      onChange={event => handleImageUpload(event)}
+        type="file"
+        style={{display: "none"}}
+        ref={fileInputRef}
+        accept="image/*"
+        onChange={event => handleImageUpload(event)}
       />
     </>
   );

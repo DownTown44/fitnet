@@ -1,4 +1,4 @@
-.login-form {
+.form {
   padding: 5rem 10rem;
   border-radius: 15px;
   box-shadow: 27px 27px 54px #cccccc,
@@ -13,4 +13,8 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+}
+
+.sign-up-form {
+  padding: 6rem 12rem;
 }

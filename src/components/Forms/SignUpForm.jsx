@@ -127,7 +127,7 @@ const SignUpForm = () => {
   };
 
   return (
-    <form className="sign-up-form">
+    <form className="form sign-up-form">
       <Input 
         type="email" 
         onChange={event => handleChange(event, 'email')} 

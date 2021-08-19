@@ -79,20 +79,32 @@ const CreateGroup = () => {
     setPreview(null);
   };
 
+  const isValid = (obj) => {
+    for (let key in obj) {
+      if (obj[key] === '' || obj[key] === null) {
+        return false;
+      }
+    }
+
+    return true;
+  }
+
   const onSubmit = async (event) => {
     event.preventDefault();
 
-    let formData = new FormData();
-    formData.append("data", JSON.stringify(groupData));
-    formData.append("image", image);
-
-    const result = await createGroup(formData);
-    if (result) {
-      console.log(result);
-      // TODO: After creation redirect to /groups/:id
-      // and send a requset and load the group
-    } else {
-      console.log(result);
+    if (isValid(groupData)) {
+      let formData = new FormData();
+      formData.append("data", JSON.stringify(groupData));
+      formData.append("image", image);
+  
+      const result = await createGroup(formData);
+      if (result) {
+        console.log(result);
+        // TODO: After creation redirect to /groups/:id
+        // and send a requset and load the group
+      } else {
+        console.log(result);
+      }
     }
   };
 

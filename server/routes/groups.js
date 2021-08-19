@@ -2,9 +2,24 @@ import express from 'express';
 import multer from 'multer';
 import path from 'path';
 
-import { createGroup } from '../../database/dbHandler.js';
+import { createGroup, getEverythingOf } from '../../database/dbHandler.js';
 
 const router = express.Router();
+
+const groupDTO = (data) => {
+  const dto = {};
+  const {
+    group_id,
+    accessibility_id,
+    name,
+  } = data;
+  
+  dto.groupId = group_id;
+  dto.accessibilityId = accessibility_id;
+  dto.name = name;
+
+  return dto;
+}
 
 const uploadDir = path.join(process.cwd(), 'server/assets/groupImages');
 
@@ -55,6 +70,21 @@ router.post('/', imageUpload.single('image'), async (req, res) => {
 
     res.status(400);
     res.send(`${error}\nPlease try again later`);
+  }
+});
+
+
+router.get('/', async (req, res) => {
+  try {
+    const result = await getEverythingOf('groups');
+    result.forEach((element, index, array) => {
+      array[index] = groupDTO(element);
+    });
+    res.json(result);
+  } catch (error) {
+    console.log(error);
+    res.status(500);
+    res.json({});
   }
 });
 

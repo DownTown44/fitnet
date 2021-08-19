@@ -14,7 +14,7 @@ const getEvents = async () => {
     const res = await axios.get('/events');
     return res.data;
   } catch (err) {
-    return false;
+    return [];
   }
 }
 

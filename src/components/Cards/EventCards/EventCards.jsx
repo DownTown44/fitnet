@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import PropTypes from 'prop-types';
+import EventCard from './EventCard';
 
 import { getEvents } from '../../../services/eventService';
+import { elementType } from 'prop-types';
 
-const EventCards = (props) => {
+const EventCards = () => {
   const [events, setEvents] = useState([]);
 
   useEffect(() => {
@@ -14,7 +15,17 @@ const EventCards = (props) => {
 
   return (
     <div>
-      
+      {events.length !== 0 ? events.map((element) => {
+        return (
+          <EventCard
+            key={element.eventId}
+            title={element.title}
+            date={element.startDate}
+            address={element.address}
+            buttonText="Csatlakozás"
+          />
+        );
+      }) : <p>There are no elemnts</p>}
     </div>
   );
 };

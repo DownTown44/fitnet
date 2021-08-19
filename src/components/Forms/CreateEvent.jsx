@@ -12,14 +12,15 @@ const CreateEvent = () => {
   const [eventData, setEventData] = useState({
     accessibilityId: 1,
     typeId: 1,
-    ownerType: sessionStorage.getItem('ownerType'),
-    ownerId: sessionStorage.getItem('userId'),
+    ownerType: JSON.parse(sessionStorage.getItem('userData')).role,
+    ownerId: JSON.parse(sessionStorage.getItem('userData')).userId,
     name: '',
     description: '',
     address: '',
     minParticipant: 0,
     maxParticipant: 30,
     repeat: false,
+    // TODO: we will need to choose hours instead of days, maybe separate component
     startDate: '',
     endDate: ''
   });

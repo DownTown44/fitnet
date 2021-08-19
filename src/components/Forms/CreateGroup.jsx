@@ -24,9 +24,8 @@ const CreateGroup = () => {
     accesibility_id
     picture (will be added later)
   */
-
   const [groupData, setGroupData] = useState({
-    userId: sessionStorage.getItem('userId'),
+    userId: JSON.parse(sessionStorage.getItem('userData')).userId,
     name: '',
     description: '',
     accessibilityId: 1

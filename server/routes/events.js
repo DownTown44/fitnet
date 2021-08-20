@@ -29,9 +29,8 @@ const eventDTO = (data) => {
 }
 
 router.get('/lastMinute', async (req, res) => {
-  console.log(req.query.date.toString());
   try {
-    const date = new Date(`${req.query.date.toString()} UTC-0:00`);
+    const date = new Date(`${req.query.date} UTC-0:00`);
     const result = await getLastMinuteEvents(date);
     result.forEach((element, index, array) => {
       array[index] = eventDTO(element);

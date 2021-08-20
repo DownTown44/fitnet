@@ -21,7 +21,7 @@ const EventCards = () => {
         return (
           <EventCard
             key={element.eventId}
-            title={element.title}
+            title={element.name}
             date={element.startDate}
             address={element.address}
             buttonText="Csatlakozás"

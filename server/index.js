@@ -31,6 +31,7 @@ app.use(express.static(path.join(process.cwd(), 'server/assets')));
 app.use('/events', events);
 app.use('/groups', groups);
 app.use('/signup', signup);
+
 app.use('/login', login);
 app.use('/logout', logout);
 

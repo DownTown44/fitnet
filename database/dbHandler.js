@@ -9,6 +9,7 @@ import insertGroup from './dbHandlers/insertGroup.js';
 import selectUserByEmail from './dbHandlers/selectUserByEmail.js';
 import selectEventById from './dbHandlers/selectEventById.js';
 import selectAll from './dbHandlers/selectAll.js';
+import selectLastMinuteEvents from './dbHandlers/selectLastMinuteEvents.js';
 
 const { Sequelize } = sequelize_all;
 const { host, port, user, password, database } = dbconfig;
@@ -83,6 +84,16 @@ export const getEverythingOf = async (model) => {
 export const getEventById = async (id) => {
   try {
     const result = await selectEventById(models['events'], id, serverConnectionError);
+    return JSON.parse(result);
+  } catch (err) {
+    console.log(err);
+    throw serverConnectionError;
+  }
+}
+
+export const getLastMinuteEvents = async (date) => {
+  try {
+    const result = await selectLastMinuteEvents(models['events'], date, serverConnectionError);
     return JSON.parse(result);
   } catch (err) {
     console.log(err);

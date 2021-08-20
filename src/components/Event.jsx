@@ -13,7 +13,6 @@ const Event = () => {
   useEffect(() => {
     (async () => {
       setEventData(await getEventById(id));
-      console.log(eventData);
     })()
   }, []);
 

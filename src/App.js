@@ -6,11 +6,12 @@ import Layout from './hoc/Layout';
 import Feed from './containers/Feed';
 import SignUpForm from './components/Forms/SignUpForm';
 import LoginForm from './components/Forms/LoginForm';
-import CreateGroup from './components/Forms/CreateGroup';
 import CreateEvent from './components/Forms/CreateEvent';
-import GroupCards from './components/Cards/GroupCards/GroupCards';
 import EventCards from './components/Cards/EventCards/EventCards';
 import Event from './components/Event';
+import CreateGroup from './components/Forms/CreateGroup';
+import GroupCards from './components/Cards/GroupCards/GroupCards';
+import Group from './components/Group';
 
 import './css/style.css';
 
@@ -90,7 +91,7 @@ function App() {
           <Event/>
         </Route>
         <Route path="/groups/:id">
-          {/* TODO: Group view */}
+          <Group/>
         </Route>
         <Redirect to="/" />
       </Switch>

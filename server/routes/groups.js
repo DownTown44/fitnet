@@ -2,8 +2,9 @@ import express from 'express';
 import multer from 'multer';
 import path from 'path';
 
-import { createGroup, getEverythingOf } from '../../database/dbHandler.js';
+import { createGroup, getGroupById, getEverythingOf } from '../../database/dbHandler.js';
 import snakeCasify from '../util/snakeCasify.js';
+import camelCasify from '../util/camelCasify.js';
 
 const router = express.Router();
 
@@ -74,7 +75,6 @@ router.post('/', imageUpload.single('image'), async (req, res) => {
   }
 });
 
-
 router.get('/', async (req, res) => {
   try {
     const result = await getEverythingOf('groups');
@@ -86,6 +86,18 @@ router.get('/', async (req, res) => {
     console.log(error);
     res.status(500);
     res.json({});
+  }
+});
+
+router.get('/:id', async (req, res) => {
+  try {
+    const result = await getGroupById(req.params.id);
+
+    res.status(200);
+    res.send(camelCasify(result[0]));
+  } catch (error) {
+    res.status(500);
+    res.send(`${error}\nPlease try again later`);
   }
 });
 

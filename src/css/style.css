@@ -26,9 +26,6 @@ img {
   top: 0;
   background-color: rgba(0, 0, 0, 0.4); }
 
-.calendar-menu {
-  grid-area: left; }
-
 .slider {
   position: relative;
   height: 25rem;
@@ -76,6 +73,9 @@ img {
     font-size: 2rem;
     margin-left: -2rem;
     cursor: pointer; }
+
+.feed {
+  background-color: red; }
 
 .form {
   padding: 5rem 10rem;
@@ -314,9 +314,6 @@ img {
     font-size: 25px;
     color: #808080; }
 
-.user-controls {
-  grid-area: right; }
-
 .double-button {
   width: 115px;
   display: flex;
@@ -328,9 +325,6 @@ img {
     cursor: pointer;
     width: 20px;
     height: 20px; }
-
-.content {
-  grid-area: center; }
 
 .header {
   position: relative;
@@ -347,3 +341,12 @@ img {
   gap: 0px 0px;
   grid-auto-flow: row;
   grid-template-areas: "header header header header header" "left . center . right"; }
+
+.left {
+  grid-area: left; }
+
+.center {
+  grid-area: center; }
+
+.right {
+  grid-area: right; }

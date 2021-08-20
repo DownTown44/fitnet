@@ -63,10 +63,10 @@ router.post('/', imageUpload.single('image'), async (req, res) => {
   
   try {
     // Inserting into database
-    await createGroup(data);
-
+    const result = await createGroup(data);
+    
     res.status(201);
-    res.json({created: true});
+    res.json({created: true, id: result});
   } catch (error) {
     console.log(error);
 

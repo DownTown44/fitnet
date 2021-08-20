@@ -1,5 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import FormData from 'form-data';
+import { useHistory } from 'react-router-dom';
+
 
 import { createGroup } from '../../services/groupService';
 import { getAccessibilities } from '../../services/accessibilityService';
@@ -11,6 +13,7 @@ import Button from '../UI/Button';
 import DiscardableImage from '../ImageUpload/DiscardableImage';
 
 const CreateGroup = () => {
+  const history = useHistory();
   // Stores image bytearray strings
   const [preview, setPreview] = useState(null);
   const [image, setImage] = useState(null);
@@ -99,12 +102,8 @@ const CreateGroup = () => {
       formData.append("image", image);
   
       const result = await createGroup(formData);
-      if (result) {
-        console.log(result);
-        // TODO: After creation redirect to /groups/:id
-        // and send a requset and load the group
-      } else {
-        console.log(result);
+      if (result.created) {
+        history.push(`/groups/${result.id}`)
       }
     }
   };

@@ -18,7 +18,7 @@ const Event = () => {
   }, []);
 
   return (
-    <div>
+    <div className="center">
       <Text htmlTag="h2">{eventData.name}</Text>
       <Text htmlTag="p">{eventData.description}</Text>
       <Text htmlTag="p">{eventData.address}</Text>

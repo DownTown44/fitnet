@@ -3,7 +3,7 @@ import UserNavigation from '../components/UserNavigation';
 
 const UserControls = (props) => {
   return (
-    <div className="user-controls">
+    <div className="user-controls right">
       <div>
         <UserNavigation/>
       </div>

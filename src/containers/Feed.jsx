@@ -1,9 +1,11 @@
 import React from 'react';
 
+import LastMinutes from '../components/LastMinutes';
+
 const Feed = (props) => {
   return (
     <div className="feed center">
-      Feed, homepage
+      <LastMinutes />
     </div>
   );
 }

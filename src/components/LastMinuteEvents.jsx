@@ -22,11 +22,14 @@ const LastMinuteEvents = () => {
         return (
           <EventCard
             key={element.eventId}
+            src="noImage"
+            alt="event"
             title={element.name}
             date={element.startDate}
             address={element.address}
             buttonText="Csatlakozás"
             onOpen={() => history.push(`/events/${element.eventId}`)}
+            onClick={() => console.log("Event button clicked")}
           />
         );
       }) : <Text>Nincsenek közelgő események</Text>}

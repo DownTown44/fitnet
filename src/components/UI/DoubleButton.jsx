@@ -17,7 +17,6 @@ const DoubleButton = (props) => {
 };
 
 DoubleButton.propTypes = {
-  onClickList: PropTypes.func.isRequired,
   children:  PropTypes.node.isRequired,
   path: PropTypes.string.isRequired
 };

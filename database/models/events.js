@@ -27,7 +27,7 @@ export default class events extends Model {
         key: 'type_id'
       }
     },
-    owner_id: {
+    user_id: {
       type: DataTypes.INTEGER,
       allowNull: false,
       references: {
@@ -96,7 +96,7 @@ export default class events extends Model {
         name: "FK_EVENTS_USERS_idx",
         using: "BTREE",
         fields: [
-          { name: "owner_id" },
+          { name: "user_id" },
         ]
       },
       {

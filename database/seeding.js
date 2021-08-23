@@ -10,6 +10,7 @@ import {
   rolesData,
   accessibilitiesData,
   groupMembersData,
+  eventMembersData,
   groupsData,
   tagsData,
   groupTagsData,
@@ -69,6 +70,7 @@ let seedDatabase = async () => {
   await saveToDB(fieldsData, 'fields');
   await saveToDB(eventTypesData, 'event_types');
   await saveToDB(eventsData, 'events');
+  await saveToDB(eventMembersData, 'event_members');
   await saveToDB(reviewsData, 'reviews');
   await saveToDB(bookingsData, 'bookings');
   await saveToDB(openingHoursData, 'opening_hours');

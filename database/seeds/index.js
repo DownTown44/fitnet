@@ -2,6 +2,7 @@ export * from './accessibilitiesData.js';
 export * from './facilitiesData.js';
 export * from './groupsData.js';
 export * from './groupMembersData.js';
+export * from './eventMembersData.js';
 export * from './rolesData.js';
 export * from './usersData.js';
 export * from './tagsData.js';

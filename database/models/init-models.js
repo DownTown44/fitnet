@@ -16,6 +16,7 @@ import _reviews from  "./reviews.js";
 import _roles from  "./roles.js";
 import _tags from  "./tags.js";
 import _users from  "./users.js";
+import _event_members from "./event_members.js";
 
 export default function initModels(sequelize) {
   const accessibilities = _accessibilities.init(sequelize, DataTypes);
@@ -27,6 +28,7 @@ export default function initModels(sequelize) {
   const facility_tags = _facility_tags.init(sequelize, DataTypes);
   const fields = _fields.init(sequelize, DataTypes);
   const group_members = _group_members.init(sequelize, DataTypes);
+  const event_members = _event_members.init(sequelize, DataTypes);
   const group_tags = _group_tags.init(sequelize, DataTypes);
   const groups = _groups.init(sequelize, DataTypes);
   const opening_hours = _opening_hours.init(sequelize, DataTypes);
@@ -70,6 +72,9 @@ export default function initModels(sequelize) {
 
   group_members.belongsTo(groups, { as: "group", foreignKey: "group_id"});
   groups.hasMany(group_members, { as: "group_members", foreignKey: "group_id"});
+
+  event_members.belongsTo(events, { as: "event", foreignKey: "event_id" });
+  events.hasMany(event_members, { as: "event_members", foreignKey: "event_id" });
   
   group_tags.belongsTo(groups, { as: "group", foreignKey: "group_id"});
   groups.hasMany(group_tags, { as: "group_tags", foreignKey: "group_id"});
@@ -95,6 +100,9 @@ export default function initModels(sequelize) {
   group_members.belongsTo(users, { as: "user", foreignKey: "user_id"});
   users.hasMany(group_members, { as: "group_members", foreignKey: "user_id"});
 
+  event_members.belongsTo(users, { as: "user", foreignKey: "user_id"});
+  users.hasMany(event_members, { as: "event_members", foreignKey: "user_id"});
+
   groups.belongsTo(users, { as: "user", foreignKey: "user_id"});
   users.hasOne(groups, { as: "group", foreignKey: "user_id"});
   
@@ -111,6 +119,7 @@ export default function initModels(sequelize) {
     facility_tags,
     fields,
     group_members,
+    event_members,
     group_tags,
     groups,
     opening_hours,

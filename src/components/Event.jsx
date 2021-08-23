@@ -2,17 +2,21 @@ import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 
 import { getEventById } from '../services/eventService';
+import { getEventUsers } from '../services/userService';
 
 import Text from './UI/Text';
+import UserList from './UserList/UserList';
 
 const Event = () => {
   const [eventData, setEventData] = useState({});
+  const [usersData, setUsersData] = useState([]);
 
   const { id } = useParams();
 
   useEffect(() => {
     (async () => {
       setEventData(await getEventById(id));
+      setUsersData(await getEventUsers(id));
     })()
   }, []);
 
@@ -27,6 +31,7 @@ const Event = () => {
       <Text htmlTag="p">{`Befejezési időpont: ${eventData.endDate}`}</Text>
       <Text htmlTag="p">{eventData.endDate === 1 ? "Ismétlődő esemény" : "Egyszeri esemény"}</Text>
       <Text htmlTag="p">{eventData.type}</Text>
+      <UserList users={usersData}></UserList>
     </div>
   );
 }

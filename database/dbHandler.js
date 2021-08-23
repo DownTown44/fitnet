@@ -7,6 +7,7 @@ import insertUser from './dbHandlers/insertUser.js';
 import insertEvent from './dbHandlers/insertEvent.js';
 import insertGroup from './dbHandlers/insertGroup.js';
 import selectUserByEmail from './dbHandlers/selectUserByEmail.js';
+import selectUserByName from './dbHandlers/selectUserByName.js';
 import selectEventById from './dbHandlers/selectEventById.js';
 import selectGroupById from './dbHandlers/selectGroupById.js';
 import selectAll from './dbHandlers/selectAll.js';
@@ -78,6 +79,16 @@ export const registerUser = async (data) => {
 export const getUserByEmail = async (data) => {
   try {
     const result = await selectUserByEmail(models['users'], data.email, serverConnectionError);
+    return JSON.parse(result);
+  } catch(err) {
+    console.log(err);
+    throw serverConnectionError;
+  }
+}
+
+export const getUsersByName = async (searchString) => {
+  try {
+    const result = await selectUserByName(models['users'], searchString, serverConnectionError);
     return JSON.parse(result);
   } catch(err) {
     console.log(err);

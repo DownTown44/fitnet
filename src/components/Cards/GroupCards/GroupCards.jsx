@@ -21,9 +21,12 @@ const GroupCards = () => {
         return (
           <GroupCard
             key={element.groupId}
+            src="noImage"
+            alt="group"
             title={element.name}
             buttonText="Megnyitás"
             onOpen={() => history.push(`/groups/${element.groupId}`)}
+            onClick={() => console.log("Group button clicked")}
           />
         );
       }) : <Text>There are no groups</Text> }

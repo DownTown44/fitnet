@@ -48,10 +48,10 @@ router.post('/', async (req, res) => {
   const data = req.body;
   try {
     // Inserting into database
-    await createEvent(data);
+    const result = await createEvent(data);
     
     res.status(201);
-    res.json({created: true});
+    res.json({created: true, id: result});
   } catch (error) {
     res.status(400);
     res.json({created: false, message: `${error}\nPlease try again later`});

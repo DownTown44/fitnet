@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { useHistory } from 'react-router-dom';
 
 import Logo from '../Logo';
 import SearchBar from '../SearchBar';
@@ -7,21 +8,19 @@ import Button from '../UI/Button';
 import AuthNav from './AuthNav';
 
 const Header = (props) => {
+  const history = useHistory();
   return (
     <div className="header">
-      <Logo src={props.logoSrc} alt={props.logoAlt} onClick={props.logoOnClick} />
+      <Logo src="noLogo" alt="Logo" onClick={() => history.push('/')} />
       <SearchBar />
       <AuthNav isAuth={props.isAuth} onLogout={props.onLogout}/>
-      <Button onClick={props.buttonOnClick}>Menu</Button>
+      <Button onClick={props.menuOnClick}>Menu</Button>
     </div>
   );
 };
 
 Header.propTypes = {
-  logoSrc: PropTypes.string.isRequired,
-  logoAlt: PropTypes.string.isRequired,
-  logoOnClick: PropTypes.func.isRequired,
-  buttonOnClick: PropTypes.func.isRequired,
+  menuOnClick: PropTypes.func.isRequired,
   isAuth: PropTypes.bool.isRequired
 };
 

@@ -41,9 +41,14 @@ export const checkConnection = async () => {
 }
 
 // Data insertion
+// TODO: We need to validate the incoming data (ex. so users cant create events on another users id)
+
+// Data insertion
 export const createEvent = async (data) => {
   try {
-    await insertEvent(data, models['events'], serverConnectionError);
+    const result = await insertEvent(data, models['events'], serverConnectionError);
+
+    return result;
   } catch(err) {
     console.log(err);
   }
@@ -52,6 +57,8 @@ export const createEvent = async (data) => {
 export const createGroup = async (data) => {
   try {
     const result = await insertGroup(data, models['groups'], serverConnectionError);
+
+    return result;
   } catch(err) {
     console.log(err);
   }

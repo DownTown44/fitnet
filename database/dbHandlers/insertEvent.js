@@ -3,7 +3,7 @@ const insertEvent = async (data, model, errMessage) => {
     const eventInsertObject = await model.build(data);
     const result = await eventInsertObject.save();
 
-    return result;
+    return result.dataValues.event_id;
   } catch (error) {
     console.log(error);
     throw errMessage;

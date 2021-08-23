@@ -1,6 +1,10 @@
 import express from 'express';
 
-import { createEvent, getEventById, getEverythingOf, getLastMinuteEvents } from '../../database/dbHandler.js';
+import { createEvent,
+  getEventById,
+  getEverythingOf,
+  getLastMinuteEvents,
+  getNextWeekEvents } from '../../database/dbHandler.js';
 import camelCasify from '../util/camelCasify.js'
 
 const router = express.Router();
@@ -32,6 +36,22 @@ router.get('/lastMinute', async (req, res) => {
   try {
     const date = new Date(`${req.query.date} UTC-0:00`);
     const result = await getLastMinuteEvents(date);
+    result.forEach((element, index, array) => {
+      array[index] = eventDTO(element);
+    });
+    
+    res.status(200);
+    res.json(result);
+  } catch (error) {
+    res.status(400);
+    res.json({});
+  }
+});
+
+router.get('/nextWeek', async (req, res) => {
+  try {
+    const date = new Date(`${req.query.date} UTC-0:00`);
+    const result = await getNextWeekEvents(date);
     result.forEach((element, index, array) => {
       array[index] = eventDTO(element);
     });
@@ -83,7 +103,5 @@ router.get('/:id', async (req, res) => {
     res.send(`${error}\nPlease try again later`);
   }
 });
-
-
 
 export default router;

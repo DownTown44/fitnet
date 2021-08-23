@@ -31,7 +31,7 @@ const EventCards = () => {
             onClick={() => console.log("Event button clicked")}
           />
         );
-      }) : <Text>There are no events</Text>}
+      }) : <Text>Nincsenek események</Text>}
     </div>
   );
 };

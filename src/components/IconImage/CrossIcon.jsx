@@ -1,14 +1,13 @@
 import PropTypes from 'prop-types';
+import { GiCancel } from 'react-icons/gi';
 
 const CrossIcon = (props) => {
   return (
-    <img src={props.src} alt="X" onClick={props.onClick}></img>
+    <GiCancel onClick={props.onClick}/>
   );
 };
 
 CrossIcon.propTypes = {
-  src: PropTypes.string.isRequired,
-  alt: PropTypes.string.isRequired,
   onClick: PropTypes.func.isRequired
 };
 

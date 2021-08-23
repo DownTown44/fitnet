@@ -7,17 +7,17 @@ const IconImage = (props) => {
     <div>
       <Icon src={props.src} alt={props.alt} />
       <p>{props.children}</p>
-      {props.exitable && <CrossIcon src={props.crossSrc} />}
+      {props.removable && <CrossIcon onClick={props.onRemove} />}
     </div>
   );
 }
+
  IconImage.propTypes = {
   src: PropTypes.string.isRequired,
   alt: PropTypes.string.isRequired,
   children: PropTypes.node.isRequired,
-  exitable: PropTypes.bool.isRequired,
-  crossAlt: PropTypes.string,
-  crossSrc: PropTypes.string
+  removable: PropTypes.bool,
+  onRemove: PropTypes.func,
 };
 
 export default IconImage;

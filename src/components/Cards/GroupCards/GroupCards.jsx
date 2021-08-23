@@ -29,7 +29,7 @@ const GroupCards = () => {
             onClick={() => console.log("Group button clicked")}
           />
         );
-      }) : <Text>There are no groups</Text> }
+      }) : <Text>Nincsenek csoportok</Text> }
     </div>
   );
 }

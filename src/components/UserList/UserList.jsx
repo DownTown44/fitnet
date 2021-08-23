@@ -9,18 +9,18 @@ const UserList = (props) => {
 
   useEffect(() => {
     setUsers(props.users);
-  }, []);
+  }, [props.users]);
 
   return (
     <div className="user-list">
       {users.length !== 0 ? users.map((user) => {
         if (props.editable) {
           return (
-            <User key={user.userId} src="NoImage" removable={true} onRemove={props.onRemove}>{`${user.lastName} ${user.firstName}`}</User>
+            <User key={user.userId} profilePicture="NoImage" removable={true} onRemove={props.onRemove}>{`${user.lastName} ${user.firstName}`}</User>
           );
         } else {
           return (
-            <User key={user.userId} src="NoImage">{`${user.lastName} ${user.firstName}`}</User>
+            <User key={user.userId} profilePicture="NoImage">{`${user.lastName} ${user.firstName}`}</User>
           );
         }
       }) : <Text>Nincsenek felhasználók</Text>}

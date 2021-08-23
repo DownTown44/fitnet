@@ -22,7 +22,6 @@ const userDTO = (data) => {
 router.get('/', async (req, res) => {
   try {
     const searchString = req.query.searchString;
-    console.log(searchString);
 
     const result = await getUsersByName(searchString);
     result.forEach((element, index, array) => {

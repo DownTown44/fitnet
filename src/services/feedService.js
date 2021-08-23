@@ -13,6 +13,19 @@ const getLastMinuteEvents = async () => {
   }
 } 
 
+const getNextWeekEvents = async () => {
+  try {
+    const now = new Date();
+    const dateString = moment(now).format('YYYY-MM-DD HH:mm');
+    const res = await axios.get('/events/nextWeek', { params: { date: dateString } });
+
+    return res.data;
+  } catch {
+    return [];
+  }
+} 
+
 export {
-  getLastMinuteEvents
+  getLastMinuteEvents,
+  getNextWeekEvents
 }

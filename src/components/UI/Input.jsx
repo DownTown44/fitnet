@@ -23,7 +23,10 @@ const Input = (props) => {
 Input.propTypes = {
   type: PropTypes.string.isRequired,
   onChange: PropTypes.func.isRequired,
-  value: PropTypes.string.isRequired,
+  value: PropTypes.oneOfType([
+    PropTypes.string.isRequired,
+    PropTypes.number.isRequired
+  ]),
   placeholder: PropTypes.string,
   autoFocus: PropTypes.bool,
   isDisabled: PropTypes.bool,

@@ -10,6 +10,7 @@ import selectUserByEmail from './dbHandlers/selectUserByEmail.js';
 import selectEventById from './dbHandlers/selectEventById.js';
 import selectGroupById from './dbHandlers/selectGroupById.js';
 import selectAll from './dbHandlers/selectAll.js';
+import selectLastMinuteEvents from './dbHandlers/selectLastMinuteEvents.js';
 
 const { Sequelize } = sequelize_all;
 const { host, port, user, password, database } = dbconfig;
@@ -31,13 +32,23 @@ const models = initModels(sequelize);
 // Error messages
 const serverConnectionError = 'Server connection is broken';
 
-// TODO: We need a function to check if the db connection is good
-// Data insertion
-// TODO: We need to validate the incoming data (ex. so users cent create events on another users id)
+export const checkConnection = async () => {
+  try {
+    await sequelize.authenticate();
+  } catch (err) {
+    console.error('Unable to connect to the database:', err);
+  }
+}
 
+// Data insertion
+// TODO: We need to validate the incoming data (ex. so users cant create events on another users id)
+
+// Data insertion
 export const createEvent = async (data) => {
   try {
-    await insertEvent(data, models['events'], serverConnectionError);
+    const result = await insertEvent(data, models['events'], serverConnectionError);
+
+    return result;
   } catch(err) {
     console.log(err);
   }
@@ -46,6 +57,8 @@ export const createEvent = async (data) => {
 export const createGroup = async (data) => {
   try {
     const result = await insertGroup(data, models['groups'], serverConnectionError);
+
+    return result;
   } catch(err) {
     console.log(err);
   }
@@ -94,6 +107,16 @@ export const getEventById = async (id) => {
 export const getGroupById = async (id) => {
   try {
     const result = await selectGroupById(models['groups'], id, serverConnectionError);
+    return JSON.parse(result);
+  } catch (err) {
+    console.log(err);
+    throw serverConnectionError;
+  }
+}
+
+export const getLastMinuteEvents = async (date) => {
+  try {
+    const result = await selectLastMinuteEvents(models['events'], date, serverConnectionError);
     return JSON.parse(result);
   } catch (err) {
     console.log(err);

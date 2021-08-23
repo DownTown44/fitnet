@@ -1,8 +1,12 @@
-import axios from "axios"
+import axios from '../axios';
+import moment from 'moment';
 
 const getLastMinuteEvents = async () => {
   try {
-    const res = await axios.get('/events/lastMinute');
+    const now = new Date();
+    const dateString = moment(now).format('YYYY-MM-DD HH:mm');
+    const res = await axios.get('/events/lastMinute', { params: { date: dateString } });
+
     return res.data;
   } catch {
     return [];

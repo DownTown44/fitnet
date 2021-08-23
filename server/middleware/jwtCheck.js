@@ -6,19 +6,18 @@ export function  decodeToken(req, res, next) {
   const r = res;
   // If the toke cookie exists, then verify it
   // If not then let trough the request
-  if (!req.cookies.token) {
-    next();
-    return;
+  if (req.cookies.token) {
+    try {
+      // If the jwt is valid then save it in the req.locals
+      const tokenObject = jwt.verify(req.cookies.token, secret);
+      r.locals.tokenObject = tokenObject;
+    } catch (err) {
+      // If the jwt is not valid then clear the cookie named 'token'
+      res.clearCookie('token');
+    }
   }
 
-  try {
-    // If the jwt is valid then save it in the req.locals
-    const tokenObject = jwt.verify(req.cookies.token, secret);
-    r.locals.tokenObject = tokenObject;
-  } catch (err) {
-    // If the jwt is not valid then clear the cookie named 'token'
-    res.clearCookie('token');
-  }
+  next();
 }
 
 // Middleware that checks the req.locals for the verified token
@@ -29,6 +28,7 @@ export function checkToken(req, res, next) {
     return;
   }
   
+  res.status(403);
   res.json({
     auth: false,
     message: 'Please signin'

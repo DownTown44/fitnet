@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useHistory } from 'react-router-dom';
 
 import { createEvent } from '../../services/eventService';
 import { getAccessibilities } from '../../services/accessibilityService';
@@ -9,11 +10,12 @@ import Button from '../UI/Button';
 import Select from '../UI/Select';
 
 const CreateEvent = () => {
+  const history = useHistory();
   const [eventData, setEventData] = useState({
     accessibilityId: 1,
     typeId: 1,
     ownerType: JSON.parse(sessionStorage.getItem('userData')).role,
-    ownerId: JSON.parse(sessionStorage.getItem('userData')).userId,
+    userId: JSON.parse(sessionStorage.getItem('userData')).userId,
     name: '',
     description: '',
     address: '',
@@ -55,13 +57,15 @@ const CreateEvent = () => {
 
   const onSubmit = async (event) => {
     event.preventDefault();
-    // TODO: on submit typeId and ownerType must be set 
+    // TODO: on submit typeId must be set based on type of 
+    // event and who created it (ex. facility creates another kind of event) 
+
     if (isValid(eventData)) {
       const result = await createEvent(eventData);
+      if(result.created) {
+        history.push(`/events/${result.id}`)
+      }
     }
-
-    // TODO: After creation redirect to /events/:id
-    // and send a requset and load the event
   }
 
   return (

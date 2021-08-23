@@ -1,6 +1,6 @@
 import express from 'express';
 
-import { createEvent, getEventById, getEverythingOf } from '../../database/dbHandler.js';
+import { createEvent, getEventById, getEverythingOf, getLastMinuteEvents } from '../../database/dbHandler.js';
 import camelCasify from '../util/camelCasify.js'
 
 const router = express.Router();
@@ -24,18 +24,34 @@ const eventDTO = (data) => {
   dto.name = name;
   dto.address = address;
   dto.startDate = start_date;
-
+  
   return dto;
 }
+
+router.get('/lastMinute', async (req, res) => {
+  try {
+    const date = new Date(`${req.query.date} UTC-0:00`);
+    const result = await getLastMinuteEvents(date);
+    result.forEach((element, index, array) => {
+      array[index] = eventDTO(element);
+    });
+    
+    res.status(200);
+    res.json(result);
+  } catch (error) {
+    res.status(400);
+    res.json({});
+  }
+});
 
 router.post('/', async (req, res) => {
   const data = req.body;
   try {
     // Inserting into database
-    await createEvent(data);
-
+    const result = await createEvent(data);
+    
     res.status(201);
-    res.json({created: true});
+    res.json({created: true, id: result});
   } catch (error) {
     res.status(400);
     res.json({created: false, message: `${error}\nPlease try again later`});
@@ -67,5 +83,7 @@ router.get('/:id', async (req, res) => {
     res.send(`${error}\nPlease try again later`);
   }
 });
+
+
 
 export default router;

@@ -3,7 +3,8 @@ import axios from '../axios';
 const createEvent = async (eventData) => {
   try {
     const res = await axios.post('/events', eventData);
-    return res.data.created;
+
+    return res.data;
   } catch(err) {
     return false;
   }

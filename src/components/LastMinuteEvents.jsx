@@ -5,7 +5,7 @@ import { getLastMinuteEvents } from '../services/feedService';
 import EventCard from './Cards/EventCards/EventCard';
 import Text from './UI/Text';
 
-const LastMinutes = () => {
+const LastMinuteEvents = () => {
   const [events, setEvents] = useState([]);
   const history = useHistory();
 
@@ -22,11 +22,14 @@ const LastMinutes = () => {
         return (
           <EventCard
             key={element.eventId}
-            title={element.title}
+            src="noImage"
+            alt="event"
+            title={element.name}
             date={element.startDate}
             address={element.address}
             buttonText="Csatlakozás"
             onOpen={() => history.push(`/events/${element.eventId}`)}
+            onClick={() => console.log("Event button clicked")}
           />
         );
       }) : <Text>Nincsenek közelgő események</Text>}
@@ -34,4 +37,4 @@ const LastMinutes = () => {
   );
 }
 
-export default LastMinutes;
+export default LastMinuteEvents;

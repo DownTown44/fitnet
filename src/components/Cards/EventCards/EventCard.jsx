@@ -6,11 +6,13 @@ import Button from '../../UI/Button';
 
 const EventCard = (props) => {
   return (
-    <div onClick={props.onOpen}>
-      <img src={props.src} alt={props.alt} />
-      <Text htmlTag="h3">{props.title}</Text>
-      <Text htmlTag="p">{props.date}</Text>
-      <Text htmlTag="p">{props.address}</Text>
+    <div>
+      <div onClick={props.onOpen}>
+        <img src={props.src} alt={props.alt} />
+        <Text htmlTag="h3">{props.title}</Text>
+        <Text htmlTag="p">{props.date}</Text>
+        <Text htmlTag="p">{props.address}</Text>
+      </div>
       <Button onClick={props.onClick}>{props.buttonText}</Button>
     </div>
   );

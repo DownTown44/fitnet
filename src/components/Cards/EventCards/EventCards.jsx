@@ -21,11 +21,14 @@ const EventCards = () => {
         return (
           <EventCard
             key={element.eventId}
-            title={element.title}
+            src="noImage"
+            alt="event"
+            title={element.name}
             date={element.startDate}
             address={element.address}
             buttonText="Csatlakozás"
             onOpen={() => history.push(`/events/${element.eventId}`)}
+            onClick={() => console.log("Event button clicked")}
           />
         );
       }) : <Text>There are no events</Text>}

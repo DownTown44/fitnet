@@ -14,7 +14,7 @@ const eventsData = [
   {
     accessibility_id: 2,
     type_id: 1,
-    owner_id: 1,
+    user_id: 1,
     owner_type: 'user',
     name: 'Ma foci?',
     description: 'Ma fociznank a BG palyajan',
@@ -28,7 +28,7 @@ const eventsData = [
   {
     accessibility_id: 1,
     type_id: 2,
-    owner_id: 4,
+    user_id: 4,
     owner_type: 'facility',
     name: 'Udvarhely vs Steaua mérkőzés',
     description: 'Egy igazi harc a hacai és a Steaua csapata között',
@@ -42,7 +42,7 @@ const eventsData = [
   {
     accessibility_id: 1,
     type_id: 3,
-    owner_id: 8,
+    user_id: 8,
     owner_type: 'facility',
     name: 'Kézilabda edzés',
     description: 'Kezilabda edzes 10 es 16 ev kozotti fiataloknak',

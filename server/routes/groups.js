@@ -2,9 +2,11 @@ import express from 'express';
 import multer from 'multer';
 import path from 'path';
 
-import { createGroup, getGroupById, getEverythingOf } from '../../database/dbHandler.js';
 import snakeCasify from '../util/snakeCasify.js';
 import camelCasify from '../util/camelCasify.js';
+
+import { createGroup, getGroupById, getEverythingOf } from '../../database/dbHandler.js';
+import { checkToken } from '../middleware/jwtCheck.js';
 
 const router = express.Router();
 
@@ -49,7 +51,7 @@ const imageUpload = multer({
   }
 }) 
 
-router.post('/', imageUpload.single('image'), async (req, res) => {
+router.post('/', checkToken, imageUpload.single('image'), async (req, res) => {
   // If the fileValidationError field set, than send "400 bad request"
   if (req.fileValidationError) {
     res.status(400);
@@ -63,10 +65,10 @@ router.post('/', imageUpload.single('image'), async (req, res) => {
   
   try {
     // Inserting into database
-    await createGroup(data);
-
+    const result = await createGroup(data);
+    
     res.status(201);
-    res.json({created: true});
+    res.json({created: true, id: result});
   } catch (error) {
     console.log(error);
 

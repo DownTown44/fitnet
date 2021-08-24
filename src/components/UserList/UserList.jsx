@@ -12,11 +12,14 @@ const UserList = (props) => {
     setUsers(props.users);
   }, [props.users]);
 
-  const onInvite = (userId) => {
+  const onInvite = async (userId) => {
     const {type, id} = props.inviteDetails;
     
     if (type === "event") {
-      inviteUserToEvent(userId, id);
+      const result = await inviteUserToEvent(userId, id);
+      if (result.insertion) {
+        props.parentRerender()
+      }
     } else if (type === "group") {
       // Not implemented yet
       // inviteUserToGroup(userId, id)
@@ -70,7 +73,8 @@ UserList.propTypes = {
   removable: PropTypes.bool,
   onRemove: PropTypes.func,
   invitable: PropTypes.bool,
-  onInvite: PropTypes.func
+  onInvite: PropTypes.func,
+  parentRerender: PropTypes.func,
 }
 
 UserList.defaultProps = {

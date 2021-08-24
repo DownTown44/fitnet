@@ -21,7 +21,7 @@ const Event = () => {
 
   const { id } = useParams();
 
-  // Sending request to ge data of event and participants
+  // Sending request to ge data of event
   useEffect(() => {
     (async () => {
       const [eventRes, usersRes] = await Promise.all([getEventById(id), getEventUsers(id)])
@@ -42,6 +42,12 @@ const Event = () => {
     }
   }, [eventData]);
 
+  const onInvite = async () => {
+    // This will help to rerender the userlist after an invitation
+    const usersRes = await getEventUsers(id);
+    setUsersData(usersRes);
+  };
+
   return (
     <div className="center">
       <Text htmlTag="h2">{eventData.name}</Text>
@@ -55,7 +61,13 @@ const Event = () => {
       <Text htmlTag="p">{eventData.type}</Text>
 
       {isOwner && <Button onClick={() => setShowSearch(!showSearch)}>Invite users</Button>}
-      {showSearch && <SearchUsers invitable={true} inviteDetails={inviteDetails}/>}
+      {showSearch &&
+        <SearchUsers 
+          invitable={true} 
+          inviteDetails={inviteDetails} 
+          parentRerender={onInvite}
+        />
+      }
 
       <UserList users={usersData}></UserList>
     </div>

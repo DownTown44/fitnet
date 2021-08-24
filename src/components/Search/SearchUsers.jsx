@@ -44,7 +44,11 @@ const SearchUsers = (props) => {
         value={searchField}
         onChange={(event) => setSearchField(event.target.value)}
       ></Input>
-      <UserList users={filteredUsers} invitable={props.invitable} inviteDetails={props.inviteDetails}/>
+      <UserList 
+        users={filteredUsers} 
+        invitable={props.invitable} 
+        inviteDetails={props.inviteDetails}
+        parentRerender={props.parentRerender}/>
     </div>
   );
 }

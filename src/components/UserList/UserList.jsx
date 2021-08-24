@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 
-import inviteUserToEvent from '../../services/userService';
+import { inviteUserToEvent } from '../../services/userService';
 import User from './User';
 import Text from '../UI/Text';
 

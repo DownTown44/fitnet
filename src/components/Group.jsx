@@ -24,7 +24,7 @@ const Group = () => {
     <div>
       <Text htmlTag="h3">{groupData.name}</Text>
       <Text>{groupData.description}</Text>
-      {/* <img src={`http://localhost:8080/${groupData.picture}`}/> */}
+      <img src={`http://localhost:8080/${groupData.picture}`}/>
       <UserList users={usersData}></UserList>
     </div>
   );

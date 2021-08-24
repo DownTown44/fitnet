@@ -19,7 +19,7 @@ const GroupCards = () => {
     <div className="center">
       {groups.length !== 0 ? groups.map((element) => {
         const userData = JSON.parse(sessionStorage.getItem('userData'));
-        if (element.accessibility === 'public' || element.userId === userData.userId) {
+        if (element.accessibility === 'public' || element.accessibility === 'private' || element.userId === userData.userId) {
           return (
             <GroupCard
               key={element.groupId}

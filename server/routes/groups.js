@@ -5,7 +5,12 @@ import path from 'path';
 import snakeCasify from '../util/snakeCasify.js';
 import camelCasify from '../util/camelCasify.js';
 
-import { createGroup, getGroupById, getEverythingWithAccessOf } from '../../database/dbHandler.js';
+import {
+  createGroup,
+  getGroupById,
+  getEverythingWithAccessOf,
+  joinUserIntoGroup
+} from '../../database/dbHandler.js';
 import { checkToken } from '../middleware/jwtCheck.js';
 
 const router = express.Router();
@@ -104,6 +109,15 @@ router.get('/:id', async (req, res) => {
   } catch (error) {
     res.status(500);
     res.send(`${error}\nPlease try again later`);
+  }
+});
+
+// TODO: Check if the user is already a group participant
+router.post('/:id/join', async (req, res) => {
+  try {
+    await joinUserIntoGroup(req.params.id, req.body.user_id);
+  } catch (error) {
+
   }
 });
 

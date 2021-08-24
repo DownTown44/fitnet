@@ -141,7 +141,7 @@ const CreateGroup = () => {
         onChange={(event) => handleImageUpload(event)}
       />
       {preview && <DiscardableImage src={preview} onRemove={() => handleImageRemove()}/>}
-      <Select optionList={accessibilityOptions} onChange={(event) => handleChange(event, 'accesibilityId')}>A csoport láthatósága:</Select>
+      <Select optionList={accessibilityOptions} onChange={(event) => handleChange(event, 'accessibilityId')}>A csoport láthatósága:</Select>
       <Button onClick={(event) => onSubmit(event)}>Csoport létrehozása</Button>
     </form>
   );

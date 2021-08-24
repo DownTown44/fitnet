@@ -1,6 +1,11 @@
 import express from 'express';
 
-import { getUsersByName, getEventParticipants, getGroupParticipants } from '../../database/dbHandler.js';
+import {
+  getUsersByName,
+  getEventParticipants,
+  getGroupParticipants,
+  userIsMemberOfGroup
+} from '../../database/dbHandler.js';
 
 const router = express.Router();
 
@@ -33,6 +38,34 @@ router.get('/', async (req, res) => {
   } catch (error) {
     res.status(400);
     res.json({});
+  }
+});
+
+router.get('/member', async (req, res) => {
+  try {
+    const data = req.query;
+    const result = await userIsMemberOfGroup(data);
+
+    if (result.length) {
+      res.status(200);
+      res.json({
+        isMember: true,
+        message: 'The user is member of the group'
+      })
+    } else {
+      res.status(200);
+      res.json({
+        isMember: false,
+        message: 'The user is NOT member of the group'
+      })
+    }
+  } catch (error) {
+    console.log(error);
+
+    res.status(403);
+    res.json({
+      message: 'Please log in'
+    })
   }
 });
 

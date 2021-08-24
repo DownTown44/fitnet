@@ -5,7 +5,12 @@ import path from 'path';
 import snakeCasify from '../util/snakeCasify.js';
 import camelCasify from '../util/camelCasify.js';
 
-import { createGroup, getGroupById, getEverythingOf } from '../../database/dbHandler.js';
+import {
+  createGroup,
+  getGroupById,
+  getEverythingWithAccessOf,
+  joinUserIntoGroup
+} from '../../database/dbHandler.js';
 import { checkToken } from '../middleware/jwtCheck.js';
 
 const router = express.Router();
@@ -13,14 +18,18 @@ const router = express.Router();
 const groupDTO = (data) => {
   const dto = {};
   const {
+    user_id,
     group_id,
     accessibility_id,
     name,
+    accessibility
   } = data;
   
+  dto.userId = user_id;
   dto.groupId = group_id;
   dto.accessibilityId = accessibility_id;
   dto.name = name;
+  dto.accessibility = accessibility.accessibility_name;
 
   return dto;
 }
@@ -79,7 +88,7 @@ router.post('/', checkToken, imageUpload.single('image'), async (req, res) => {
 
 router.get('/', async (req, res) => {
   try {
-    const result = await getEverythingOf('groups');
+    const result = await getEverythingWithAccessOf('groups');
     result.forEach((element, index, array) => {
       array[index] = groupDTO(element);
     });
@@ -100,6 +109,15 @@ router.get('/:id', async (req, res) => {
   } catch (error) {
     res.status(500);
     res.send(`${error}\nPlease try again later`);
+  }
+});
+
+// TODO: Check if the user is already a group participant
+router.post('/:id/join', async (req, res) => {
+  try {
+    await joinUserIntoGroup(req.params.id, req.body.user_id);
+  } catch (error) {
+
   }
 });
 

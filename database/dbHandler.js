@@ -16,6 +16,8 @@ import selectLastMinuteEvents from './dbHandlers/selectLastMinuteEvents.js';
 import selectNextWeekEvents from './dbHandlers/selectNextWeekEvents.js';
 import selectEventParticipants from './dbHandlers/selectEventParticipants.js';
 import selectGroupParticipants from './dbHandlers/selectGroupParticipants.js';
+import selectAllWithAccess from './dbHandlers/selectAllWithAccess.js';
+import selectFromGroupMembers from './dbHandlers/selectFromGroupMembers.js';
 
 const { Sequelize } = sequelize_all;
 const { host, port, user, password, database } = dbconfig;
@@ -92,6 +94,15 @@ export const registerUser = async (data) => {
   }
 }
 
+export const joinUserIntoGroup = async (groupId, userId) => {
+  try {
+    const data = { group_id: groupId, user_id: userId };
+    await insertUser(data, models['group_members'], serverConnectionError);
+  } catch (err) {
+    console.log(err);
+  }
+}
+
 // Data selection
 
 export const getUserByEmail = async (data) => {
@@ -117,6 +128,16 @@ export const getUsersByName = async (searchString) => {
 export const getEverythingOf = async (model) => {
   try {
     const result = await selectAll(models[model], serverConnectionError);
+    return JSON.parse(result);
+  } catch(err) {
+    console.log(err);
+    throw serverConnectionError;
+  }
+}
+
+export const getEverythingWithAccessOf = async (model) => {
+  try {
+    const result = await selectAllWithAccess(models[model], serverConnectionError);
     return JSON.parse(result);
   } catch(err) {
     console.log(err);
@@ -177,6 +198,16 @@ export const getEventParticipants = async (eventId) => {
 export const getGroupParticipants = async (groupId) => {
   try {
     const result = await selectGroupParticipants(models['users'], groupId, serverConnectionError);
+    return JSON.parse(result);
+  } catch (err) {
+    console.log(err);
+    throw serverConnectionError;
+  }
+}
+
+export const userIsMemberOfGroup = async (data) => {
+  try {
+    const result = await selectFromGroupMembers(models['group_members'], data, serverConnectionError);
     return JSON.parse(result);
   } catch (err) {
     console.log(err);

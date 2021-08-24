@@ -15,6 +15,7 @@ import selectLastMinuteEvents from './dbHandlers/selectLastMinuteEvents.js';
 import selectNextWeekEvents from './dbHandlers/selectNextWeekEvents.js';
 import selectEventParticipants from './dbHandlers/selectEventParticipants.js';
 import selectGroupParticipants from './dbHandlers/selectGroupParticipants.js';
+import selectAllWithAccess from './dbHandlers/selectAllWithAccess.js';
 
 const { Sequelize } = sequelize_all;
 const { host, port, user, password, database } = dbconfig;
@@ -101,6 +102,16 @@ export const getUsersByName = async (searchString) => {
 export const getEverythingOf = async (model) => {
   try {
     const result = await selectAll(models[model], serverConnectionError);
+    return JSON.parse(result);
+  } catch(err) {
+    console.log(err);
+    throw serverConnectionError;
+  }
+}
+
+export const getEverythingWithAccessOf = async (model) => {
+  try {
+    const result = await selectAllWithAccess(models[model], serverConnectionError);
     return JSON.parse(result);
   } catch(err) {
     console.log(err);

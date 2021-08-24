@@ -18,17 +18,20 @@ const GroupCards = () => {
   return (
     <div className="center">
       {groups.length !== 0 ? groups.map((element) => {
-        return (
-          <GroupCard
-            key={element.groupId}
-            src="noImage"
-            alt="group"
-            title={element.name}
-            buttonText="Megnyitás"
-            onOpen={() => history.push(`/groups/${element.groupId}`)}
-            onClick={() => console.log("Group button clicked")}
-          />
-        );
+        const userData = JSON.parse(sessionStorage.getItem('userData'));
+        if (element.accessibility === 'public' || element.userId === userData.userId) {
+          return (
+            <GroupCard
+              key={element.groupId}
+              src="noImage"
+              alt="group"
+              title={element.name}
+              buttonText="Megnyitás"
+              onOpen={() => history.push(`/groups/${element.groupId}`)}
+              onClick={() => console.log("Group button clicked")}
+            />
+          );
+        }
       }) : <Text>Nincsenek csoportok</Text> }
     </div>
   );

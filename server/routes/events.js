@@ -1,6 +1,8 @@
 import express from 'express';
 
-import { createEvent,
+import { 
+  createEvent,
+  inviteUserToEvent,
   getEventById,
   getEverythingOf,
   getLastMinuteEvents,
@@ -75,6 +77,18 @@ router.post('/', async (req, res) => {
   } catch (error) {
     res.status(400);
     res.json({created: false, message: `${error}\nPlease try again later`});
+  }
+});
+
+router.post('/:id/invite', async (req, res) => {
+  try {
+    const result = await inviteUserToEvent(req.params.id, req.body);
+
+    res.status(200);
+    res.send(result);
+  } catch (error) {
+    res.status(500);
+    res.send(`${error}\nPlease try again later`);
   }
 });
 

@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import IconImage from '../IconImage/IconImage';
+import Button from '../UI/Button';
 
 const User = (props) => {
   return (
@@ -14,6 +15,7 @@ const User = (props) => {
       >
         {props.children}
       </IconImage>
+      {props.invitable && <Button onClick={props.onInvite}>Hozzáadás</Button>}
     </div>
   );
 }
@@ -21,6 +23,8 @@ const User = (props) => {
 User.propTypes = {
   profilePicture: PropTypes.string.isRequired,
   children: PropTypes.node.isRequired,
+  invitable: PropTypes.bool,
+  onInvite: PropTypes.func,
   removable: PropTypes.bool,
   onRemove: PropTypes.func
 };

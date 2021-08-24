@@ -21,7 +21,7 @@ const Group = () => {
   }, []);
 
   return (
-    <div>
+    <div className="center">
       <Text htmlTag="h3">{groupData.name}</Text>
       <Text>{groupData.description}</Text>
       <img src={`http://localhost:8080/${groupData.picture}`}/>

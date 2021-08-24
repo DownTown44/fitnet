@@ -91,8 +91,8 @@ export default function initModels(sequelize) {
   bookings.belongsTo(users, { as: "user", foreignKey: "user_id"});
   users.hasMany(bookings, { as: "bookings", foreignKey: "user_id"});
 
-  events.belongsTo(users, { as: "owner", foreignKey: "owner_id"});
-  users.hasMany(events, { as: "events", foreignKey: "owner_id"});
+  events.belongsTo(users, { as: "user", foreignKey: "user_id"});
+  users.hasMany(events, { as: "events", foreignKey: "user_id"});
 
   facilities.belongsTo(users, { as: "user", foreignKey: "user_id"});
   users.hasMany(facilities, { as: "facilities", foreignKey: "user_id"});

@@ -19,7 +19,17 @@ const inviteUserToEvent = async (userId, eventId) => {
   }
 }
 
+const getGroupUsers = async (groupId) => {
+  try {
+    const res = await axios.get('/users/groupUsers', {params: {groupId: groupId}});
+    return res.data;
+  } catch (err) {
+    return [];
+  }
+}
+
 export {
   getEventUsers,
-  inviteUserToEvent
+  inviteUserToEvent,
+  getGroupUsers,
 }

@@ -18,13 +18,13 @@ const UserList = (props) => {
     if (type === "event") {
       const result = await inviteUserToEvent(userId, id);
       if (result.insertion) {
+        // Rerenders the other userList at the grandparent component after user invitation
         props.parentRerender()
-      }
+      };
     } else if (type === "group") {
       // Not implemented yet
       // inviteUserToGroup(userId, id)
-    }
-
+    };
   }
 
   return (

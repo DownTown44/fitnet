@@ -13,17 +13,32 @@ const SearchUsers = (props) => {
   useEffect(() => {
     if (searchField.length === 3) {
       getUsers(searchField).then((res) => {
-        setUsers(res);
+        // Search result filtering
+        // Filtering out the users who are already have been added to event/group
+        // also filtering out the owner (the user who is logged in)
+        // Logged in userData
+        const loggedInUser = JSON.parse(sessionStorage.getItem("userData"))
+        setUsers(res.filter((user) => {
+          // props.members is the parent components userList
+          // This returns undefined when it doesn't finds the user (it can be added to search results)
+          const find = props.members.find(({userId}) => userId === user.userId);
+          // If user is not in props.members and the user is not the owner then 
+          // it can be added to search results
+          if (find === undefined && user.userId !== loggedInUser.userId) {
+            return true;
+          }
+        }));
       });
     } else if (searchField.length < 3) {
       setUsers([]);
     };
-  }, [searchField]);
+  }, [searchField, props.members]);
 
-  // Setting user based on search results and optimizing search
+  // Setting users based on search results and optimizing search
   useEffect(() => {
     setFilteredUsers([])
     if (searchField.length >= 3) {
+      // Filtering users by search value (name of user)
       setFilteredUsers(users.filter((user) => {
         const firstLastName = `${user.firstName} ${user.lastName}`;
         const lastFirstName = `${user.lastName} ${user.firstName}`;

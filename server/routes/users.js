@@ -1,6 +1,6 @@
 import express from 'express';
 
-import { getUsersByName, getEventParticipants } from '../../database/dbHandler.js';
+import { getUsersByName, getEventParticipants, getGroupParticipants } from '../../database/dbHandler.js';
 
 const router = express.Router();
 
@@ -52,5 +52,23 @@ router.get('/eventUsers', async (req, res) => {
     res.json({});
   }
 });
+
+router.get('/groupUsers', async (req, res) => {
+  try {
+    const groupId = req.query.groupId;
+
+    const result = await getGroupParticipants(groupId);
+    result.forEach((element, index, array) => {
+      array[index] = userDTO(element);
+    });
+
+    res.status(200);
+    res.json(result);
+  } catch {
+    res.status(400);
+    res.json({});
+  }
+});
+
 
 export default router;

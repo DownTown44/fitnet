@@ -1,18 +1,26 @@
 import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useHistory } from 'react-router-dom';
 
+<<<<<<< HEAD
 import { getEventById } from '../services/eventService';
 import { getEventUsers, getEventMember, joinUserToEvent } from '../services/userService';
+=======
+import { getEventById, deleteEventById } from '../services/eventService';
+import { getEventUsers } from '../services/userService';
+>>>>>>> develop
 
 import Text from './UI/Text';
 import Button from './UI/Button';
 import SearchUsers from './Search/SearchUsers';
 import UserList from './UserList/UserList';
+import Modal from './UI/Modal';
+import Dialog from './Dialog/Dialog';
 
 const Event = () => {
   const [isOwner, setIsOwner] = useState(false);
   const [isJoined, setIsJoined] = useState(false);
   const [showSearch, setShowSearch] = useState(false);
+  const [isDeletion, setIsDeletion] = useState(false);
   const [eventData, setEventData] = useState({});
   const [usersData, setUsersData] = useState([]);
   const [actionDetails, setActionDetails] = useState({
@@ -21,6 +29,7 @@ const Event = () => {
   });
 
   const { id } = useParams();
+  const history = useHistory();
 
   const userData = JSON.parse(sessionStorage.getItem('userData'));
 
@@ -67,6 +76,11 @@ const Event = () => {
       onUserListChange();
     }
   }
+  
+  const onAcceptDelete = async () => {
+    await deleteEventById(id);
+    history.push('/events');
+  }
 
   return (
     <div className="center">
@@ -97,6 +111,13 @@ const Event = () => {
           removable={true}
         /> :
         <UserList users={usersData}/>
+      }
+      {isOwner && <Button onClick={() => {setIsDeletion(true)}}>Törlés</Button>}
+      {
+        isDeletion && 
+        <Modal isShown={isDeletion} closeModal={() => {setIsDeletion(!isDeletion)}}>
+          <Dialog onAccept={onAcceptDelete} onDecline={() => {setIsDeletion(!isDeletion)}}>Biztos vagy benne, hogy törölni szeretnéd?</Dialog>
+        </Modal>
       }
     </div>
   );

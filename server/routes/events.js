@@ -9,8 +9,11 @@ import {
   getEventById,
   getEverythingOf,
   getLastMinuteEvents,
-  getNextWeekEvents } from '../../database/dbHandler.js';
+  getNextWeekEvents,
+  deleteEventById,
+} from '../../database/dbHandler.js';
 import camelCasify from '../util/camelCasify.js'
+import { checkToken } from '../middleware/jwtCheck.js'; 
 
 const router = express.Router();
 
@@ -168,6 +171,24 @@ router.post('/:id/join', async (req, res) => {
     res.json(result);
   } catch (error) {
 
+  }
+});
+
+router.delete('/:id', checkToken, async (req, res) => {
+  try {
+    const result = await deleteEventById(req.params.id);
+    if (result) {
+      res.status(200);
+      res.json({result: 'Delete successful'});
+
+      return;
+    }
+
+    res.status(400);
+    res.json({result: 'Delete unsuccessful'})
+  } catch (error) {
+    res.status(500);
+    res.json({result: 'Server error. Delete unsuccessful'});
   }
 });
 

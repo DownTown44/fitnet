@@ -28,8 +28,18 @@ const getEventById = async (id) => {
   }
 }
 
+const deleteEventById = async (id) => {
+  try {
+    const res = await axios.delete(`/events/${id}`);
+    return res.data;
+  } catch (err) {
+    return null;
+  }
+}
+
 export {
   createEvent,
   getEvents,
   getEventById,
+  deleteEventById,
 }

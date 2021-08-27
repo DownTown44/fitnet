@@ -57,10 +57,12 @@ const Group = () => {
       <img src={`http://localhost:8080/${groupData.picture}`}/>
       <UserList users={usersData}></UserList>
       {groupData.userId === userData.userId && <Button onClick={() => {setIsDeletion(true)}}>Törlés</Button>}
-      {isDeletion && 
-      <Modal isShown={isDeletion} closeModal={() => {setIsDeletion(!isDeletion)}}>
-        <Dialog onAccept={onAcceptClick} onDecline={() => {setIsDeletion(!isDeletion)}}>Biztos vagy benne, hogy törölni szeretnéd?</Dialog>
-      </Modal>}
+      {
+        isDeletion && 
+        <Modal isShown={isDeletion} closeModal={() => {setIsDeletion(!isDeletion)}}>
+          <Dialog onAccept={onAcceptClick} onDecline={() => {setIsDeletion(!isDeletion)}}>Biztos vagy benne, hogy törölni szeretnéd?</Dialog>
+        </Modal>
+      }
     </div>
   );
 }

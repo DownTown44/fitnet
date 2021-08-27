@@ -100,7 +100,7 @@ router.post('/:id/invite', async (req, res) => {
 
 router.post('/:id/remove', async (req, res) => {
   try {
-    const result = await removeUserFromEvent(req.params.id, req.body);
+    const result = await removeUserFromEvent(req.params.id, req.body.user_id);
 
     res.status(200);
     res.send(result);
@@ -167,6 +167,16 @@ router.get('/:id/member', async (req, res) => {
 router.post('/:id/join', async (req, res) => {
   try {
     const result = await joinUserIntoEvent(req.params.id, req.body.user_id);
+
+    res.json(result);
+  } catch (error) {
+
+  }
+});
+
+router.post('/:id/leave', async (req, res) => {
+  try {
+    const result = await removeUserFromEvent(req.params.id, req.body.user_id);
 
     res.json(result);
   } catch (error) {

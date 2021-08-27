@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useHistory } from 'react-router-dom';
 
-import { getEventUsers, getEventMember, joinUserToEvent } from '../services/userService';
+import { getEventUsers, getEventMember, joinUserToEvent, userLeaveEvent } from '../services/userService';
 import { getEventById, deleteEventById } from '../services/eventService';
 
 import Text from './UI/Text';
@@ -72,6 +72,15 @@ const Event = () => {
     }
   }
   
+  const onLeave = async () => {
+    const result = await userLeaveEvent(userData.userId, id);
+
+    if (result.success) {
+      setIsJoined(false);
+      onUserListChange();
+    }
+  }
+  
   const onAcceptDelete = async () => {
     await deleteEventById(id);
     history.push('/events');
@@ -88,8 +97,8 @@ const Event = () => {
       <Text htmlTag="p">{`Befejezési időpont: ${eventData.endDate}`}</Text>
       <Text htmlTag="p">{eventData.endDate === 1 ? "Ismétlődő esemény" : "Egyszeri esemény"}</Text>
       <Text htmlTag="p">{eventData.type}</Text>
-      {eventData.accessibilityId !== 2 && !isJoined && !isOwner && <Button onClick={onJoin}>Csatlakozás</Button>}
-      {isOwner && <Button onClick={() => setShowSearch(!showSearch)}>Invite users</Button>}
+      {eventData.accessibilityId !== 2 && !isJoined && !isOwner && <Button onClick={() => onJoin()}>Csatlakozás</Button>}
+      {isOwner && <Button onClick={() => setShowSearch(!showSearch)}>Meghívás</Button>}
       {showSearch &&
         <SearchUsers 
           invitable={true} 
@@ -114,6 +123,7 @@ const Event = () => {
           <Dialog onAccept={onAcceptDelete} onDecline={() => {setIsDeletion(!isDeletion)}}>Biztos vagy benne, hogy törölni szeretnéd?</Dialog>
         </Modal>
       }
+      {isJoined && !isOwner && <Button onClick={() => onLeave()}>Kilépés</Button>}
     </div>
   );
 }

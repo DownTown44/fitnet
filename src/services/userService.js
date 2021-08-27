@@ -52,6 +52,16 @@ const joinUserToEvent = async (userId, eventId) => {
   }
 }
 
+const userLeaveEvent = async (userId, eventId) => {
+  try {
+    const result = await axios.post(`events/${eventId}/leave`, {userId: userId});
+
+    return result.data;
+  } catch (err) {
+    return false;
+  }
+}
+
 const getGroupUsers = async (groupId) => {
   try {
     const res = await axios.get('/users/groupUsers', {params: {groupId: groupId}});
@@ -86,6 +96,7 @@ export {
   removeUserFromEvent,
   getEventMember,
   joinUserToEvent,
+  userLeaveEvent,
   getGroupUsers,
   getGroupMember,
   joinUserToGroup,

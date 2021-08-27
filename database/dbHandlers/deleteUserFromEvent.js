@@ -7,7 +7,7 @@ const deleteUserFromEvent = async (data, model, errMessage) => {
       }
     });
 
-    return {succes: true, message: "User removed successfully"};
+    return {success: true, message: "User removed successfully"};
   } catch (error) {
     console.log(error);
     throw errMessage;

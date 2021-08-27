@@ -81,7 +81,10 @@ export const inviteUserToEvent = async (eventId, body) => {
 
 export const joinUserIntoEvent = async (eventId, userId) => {
   try {
-    const data = { event_id: eventId, user_id: userId };
+    const data = { 
+      event_id: eventId,
+      user_id: userId 
+    };
     const result = await insertUser(data, models['event_members'], serverConnectionError);
 
     return result;
@@ -90,11 +93,11 @@ export const joinUserIntoEvent = async (eventId, userId) => {
   }
 }
 
-export const removeUserFromEvent = async (eventId, body) => {
+export const removeUserFromEvent = async (eventId, userId) => {
   try {
     const data = {
       event_id: eventId,
-      user_id: body.user_id
+      user_id: userId
     };
 
     const result = await deleteUserFromEvent(data, models['event_members'], serverConnectionError);

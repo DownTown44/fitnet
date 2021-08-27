@@ -1,13 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useHistory } from 'react-router-dom';
 
-<<<<<<< HEAD
-import { getEventById } from '../services/eventService';
 import { getEventUsers, getEventMember, joinUserToEvent } from '../services/userService';
-=======
 import { getEventById, deleteEventById } from '../services/eventService';
-import { getEventUsers } from '../services/userService';
->>>>>>> develop
 
 import Text from './UI/Text';
 import Button from './UI/Button';

@@ -2,7 +2,7 @@ import Backdrop from './Backdrop/';
 
 // !!! When used needs a state and an onClick handler so it can close when clicked on the backdrop
 const Modal = (props) => {
-  // TODO: render only when children or isShown is changed
+  // TODO: render only when children or isShown is changed, for optimization
   return (
     <>
       <Backdrop isShown={props.isShown} onClick={props.closeModal}/>

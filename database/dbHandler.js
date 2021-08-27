@@ -5,7 +5,8 @@ import dbconfig from './dbconfig.js';
 
 import insertUser from './dbHandlers/insertUser.js';
 import insertEvent from './dbHandlers/insertEvent.js';
-import insertUserToEvent from './dbHandlers/insertUserToEvent.js'
+import insertUserToEvent from './dbHandlers/insertUserToEvent.js';
+import deleteUserFromEvent from './dbHandlers/deleteUserFromEvent.js';
 import insertGroup from './dbHandlers/insertGroup.js';
 import selectUserByEmail from './dbHandlers/selectUserByEmail.js';
 import selectUserByName from './dbHandlers/selectUserByName.js';
@@ -69,6 +70,21 @@ export const inviteUserToEvent = async (eventId, body) => {
     };
 
     const result = await insertUserToEvent(data, models['event_members'], serverConnectionError);
+
+    return result;
+  } catch(err) {
+    console.log(err);
+  }
+}
+
+export const removeUserFromEvent = async (eventId, body) => {
+  try {
+    const data = {
+      event_id: eventId,
+      user_id: body.user_id
+    };
+
+    const result = await deleteUserFromEvent(data, models['event_members'], serverConnectionError);
 
     return result;
   } catch(err) {

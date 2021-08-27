@@ -109,7 +109,7 @@ const CreateGroup = () => {
   };
 
   return (
-    <form className="form">
+    <form className="form center">
       <Input 
         type="text"
         onChange={(event) => handleChange(event, 'name')}

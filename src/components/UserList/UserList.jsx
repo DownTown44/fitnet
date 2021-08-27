@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 
-import { inviteUserToEvent } from '../../services/userService';
+import { inviteUserToEvent, removeUserFromEvent } from '../../services/userService';
 import User from './User';
 import Text from '../UI/Text';
 
@@ -13,12 +13,27 @@ const UserList = (props) => {
   }, [props.users]);
 
   const onInvite = async (userId) => {
-    const {type, id} = props.inviteDetails;
+    const {type, id} = props.actionDetails;
     
     if (type === "event") {
       const result = await inviteUserToEvent(userId, id);
-      if (result.insertion) {
+      if (result.succes) {
         // Rerenders the other userList at the grandparent component after user invitation
+        props.parentRerender()
+      };
+    } else if (type === "group") {
+      // Not implemented yet
+      // inviteUserToGroup(userId, id)
+    };
+  }
+
+  const onRemove = async (userId) => {
+    const {type, id} = props.actionDetails;
+    
+    if (type === "event") {
+      const result = await removeUserFromEvent(userId, id)
+      if (result.succes) {
+        // Rerenders the other userList at the grandparent component after user remove
         props.parentRerender()
       };
     } else if (type === "group") {
@@ -37,7 +52,7 @@ const UserList = (props) => {
               key={user.userId} 
               profilePicture="NoImage" 
               removable={true} 
-              onRemove={props.onRemove}
+              onRemove={() => onRemove(user.userId)}
             >
               {`${user.lastName} ${user.firstName}`}
             </User>
@@ -71,10 +86,10 @@ const UserList = (props) => {
 UserList.propTypes = {
   users: PropTypes.array.isRequired,
   removable: PropTypes.bool,
-  onRemove: PropTypes.func,
   invitable: PropTypes.bool,
   onInvite: PropTypes.func,
-  parentRerender: PropTypes.func,
+  actionDetails: PropTypes.object,
+  parentRerender: PropTypes.func
 }
 
 UserList.defaultProps = {

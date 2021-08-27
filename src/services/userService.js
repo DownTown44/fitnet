@@ -21,6 +21,16 @@ const inviteUserToEvent = async (userId, eventId) => {
   }
 }
 
+const removeUserFromEvent = async (userId, eventId) => {
+  try {
+    const res = await axios.post(`/events/${eventId}/remove`, { userId: userId });
+
+    return res.data;
+  } catch (err) {
+    return [];
+  }
+}
+
 const getGroupUsers = async (groupId) => {
   try {
     const res = await axios.get('/users/groupUsers', {params: {groupId: groupId}});
@@ -57,6 +67,7 @@ const joinUserToGroup = async (userId, groupId) => {
 export {
   getEventUsers,
   inviteUserToEvent,
+  removeUserFromEvent,
   getGroupUsers,
   getGroupMember,
   joinUserToGroup,

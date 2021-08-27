@@ -3,7 +3,7 @@ const insertUserToEvent = async (data, model, errMessage) => {
     const eventMemberInsertObject = await model.build(data);
     const result = await eventMemberInsertObject.save();
 
-    return {insertion: true, message: "User invitation successful"};
+    return {succes: true, message: "User invitation successful"};
   } catch (error) {
     console.log(error);
     throw errMessage;

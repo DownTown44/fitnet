@@ -10,6 +10,7 @@ import {
   getGroupById,
   getEverythingWithAccessOf,
   joinUserIntoGroup,
+  userIsMemberOfGroup,
   deleteGroupById
 } from '../../database/dbHandler.js';
 import { checkToken } from '../middleware/jwtCheck.js';
@@ -119,6 +120,33 @@ router.get('/:id', async (req, res) => {
   } catch (error) {
     res.status(500);
     res.send(`${error}\nPlease try again later`);
+  }
+});
+
+router.get('/:id/member', async (req, res) => {
+  try {
+    const result = await userIsMemberOfGroup(req.params.id, req.query.userId);
+
+    if (result.length) {
+      res.status(200);
+      res.json({
+        isMember: true,
+        message: 'The user is member of the group'
+      })
+    } else {
+      res.status(200);
+      res.json({
+        isMember: false,
+        message: 'The user is NOT member of the group'
+      })
+    }
+  } catch (error) {
+    console.log(error);
+
+    res.status(403);
+    res.json({
+      message: 'Please log in'
+    })
   }
 });
 

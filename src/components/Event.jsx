@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useHistory } from 'react-router-dom';
 
+import { getEventUsers, getEventMember, joinUserToEvent } from '../services/userService';
 import { getEventById, deleteEventById } from '../services/eventService';
-import { getEventUsers } from '../services/userService';
 
 import Text from './UI/Text';
 import Button from './UI/Button';
@@ -13,6 +13,7 @@ import Dialog from './Dialog/Dialog';
 
 const Event = () => {
   const [isOwner, setIsOwner] = useState(false);
+  const [isJoined, setIsJoined] = useState(false);
   const [showSearch, setShowSearch] = useState(false);
   const [isDeletion, setIsDeletion] = useState(false);
   const [eventData, setEventData] = useState({});
@@ -25,21 +26,31 @@ const Event = () => {
   const { id } = useParams();
   const history = useHistory();
 
+  const userData = JSON.parse(sessionStorage.getItem('userData'));
+
   // Sending request to ge data and participants of event
   useEffect(() => {
     (async () => {
-      const [eventRes, usersRes] = await Promise.all([getEventById(id), getEventUsers(id)])
+      const [
+        eventRes,
+        usersRes,
+        joinedRes
+      ] = await Promise.all([
+        getEventById(id),
+        getEventUsers(id),
+        getEventMember(userData.userId, id)
+      ]);
+
       setEventData(eventRes);
       setUsersData(usersRes);
+      setIsJoined(joinedRes);
     })();
   }, []);
 
   // If user is the owner, then he can invite users
   useEffect(() => {
     if (!isOwner) {
-      const userData = sessionStorage.getItem("userData");
-  
-      if (JSON.parse(userData).userId === eventData.userId) {
+      if (userData.userId === eventData.userId) {
         setIsOwner(true);
         setActionDetails((prevProps) => {return {...prevProps, id: eventData.eventId}});
       } 
@@ -52,7 +63,16 @@ const Event = () => {
     setUsersData(usersRes);
   };
 
-  const onAcceptClick = async () => {
+  const onJoin = async () => {
+    const result = await joinUserToEvent(userData.userId, id);
+    
+    if (result.success) {
+      setIsJoined(true);
+      onUserListChange();
+    }
+  }
+  
+  const onAcceptDelete = async () => {
     await deleteEventById(id);
     history.push('/events');
   }
@@ -68,7 +88,7 @@ const Event = () => {
       <Text htmlTag="p">{`Befejezési időpont: ${eventData.endDate}`}</Text>
       <Text htmlTag="p">{eventData.endDate === 1 ? "Ismétlődő esemény" : "Egyszeri esemény"}</Text>
       <Text htmlTag="p">{eventData.type}</Text>
-
+      {eventData.accessibilityId !== 2 && !isJoined && !isOwner && <Button onClick={onJoin}>Csatlakozás</Button>}
       {isOwner && <Button onClick={() => setShowSearch(!showSearch)}>Invite users</Button>}
       {showSearch &&
         <SearchUsers 
@@ -91,7 +111,7 @@ const Event = () => {
       {
         isDeletion && 
         <Modal isShown={isDeletion} closeModal={() => {setIsDeletion(!isDeletion)}}>
-          <Dialog onAccept={onAcceptClick} onDecline={() => {setIsDeletion(!isDeletion)}}>Biztos vagy benne, hogy törölni szeretnéd?</Dialog>
+          <Dialog onAccept={onAcceptDelete} onDecline={() => {setIsDeletion(!isDeletion)}}>Biztos vagy benne, hogy törölni szeretnéd?</Dialog>
         </Modal>
       }
     </div>

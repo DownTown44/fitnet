@@ -1,9 +1,9 @@
-const selectFromGroupMembers = async (model, data, errMessage) => {
+const selectFromEventMembers = async (model, data, errMessage) => {
   try {
     const result = await model.findAll({
       where: {
         user_id: data.user_id,
-        group_id: data.group_id
+        event_id: data.event_id
       }
     });
 
@@ -15,4 +15,4 @@ const selectFromGroupMembers = async (model, data, errMessage) => {
   }
 }
 
-export default selectFromGroupMembers;
+export default selectFromEventMembers;

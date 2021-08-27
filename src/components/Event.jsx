@@ -14,7 +14,7 @@ const Event = () => {
   const [showSearch, setShowSearch] = useState(false);
   const [eventData, setEventData] = useState({});
   const [usersData, setUsersData] = useState([]);
-  const [inviteDetails, setInviteDetails] = useState({
+  const [actionDetails, setActionDetails] = useState({
     type: "event",
     id: null
   });
@@ -37,13 +37,13 @@ const Event = () => {
   
       if (JSON.parse(userData).userId === eventData.userId) {
         setIsOwner(true);
-        setInviteDetails((prevProps) => {return {...prevProps, id: eventData.eventId}});
+        setActionDetails((prevProps) => {return {...prevProps, id: eventData.eventId}});
       } 
     }
   }, [eventData]);
 
-  const onInvite = async () => {
-    // This will rerender the userlist after an invitation
+  const onUserListChange = async () => {
+    // This will rerender the userlist after an invitation or delete
     const usersRes = await getEventUsers(id);
     setUsersData(usersRes);
   };
@@ -64,13 +64,20 @@ const Event = () => {
       {showSearch &&
         <SearchUsers 
           invitable={true} 
-          inviteDetails={inviteDetails} 
-          parentRerender={onInvite}
+          actionDetails={actionDetails} 
+          parentRerender={onUserListChange}
           members={usersData}
         />
       }
-
-      <UserList users={usersData}></UserList>
+      {isOwner ? 
+        <UserList 
+          users={usersData} 
+          actionDetails={actionDetails} 
+          parentRerender={onUserListChange} 
+          removable={true}
+        /> :
+        <UserList users={usersData}/>
+      }
     </div>
   );
 }

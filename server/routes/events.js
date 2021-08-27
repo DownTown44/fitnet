@@ -3,6 +3,7 @@ import express from 'express';
 import { 
   createEvent,
   inviteUserToEvent,
+  removeUserFromEvent,
   getEventById,
   getEverythingOf,
   getLastMinuteEvents,
@@ -83,6 +84,18 @@ router.post('/', async (req, res) => {
 router.post('/:id/invite', async (req, res) => {
   try {
     const result = await inviteUserToEvent(req.params.id, req.body);
+
+    res.status(200);
+    res.send(result);
+  } catch (error) {
+    res.status(500);
+    res.send(`${error}\nPlease try again later`);
+  }
+});
+
+router.post('/:id/remove', async (req, res) => {
+  try {
+    const result = await removeUserFromEvent(req.params.id, req.body);
 
     res.status(200);
     res.send(result);

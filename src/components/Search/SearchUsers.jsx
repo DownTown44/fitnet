@@ -62,7 +62,7 @@ const SearchUsers = (props) => {
       <UserList 
         users={filteredUsers} 
         invitable={props.invitable} 
-        inviteDetails={props.inviteDetails}
+        actionDetails={props.actionDetails}
         parentRerender={props.parentRerender}/>
     </div>
   );

@@ -3,7 +3,7 @@ import { GiCancel } from 'react-icons/gi';
 
 const CrossIcon = (props) => {
   return (
-    <GiCancel onClick={props.onClick}/>
+    <GiCancel className="cross-button" onClick={props.onClick}/>
   );
 };
 

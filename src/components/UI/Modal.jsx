@@ -1,4 +1,5 @@
-import Backdrop from './Backdrop/';
+import PropTypes from 'prop-types';
+import Backdrop from './Backdrop';
 
 // !!! When used needs a state and an onClick handler so it can close when clicked on the backdrop
 const Modal = (props) => {
@@ -6,7 +7,7 @@ const Modal = (props) => {
   return (
     <>
       <Backdrop isShown={props.isShown} onClick={props.closeModal}/>
-      <div className={props.isShown ? 'modal modal--hidden' : 'modal modal--shown'}>
+      <div className={props.isShown ? 'modal modal--shown' : 'modal modal--hidden'}>
         {props.children}
       </div>
     </>

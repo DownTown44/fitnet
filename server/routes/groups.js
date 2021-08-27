@@ -9,7 +9,8 @@ import {
   createGroup,
   getGroupById,
   getEverythingWithAccessOf,
-  joinUserIntoGroup
+  joinUserIntoGroup,
+  deleteGroupById
 } from '../../database/dbHandler.js';
 import { checkToken } from '../middleware/jwtCheck.js';
 
@@ -86,6 +87,15 @@ router.post('/', checkToken, imageUpload.single('image'), async (req, res) => {
   }
 });
 
+// TODO: Check if the user is already a group participant
+router.post('/:id/join', checkToken, async (req, res) => {
+  try {
+    await joinUserIntoGroup(req.params.id, req.body.user_id);
+  } catch (error) {
+
+  }
+});
+
 router.get('/', async (req, res) => {
   try {
     const result = await getEverythingWithAccessOf('groups');
@@ -112,12 +122,21 @@ router.get('/:id', async (req, res) => {
   }
 });
 
-// TODO: Check if the user is already a group participant
-router.post('/:id/join', async (req, res) => {
+router.delete('/:id', checkToken, async (req, res) => {
   try {
-    await joinUserIntoGroup(req.params.id, req.body.user_id);
-  } catch (error) {
+    const result = await deleteGroupById(req.params.id);
+    if (result) {
+      res.status(200);
+      res.json({result: 'Delete successful'});
 
+      return;
+    }
+
+    res.status(400);
+    res.json({result: 'Delete unsuccessful'})
+  } catch (error) {
+    res.status(500);
+    res.json({result: 'Server error. Delete unsuccessful'});
   }
 });
 

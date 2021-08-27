@@ -31,6 +31,27 @@ const removeUserFromEvent = async (userId, eventId) => {
   }
 }
 
+const getEventMember = async (userId, eventId) => {
+  try {
+    const res = await axios.get(`/events/${eventId}/member`, {params: {userId: userId}});;
+
+    return res.data.isMember;
+  } catch (err) {
+    console.log(err);
+
+  }
+}
+
+const joinUserToEvent = async (userId, eventId) => {
+  try {
+    const result = await axios.post(`/events/${eventId}/join`, {userId: userId});
+
+    return result.data;
+  } catch (err) {
+    return false;
+  }
+}
+
 const getGroupUsers = async (groupId) => {
   try {
     const res = await axios.get('/users/groupUsers', {params: {groupId: groupId}});
@@ -42,12 +63,7 @@ const getGroupUsers = async (groupId) => {
 
 const getGroupMember = async (userId, groupId) => {
   try {
-    const res = await axios.get('/users/member', {
-      params: {
-        userId: userId,
-        groupId: groupId
-      }
-    });
+    const res = await axios.get(`/groups/${groupId}/member`, {params: {userId: userId}});
 
     return res.data.isMember;
   } catch (err) {
@@ -68,6 +84,8 @@ export {
   getEventUsers,
   inviteUserToEvent,
   removeUserFromEvent,
+  getEventMember,
+  joinUserToEvent,
   getGroupUsers,
   getGroupMember,
   joinUserToGroup,

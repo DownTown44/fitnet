@@ -5,7 +5,6 @@ import dbconfig from './dbconfig.js';
 
 import insertUser from './dbHandlers/insertUser.js';
 import insertEvent from './dbHandlers/insertEvent.js';
-import insertUserToEvent from './dbHandlers/insertUserToEvent.js';
 import deleteUserFromEvent from './dbHandlers/deleteUserFromEvent.js';
 import insertGroup from './dbHandlers/insertGroup.js';
 import selectUserByEmail from './dbHandlers/selectUserByEmail.js';
@@ -19,6 +18,7 @@ import selectEventParticipants from './dbHandlers/selectEventParticipants.js';
 import selectGroupParticipants from './dbHandlers/selectGroupParticipants.js';
 import selectAllWithAccess from './dbHandlers/selectAllWithAccess.js';
 import selectFromGroupMembers from './dbHandlers/selectFromGroupMembers.js';
+import selectFromEventMembers from './dbHandlers/selectFromEventMembers.js';
 
 const { Sequelize } = sequelize_all;
 const { host, port, user, password, database } = dbconfig;
@@ -69,10 +69,21 @@ export const inviteUserToEvent = async (eventId, body) => {
       user_id: body.user_id
     };
 
-    const result = await insertUserToEvent(data, models['event_members'], serverConnectionError);
+    const result = await insertUser(data, models['event_members'], serverConnectionError);
 
     return result;
   } catch(err) {
+    console.log(err);
+  }
+}
+
+export const joinUserIntoEvent = async (eventId, userId) => {
+  try {
+    const data = { event_id: eventId, user_id: userId };
+    const result = await insertUser(data, models['event_members'], serverConnectionError);
+
+    return result;
+  } catch (err) {
     console.log(err);
   }
 }
@@ -221,9 +232,27 @@ export const getGroupParticipants = async (groupId) => {
   }
 }
 
-export const userIsMemberOfGroup = async (data) => {
+export const userIsMemberOfGroup = async (groupId, userId) => {
   try {
+    const data = {
+      group_id: groupId,
+      user_id: userId
+    }
     const result = await selectFromGroupMembers(models['group_members'], data, serverConnectionError);
+    return JSON.parse(result);
+  } catch (err) {
+    console.log(err);
+    throw serverConnectionError;
+  }
+}
+
+export const userIsMemberOfEvent = async (eventId, userId) => {
+  try {
+    const data = {
+      event_id: eventId,
+      user_id: userId
+    }
+    const result = await selectFromEventMembers(models['event_members'], data, serverConnectionError);
     return JSON.parse(result);
   } catch (err) {
     console.log(err);

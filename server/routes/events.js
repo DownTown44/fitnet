@@ -4,6 +4,8 @@ import {
   createEvent,
   inviteUserToEvent,
   removeUserFromEvent,
+  userIsMemberOfEvent,
+  joinUserIntoEvent,
   getEventById,
   getEverythingOf,
   getLastMinuteEvents,
@@ -128,6 +130,44 @@ router.get('/:id', async (req, res) => {
   } catch (error) {
     res.status(500);
     res.send(`${error}\nPlease try again later`);
+  }
+});
+
+router.get('/:id/member', async (req, res) => {
+  try {
+    const result = await userIsMemberOfEvent(req.params.id, req.query.userId);
+
+    if (result.length) {
+      res.status(200);
+      res.json({
+        isMember: true,
+        message: 'The user is member of the event'
+      })
+    } else {
+      res.status(200);
+      res.json({
+        isMember: false,
+        message: 'The user is NOT member of the event'
+      })
+    }
+  } catch (error) {
+    console.log(error);
+
+    res.status(403);
+    res.json({
+      message: 'Please log in'
+    })
+  }
+});
+
+// TODO: Check if the user is already a group participant
+router.post('/:id/join', async (req, res) => {
+  try {
+    const result = await joinUserIntoEvent(req.params.id, req.body.user_id);
+
+    res.json(result);
+  } catch (error) {
+
   }
 });
 

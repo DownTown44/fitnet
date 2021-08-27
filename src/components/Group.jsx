@@ -20,8 +20,8 @@ const Group = () => {
     (async () => {
       const [
         groupResponse,
-        userRespons,
-        joinedRespons,
+        userResponse,
+        joinedResponse,
       ] = await Promise.all([
         getGroupById(id),
         getGroupUsers(id),
@@ -29,8 +29,8 @@ const Group = () => {
       ]);
 
       setGroupData(groupResponse);
-      setUsersData(userRespons);
-      setIsJoined(joinedRespons);
+      setUsersData(userResponse);
+      setIsJoined(joinedResponse);
     })();
   }, []);
 
@@ -43,6 +43,7 @@ const Group = () => {
     <div className="center">
       <Text htmlTag="h3">{groupData.name}</Text>
       <Text>{groupData.description}</Text>
+      {/* if the user is the owner don't show the join button */}
       {groupData.accessibilityId !== 2 && !isJoined && <Button onClick={onJoin}>Csatlakozás</Button>}
       <img src={`http://localhost:8080/${groupData.picture}`}/>
       <UserList users={usersData}></UserList>

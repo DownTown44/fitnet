@@ -28,8 +28,18 @@ const getGroupById = async (id) => {
   }
 }
 
+const deleteGroupById = async (id) => {
+  try {
+    const res = await axios.delete(`/groups/${id}`);
+    return res.data;
+  } catch (err) {
+    return null;
+  }
+}
+
 export {
   createGroup,
   getGroups,
-  getGroupById
+  getGroupById,
+  deleteGroupById,
 };

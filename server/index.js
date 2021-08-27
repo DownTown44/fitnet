@@ -13,7 +13,7 @@ import login from './routes/login.js';
 import logout from './routes/logout.js';
 import accessibilityHandler from './routes/accessibilityHandler.js';
 
-import { checkToken, decodeToken } from './middleware/jwtCheck.js';
+import { decodeToken } from './middleware/jwtCheck.js';
 
 const app = express();
 const port = 8080;

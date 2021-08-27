@@ -19,6 +19,7 @@ import selectGroupParticipants from './dbHandlers/selectGroupParticipants.js';
 import selectAllWithAccess from './dbHandlers/selectAllWithAccess.js';
 import selectFromGroupMembers from './dbHandlers/selectFromGroupMembers.js';
 import selectFromEventMembers from './dbHandlers/selectFromEventMembers.js';
+import deleteGroup from './dbHandlers/deleteGroup.js';
 
 const { Sequelize } = sequelize_all;
 const { host, port, user, password, database } = dbconfig;
@@ -125,6 +126,17 @@ export const joinUserIntoGroup = async (groupId, userId) => {
   try {
     const data = { group_id: groupId, user_id: userId };
     await insertUser(data, models['group_members'], serverConnectionError);
+  } catch (err) {
+    console.log(err);
+  }
+}
+
+// Data delete
+
+export const deleteGroupById = async (data) => {
+  try {
+    const result = await deleteGroup(data, models['groups'], serverConnectionError);
+    return JSON.parse(result);
   } catch (err) {
     console.log(err);
   }

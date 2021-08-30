@@ -2,7 +2,11 @@ import React, { useState, useEffect } from 'react';
 import { useParams, useHistory } from 'react-router-dom';
 
 import { getGroupById, deleteGroupById } from '../services/groupService';
-import { getGroupUsers, getGroupMember, joinUserToGroup } from '../services/userService';
+import { 
+  getGroupUsers, 
+  getGroupMember, 
+  joinUserToGroup,
+  userLeaveGroup } from '../services/userService';
 
 import Button from './UI/Button';
 import Text from './UI/Text';
@@ -69,6 +73,15 @@ const Group = () => {
     }
   }
 
+  const onLeave = async () => {
+    const result = await userLeaveGroup(userData.userId, id);
+
+    if (result.success) {
+      setIsJoined(false);
+      onUserListChange();
+    }
+  }
+
   const onAcceptDelete = async () => {
     await deleteGroupById(id);
     history.push('/groups');
@@ -110,6 +123,7 @@ const Group = () => {
           <Dialog onAccept={onAcceptDelete} onDecline={() => {setIsDeletion(!isDeletion)}}>Biztos vagy benne, hogy törölni szeretnéd?</Dialog>
         </Modal>
       }
+      {isJoined && !isOwner && <Button onClick={() => onLeave()}>Kilépés</Button>}
     </div>
   );
 }

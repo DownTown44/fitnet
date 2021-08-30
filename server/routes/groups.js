@@ -125,6 +125,16 @@ router.post('/:id/join', checkToken, async (req, res) => {
   }
 });
 
+router.post('/:id/leave', async (req, res) => {
+  try {
+    const result = await removeUserFromGroup(req.params.id, req.body.user_id);
+
+    res.json(result);
+  } catch (error) {
+
+  }
+});
+
 router.get('/', async (req, res) => {
   try {
     const result = await getEverythingWithAccessOf('groups');

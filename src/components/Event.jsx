@@ -17,6 +17,7 @@ const Event = () => {
   const [showSearch, setShowSearch] = useState(false);
   const [isDeletion, setIsDeletion] = useState(false);
   const [eventData, setEventData] = useState({});
+  // usersData = participantsData
   const [usersData, setUsersData] = useState([]);
   const [actionDetails, setActionDetails] = useState({
     type: "event",
@@ -49,12 +50,10 @@ const Event = () => {
 
   // If user is the owner, then he can invite users
   useEffect(() => {
-    if (!isOwner) {
-      if (userData.userId === eventData.userId) {
-        setIsOwner(true);
-        setActionDetails((prevProps) => {return {...prevProps, id: eventData.eventId}});
-      } 
-    }
+    if (!isOwner && userData.userId === eventData.userId) {
+      setIsOwner(true);
+      setActionDetails((prevProps) => {return {...prevProps, id: eventData.eventId}});
+    } 
   }, [eventData]);
 
   const onUserListChange = async () => {
@@ -101,9 +100,12 @@ const Event = () => {
       <Text htmlTag="p">{`Befejezési időpont: ${eventData.endDate}`}</Text>
       <Text htmlTag="p">{eventData.endDate === 1 ? "Ismétlődő esemény" : "Egyszeri esemény"}</Text>
       <Text htmlTag="p">{eventData.type}</Text>
-      {eventData.accessibilityId !== 2 && !isJoined && !isOwner && <Button onClick={() => onJoin()}>Csatlakozás</Button>}
+      {eventData.accessibilityId !== 2 && !isJoined && !isOwner && 
+        <Button onClick={() => onJoin()}>Csatlakozás</Button>
+      }
       {isOwner && <Button onClick={() => setShowSearch(!showSearch)}>Meghívás</Button>}
-      {showSearch &&
+      {
+        showSearch &&
         <SearchUsers 
           invitable={true} 
           actionDetails={actionDetails} 
@@ -111,7 +113,8 @@ const Event = () => {
           members={usersData}
         />
       }
-      {isOwner ? 
+      {
+        isOwner ? 
         <UserList 
           users={usersData} 
           actionDetails={actionDetails} 

@@ -3,18 +3,26 @@ import { useParams, useHistory } from 'react-router-dom';
 
 import { getGroupById, deleteGroupById } from '../services/groupService';
 import { getGroupUsers, getGroupMember, joinUserToGroup } from '../services/userService';
+
 import Button from './UI/Button';
 import Text from './UI/Text';
+import SearchUsers from './Search/SearchUsers';
 import UserList from './UserList/UserList';
 import Modal from './UI/Modal';
 import Dialog from './Dialog/Dialog';
 
 const Group = () => {
-  const [groupData, setGroupData] = useState({});
-  // usersData = participantsData
-  const [usersData, setUsersData] = useState([]);
+  const [isOwner, setIsOwner] = useState(false);
   const [isJoined, setIsJoined] = useState(false);
+  const [showSearch, setShowSearch] = useState(false);
   const [isDeletion, setIsDeletion] = useState(false);
+  const [groupData, setGroupData] = useState({});
+  // usersData = membersData
+  const [usersData, setUsersData] = useState([]);
+  const [actionDetails, setActionDetails] = useState({
+    type: "group",
+    id: null
+  });
 
   const { id } = useParams();
   const history = useHistory();
@@ -39,12 +47,29 @@ const Group = () => {
     })();
   }, []);
 
-  const onJoin = () => {
-    setIsJoined(true);
-    joinUserToGroup(userData.userId, id);
+  useEffect(() => {
+    if (!isOwner && userData.userId === groupData.userId) {
+      setIsOwner(true);
+      setActionDetails((prevProps) => {return {...prevProps, id: groupData.groupId}});
+    } 
+  }, [groupData]);
+
+  const onUserListChange = async () => {
+    // This will rerender the userlist after an invitation or delete
+    const usersRes = await getGroupUsers(id);
+    setUsersData(usersRes);
+  };
+
+  const onJoin = async() => {
+    const result = await joinUserToGroup(userData.userId, id);
+
+    if (result.success) {
+      setIsJoined(true);
+      onUserListChange();
+    }
   }
 
-  const onAcceptClick = async () => {
+  const onAcceptDelete = async () => {
     await deleteGroupById(id);
     history.push('/groups');
   }
@@ -54,14 +79,35 @@ const Group = () => {
       <Text htmlTag="h3">{groupData.name}</Text>
       <Text>{groupData.description}</Text>
       {/* if the user is the owner don't show the join button */}
-      {groupData.accessibilityId !== 2 && !isJoined && <Button onClick={onJoin}>Csatlakozás</Button>}
       <img src={`http://localhost:8080/${groupData.picture}`}/>
-      <UserList users={usersData}></UserList>
+      {groupData.accessibilityId !== 2 && !isJoined && !isOwner && 
+        <Button onClick={() => onJoin()}>Csatlakozás</Button>
+      }
+      {isOwner && <Button onClick={() => setShowSearch(!showSearch)}>Meghívás</Button>}
+      {
+        showSearch &&
+        <SearchUsers 
+          invitable={true} 
+          actionDetails={actionDetails} 
+          parentRerender={onUserListChange}
+          members={usersData}
+        />
+      }
+      {
+        isOwner ? 
+        <UserList 
+          users={usersData} 
+          actionDetails={actionDetails} 
+          parentRerender={onUserListChange} 
+          removable={true}
+        /> :
+        <UserList users={usersData}/>
+      }
       {groupData.userId === userData.userId && <Button onClick={() => {setIsDeletion(true)}}>Törlés</Button>}
       {
         isDeletion && 
         <Modal isShown={isDeletion} closeModal={() => {setIsDeletion(!isDeletion)}}>
-          <Dialog onAccept={onAcceptClick} onDecline={() => {setIsDeletion(!isDeletion)}}>Biztos vagy benne, hogy törölni szeretnéd?</Dialog>
+          <Dialog onAccept={onAcceptDelete} onDecline={() => {setIsDeletion(!isDeletion)}}>Biztos vagy benne, hogy törölni szeretnéd?</Dialog>
         </Modal>
       }
     </div>

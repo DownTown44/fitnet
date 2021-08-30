@@ -1,7 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 
-import { inviteUserToEvent, removeUserFromEvent } from '../../services/userService';
+import { 
+  inviteUserToEvent,
+  removeUserFromEvent, 
+  inviteUserToGroup,
+  removeUserFromGroup } from '../../services/userService';
 import User from './User';
 import Text from '../UI/Text';
 
@@ -17,14 +21,15 @@ const UserList = (props) => {
     
     if (type === "event") {
       const result = await inviteUserToEvent(userId, id);
-
       if (result.success) {
         // Rerenders the other userList at the grandparent component after user invitation
-        props.parentRerender()
+        props.parentRerender();
       };
     } else if (type === "group") {
-      // Not implemented yet
-      // inviteUserToGroup(userId, id)
+      const result = await inviteUserToGroup(userId, id);
+      if (result.success) {
+        props.parentRerender();
+      };
     };
   }
 
@@ -33,13 +38,15 @@ const UserList = (props) => {
     
     if (type === "event") {
       const result = await removeUserFromEvent(userId, id)
-      if (result.succes) {
+      if (result.success) {
         // Rerenders the other userList at the grandparent component after user remove
-        props.parentRerender()
+        props.parentRerender();
       };
     } else if (type === "group") {
-      // Not implemented yet
-      // inviteUserToGroup(userId, id)
+      const result = await removeUserFromGroup(userId, id)
+      if (result.success) {
+        props.parentRerender();
+      }
     };
   }
 

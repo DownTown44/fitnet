@@ -11,6 +11,17 @@ const getEventUsers = async (eventId) => {
   }
 }
 
+const getEventMember = async (userId, eventId) => {
+  try {
+    const res = await axios.get(`/events/${eventId}/member`, {params: {userId: userId}});;
+
+    return res.data.isMember;
+  } catch (err) {
+    console.log(err);
+
+  }
+}
+
 const inviteUserToEvent = async (userId, eventId) => {
   try {
     const res = await axios.post(`/events/${eventId}/invite`, { userId: userId });
@@ -28,17 +39,6 @@ const removeUserFromEvent = async (userId, eventId) => {
     return res.data;
   } catch (err) {
     return [];
-  }
-}
-
-const getEventMember = async (userId, eventId) => {
-  try {
-    const res = await axios.get(`/events/${eventId}/member`, {params: {userId: userId}});;
-
-    return res.data.isMember;
-  } catch (err) {
-    console.log(err);
-
   }
 }
 
@@ -82,22 +82,46 @@ const getGroupMember = async (userId, groupId) => {
   }
 }
 
+const inviteUserToGroup= async (userId, groupId) => {
+  try {
+    const res = await axios.post(`/groups/${groupId}/invite`, { userId: userId });
+
+    return res.data;
+  } catch (err) {
+    return [];
+  }
+}
+
 const joinUserToGroup = async (userId, groupId) => {
   try {
-    await axios.post(`/groups/${groupId}/join`, {userId: userId});
+    const result = await axios.post(`/groups/${groupId}/join`, {userId: userId});
+
+    return result.data;
   } catch (err) {
     // TODO: Error modal >_< 
   }
 }
 
+const removeUserFromGroup = async (userId, groupId) => {
+  try {
+    const res = await axios.post(`/groups/${groupId}/remove`, { userId: userId });
+
+    return res.data;
+  } catch (err) {
+    return [];
+  }
+}
+
 export {
   getEventUsers,
+  getEventMember,
   inviteUserToEvent,
   removeUserFromEvent,
-  getEventMember,
   joinUserToEvent,
   userLeaveEvent,
   getGroupUsers,
   getGroupMember,
+  inviteUserToGroup,
   joinUserToGroup,
+  removeUserFromGroup
 }

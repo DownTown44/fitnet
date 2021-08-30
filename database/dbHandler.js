@@ -6,6 +6,7 @@ import dbconfig from './dbconfig.js';
 import insertUser from './dbHandlers/insertUser.js';
 import insertEvent from './dbHandlers/insertEvent.js';
 import deleteUserFromEvent from './dbHandlers/deleteUserFromEvent.js';
+import deleteUserFromGroup from './dbHandlers/deleteUserFromGroup.js';
 import insertGroup from './dbHandlers/insertGroup.js';
 import selectUserByEmail from './dbHandlers/selectUserByEmail.js';
 import selectUserByName from './dbHandlers/selectUserByName.js';
@@ -127,16 +128,49 @@ export const registerUser = async (data) => {
   }
 }
 
+// TODO: invite and join are the same, put them into one
+export const inviteUserToGroup = async (groupId, body) => {
+  try {
+    const data = {
+      group_id: groupId,
+      user_id: body.user_id
+    };
+
+    const result = await insertUser(data, models['group_members'], serverConnectionError);
+
+    return result;
+  } catch(err) {
+    console.log(err);
+  }
+}
+
 export const joinUserIntoGroup = async (groupId, userId) => {
   try {
     const data = { group_id: groupId, user_id: userId };
-    await insertUser(data, models['group_members'], serverConnectionError);
+    const result = await insertUser(data, models['group_members'], serverConnectionError);
+
+    return result;
   } catch (err) {
     console.log(err);
   }
 }
 
 // Data deletion
+
+export const removeUserFromGroup = async (groupId, userId) => {
+  try {
+    const data = {
+      group_id: groupId,
+      user_id: userId
+    };
+
+    const result = await deleteUserFromGroup(data, models['group_members'], serverConnectionError);
+
+    return result;
+  } catch(err) {
+    console.log(err);
+  }
+}
 
 export const deleteGroupById = async (data) => {
   try {

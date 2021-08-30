@@ -2,6 +2,8 @@ import axios from '../axios';
 
 // TODO: RESTful api correctly => events/:id/users;
 
+// EVENTS
+
 const getEventUsers = async (eventId) => {
   try {
     const res = await axios.get('/users/eventUsers', {params: { eventId: eventId }});
@@ -32,16 +34,6 @@ const inviteUserToEvent = async (userId, eventId) => {
   }
 }
 
-const removeUserFromEvent = async (userId, eventId) => {
-  try {
-    const res = await axios.post(`/events/${eventId}/remove`, { userId: userId });
-
-    return res.data;
-  } catch (err) {
-    return [];
-  }
-}
-
 const joinUserToEvent = async (userId, eventId) => {
   try {
     const result = await axios.post(`/events/${eventId}/join`, {userId: userId});
@@ -52,15 +44,27 @@ const joinUserToEvent = async (userId, eventId) => {
   }
 }
 
+const removeUserFromEvent = async (userId, eventId) => {
+  try {
+    const res = await axios.post(`/events/${eventId}/remove`, { userId: userId });
+
+    return res.data;
+  } catch (err) {
+    return [];
+  }
+}
+
 const userLeaveEvent = async (userId, eventId) => {
   try {
-    const result = await axios.post(`events/${eventId}/leave`, {userId: userId});
+    const result = await axios.post(`/events/${eventId}/leave`, {userId: userId});
 
     return result.data;
   } catch (err) {
     return false;
   }
 }
+
+// GROUPS
 
 const getGroupUsers = async (groupId) => {
   try {
@@ -112,16 +116,28 @@ const removeUserFromGroup = async (userId, groupId) => {
   }
 }
 
+const userLeaveGroup = async (userId, groupId) => {
+  try {
+    const result = await axios.post(`/groups/${groupId}/leave`, {userId: userId});
+
+    return result.data;
+  } catch (err) {
+    return false;
+  }
+}
+
+
 export {
   getEventUsers,
   getEventMember,
   inviteUserToEvent,
-  removeUserFromEvent,
   joinUserToEvent,
+  removeUserFromEvent,
   userLeaveEvent,
   getGroupUsers,
   getGroupMember,
   inviteUserToGroup,
   joinUserToGroup,
-  removeUserFromGroup
+  removeUserFromGroup,
+  userLeaveGroup
 }

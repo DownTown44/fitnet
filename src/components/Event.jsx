@@ -1,7 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useHistory } from 'react-router-dom';
 
-import { getEventUsers, getEventMember, joinUserToEvent, userLeaveEvent } from '../services/userService';
+import { 
+  getEventUsers, 
+  getEventMember, 
+  joinUserToEvent, 
+  userLeaveEvent } from '../services/userService';
 import { getEventById, deleteEventById } from '../services/eventService';
 
 import Text from './UI/Text';

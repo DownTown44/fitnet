@@ -102,6 +102,16 @@ const joinUserToGroup = async (userId, groupId) => {
   }
 }
 
+const removeUserFromGroup = async (userId, groupId) => {
+  try {
+    const res = await axios.post(`/groups/${groupId}/remove`, { userId: userId });
+
+    return res.data;
+  } catch (err) {
+    return [];
+  }
+}
+
 export {
   getEventUsers,
   getEventMember,
@@ -113,4 +123,5 @@ export {
   getGroupMember,
   inviteUserToGroup,
   joinUserToGroup,
+  removeUserFromGroup
 }

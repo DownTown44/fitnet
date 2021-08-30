@@ -10,6 +10,7 @@ import {
   getGroupById,
   getEverythingWithAccessOf,
   inviteUserToGroup,
+  removeUserFromGroup,
   joinUserIntoGroup,
   userIsMemberOfGroup,
   deleteGroupById
@@ -92,6 +93,18 @@ router.post('/', checkToken, imageUpload.single('image'), async (req, res) => {
 router.post('/:id/invite', async (req, res) => {
   try {
     const result = await inviteUserToGroup(req.params.id, req.body);
+
+    res.status(200);
+    res.send(result);
+  } catch (error) {
+    res.status(500);
+    res.send(`${error}\nPlease try again later`);
+  }
+});
+
+router.post('/:id/remove', async (req, res) => {
+  try {
+    const result = await removeUserFromGroup(req.params.id, req.body.user_id);
 
     res.status(200);
     res.send(result);

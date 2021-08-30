@@ -93,7 +93,16 @@ const Group = () => {
           members={usersData}
         />
       }
-      <UserList users={usersData}></UserList>
+      {
+        isOwner ? 
+        <UserList 
+          users={usersData} 
+          actionDetails={actionDetails} 
+          parentRerender={onUserListChange} 
+          removable={true}
+        /> :
+        <UserList users={usersData}/>
+      }
       {groupData.userId === userData.userId && <Button onClick={() => {setIsDeletion(true)}}>Törlés</Button>}
       {
         isDeletion && 

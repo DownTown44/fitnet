@@ -48,12 +48,10 @@ const Group = () => {
   }, []);
 
   useEffect(() => {
-    if (!isOwner) {
-      if (userData.userId === groupData.userId) {
-        setIsOwner(true);
-        setActionDetails((prevProps) => {return {...prevProps, id: groupData.groupId}});
-      } 
-    }
+    if (!isOwner && userData.userId === groupData.userId) {
+      setIsOwner(true);
+      setActionDetails((prevProps) => {return {...prevProps, id: groupData.groupId}});
+    } 
   }, [groupData]);
 
   const onUserListChange = async () => {
@@ -82,7 +80,9 @@ const Group = () => {
       <Text>{groupData.description}</Text>
       {/* if the user is the owner don't show the join button */}
       <img src={`http://localhost:8080/${groupData.picture}`}/>
-      {groupData.accessibilityId !== 2 && !isJoined && !isOwner && <Button onClick={() => onJoin()}>Csatlakozás</Button>}
+      {groupData.accessibilityId !== 2 && !isJoined && !isOwner && 
+        <Button onClick={() => onJoin()}>Csatlakozás</Button>
+      }
       {isOwner && <Button onClick={() => setShowSearch(!showSearch)}>Meghívás</Button>}
       {
         showSearch &&

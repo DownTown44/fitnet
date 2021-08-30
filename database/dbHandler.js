@@ -6,6 +6,7 @@ import dbconfig from './dbconfig.js';
 import insertUser from './dbHandlers/insertUser.js';
 import insertEvent from './dbHandlers/insertEvent.js';
 import deleteUserFromEvent from './dbHandlers/deleteUserFromEvent.js';
+import deleteUserFromGroup from './dbHandlers/deleteUserFromGroup.js';
 import insertGroup from './dbHandlers/insertGroup.js';
 import selectUserByEmail from './dbHandlers/selectUserByEmail.js';
 import selectUserByName from './dbHandlers/selectUserByName.js';
@@ -21,7 +22,7 @@ import selectFromGroupMembers from './dbHandlers/selectFromGroupMembers.js';
 import selectFromEventMembers from './dbHandlers/selectFromEventMembers.js';
 import deleteGroup from './dbHandlers/deleteGroup.js';
 import deleteEvent from './dbHandlers/deleteEvent.js';
-import deleteUserFromGroup from './dbHandlers/deleteUserFromGroup.js';
+import updateEventDBH from './dbHandlers/updateEventDBH.js'
 
 const { Sequelize } = sequelize_all;
 const { host, port, user, password, database } = dbconfig;
@@ -189,6 +190,17 @@ export const deleteEventById = async (data) => {
   }
 }
 
+// Update data
+
+export const updateEvent = async (data) => {
+  try {
+    const result = await updateEventDBH(models['events'], data);
+    return JSON.parse(result);
+  } catch(err) {
+    console.log(err);
+  }
+}
+
 // Data selection
 
 export const getUserByEmail = async (data) => {
@@ -234,7 +246,15 @@ export const getEverythingWithAccessOf = async (model) => {
 export const getEventById = async (id) => {
   try {
     const result = await selectEventById(models['events'], id, serverConnectionError);
-    return JSON.parse(result);
+    const resultObj = JSON.parse(result);
+
+    const startDate = resultObj[0].start_date;
+    const endDate = resultObj[0].end_date;
+
+    resultObj[0].start_date = startDate.substr(0, startDate.length - 1);
+    resultObj[0].end_date = endDate.substr(0, endDate.length - 1);
+
+    return resultObj;
   } catch (err) {
     console.log(err);
     throw serverConnectionError;

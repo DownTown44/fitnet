@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { useHistory } from 'react-router-dom';
+import { useHistory, useParams, useLocation } from 'react-router-dom';
 
-import { createEvent } from '../../services/eventService';
+import { createEvent, getEventById, updateEvent } from '../../services/eventService';
 import { getAccessibilities } from '../../services/accessibilityService';
 
 import Input from '../UI/Input';
@@ -28,12 +28,21 @@ const CreateEvent = () => {
   });
 
   const [accessibilityOptions, setAccessibilityOptions] = useState([]);
+  const location = useLocation();
+  const { id } = useParams();
+
+  const regExp = /\/events\/[0-9]+\/edit/;
 
   useEffect(() => {
-    (async () => {
-      const result = await getAccessibilities();
-      setAccessibilityOptions(result)
-    })();
+    getAccessibilities().then((result) => {
+      setAccessibilityOptions(result);
+    });
+
+    if (regExp.test(location.pathname)) {
+      getEventById(id).then((result) => {
+        setEventData(result);
+      });
+    }
   }, []);
 
   const handleChange = (event, stateName) => {
@@ -63,7 +72,18 @@ const CreateEvent = () => {
     if (isValid(eventData)) {
       const result = await createEvent(eventData);
       if(result.created) {
-        history.push(`/events/${result.id}`)
+        history.push(`/events/${result.id}`);
+      }
+    }
+  }
+
+  const onModify = async (event) => {
+    event.preventDefault();
+
+    if (isValid(eventData)) {
+      const result = await updateEvent(id, eventData);
+      if (result.created) {
+        history.push(`/events/${result.id}`);
       }
     }
   }
@@ -118,14 +138,14 @@ const CreateEvent = () => {
       </CheckBox>
 
       <Input 
-        type="date"
+        type="datetime-local"
         onChange={event => handleChange(event, 'startDate')}
         value={eventData.startDate}
         label="Kezdés"
       />
 
       <Input 
-        type="date"
+        type="datetime-local"
         onChange={event => handleChange(event, 'endDate')}
         value={eventData.endDate}
         label="Befejezés"
@@ -133,7 +153,11 @@ const CreateEvent = () => {
 
       <Select optionList={accessibilityOptions} onChange={event => handleChange(event, 'accessibilityId')}>Az esemény láthatósága</Select>
 
-      <Button onClick={(event) => onSubmit(event)}>Esemény létrehozása</Button>
+      {
+        regExp.test(location.pathname) ?
+        <Button onClick={(event) => onModify(event)}>Esemény módosítása</Button> :
+        <Button onClick={(event) => onSubmit(event)}>Esemény létrehozása</Button>
+      }
     </form>
   );
 };

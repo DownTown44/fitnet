@@ -87,11 +87,14 @@ function App() {
         <Route path="/events/" exact>
           <EventCards />
         </Route>
-        <Route path="/events/:id">
+        <Route path="/events/:id" exact>
           <Event/>
         </Route>
-        <Route path="/groups/:id">
+        <Route path="/groups/:id" exact>
           <Group/>
+        </Route>
+        <Route path="/events/:id/edit">
+          <CreateEvent />
         </Route>
         <Redirect to="/" />
       </Switch>

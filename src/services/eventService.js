@@ -37,9 +37,19 @@ const deleteEventById = async (id) => {
   }
 }
 
+const updateEvent = async (id, eventData) => {
+  try {
+    const res = await axios.patch(`/events/${id}`, eventData);
+    return res.data;
+  } catch (err) {
+    return null;
+  }
+}
+
 export {
   createEvent,
   getEvents,
   getEventById,
   deleteEventById,
+  updateEvent,
 }

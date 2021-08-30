@@ -89,6 +89,10 @@ const Event = () => {
     history.push('/events');
   }
 
+  const onModify = async () => {
+    history.push(`/events/${id}/edit`);
+  }
+
   return (
     <div className="center">
       <Text htmlTag="h2">{eventData.name}</Text>
@@ -130,6 +134,7 @@ const Event = () => {
           <Dialog onAccept={onAcceptDelete} onDecline={() => {setIsDeletion(!isDeletion)}}>Biztos vagy benne, hogy törölni szeretnéd?</Dialog>
         </Modal>
       }
+      {isOwner && <Button onClick={() => onModify()}>Módosítás</Button>}
       {isJoined && !isOwner && <Button onClick={() => onLeave()}>Kilépés</Button>}
     </div>
   );

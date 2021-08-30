@@ -11,6 +11,7 @@ import {
   getLastMinuteEvents,
   getNextWeekEvents,
   deleteEventById,
+  updateEvent,
 } from '../../database/dbHandler.js';
 import camelCasify from '../util/camelCasify.js'
 import { checkToken } from '../middleware/jwtCheck.js'; 
@@ -199,6 +200,29 @@ router.delete('/:id', checkToken, async (req, res) => {
   } catch (error) {
     res.status(500);
     res.json({result: 'Server error. Delete unsuccessful'});
+  }
+});
+
+router.patch('/:id', checkToken, async (req, res) => {
+  try {
+    const data = {
+      id: req.params.id,
+      eventData: req.body
+    }
+    const result = await updateEvent(data);
+
+    if (result[0]) {
+      res.status(200);
+      res.json({result: 'Update is successful', created: true, id: req.params.id});
+      
+      return;
+    }
+
+    res.status(400);
+    res.json({result: 'Update is unsuccessful', created: false});
+  } catch (error) {
+    res.status(500);
+    res.json({result: 'Server error. Update unsuccessful',  created: false});
   }
 });
 

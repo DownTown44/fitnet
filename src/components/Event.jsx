@@ -17,6 +17,7 @@ const Event = () => {
   const [showSearch, setShowSearch] = useState(false);
   const [isDeletion, setIsDeletion] = useState(false);
   const [eventData, setEventData] = useState({});
+  // usersData = participantsData
   const [usersData, setUsersData] = useState([]);
   const [actionDetails, setActionDetails] = useState({
     type: "event",
@@ -99,7 +100,8 @@ const Event = () => {
       <Text htmlTag="p">{eventData.type}</Text>
       {eventData.accessibilityId !== 2 && !isJoined && !isOwner && <Button onClick={() => onJoin()}>Csatlakozás</Button>}
       {isOwner && <Button onClick={() => setShowSearch(!showSearch)}>Meghívás</Button>}
-      {showSearch &&
+      {
+        showSearch &&
         <SearchUsers 
           invitable={true} 
           actionDetails={actionDetails} 
@@ -107,7 +109,8 @@ const Event = () => {
           members={usersData}
         />
       }
-      {isOwner ? 
+      {
+        isOwner ? 
         <UserList 
           users={usersData} 
           actionDetails={actionDetails} 

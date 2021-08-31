@@ -13,7 +13,8 @@ import {
   removeUserFromGroup,
   joinUserIntoGroup,
   userIsMemberOfGroup,
-  deleteGroupById
+  deleteGroupById,
+  updateGroup
 } from '../../database/dbHandler.js';
 import { checkToken } from '../middleware/jwtCheck.js';
 
@@ -199,10 +200,48 @@ router.delete('/:id', checkToken, async (req, res) => {
     }
 
     res.status(400);
-    res.json({result: 'Delete unsuccessful'})
+    res.json({result: 'Delete failed'})
   } catch (error) {
     res.status(500);
-    res.json({result: 'Server error. Delete unsuccessful'});
+    res.json({result: 'Server error. Delete failed'});
+  }
+});
+
+router.patch('/:id', checkToken, imageUpload.single('image'), async (req, res) => {
+  if (req.fileValidationError) {
+    res.status(400);
+    res.send('Forbidden file format');
+    return;
+  }
+  
+  let data = req.body.data
+  data = snakeCasify(JSON.parse(req.body.data));
+  const fileHandler = req.file;
+
+  // Check if new picture added
+  if (fileHandler !== undefined) {
+    data.picture = path.join('groupImages', fileHandler.filename);
+  }
+
+  try {
+    const groupData = {
+      id: req.params.id,
+      groupData: data
+    }
+    const result = await updateGroup(groupData);
+
+    if (result[0]) {
+      res.status(200);
+      res.json({result: 'Update is successful', created: true, id: req.params.id})
+
+      return;
+    }
+
+    res.status(400);
+    res.json({result: 'Update failed', created: false});
+  } catch (error) {
+    res.status(500);
+    res.json({result: 'Server error. Update failed',  created: false});
   }
 });
 

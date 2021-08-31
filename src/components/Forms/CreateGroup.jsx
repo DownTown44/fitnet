@@ -1,9 +1,10 @@
 import React, { useState, useRef, useEffect } from 'react';
+import PropTypes from 'prop-types';
 import FormData from 'form-data';
-import { useHistory } from 'react-router-dom';
+import { useHistory, useParams } from 'react-router-dom';
 
 
-import { createGroup } from '../../services/groupService';
+import { createGroup, getGroupById, updateGroup } from '../../services/groupService';
 import { getAccessibilities } from '../../services/accessibilityService';
 import Input from '../UI/Input';
 import Select from '../UI/Select';
@@ -12,22 +13,13 @@ import Textarea from '../UI/Textarea';
 import Button from '../UI/Button';
 import DiscardableImage from '../ImageUpload/DiscardableImage';
 
-const CreateGroup = () => {
+const CreateGroup = (props) => {
   const history = useHistory();
   // Stores image bytearray strings
   const [preview, setPreview] = useState(null);
   const [image, setImage] = useState(null);
   // Reference for the file input
   const fileInputRef = useRef();
-  /*
-  Data:
-    user_id
-
-    name
-    description
-    accesibility_id
-    picture (will be added later)
-  */
   const [groupData, setGroupData] = useState({
     userId: JSON.parse(sessionStorage.getItem('userData')).userId,
     name: '',
@@ -36,12 +28,19 @@ const CreateGroup = () => {
   });
 
   const [accessibilityOptions, setAccessibilityOptions] = useState([]);
+  const { id } = useParams();
 
   useEffect(() => {
-    (async () => {
-      const result = await getAccessibilities();
-      setAccessibilityOptions(result)
-    })();
+    getAccessibilities().then((result) => {
+      setAccessibilityOptions(result);
+    });
+
+    if (props.edit) {
+      getGroupById(id).then((result) => {
+        setGroupData(result);
+        setPreview(`http://localhost:8080/${result.picture}`);
+      });
+    }
   }, []);
 
   // Reading image for preview
@@ -62,7 +61,7 @@ const CreateGroup = () => {
         [stateName]: event.target.value
       };
     });
-  };
+  }
 
   const handleImageUpload = (event) => {
     // Reading image object from the event
@@ -76,12 +75,12 @@ const CreateGroup = () => {
     // Clearing event value so we can upload the same image twice
     // ex. upload it, remove it and then cant upload again
     event.target.value = "";
-  };
+  }
 
   const handleImageRemove = () => {
     setImage(null);
     setPreview(null);
-  };
+  }
 
   const isValid = (obj) => {
     for (let key in obj) {
@@ -106,7 +105,22 @@ const CreateGroup = () => {
         history.push(`/groups/${result.id}`)
       }
     }
-  };
+  }
+
+  const onModify = async (group) => {
+    group.preventDefault();
+
+    if (isValid(groupData)) {
+      let formData = new FormData();
+      formData.append("data", JSON.stringify(groupData));
+      formData.append("image", image);
+
+      const result = await updateGroup(id, formData);
+      if (result.created) {
+        history.push(`/groups/${result.id}`);
+      }
+    }
+  }
 
   return (
     <form className="form center">
@@ -142,9 +156,22 @@ const CreateGroup = () => {
       />
       {preview && <DiscardableImage src={preview} onRemove={() => handleImageRemove()}/>}
       <Select optionList={accessibilityOptions} onChange={(event) => handleChange(event, 'accessibilityId')}>A csoport láthatósága:</Select>
-      <Button onClick={(event) => onSubmit(event)}>Csoport létrehozása</Button>
+      {
+        props.edit ?
+        <Button onClick={(event) => onModify(event)}>Csoport módosítása</Button> :
+        <Button onClick={(event) => onSubmit(event)}>Csoport létrehozása</Button>
+      }
     </form>
   );
 }
+
+CreateGroup.propTypes = {
+  edit: PropTypes.bool
+}
+
+CreateGroup.defaultProps = {
+  edit: false
+}
+
 
 export default CreateGroup;

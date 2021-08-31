@@ -37,9 +37,19 @@ const deleteGroupById = async (id) => {
   }
 }
 
+const updateGroup = async (id, groupData) => {
+  try {
+    const res = await axios.patch(`/groups/${id}`, groupData, {headers: {'Content-Type': `multipart/form-data`}});
+    return res.data;
+  } catch (err) {
+    return null;
+  }
+}
+
 export {
   createGroup,
   getGroups,
   getGroupById,
   deleteGroupById,
+  updateGroup
 };

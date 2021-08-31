@@ -87,6 +87,10 @@ const Group = () => {
     history.push('/groups');
   }
 
+  const onModify = async () => {
+    history.push(`/groups/${id}/edit`);
+  }
+
   return (
     <div className="center">
       <Text htmlTag="h3">{groupData.name}</Text>
@@ -123,7 +127,11 @@ const Group = () => {
           <Dialog onAccept={onAcceptDelete} onDecline={() => {setIsDeletion(!isDeletion)}}>Biztos vagy benne, hogy törölni szeretnéd?</Dialog>
         </Modal>
       }
-      {isJoined && !isOwner && <Button onClick={() => onLeave()}>Kilépés</Button>}
+      {isOwner && <Button onClick={() => onModify()}>Módosítás</Button>}
+      {
+        isJoined && !isOwner && 
+        <Button onClick={() => onLeave()}>Kilépés</Button>
+      }
     </div>
   );
 }

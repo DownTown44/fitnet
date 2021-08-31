@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import PropTypes from 'prop-types';
 import { useHistory, useParams, useLocation } from 'react-router-dom';
 
 import { createEvent, getEventById, updateEvent } from '../../services/eventService';
@@ -9,7 +10,7 @@ import CheckBox from '../UI/CheckBox';
 import Button from '../UI/Button';
 import Select from '../UI/Select';
 
-const CreateEvent = () => {
+const CreateEvent = (props) => {
   const history = useHistory();
   const [eventData, setEventData] = useState({
     accessibilityId: 1,
@@ -28,17 +29,14 @@ const CreateEvent = () => {
   });
 
   const [accessibilityOptions, setAccessibilityOptions] = useState([]);
-  const location = useLocation();
   const { id } = useParams();
-
-  const regExp = /\/events\/[0-9]+\/edit/;
 
   useEffect(() => {
     getAccessibilities().then((result) => {
       setAccessibilityOptions(result);
     });
 
-    if (regExp.test(location.pathname)) {
+    if (props.edit) {
       getEventById(id).then((result) => {
         setEventData(result);
       });
@@ -154,12 +152,20 @@ const CreateEvent = () => {
       <Select optionList={accessibilityOptions} onChange={event => handleChange(event, 'accessibilityId')}>Az esemény láthatósága</Select>
 
       {
-        regExp.test(location.pathname) ?
+        props.edit ?
         <Button onClick={(event) => onModify(event)}>Esemény módosítása</Button> :
         <Button onClick={(event) => onSubmit(event)}>Esemény létrehozása</Button>
       }
     </form>
   );
 };
+
+CreateEvent.propTypes = {
+  edit: PropTypes.bool
+}
+
+CreateEvent.defaultProps = {
+  edit: false
+}
 
 export default CreateEvent;

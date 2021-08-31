@@ -23,6 +23,7 @@ import selectFromEventMembers from './dbHandlers/selectFromEventMembers.js';
 import deleteGroup from './dbHandlers/deleteGroup.js';
 import deleteEvent from './dbHandlers/deleteEvent.js';
 import updateEventDBH from './dbHandlers/updateEventDBH.js'
+import updateGroupDBH from './dbHandlers/updateGroupDBH.js'
 
 const { Sequelize } = sequelize_all;
 const { host, port, user, password, database } = dbconfig;
@@ -195,6 +196,15 @@ export const deleteEventById = async (data) => {
 export const updateEvent = async (data) => {
   try {
     const result = await updateEventDBH(models['events'], data);
+    return JSON.parse(result);
+  } catch(err) {
+    console.log(err);
+  }
+}
+
+export const updateGroup = async (data) => {
+  try {
+    const result = await updateGroupDBH(models['groups'], data);
     return JSON.parse(result);
   } catch(err) {
     console.log(err);

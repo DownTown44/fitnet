@@ -75,26 +75,29 @@ function App() {
         <Route path="/" exact>
           <Feed />
         </Route>
-        <Route path="/groups/create">
-          <CreateGroup />
-        </Route>
-        <Route path="/events/create">
-          <CreateEvent />
-        </Route>
         <Route path="/groups/" exact>
           <GroupCards />
         </Route>
-        <Route path="/events/" exact>
-          <EventCards />
-        </Route>
-        <Route path="/events/:id" exact>
-          <Event/>
+        <Route path="/groups/create">
+          <CreateGroup />
         </Route>
         <Route path="/groups/:id" exact>
           <Group/>
         </Route>
-        <Route path="/events/:id/edit">
+        <Route path="/groups/:id/edit">
+          <CreateGroup edit={true}/>
+        </Route>
+        <Route path="/events/" exact>
+          <EventCards />
+        </Route>
+        <Route path="/events/create">
           <CreateEvent />
+        </Route>
+        <Route path="/events/:id" exact>
+          <Event/>
+        </Route>
+        <Route path="/events/:id/edit">
+          <CreateEvent edit={true}/>
         </Route>
         <Redirect to="/" />
       </Switch>

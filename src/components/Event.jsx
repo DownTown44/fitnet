@@ -135,7 +135,10 @@ const Event = () => {
         </Modal>
       }
       {isOwner && <Button onClick={() => onModify()}>Módosítás</Button>}
-      {isJoined && !isOwner && <Button onClick={() => onLeave()}>Kilépés</Button>}
+      {
+        isJoined && !isOwner && 
+        <Button onClick={() => onLeave()}>Kilépés</Button>
+      }
     </div>
   );
 }

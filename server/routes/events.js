@@ -15,6 +15,7 @@ import {
 } from '../../database/dbHandler.js';
 import camelCasify from '../util/camelCasify.js'
 import { checkToken } from '../middleware/jwtCheck.js'; 
+import prevImpersonation from '../middleware/prevImpersonation.js';
 
 const router = express.Router();
 
@@ -73,8 +74,9 @@ router.get('/nextWeek', async (req, res) => {
   }
 });
 
-router.post('/', async (req, res) => {
+router.post('/', checkToken, prevImpersonation, async (req, res) => {
   const data = req.body;
+  data.user_id = res.locals.tokenObject.userId;
   try {
     // Inserting into database
     const result = await createEvent(data);

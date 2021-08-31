@@ -29,7 +29,6 @@ const CreateGroup = () => {
     picture (will be added later)
   */
   const [groupData, setGroupData] = useState({
-    userId: JSON.parse(sessionStorage.getItem('userData')).userId,
     name: '',
     description: '',
     accessibilityId: 1

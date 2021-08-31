@@ -1,6 +1,6 @@
 import validator from 'validator';
 
-const signupValidator = (req, res, next) => {
+const validateInput = (data) => {
   const {
     email,
     first_name,
@@ -8,7 +8,7 @@ const signupValidator = (req, res, next) => {
     phone_number,
     password,
     repeated_password,
-  } = req.body;
+  } = data;
 
   if (!validator.isEmail(email) ||
   !validator.isAlpha(first_name, 'hu-HU') ||
@@ -16,9 +16,18 @@ const signupValidator = (req, res, next) => {
   !validator.isMobilePhone(phone_number, 'ro-RO') ||
   !validator.isStrongPassword(password, {minSymbols: 0}) ||
   !validator.equals(repeated_password, password)) {
+    return false;
+  }
+
+  return true;
+}
+
+const signupValidator = (req, res, next) => {
+
+  if (!validateInput(req.body)) {
     res.status(400);
     res.json({message: 'One of the following datas is not valid'});
-
+    
     return;
   }
 

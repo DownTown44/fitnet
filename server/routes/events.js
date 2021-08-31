@@ -196,10 +196,10 @@ router.delete('/:id', checkToken, async (req, res) => {
     }
 
     res.status(400);
-    res.json({result: 'Delete unsuccessful'})
+    res.json({result: 'Delete failed'})
   } catch (error) {
     res.status(500);
-    res.json({result: 'Server error. Delete unsuccessful'});
+    res.json({result: 'Server error. Delete failed'});
   }
 });
 
@@ -219,10 +219,10 @@ router.patch('/:id', checkToken, async (req, res) => {
     }
 
     res.status(400);
-    res.json({result: 'Update is unsuccessful', created: false});
+    res.json({result: 'Update failed', created: false});
   } catch (error) {
     res.status(500);
-    res.json({result: 'Server error. Update unsuccessful',  created: false});
+    res.json({result: 'Server error. Update failed',  created: false});
   }
 });
 

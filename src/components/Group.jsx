@@ -127,7 +127,7 @@ const Group = () => {
           <Dialog onAccept={onAcceptDelete} onDecline={() => {setIsDeletion(!isDeletion)}}>Biztos vagy benne, hogy törölni szeretnéd?</Dialog>
         </Modal>
       }
-            {isOwner && <Button onClick={() => onModify()}>Módosítás</Button>}
+      {isOwner && <Button onClick={() => onModify()}>Módosítás</Button>}
       {
         isJoined && !isOwner && 
         <Button onClick={() => onLeave()}>Kilépés</Button>

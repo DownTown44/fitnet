@@ -38,6 +38,7 @@ function App() {
   // This useEffect on specific locations changes the property of the layout
   // ex. in some locations the sidedrawers should not be mounted
   useEffect(() => {
+
     if(!isAuth) {
       switch (location.pathname) {
         case '/signup':
@@ -46,6 +47,10 @@ function App() {
 
         case '/login':
           setLayoutShown(location.pathname !== "/login")
+          break;
+
+        case '/':
+          setLayoutShown(location.pathname == "/")
           break;
 
         default:
@@ -65,7 +70,7 @@ function App() {
       <Route path="/login">
         <LoginForm onLoginAttempt={onLoginAttempt}/>
       </Route>
-      <Redirect to="/" />
+      <Redirect to="/login" />
     </Switch>
   );
 
@@ -75,19 +80,12 @@ function App() {
         <Route path="/" exact>
           <Feed />
         </Route>
-        <Route path="/groups/" exact>
-          <GroupCards />
+
+        <Route path="/facilities">
+          Sport facilities
         </Route>
-        <Route path="/groups/create">
-          <CreateGroup />
-        </Route>
-        <Route path="/groups/:id" exact>
-          <Group/>
-        </Route>
-        <Route path="/groups/:id/edit">
-          <CreateGroup edit={true}/>
-        </Route>
-        <Route path="/events/" exact>
+
+        <Route path="/events" exact>
           <EventCards />
         </Route>
         <Route path="/events/create">
@@ -98,6 +96,19 @@ function App() {
         </Route>
         <Route path="/events/:id/edit">
           <CreateEvent edit={true}/>
+        </Route>
+
+        <Route path="/groups" exact>
+          <GroupCards />
+        </Route>
+        <Route path="/groups/create">
+          <CreateGroup />
+        </Route>
+        <Route path="/groups/:id" exact>
+          <Group/>
+        </Route>
+        <Route path="/groups/:id/edit">
+          <CreateGroup edit={true}/>
         </Route>
         <Redirect to="/" />
       </Switch>

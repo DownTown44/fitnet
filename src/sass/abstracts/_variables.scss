@@ -1,3 +1,4 @@
+// Neutral colors
 $neutral-darkest: #262626;
 $neutral-darker: #686868;
 $neutral: #939393;
@@ -5,6 +6,24 @@ $neutral-lighter: #D3D3D3;
 $neutral-lightest: #EDEDED;
 $neutral-white: #FBFBFB;
 
-$red-base: #e3242b;
+// Primary colors
+$primary-grey: #344544;
+$primary-blue: #36676E;
+$primary-green: #C8E0B7;
+
+// Secondary colors
+$secondary-grey: #5A7270;
+$secondary-light-grey: #879E9D;
+$secondary-blue: #55939C;
+$secondary-light-blue: #85BFC8;
+$secondary-light-green: #E2ECDB;
+$secondary-lightest-green: #F1FFE7;
+$secondary-green: #82E83D;
+$secondary-red: #E25858;
+$secondary-yellow: #F4CF09;
+
+// Gradients
+$gradient-blue-grey: linear-gradient(90deg, #36676E 0%, #344544 100%);
+$gradient-blue-green: linear-gradient(90deg, #36676E 0%, #C8E0B7 100%);
 
 $form-shadow: 0px 4px 6px 6px rgba(38, 38, 38, 0.06);

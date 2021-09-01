@@ -1,38 +1,47 @@
 .design-system {
-  display: grid;
+  margin: 25px;
 
-  #{&}__colors {
+  display: grid; 
+  grid-template-columns: 1fr 1.1fr 0.9fr; 
+  grid-template-rows: 1fr 0.7fr 1.3fr; 
+  gap: 20px 20px; 
+
+  &__colors {
     display: flex;
     flex-direction: column;
-    border-radius: 33px;
+    border-radius: 5px;
     box-shadow: $form-shadow;
 
     & h2 {
-      font-size: 28px;
+      font-size: 24px;
       font-weight: bold;
-      margin-top: 30px;
-      margin-left: 30px;
+      margin-top: 15px;
+      margin-left: 15px;
     }
   }
 
   &__color-container {
+    width: 650px;
+    margin: 25px;
+    
     display: flex;
     flex-direction: column;
-    margin: 50px;
 
     &-title {
-      font-size: 24px;
+      font-size: 18px;
       color: $neutral-darker;
       font-weight: bold;
-      margin: 30px;
+      margin: 15px;
     }
 
     &-colors {
-      width: 420px;
-      display: flex;
-      justify-content: space-around;
-      flex-wrap: wrap;
+      margin-top: 5px;
+      margin-bottom: 5px;
 
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-around;
+      // Neutral colors
       & .neutral-darkest {
         background-color: $neutral-darkest;
       }
@@ -56,24 +65,83 @@
       & .neutral-white {
         background-color: $neutral-white;
       }
+
+      // Primary colors
+      & .primary-grey {
+        background-color: $primary-grey;
+      }
+
+      & .primary-blue {
+        background-color: $primary-blue;
+      }
+
+      & .primary-green {
+        background-color: $primary-green;
+      }
+
+      // Secondary colors
+      & .secondary-grey {
+        background-color: $secondary-grey;
+      }
+
+      & .secondary-light-grey {
+        background-color: $secondary-light-grey;
+      }
+      
+      & .secondary-blue {
+        background-color: $secondary-blue;
+      }
+
+      & .secondary-light-blue {
+        background-color: $secondary-light-blue;
+      }
+
+      & .secondary-light-green {
+        background-color: $secondary-light-green;
+      }
+
+      & .secondary-lightest-green {
+        background-color: $secondary-lightest-green;
+      }
+
+      & .secondary-green {
+        background-color: $secondary-green;
+      }
+
+      & .secondary-red {
+        background-color: $secondary-red;
+      }
+
+      & .secondary-yellow {
+        background-color: $secondary-yellow;
+      }
+
+      // Gradients
+      & .gradient-blue-grey {
+        background: $gradient-blue-grey;
+      }
+
+      & .gradient-blue-green {
+        background: $gradient-blue-green;
+      }
     }
   }
 }
 
 .color-preview {
+  width: 200px;
+  margin-bottom: 20px;
+
   display: flex;
   flex-direction: column;
   align-items: center;
 
-  margin-left: 15px;
-  margin-right: 15px;
-
   &__color {
     // colorbox color style
-    width: 140px;
+    width: 150px;
     height: 80px;
 
-    border-radius: 33px;
+    border-radius: 10px;
 
     margin-bottom: 15px;
   }

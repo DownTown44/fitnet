@@ -1,29 +1,35 @@
 .design-system {
-  display: grid; }
-  .design-system .design-system__colors {
+  margin: 25px;
+  display: grid;
+  grid-template-columns: 1fr 1.1fr 0.9fr;
+  grid-template-rows: 1fr 0.7fr 1.3fr;
+  gap: 20px 20px; }
+  .design-system__colors {
     display: flex;
     flex-direction: column;
-    border-radius: 33px;
+    border-radius: 5px;
     box-shadow: 0px 4px 6px 6px rgba(38, 38, 38, 0.06); }
-    .design-system .design-system__colors h2 {
-      font-size: 28px;
-      font-weight: bold;
-      margin-top: 30px;
-      margin-left: 30px; }
-  .design-system__color-container {
-    display: flex;
-    flex-direction: column;
-    margin: 50px; }
-    .design-system__color-container-title {
+    .design-system__colors h2 {
       font-size: 24px;
+      font-weight: bold;
+      margin-top: 15px;
+      margin-left: 15px; }
+  .design-system__color-container {
+    width: 650px;
+    margin: 25px;
+    display: flex;
+    flex-direction: column; }
+    .design-system__color-container-title {
+      font-size: 18px;
       color: #686868;
       font-weight: bold;
-      margin: 30px; }
+      margin: 15px; }
     .design-system__color-container-colors {
-      width: 420px;
+      margin-top: 5px;
+      margin-bottom: 5px;
       display: flex;
-      justify-content: space-around;
-      flex-wrap: wrap; }
+      flex-wrap: wrap;
+      justify-content: space-around; }
       .design-system__color-container-colors .neutral-darkest {
         background-color: #262626; }
       .design-system__color-container-colors .neutral-darker {
@@ -36,17 +42,45 @@
         background-color: #EDEDED; }
       .design-system__color-container-colors .neutral-white {
         background-color: #FBFBFB; }
+      .design-system__color-container-colors .primary-grey {
+        background-color: #344544; }
+      .design-system__color-container-colors .primary-blue {
+        background-color: #36676E; }
+      .design-system__color-container-colors .primary-green {
+        background-color: #C8E0B7; }
+      .design-system__color-container-colors .secondary-grey {
+        background-color: #5A7270; }
+      .design-system__color-container-colors .secondary-light-grey {
+        background-color: #879E9D; }
+      .design-system__color-container-colors .secondary-blue {
+        background-color: #55939C; }
+      .design-system__color-container-colors .secondary-light-blue {
+        background-color: #85BFC8; }
+      .design-system__color-container-colors .secondary-light-green {
+        background-color: #E2ECDB; }
+      .design-system__color-container-colors .secondary-lightest-green {
+        background-color: #F1FFE7; }
+      .design-system__color-container-colors .secondary-green {
+        background-color: #82E83D; }
+      .design-system__color-container-colors .secondary-red {
+        background-color: #E25858; }
+      .design-system__color-container-colors .secondary-yellow {
+        background-color: #F4CF09; }
+      .design-system__color-container-colors .gradient-blue-grey {
+        background: linear-gradient(90deg, #36676E 0%, #344544 100%); }
+      .design-system__color-container-colors .gradient-blue-green {
+        background: linear-gradient(90deg, #36676E 0%, #C8E0B7 100%); }
 
 .color-preview {
+  width: 200px;
+  margin-bottom: 20px;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  margin-left: 15px;
-  margin-right: 15px; }
+  align-items: center; }
   .color-preview__color {
-    width: 140px;
+    width: 150px;
     height: 80px;
-    border-radius: 33px;
+    border-radius: 10px;
     margin-bottom: 15px; }
   .color-preview__code {
     font-size: 14px;
@@ -166,7 +200,7 @@ img {
   .input-box__validation-label {
     font-size: 1.8rem;
     font-weight: bold;
-    color: #e3242b;
+    color: #E25858;
     margin-top: 3px; }
 
 .modal {

@@ -13,7 +13,7 @@ const ColorBox = (props) => {
 
 ColorBox.propTypes = {
   className: PropTypes.string.isRequired,
-  colorCode: PropTypes.string.isRequired,
+  colorCode: PropTypes.string,
   colorName: PropTypes.string.isRequired,
 }
 

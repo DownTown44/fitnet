@@ -23,7 +23,7 @@
 /////////////////////
 
 @mixin commonBox {
-  border: 1px solid $grey-base;
+  border: 1px solid $neutral;
   width: 100%;
 
   display: flex;
@@ -32,19 +32,19 @@
 
   h3 {
     font-size: 2rem;
-    color: $grey-dark;
+    color: $neutral-darkest;
     margin: 0 auto;
   }
 
   p {
     font-size: 1.5rem;
-    color: $grey-base;
+    color: $neutral;
     margin: 0 auto;
   }
 }
 
 @mixin commonBoxCreate {
-  border: 1px solid $grey-base;
+  border: 1px solid $neutral;
   width: 100%;
   cursor: pointer;
 
@@ -59,7 +59,7 @@
 
   p {
     font-size: 1.5rem;
-    color: $grey-base;
+    color: $neutral;
     margin-right: auto;
     margin-left: 35%;
   }

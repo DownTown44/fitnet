@@ -1,0 +1,91 @@
+.design-system {
+  display: grid;
+
+  #{&}__colors {
+    display: flex;
+    flex-direction: column;
+    border-radius: 33px;
+    box-shadow: $form-shadow;
+
+    & h2 {
+      font-size: 28px;
+      font-weight: bold;
+      margin-top: 30px;
+      margin-left: 30px;
+    }
+  }
+
+  &__color-container {
+    display: flex;
+    flex-direction: column;
+    margin: 50px;
+
+    &-title {
+      font-size: 24px;
+      color: $neutral-darker;
+      font-weight: bold;
+      margin: 30px;
+    }
+
+    &-colors {
+      width: 420px;
+      display: flex;
+      justify-content: space-around;
+      flex-wrap: wrap;
+
+      & .neutral-darkest {
+        background-color: $neutral-darkest;
+      }
+      
+      & .neutral-darker {
+        background-color: $neutral-darker;
+      }
+
+      & .neutral {
+        background-color: $neutral;
+      }
+
+      & .neutral-lighter {
+        background-color: $neutral-lighter;
+      }
+
+      & .neutral-lightest {
+        background-color: $neutral-lightest;
+      }
+
+      & .neutral-white {
+        background-color: $neutral-white;
+      }
+    }
+  }
+}
+
+.color-preview {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  margin-left: 15px;
+  margin-right: 15px;
+
+  &__color {
+    // colorbox color style
+    width: 140px;
+    height: 80px;
+
+    border-radius: 33px;
+
+    margin-bottom: 15px;
+  }
+
+  &__code {
+    font-size: 14px;
+    color: $neutral
+  }
+
+  &__name {
+    font-size: 16px;
+    color: $neutral-darkest;
+    font-weight: bold;
+  }
+}

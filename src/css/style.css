@@ -1,3 +1,61 @@
+.design-system {
+  display: grid; }
+  .design-system .design-system__colors {
+    display: flex;
+    flex-direction: column;
+    border-radius: 33px;
+    box-shadow: 0px 4px 6px 6px rgba(38, 38, 38, 0.06); }
+    .design-system .design-system__colors h2 {
+      font-size: 28px;
+      font-weight: bold;
+      margin-top: 30px;
+      margin-left: 30px; }
+  .design-system__color-container {
+    display: flex;
+    flex-direction: column;
+    margin: 50px; }
+    .design-system__color-container-title {
+      font-size: 24px;
+      color: #686868;
+      font-weight: bold;
+      margin: 30px; }
+    .design-system__color-container-colors {
+      width: 420px;
+      display: flex;
+      justify-content: space-around;
+      flex-wrap: wrap; }
+      .design-system__color-container-colors .neutral-darkest {
+        background-color: #262626; }
+      .design-system__color-container-colors .neutral-darker {
+        background-color: #686868; }
+      .design-system__color-container-colors .neutral {
+        background-color: #939393; }
+      .design-system__color-container-colors .neutral-lighter {
+        background-color: #D3D3D3; }
+      .design-system__color-container-colors .neutral-lightest {
+        background-color: #EDEDED; }
+      .design-system__color-container-colors .neutral-white {
+        background-color: #FBFBFB; }
+
+.color-preview {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-left: 15px;
+  margin-right: 15px; }
+  .color-preview__color {
+    width: 140px;
+    height: 80px;
+    border-radius: 33px;
+    margin-bottom: 15px; }
+  .color-preview__code {
+    font-size: 14px;
+    color: #939393; }
+  .color-preview__name {
+    font-size: 16px;
+    color: #262626;
+    font-weight: bold; }
+
 html {
   box-sizing: border-box;
   font-size: 62.5%; }
@@ -101,7 +159,7 @@ img {
     width: 250px;
     padding: 10px;
     border-radius: 3px;
-    border: 1.5px solid #484848; }
+    border: 1.5px solid #262626; }
   .input-box__label {
     margin-bottom: 5px;
     margin-left: 3px; }
@@ -149,7 +207,7 @@ img {
 
 .sport-field__card {
   width: 18rem;
-  background-color: #D0D0D0;
+  background-color: #D3D3D3;
   margin-left: 4rem;
   display: flex;
   flex-direction: column;
@@ -157,7 +215,7 @@ img {
 
 .sport-field__image-box {
   height: 10rem;
-  border: 1px solid #808080;
+  border: 1px solid #939393;
   width: 100%;
   display: flex;
   justify-content: center;
@@ -165,11 +223,11 @@ img {
   border-bottom: none; }
   .sport-field__image-box h3 {
     font-size: 2rem;
-    color: #484848;
+    color: #262626;
     margin: 0 auto; }
   .sport-field__image-box p {
     font-size: 1.5rem;
-    color: #808080;
+    color: #939393;
     margin: 0 auto; }
 
 .sport-field__image {
@@ -177,7 +235,7 @@ img {
 
 .sport-field__title {
   height: 3rem;
-  border: 1px solid #808080;
+  border: 1px solid #939393;
   width: 100%;
   display: flex;
   justify-content: center;
@@ -185,16 +243,16 @@ img {
   border-bottom: none; }
   .sport-field__title h3 {
     font-size: 2rem;
-    color: #484848;
+    color: #262626;
     margin: 0 auto; }
   .sport-field__title p {
     font-size: 1.5rem;
-    color: #808080;
+    color: #939393;
     margin: 0 auto; }
 
 .sport-field__description {
   height: 6rem;
-  border: 1px solid #808080;
+  border: 1px solid #939393;
   width: 100%;
   display: flex;
   justify-content: center;
@@ -202,39 +260,39 @@ img {
   border-bottom: none; }
   .sport-field__description h3 {
     font-size: 2rem;
-    color: #484848;
+    color: #262626;
     margin: 0 auto; }
   .sport-field__description p {
     font-size: 1.5rem;
-    color: #808080;
+    color: #939393;
     margin: 0 auto; }
 
 .sport-field__price {
   height: 3rem;
-  border: 1px solid #808080;
+  border: 1px solid #939393;
   width: 100%;
   display: flex;
   justify-content: center;
   align-items: center; }
   .sport-field__price h3 {
     font-size: 2rem;
-    color: #484848;
+    color: #262626;
     margin: 0 auto; }
   .sport-field__price p {
     font-size: 1.5rem;
-    color: #808080;
+    color: #939393;
     margin: 0 auto; }
 
 .sport-field-create {
   width: 18rem;
-  background-color: #D0D0D0;
+  background-color: #D3D3D3;
   border-radius: 3px;
   display: flex;
   flex-direction: column;
   align-items: center; }
   .sport-field-create__picture {
     height: 10rem;
-    border: 1px solid #808080;
+    border: 1px solid #939393;
     width: 100%;
     cursor: pointer;
     display: flex;
@@ -246,14 +304,14 @@ img {
       margin-right: 10%; }
     .sport-field-create__picture p {
       font-size: 1.5rem;
-      color: #808080;
+      color: #939393;
       margin-right: auto;
       margin-left: 35%; }
     .sport-field-create__picture:hover * {
       transform: translateY(-2px); }
   .sport-field-create__title {
     height: 3rem;
-    border: 1px solid #808080;
+    border: 1px solid #939393;
     width: 100%;
     cursor: pointer;
     display: flex;
@@ -265,14 +323,14 @@ img {
       margin-right: 10%; }
     .sport-field-create__title p {
       font-size: 1.5rem;
-      color: #808080;
+      color: #939393;
       margin-right: auto;
       margin-left: 35%; }
     .sport-field-create__title:hover * {
       transform: translateY(-2px); }
   .sport-field-create__description {
     height: 6rem;
-    border: 1px solid #808080;
+    border: 1px solid #939393;
     width: 100%;
     cursor: pointer;
     display: flex;
@@ -284,14 +342,14 @@ img {
       margin-right: 10%; }
     .sport-field-create__description p {
       font-size: 1.5rem;
-      color: #808080;
+      color: #939393;
       margin-right: auto;
       margin-left: 35%; }
     .sport-field-create__description:hover * {
       transform: translateY(-2px); }
   .sport-field-create__price {
     height: 3rem;
-    border: 1px solid #808080;
+    border: 1px solid #939393;
     width: 100%;
     cursor: pointer;
     display: flex;
@@ -302,14 +360,14 @@ img {
       margin-right: 10%; }
     .sport-field-create__price p {
       font-size: 1.5rem;
-      color: #808080;
+      color: #939393;
       margin-right: auto;
       margin-left: 35%; }
     .sport-field-create__price:hover * {
       transform: translateY(-2px); }
   .sport-field-create__plus-icon {
     font-size: 25px;
-    color: #808080; }
+    color: #939393; }
 
 .double-button {
   width: 115px;

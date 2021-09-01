@@ -17,6 +17,7 @@ import {
   updateGroup
 } from '../../database/dbHandler.js';
 import { checkToken } from '../middleware/jwtCheck.js';
+import prevImpersonation from '../middleware/prevImpersonation.js';
 
 const router = express.Router();
 
@@ -65,7 +66,7 @@ const imageUpload = multer({
   }
 }) 
 
-router.post('/', checkToken, imageUpload.single('image'), async (req, res) => {
+router.post('/', checkToken, imageUpload.single('image'), prevImpersonation, async (req, res) => {
   // If the fileValidationError field set, than send "400 bad request"
   if (req.fileValidationError) {
     res.status(400);
@@ -75,6 +76,7 @@ router.post('/', checkToken, imageUpload.single('image'), async (req, res) => {
 
   const fileHandler = req.file;
   const data = snakeCasify(JSON.parse(req.body.data));
+  data.user_id = res.locals.tokenObject.userId;
   data.picture = path.join('groupImages', fileHandler.filename);
   
   try {

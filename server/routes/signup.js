@@ -3,10 +3,11 @@ import bcrypt from 'bcrypt';
 
 import { registerUser } from '../../database/dbHandler.js';
 import { getUserByEmail } from '../../database/dbHandler.js';
+import signupValidator from '../middleware/signupValidator.js';
 
 const router = express.Router();
 
-router.post('/', async (req, res) => {
+router.post('/', signupValidator, async (req, res) => {
   const data = req.body;
   
   try {

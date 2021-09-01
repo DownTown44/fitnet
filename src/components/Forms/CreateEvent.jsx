@@ -16,7 +16,6 @@ const CreateEvent = (props) => {
     accessibilityId: 1,
     typeId: 1,
     ownerType: JSON.parse(sessionStorage.getItem('userData')).role,
-    userId: JSON.parse(sessionStorage.getItem('userData')).userId,
     name: '',
     description: '',
     address: '',

@@ -21,7 +21,6 @@ const CreateGroup = (props) => {
   // Reference for the file input
   const fileInputRef = useRef();
   const [groupData, setGroupData] = useState({
-    userId: JSON.parse(sessionStorage.getItem('userData')).userId,
     name: '',
     description: '',
     accessibilityId: 1

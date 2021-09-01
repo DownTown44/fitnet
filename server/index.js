@@ -6,6 +6,7 @@ import cookieParser from 'cookie-parser';
 
 import snakeCasify from './middleware/snakeCasify.js';
 import users from './routes/users.js';
+import facilities from './routes/facilities.js';
 import events from './routes/events.js';
 import groups from './routes/groups.js';
 import signup from './routes/signup.js';
@@ -32,6 +33,7 @@ app.use(snakeCasify);
 app.use(express.static(path.join(process.cwd(), 'server/assets')));
 
 app.use('/users', users);
+app.use('/facilities', facilities);
 app.use('/events', events);
 app.use('/groups', groups);
 app.use('/signup', signup);

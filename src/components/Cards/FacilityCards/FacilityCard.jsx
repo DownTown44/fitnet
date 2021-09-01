@@ -12,18 +12,15 @@ const FacilityCard = (props) => {
         <Text htmlTag="h3">{props.title}</Text>
         <Text htmlTag="p">{props.address}</Text>
       </div>
-      <Button onClick={props.onClick}>{props.buttonText}</Button>
     </div>
   );
 }
 
 
-EventCard.propTypes = {
+FacilityCard.propTypes = {
   src: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
   address: PropTypes.string.isRequired,
-  buttonText: PropTypes.string.isRequired,
-  onClick: PropTypes.func.isRequired,
   onOpen: PropTypes.func.isRequired,
 }
 

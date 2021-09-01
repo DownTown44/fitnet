@@ -14,6 +14,7 @@ import GroupCards from './components/Cards/GroupCards/GroupCards';
 import Group from './components/Group';
 
 import './css/style.css';
+import FacilityCards from './components/Cards/FacilityCards/FacilityCards';
 
 function App() {
   // To get the current location
@@ -82,7 +83,7 @@ function App() {
         </Route>
 
         <Route path="/facilities">
-          Sport facilities
+          <FacilityCards/>
         </Route>
 
         <Route path="/events" exact>

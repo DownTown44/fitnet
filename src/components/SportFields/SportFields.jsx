@@ -17,6 +17,7 @@ const SportFields = () => {
         title={field.title}
         description={field.description}
         price={field.price}
+        discardable={true}
         onRemove={() => handleFieldRemove(sportFields.indexOf(field))}
       />
     )).reverse();

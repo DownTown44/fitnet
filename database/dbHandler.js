@@ -15,6 +15,9 @@ import selectGroupById from './dbHandlers/selectGroupById.js';
 import selectAll from './dbHandlers/selectAll.js';
 import selectLastMinuteEvents from './dbHandlers/selectLastMinuteEvents.js';
 import selectNextWeekEvents from './dbHandlers/selectNextWeekEvents.js';
+import selectFacilityById from './dbHandlers/selectFacilityById.js';
+import selectFieldsByFacilityId from './dbHandlers/selectFieldsByFacilityId.js';
+import selectPictureByFacilityId from './dbHandlers/selectPictureByFacilityId.js';
 import selectEventParticipants from './dbHandlers/selectEventParticipants.js';
 import selectGroupParticipants from './dbHandlers/selectGroupParticipants.js';
 import selectAllWithAccess from './dbHandlers/selectAllWithAccess.js';
@@ -343,6 +346,23 @@ export const userIsMemberOfEvent = async (eventId, userId) => {
     }
     const result = await selectFromEventMembers(models['event_members'], data, serverConnectionError);
     return JSON.parse(result);
+  } catch (err) {
+    console.log(err);
+    throw serverConnectionError;
+  }
+}
+
+export const getFacilityById = async (id) => {
+  try {
+    const facilities = await selectFacilityById(models['facilities'], id, serverConnectionError);
+    const fields = await selectFieldsByFacilityId(models['fields'], id, serverConnectionError);
+    const pictures = await selectPictureByFacilityId(models['facility_pictures'], id, serverConnectionError);
+
+    const result = JSON.parse(facilities)[0];
+    result.fields = JSON.parse(fields);
+    result.pictures = JSON.parse(pictures);
+
+    return result;
   } catch (err) {
     console.log(err);
     throw serverConnectionError;

@@ -10,9 +10,9 @@ const EventCards = () => {
   const history = useHistory();
 
   useEffect(() => {
-    (async () => {
-      setEvents(await getEvents());
-    })();
+    getEvents().then((result) => {
+      setEvents(result);
+    });
   }, []);
 
   return (
@@ -22,7 +22,6 @@ const EventCards = () => {
           <EventCard
             key={element.eventId}
             src="noImage"
-            alt="event"
             title={element.name}
             date={element.startDate}
             address={element.address}

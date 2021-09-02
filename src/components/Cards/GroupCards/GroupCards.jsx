@@ -24,7 +24,6 @@ const GroupCards = () => {
             <GroupCard
               key={element.groupId}
               src="noImage"
-              alt="group"
               title={element.name}
               buttonText="Megnyitás"
               onOpen={() => history.push(`/groups/${element.groupId}`)}

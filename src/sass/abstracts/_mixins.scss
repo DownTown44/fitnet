@@ -70,3 +70,24 @@
     }
   }
 }
+
+@mixin designContainerBoxStyle {
+  display: flex;
+    flex-direction: column;
+    border-radius: 5px;
+    box-shadow: $form-shadow;
+
+    & h2 {
+      font-size: 24px;
+      font-weight: bold;
+      margin-top: 15px;
+      margin-left: 15px;
+    }
+}
+
+@mixin desigSystemSubtitles {
+  font-size: 18px;
+  color: $neutral-darker;
+  font-weight: bold;
+  margin: 15px;
+}

@@ -1,6 +1,9 @@
 import express from 'express';
 
-import { getEverythingOf } from '../../database/dbHandler.js';
+import { 
+  getEverythingOf, 
+  getFacilityById 
+} from '../../database/dbHandler.js';
 
 const router = express.Router();
 
@@ -35,6 +38,18 @@ router.get('/', async (req, res) => {
     console.log(error);
     res.status(500);
     res.json({});
+  }
+});
+
+router.get('/:id', async (req, res) => {
+  try {
+    const result = await getFacilityById(req.params.id);
+
+    res.status(200);
+    res.send(result);
+  } catch (error) {
+    res.status(500);
+    res.send(`${error}\nPlease try again later`);
   }
 });
 

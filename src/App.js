@@ -6,6 +6,8 @@ import Layout from './hoc/Layout';
 import Feed from './containers/Feed';
 import SignUpForm from './components/Forms/SignUpForm';
 import LoginForm from './components/Forms/LoginForm';
+import FacilityCards from './components/Cards/FacilityCards/FacilityCards';
+import Facility from './components/Facility';
 import CreateEvent from './components/Forms/CreateEvent';
 import EventCards from './components/Cards/EventCards/EventCards';
 import Event from './components/Event';
@@ -14,7 +16,6 @@ import GroupCards from './components/Cards/GroupCards/GroupCards';
 import Group from './components/Group';
 
 import './css/style.css';
-import FacilityCards from './components/Cards/FacilityCards/FacilityCards';
 
 function App() {
   // To get the current location
@@ -82,8 +83,11 @@ function App() {
           <Feed />
         </Route>
 
-        <Route path="/facilities">
+        <Route path="/facilities" exact>
           <FacilityCards/>
+        </Route>
+        <Route path="/facilities/:id">
+          <Facility/>
         </Route>
 
         <Route path="/events" exact>

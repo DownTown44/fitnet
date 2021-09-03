@@ -2,8 +2,8 @@ import PropTypes from 'prop-types';
 
 const CheckBox = (props) => {
   return (
-    <div>
-      <input type="checkbox" onChange={props.onChange} checked={props.isChecked} disabled={props.isDisabled} />
+    <div className={`checkbox ${props.additionalClass}`}>
+      <input className="styled-checkbox" type="checkbox"  onChange={props.onChange} checked={props.isChecked} disabled={props.isDisabled} />
       <label>{props.children}</label>
     </div>
   );

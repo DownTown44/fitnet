@@ -1,133 +1,112 @@
-// Normal buttons
-.button.normal {
+.button {
+  padding: 13px 25px;
   border: none;
-  width: 106px;
-  height: 42px;
   border-radius: 20px;
-  
-  color: $neutral-white;
-  background-color: $secondary-grey;
 
   font-family: 'Roboto Condensed';
   font-weight: bold;
   font-size: 14px;
   letter-spacing: 0.1em;
+
+  cursor: pointer;
 }
 
-.button.normal:active {
+// Normal buttons
+.normal {
+  color: $neutral-white;
+  background-color: $secondary-grey;
+}
+
+.normal:active {
   background-color: $secondary-light-grey;
 }
 
 // Outlined buttons
-.button.outlined {
+.outlined {
   border: 2px solid $primary-grey;
-  width: 106px;
-  height: 42px;
-  border-radius: 20px;
+  padding: 11px 25px;
 
   color: $primary-grey;
   background-color: white;
-
-  font-family: 'Roboto Condensed';
-  font-weight: bold;
-  font-size: 14px;
-  letter-spacing: 0.1em;
 }
 
-.button.outlined:active {
+.outlined:active {
   border-color: $secondary-grey;
   color: $secondary-grey;
 }
 
 // Normal buttons with icon
-.button.normal-iconed {
-  border: none;
-  width: 127px;
-  height: 42px;
-  border-radius: 20px;
-
+.normal-iconed {
   color: $neutral-white;
   background-color: $secondary-blue;
-
-  font-family: 'Roboto Condensed';
-  font-weight: bold;
-  font-size: 14px;
-  letter-spacing: 0.1em;
-
-  display: flex;
-  justify-content: center;
-  align-items: center;    
-}
-
-.button.normal-iconed .material-icons {
-  margin-left: 6px;
-}
-
-.button.normal-iconed:active {
-  color: $neutral-lightest;
-  background-color: $secondary-light-blue;
-}
-
-// Outlined buttons with icon
-.button.outlined-iconed {
-  border: 2px solid $primary-grey;
-  width: 127px;
-  height: 42px;
-  border-radius: 20px;
-
-  color: $primary-grey;
-  background-color: white;
-
-  font-family: 'Roboto Condensed';
-  font-weight: bold;
-  font-size: 14px;
-  letter-spacing: 0.1em;
 
   display: flex;
   justify-content: center;
   align-items: center;   
 }
 
-.button.outlined-iconed .material-icons {
+.normal-iconed .material-icons {
+  margin-left: 6px;
+}
+
+.normal-iconed:active {
+  color: $neutral-lightest;
+  background-color: $secondary-light-blue;
+}
+
+// Outlined buttons with icon
+.outlined-iconed {
+  border: 2px solid $primary-grey;
+  padding: 11px 25px;
+
+  color: $primary-grey;
+  background-color: white;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.outlined-iconed .material-icons {
   margin-right: 6px;
 }
 
-.button.outlined-iconed:active {
+.outlined-iconed:active {
   color: $secondary-grey;
   border-color: $secondary-grey;
 }
 
 // Icon button
-.button.icon-button {
-  border: none;
-  width: 36px;
-  height: 36px;
+.icon-button {
   border-radius: 15px;
+  padding: 7px 8px;
+  padding-bottom: 3px;
+  display: inline-block;
 
   color: $primary-grey;
   background-color: $secondary-light-green;
-  box-shadow: 0px 2px 4px 1px #E0E0E0;
+  box-shadow: $shadow-light;
 }
 
-.button.icon-button .material-icons {
-  font-size: 20px;
+.icon-button .material-icons {
+  font-size: 25px;
 }
 
-.button.icon-button:active {
+.icon-button:active {
   color: $secondary-grey;
   background-color: $secondary-lightest-green;
 }
 
-.button.normal:disabled,
-.button.normal-iconed:disabled,
-.button.icon-button:disabled {
+.normal:disabled,
+.normal-iconed:disabled,
+.icon-button:disabled {
   background-color: $neutral-lightest;
   color: $neutral-lighter;
   pointer-events: none;
 }
 
-.button.outlined:disabled,
-.button.outlined-iconed:disabled {
+.outlined:disabled,
+.outlined-iconed:disabled {
   border-color: $neutral-lightest;
   color: $neutral-lighter;
   pointer-events: none;

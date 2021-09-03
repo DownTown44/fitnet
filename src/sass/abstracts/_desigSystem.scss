@@ -160,52 +160,26 @@
       justify-content: space-around;
 
       & .button.normal-pressed {
-        border: none;
-        width: 106px;
-        height: 42px;
-        border-radius: 20px;
-        
         color: $neutral-white;
         background-color: $secondary-light-grey;
-      
-        font-family: 'Roboto Condensed';
-        font-weight: bold;
-        font-size: 14px;
-        letter-spacing: 0.1em;
       }
 
       & .button.outlined-pressed {
-        border: 2px solid $secondary-grey;
-        width: 106px;
-        height: 42px;
-        border-radius: 20px;
-      
+        border: 2px solid $primary-grey;
+        padding: 11px 25px;
+
+        border-color: $secondary-grey;
         color: $secondary-grey;
         background-color: white;
-      
-        font-family: 'Roboto Condensed';
-        font-weight: bold;
-        font-size: 14px;
-        letter-spacing: 0.1em;
       }
 
       & .button.normal-iconed-pressed {
-        border: none;
-        width: 127px;
-        height: 42px;
-        border-radius: 20px;
-
         color: $neutral-lightest;
         background-color: $secondary-light-blue;
-
-        font-family: 'Roboto Condensed';
-        font-weight: bold;
-        font-size: 14px;
-        letter-spacing: 0.1em;
-
+      
         display: flex;
         justify-content: center;
-        align-items: center;
+        align-items: center;     
       }
 
       & .button.normal-iconed-pressed .material-icons {
@@ -213,22 +187,16 @@
       }
 
       .button.outlined-iconed-pressed {
-        border: 2px solid $secondary-grey;
-        width: 127px;
-        height: 42px;
-        border-radius: 20px;
+        border: 2px solid $primary-grey;
+        padding: 11px 25px;
       
         color: $secondary-grey;
+        border-color: $secondary-grey;
         background-color: white;
-      
-        font-family: 'Roboto Condensed';
-        font-weight: bold;
-        font-size: 14px;
-        letter-spacing: 0.1em;
       
         display: flex;
         justify-content: center;
-        align-items: center;
+        align-items: center;  
       }
       
       .button.outlined-iconed-pressed .material-icons {
@@ -236,20 +204,56 @@
       }
 
       .button.icon-button-pressed {
-        border: none;
-        width: 36px;
-        height: 36px;
         border-radius: 15px;
+        padding: 7px 8px;
+        padding-bottom: 3px;
+        display: inline-block;
       
         color: $secondary-grey;
         background-color: $secondary-lightest-green;
-        box-shadow: 0px 2px 4px 1px #E0E0E0;
+        box-shadow: $shadow-light;
       }
       
       .button.icon-button-pressed .material-icons {
-        font-size: 20px;
+        font-size: 25px;
       }
     }
+  }
+
+  &__control-container {
+    display: flex;
+
+    &-checkbox {
+      display: grid;
+
+      grid-template-columns: 1fr 1fr 1fr; 
+      grid-template-rows: 1fr 1fr 1fr 1fr; 
+      gap: 30px 30px; 
+      grid-template-areas: 
+        "title . ."
+        ". on off"
+        "checked on-checked off-checked"
+        "unchecked on-unchecked off-unchecked";
+
+      & p {
+        font-size: 14px;
+      }
+
+      &--on-checked { grid-area: on-checked; }
+      &--off-checked { grid-area: off-checked; }
+      &--on-unchecked { grid-area: on-unchecked; }
+      &--off-unchecked { grid-area: off-unchecked; }
+    }
+
+    &-title {
+      @include desigSystemSubtitles;
+      grid-area: title;
+    }
+
+    &-on { grid-area: on; }
+    &-off { grid-area: off; }
+    &-checked { grid-area: checked; }
+    &-unchecked { grid-area: unchecked; }
   }
 }
 

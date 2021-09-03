@@ -2,6 +2,7 @@ import React from 'react';
 import ColorBox from './ColorBox/ColorBox';
 import Icon from '@material-ui/core/Icon';
 import Button from '../components/UI/Button';
+import CheckBox from '../components/UI/CheckBox';
 
 const DesignSystem = () => {
   return (
@@ -174,6 +175,23 @@ const DesignSystem = () => {
 
       </div>
 
+      <div className="design-system__controls">
+        <h2>Controls</h2>
+        <div className="design-system__control-container">
+          <div className="design-system__control-container-checkbox">
+            <h3 className="design-system__control-container-title">Checkbox</h3>
+            <p className="design-system__control-container-on">On</p>
+            <p className="design-system__control-container-off">Off</p>
+            <p className="design-system__control-container-checked">Checked</p>
+            <p className="design-system__control-container-unchecked">Unchecked</p>
+            <CheckBox additionalClass="design-system__control-container-checkbox--on-checked" isChecked="true"></CheckBox>
+            <CheckBox additionalClass="design-system__control-container-checkbox--on-unchecked"></CheckBox>
+            <CheckBox additionalClass="design-system__control-container-checkbox--off-checked" isChecked="true" isDisabled="true"></CheckBox>
+            <CheckBox additionalClass="design-system__control-container-checkbox--off-unchecked" isDisabled="true"></CheckBox>
+          </div>
+        </div>
+
+      </div>
     </div>
   );
 }

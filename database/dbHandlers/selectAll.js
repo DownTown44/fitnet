@@ -11,4 +11,3 @@ const selectAll = async (model, errMessage) => {
 }
 
 export default selectAll;
-

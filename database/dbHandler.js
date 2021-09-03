@@ -27,6 +27,9 @@ import deleteGroup from './dbHandlers/deleteGroup.js';
 import deleteEvent from './dbHandlers/deleteEvent.js';
 import updateEventDBH from './dbHandlers/updateEventDBH.js'
 import updateGroupDBH from './dbHandlers/updateGroupDBH.js'
+import selectGroups from './dbHandlers/selectGroups.js';
+import selectGroupMemberByGroupId from './dbHandlers/selectGroupMemberByGroupId.js';
+import group_members from './models/group_members.js';
 
 const { Sequelize } = sequelize_all;
 const { host, port, user, password, database } = dbconfig;
@@ -256,6 +259,17 @@ export const getEverythingWithAccessOf = async (model) => {
   }
 }
 
+export const getDetailedGroupsData = async () => {
+  try {
+    const result = await selectGroups(models['groups'], serverConnectionError);
+
+    return JSON.parse(result);
+  } catch(err) {
+    console.log(err);
+    throw serverConnectionError;
+  }
+}
+
 export const getEventById = async (id) => {
   try {
     const result = await selectEventById(models['events'], id, serverConnectionError);
@@ -317,6 +331,18 @@ export const getEventParticipants = async (eventId) => {
 export const getGroupParticipants = async (groupId) => {
   try {
     const result = await selectGroupParticipants(models['users'], groupId, serverConnectionError);
+
+    return JSON.parse(result);
+  } catch (err) {
+    console.log(err);
+    throw serverConnectionError;
+  }
+}
+
+export const getGroupMemberByGroupId = async (groupId) => {
+  try {
+    const result = await selectGroupMemberByGroupId(models['group_members'], groupId, serverConnectionError);
+    
     return JSON.parse(result);
   } catch (err) {
     console.log(err);

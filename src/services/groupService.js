@@ -42,7 +42,7 @@ const updateGroup = async (id, groupData) => {
     const res = await axios.patch(`/groups/${id}`, groupData, {headers: {'Content-Type': `multipart/form-data`}});
     return res.data;
   } catch (err) {
-    return null;
+    return false;
   }
 }
 

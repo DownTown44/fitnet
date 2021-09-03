@@ -8,7 +8,7 @@ import camelCasify from '../util/camelCasify.js';
 import {
   createGroup,
   getGroupById,
-  getGroupsWithEverything,
+  getDetailedGroupsData,
   getGroupMemberByGroupId,
   inviteUserToGroup,
   removeUserFromGroup,
@@ -142,7 +142,7 @@ router.post('/:id/leave', async (req, res) => {
 
 router.get('/', async (req, res) => {
   try {
-    const result = await getGroupsWithEverything();
+    const result = await getDetailedGroupsData();
     result.forEach((element, index, array) => {
       array[index] = groupDTO(element);
     }); 
@@ -177,7 +177,7 @@ router.get('/:id/member', async (req, res) => {
   try {
     const result = await userIsMemberOfGroup(req.params.id, req.query.userId);
 
-    if (result !== null) {
+    if (result) {
       res.status(200);
       res.json({
         isMember: true,

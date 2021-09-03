@@ -259,7 +259,7 @@ export const getEverythingWithAccessOf = async (model) => {
   }
 }
 
-export const getGroupsWithEverything = async () => {
+export const getDetailedGroupsData = async () => {
   try {
     const result = await selectGroups(models['groups'], serverConnectionError);
 

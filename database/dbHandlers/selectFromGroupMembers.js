@@ -1,6 +1,6 @@
 const selectFromGroupMembers = async (model, data, errMessage) => {
   try {
-    const result = await model.findAll({
+    const result = await model.findOne({
       where: {
         user_id: data.user_id,
         group_id: data.group_id

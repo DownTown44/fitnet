@@ -8,18 +8,33 @@ import GroupCard from './GroupCard';
 const GroupCards = () => {
   const [groups, setGroups] = useState([]);
   const history = useHistory();
+  const userData = JSON.parse(sessionStorage.getItem('userData'));
 
   useEffect(() => {
-    (async () => {
-      setGroups(await getGroups());
-    })();
+    getGroups().then((res) => {
+      setGroups(res);
+    })
   }, []);
+
+  // Checking if user is member of group
+  // so he can see invisible ones where he is a member
+  const isMember = (userId, group) => {
+    for (const member of group.members) {
+      if (userId === member.user_id) {
+        return true
+      }
+    }
+
+    return false;
+  }
 
   return (
     <div className="center">
       {groups.length !== 0 ? groups.map((element) => {
-        const userData = JSON.parse(sessionStorage.getItem('userData'));
-        if (element.accessibility === 'public' || element.accessibility === 'private' || element.userId === userData.userId) {
+        if (element.accessibility === 'public' ||
+            element.accessibility === 'private' ||
+            element.userId === userData.userId ||
+            isMember(userData.userId, element)) {
           return (
             <GroupCard
               key={element.groupId}

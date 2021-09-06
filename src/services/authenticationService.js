@@ -16,9 +16,10 @@ const login = async (loginData) => {
 }
 
 const logout = async () => {
+  // We remove the token cookie on backend, so we dont need here
   try {
     const res = await axios.get('/logout');
-    Cookies.remove('token')
+    sessionStorage.clear();
     return res.data.logout;
   } catch (err) {
     return false;
@@ -35,5 +36,5 @@ export {
   signup
 };
 
-// BUG: On refresh, logout happens
 // TODO: If the token expires, than we have to logouted on the next request
+// TODO: On error of every request that needs token, we need to redirect the user on the login page and clear the session storage

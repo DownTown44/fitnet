@@ -50,7 +50,7 @@
     background-color: $primary-grey;
   }
 
-  &:checked + .checkbox__icon {
+  &:checked ~ .checkbox__icon {
     display: block;
   }
   
@@ -65,7 +65,7 @@
     border-color: $neutral-lighter;
   }
 
-  &:disabled + .checkbox__icon {
+  &:disabled ~ .checkbox__icon {
     pointer-events: none;
     color: $neutral-lightest;
   }

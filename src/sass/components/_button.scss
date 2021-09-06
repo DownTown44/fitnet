@@ -9,71 +9,71 @@
   letter-spacing: 0.1em;
 
   cursor: pointer;
-}
 
-// Normal buttons
-.normal {
-  color: $neutral-white;
-  background-color: $secondary-grey;
-}
+  // Normal buttons
+  &-normal {
+    color: $neutral-white;
+    background-color: $secondary-grey;
 
-.normal:active {
-  background-color: $secondary-light-grey;
-}
+    &:active {
+      background-color: $secondary-light-grey;
+    }
 
-// Outlined buttons
-.outlined {
-  border: 2px solid $primary-grey;
-  padding: 11px 25px;
+    // Normal buttons with icon
+    &--iconed {
+      color: $neutral-white;
+      background-color: $secondary-blue;
 
-  color: $primary-grey;
-  background-color: white;
-}
+      display: flex;
+      justify-content: center;
+      align-items: center;   
 
-.outlined:active {
-  border-color: $secondary-grey;
-  color: $secondary-grey;
-}
+      &:active {
+        color: $neutral-lightest;
+        background-color: $secondary-light-blue;
+      }
+    }
 
-// Normal buttons with icon
-.normal-iconed {
-  color: $neutral-white;
-  background-color: $secondary-blue;
+    &--iconed .material-icons {
+      margin-left: 6px;
+    }
+  }
 
-  display: flex;
-  justify-content: center;
-  align-items: center;   
-}
+  // Outlined buttons
+  &-outlined {
+    border: 2px solid $primary-grey;
+    padding: 11px 25px;
 
-.normal-iconed .material-icons {
-  margin-left: 6px;
-}
+    color: $primary-grey;
+    background-color: white;
 
-.normal-iconed:active {
-  color: $neutral-lightest;
-  background-color: $secondary-light-blue;
-}
+    &:active {
+      border-color: $secondary-grey;
+      color: $secondary-grey;
+    }
+  
+    // Outlined buttons with icon
+    &--iconed {
+      border: 2px solid $primary-grey;
+      padding: 11px 25px;
+  
+      color: $primary-grey;
+      background-color: white;
+  
+      display: flex;
+      justify-content: center;
+      align-items: center;
 
-// Outlined buttons with icon
-.outlined-iconed {
-  border: 2px solid $primary-grey;
-  padding: 11px 25px;
-
-  color: $primary-grey;
-  background-color: white;
-
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.outlined-iconed .material-icons {
-  margin-right: 6px;
-}
-
-.outlined-iconed:active {
-  color: $secondary-grey;
-  border-color: $secondary-grey;
+      &:active {
+        color: $secondary-grey;
+        border-color: $secondary-grey;
+      }
+    }
+  
+    &--iconed .material-icons {
+      margin-right: 6px;
+    }
+  }
 }
 
 // Icon button
@@ -86,27 +86,27 @@
   color: $primary-grey;
   background-color: $secondary-light-green;
   box-shadow: $shadow-light;
+
+  &:active {
+    color: $secondary-grey;
+    background-color: $secondary-lightest-green;
+  }
 }
 
 .icon-button .material-icons {
   font-size: 25px;
 }
 
-.icon-button:active {
-  color: $secondary-grey;
-  background-color: $secondary-lightest-green;
-}
-
-.normal:disabled,
-.normal-iconed:disabled,
+.button-normal:disabled,
+.button-normal--iconed:disabled,
 .icon-button:disabled {
   background-color: $neutral-lightest;
   color: $neutral-lighter;
   pointer-events: none;
 }
 
-.outlined:disabled,
-.outlined-iconed:disabled {
+.button-outlined:disabled,
+.button-outlined--iconed:disabled {
   border-color: $neutral-lightest;
   color: $neutral-lighter;
   pointer-events: none;

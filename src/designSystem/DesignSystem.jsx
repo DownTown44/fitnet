@@ -1,8 +1,10 @@
 import React from 'react';
+
 import ColorBox from './ColorBox/ColorBox';
 import Icon from '@material-ui/core/Icon';
 import Button from '../components/UI/Button';
 import CheckBox from '../components/UI/CheckBox';
+import RadioButton from '../components/UI/RadioButton'
 
 const DesignSystem = () => {
   return (
@@ -110,17 +112,17 @@ const DesignSystem = () => {
 
           <div className="design-system__button-container-buttons">
             <h3 className="design-system__button-container-title">Active</h3>
-            <Button additionalClass="normal">
+            <Button additionalClass="button-normal">
               BUTTON
             </Button>
-            <Button additionalClass="outlined">
+            <Button additionalClass="button-outlined">
               BUTTON
             </Button>
-            <Button additionalClass="normal-iconed">
+            <Button additionalClass="button-normal--iconed">
               BUTTON
               <Icon>done</Icon>
             </Button>
-            <Button additionalClass="outlined-iconed">
+            <Button additionalClass="button-outlined--iconed">
               <Icon>done</Icon>
               BUTTON
             </Button>
@@ -152,17 +154,17 @@ const DesignSystem = () => {
 
           <div className="design-system__button-container-buttons">
             <h3 className="design-system__button-container-title">Disabled</h3>
-            <Button additionalClass="normal" isDisabled={true}>
+            <Button additionalClass="button-normal" isDisabled={true}>
               BUTTON
             </Button>
-            <Button additionalClass="outlined" isDisabled={true}>
+            <Button additionalClass="button-outlined" isDisabled={true}>
               BUTTON
             </Button>
-            <Button additionalClass="normal-iconed" isDisabled={true} onClick={() => {console.log('alma');}}>
+            <Button additionalClass="button-normal--iconed" isDisabled={true} onClick={() => {console.log('alma');}}>
               BUTTON
               <Icon>done</Icon>
             </Button>
-            <Button additionalClass="outlined-iconed" isDisabled={true}>
+            <Button additionalClass="button-outlined--iconed" isDisabled={true}>
               <Icon>done</Icon>
               BUTTON
             </Button>
@@ -184,10 +186,22 @@ const DesignSystem = () => {
             <p className="design-system__control-container-off">Off</p>
             <p className="design-system__control-container-checked">Checked</p>
             <p className="design-system__control-container-unchecked">Unchecked</p>
-            <CheckBox additionalClass="design-system__control-container-checkbox--on-checked" isChecked="true"></CheckBox>
+            <CheckBox additionalClass="design-system__control-container-checkbox--on-checked" isChecked={true}></CheckBox>
             <CheckBox additionalClass="design-system__control-container-checkbox--on-unchecked"></CheckBox>
-            <CheckBox additionalClass="design-system__control-container-checkbox--off-checked" isChecked="true" isDisabled="true"></CheckBox>
-            <CheckBox additionalClass="design-system__control-container-checkbox--off-unchecked" isDisabled="true"></CheckBox>
+            <CheckBox additionalClass="design-system__control-container-checkbox--off-checked" isChecked={true} isDisabled={true}></CheckBox>
+            <CheckBox additionalClass="design-system__control-container-checkbox--off-unchecked" isDisabled={true}></CheckBox>
+          </div>
+          
+          <div className="design-system__control-container-radio-button">
+            <h3 className="design-system__control-container-title">Radio button</h3>
+            <p className="design-system__control-container-on">On</p>
+            <p className="design-system__control-container-off">Off</p>
+            <p className="design-system__control-container-checked">Checked</p>
+            <p className="design-system__control-container-unchecked">Unchecked</p>
+            <RadioButton additionalClass="design-system__control-container-radio-button--on-checked" isChecked={true}></RadioButton>
+            <RadioButton additionalClass="design-system__control-container-radio-button--on-unchecked"></RadioButton>
+            <RadioButton additionalClass="design-system__control-container-radio-button--off-checked" isChecked={true} isDisabled={true}></RadioButton>
+            <RadioButton additionalClass="design-system__control-container-radio-button--off-unchecked" isDisabled={true}></RadioButton>
           </div>
         </div>
 

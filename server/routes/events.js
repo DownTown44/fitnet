@@ -42,6 +42,80 @@ const eventDTO = (data) => {
   return dto;
 }
 
+router.post('/', checkToken, prevImpersonation, async (req, res) => {
+  const data = req.body;
+  data.user_id = res.locals.tokenObject.userId;
+  try {
+    // Inserting into database
+    const result = await createEvent(data);
+    
+    res.status(201);
+    res.json({created: true, id: result});
+  } catch (error) {
+    res.status(400);
+    res.json({created: false, message: `${error}\nPlease try again later`});
+  }
+});
+
+router.post('/:id/invite', checkToken, async (req, res) => {
+  try {
+    const result = await inviteUserToEvent(req.params.id, req.body);
+    
+    res.status(200);
+    res.send(result);
+  } catch (error) {
+    res.status(500);
+    res.send(`${error}\nPlease try again later`);
+  }
+});
+
+router.post('/:id/remove', checkToken, async (req, res) => {
+  try {
+    const result = await removeUserFromEvent(req.params.id, req.body.user_id);
+    
+    res.status(200);
+    res.send(result);
+  } catch (error) {
+    res.status(500);
+    res.send(`${error}\nPlease try again later`);
+  }
+});
+
+// TODO: Check if the user is already a group participant
+router.post('/:id/join', checkToken, async (req, res) => {
+  try {
+    const result = await joinUserIntoEvent(req.params.id, req.body.user_id);
+
+    res.json(result);
+  } catch (error) {
+
+  }
+});
+
+router.post('/:id/leave', checkToken, async (req, res) => {
+  try {
+    const result = await removeUserFromEvent(req.params.id, req.body.user_id);
+
+    res.json(result);
+  } catch (error) {
+
+  }
+});
+
+router.get('/', async (req, res) => {
+  try {
+    const result = await getEverythingOf('events');
+    result.forEach((element, index, array) => {
+      array[index] = eventDTO(element);
+    });
+    res.json(result);
+  } catch (error) {
+    console.log(error);
+    res.status(500);
+    res.json({});
+  }
+});
+
 router.get('/lastMinute', async (req, res) => {
   try {
     const date = new Date(`${req.query.date} UTC-0:00`);
@@ -74,60 +148,7 @@ router.get('/nextWeek', async (req, res) => {
   }
 });
 
-router.post('/', checkToken, prevImpersonation, async (req, res) => {
-  const data = req.body;
-  data.user_id = res.locals.tokenObject.userId;
-  try {
-    // Inserting into database
-    const result = await createEvent(data);
-    
-    res.status(201);
-    res.json({created: true, id: result});
-  } catch (error) {
-    res.status(400);
-    res.json({created: false, message: `${error}\nPlease try again later`});
-  }
-});
-
-router.post('/:id/invite', async (req, res) => {
-  try {
-    const result = await inviteUserToEvent(req.params.id, req.body);
-
-    res.status(200);
-    res.send(result);
-  } catch (error) {
-    res.status(500);
-    res.send(`${error}\nPlease try again later`);
-  }
-});
-
-router.post('/:id/remove', async (req, res) => {
-  try {
-    const result = await removeUserFromEvent(req.params.id, req.body.user_id);
-
-    res.status(200);
-    res.send(result);
-  } catch (error) {
-    res.status(500);
-    res.send(`${error}\nPlease try again later`);
-  }
-});
-
-router.get('/', async (req, res) => {
-  try {
-    const result = await getEverythingOf('events');
-    result.forEach((element, index, array) => {
-      array[index] = eventDTO(element);
-    });
-    res.json(result);
-  } catch (error) {
-    console.log(error);
-    res.status(500);
-    res.json({});
-  }
-});
-
-router.get('/:id', async (req, res) => {
+router.get('/:id', checkToken, async (req, res) => {
   try {
     const result = await getEventById(req.params.id);
     result[0].type = result[0].type.type_name;
@@ -139,7 +160,7 @@ router.get('/:id', async (req, res) => {
   }
 });
 
-router.get('/:id/member', async (req, res) => {
+router.get('/:id/member', checkToken, async (req, res) => {
   try {
     const result = await userIsMemberOfEvent(req.params.id, req.query.userId);
 
@@ -158,32 +179,11 @@ router.get('/:id/member', async (req, res) => {
     }
   } catch (error) {
     console.log(error);
-
+    
     res.status(403);
     res.json({
       message: 'Please log in'
     })
-  }
-});
-
-// TODO: Check if the user is already a group participant
-router.post('/:id/join', async (req, res) => {
-  try {
-    const result = await joinUserIntoEvent(req.params.id, req.body.user_id);
-
-    res.json(result);
-  } catch (error) {
-
-  }
-});
-
-router.post('/:id/leave', async (req, res) => {
-  try {
-    const result = await removeUserFromEvent(req.params.id, req.body.user_id);
-
-    res.json(result);
-  } catch (error) {
-
   }
 });
 

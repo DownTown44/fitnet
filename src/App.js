@@ -80,6 +80,19 @@ function App() {
       <Route path="/login">
         <LoginForm onLoginAttempt={onLoginAttempt}/>
       </Route>
+      {/* Facilities can be seen also by guests */}
+      <Route path="/facilities" exact>
+        <FacilityCards/>
+      </Route>
+      <Route path="/facilities/:id">
+        <Facility/>
+      </Route>
+      
+      {/* Events can be seen also by guest */}
+      <Route path="/events" exact>
+        <EventCards />
+      </Route>
+
       <Redirect to="/login" />
     </Switch>
   );
@@ -90,14 +103,12 @@ function App() {
         <Route path="/" exact>
           <Feed />
         </Route>
-
         <Route path="/facilities" exact>
           <FacilityCards/>
         </Route>
         <Route path="/facilities/:id">
           <Facility/>
         </Route>
-
         <Route path="/events" exact>
           <EventCards />
         </Route>
@@ -110,7 +121,6 @@ function App() {
         <Route path="/events/:id/edit">
           <CreateEvent edit={true}/>
         </Route>
-
         <Route path="/groups" exact>
           <GroupCards />
         </Route>

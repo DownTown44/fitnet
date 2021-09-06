@@ -22,7 +22,7 @@
     flex-direction: column;
 
     &-title {
-      @include desigSystemSubtitles;
+      @include designSystemSubtitles;
     }
 
     &-colors {
@@ -125,7 +125,7 @@
     flex-direction: column;
 
     &-title {
-      @include desigSystemSubtitles;
+      @include designSystemSubtitles;
     }
 
     &-icons {
@@ -150,7 +150,7 @@
     justify-content: space-around;
 
     &-title {
-      @include desigSystemSubtitles;
+      @include designSystemSubtitles;
     }
 
     &-buttons {
@@ -221,6 +221,8 @@
   }
 
   &__control-container {
+    margin: 25px;
+
     display: flex;
 
     &-checkbox {
@@ -235,7 +237,11 @@
         "checked on-checked off-checked"
         "unchecked on-unchecked off-unchecked";
 
+      justify-items: center;
+      align-items: center;
+
       & p {
+        text-transform: uppercase;
         font-size: 14px;
       }
 
@@ -246,7 +252,7 @@
     }
 
     &-title {
-      @include desigSystemSubtitles;
+      @include designSystemSubtitles;
       grid-area: title;
     }
 
@@ -285,11 +291,6 @@
     color: $neutral-darkest;
     font-weight: bold;
   }
-}
-
-.material-icons.md30 {
-  font-size: 30px;
-  margin: 15px;
 }
 
 .design-system__colors { grid-area: color-grid; }

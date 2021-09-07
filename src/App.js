@@ -31,12 +31,17 @@ function App() {
     result && setLayoutShown(true);
   };
 
-  const onLogout = () => {
-    logout();
+  const onLogout = async () => {
+    await logout();
     setIsAuth(false);
     history.push('/');
   }
   
+  useEffect(() => {
+    const loggedInUser = JSON.parse(sessionStorage.getItem('userData'));
+    setIsAuth(!!loggedInUser);
+  }, []);
+
   // This useEffect on specific locations changes the property of the layout
   // ex. in some locations the sidedrawers should not be mounted
   useEffect(() => {

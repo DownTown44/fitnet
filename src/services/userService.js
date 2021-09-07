@@ -102,6 +102,7 @@ const joinUserToGroup = async (userId, groupId) => {
 
     return result.data;
   } catch (err) {
+    return false;
     // TODO: Error modal >_< 
   }
 }

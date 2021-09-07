@@ -19,7 +19,7 @@ import {
 } from '../../database/dbHandler.js';
 import { checkToken } from '../middleware/jwtCheck.js';
 import prevImpersonation from '../middleware/prevImpersonation.js';
-import { Console } from 'console';
+import fs from 'fs';
 
 const router = express.Router();
 
@@ -202,6 +202,9 @@ router.get('/:id/member', async (req, res) => {
 
 router.delete('/:id', checkToken, async (req, res) => {
   try {
+    const groupResult = await getGroupById(req.params.id);
+    await fs.unlinkSync(path.join(process.cwd(), `server/assets/${groupResult[0].picture}`));
+    
     const result = await deleteGroupById(req.params.id);
     if (result) {
       res.status(200);

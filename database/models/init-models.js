@@ -70,13 +70,13 @@ export default function initModels(sequelize) {
   bookings.belongsTo(groups, { as: "group", foreignKey: "group_id"});
   groups.hasMany(bookings, { as: "bookings", foreignKey: "group_id"});
 
-  group_members.belongsTo(groups, { as: "group", foreignKey: "group_id"});
+  group_members.belongsTo(groups, { as: "group", foreignKey: "group_id", onDelete: "cascade", hooks: true});
   groups.hasMany(group_members, { as: "group_members", foreignKey: "group_id"});
 
-  event_members.belongsTo(events, { as: "event", foreignKey: "event_id" });
+  event_members.belongsTo(events, { as: "event", foreignKey: "event_id", onDelete: "cascade", hooks: true});
   events.hasMany(event_members, { as: "event_members", foreignKey: "event_id" });
   
-  group_tags.belongsTo(groups, { as: "group", foreignKey: "group_id"});
+  group_tags.belongsTo(groups, { as: "group", foreignKey: "group_id", onDelete: "cascade", hooks: true});
   groups.hasMany(group_tags, { as: "group_tags", foreignKey: "group_id"});
 
   users.belongsTo(roles, { as: "role", foreignKey: "role_id"});
@@ -90,6 +90,9 @@ export default function initModels(sequelize) {
 
   bookings.belongsTo(users, { as: "user", foreignKey: "user_id"});
   users.hasMany(bookings, { as: "bookings", foreignKey: "user_id"});
+
+  bookings.belongsTo(events, { as: "event", foreignKey: "event_id", onDelete: "cascade", hooks: true});
+  events.hasMany(bookings, { as: "bookings", foreignKey: "event_id"});
 
   events.belongsTo(users, { as: "user", foreignKey: "user_id"});
   users.hasMany(events, { as: "events", foreignKey: "user_id"});

@@ -38,11 +38,8 @@ function App() {
   }
   
   useEffect(() => {
-    const loggedInUser = sessionStorage.getItem('userData');
-    if (loggedInUser) {
-      const foundUser = JSON.parse(loggedInUser);
-      setIsAuth(foundUser ? true : false);
-    }
+    const loggedInUser = JSON.parse(sessionStorage.getItem('userData'));
+    setIsAuth(loggedInUser ? true : false);
   }, []);
 
   // This useEffect on specific locations changes the property of the layout

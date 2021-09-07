@@ -35,6 +35,14 @@ export default class events extends Model {
         key: 'user_id'
       }
     },
+    group_id: {
+      type: DataTypes.INTEGER,
+      allowNull: true,
+      references: {
+        model: 'groups',
+        key: 'group_id'
+      }
+    },
     owner_type: {
       type: DataTypes.ENUM('user','group','facility'),
       allowNull: false
@@ -97,6 +105,13 @@ export default class events extends Model {
         using: "BTREE",
         fields: [
           { name: "user_id" },
+        ]
+      },
+      {
+        name: "FK_EVENTS_GROUPS_idx",
+        using: "BTREE",
+        fields: [
+          { name: "group_id" },
         ]
       },
       {

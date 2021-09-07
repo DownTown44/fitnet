@@ -108,6 +108,9 @@ export default function initModels(sequelize) {
 
   groups.belongsTo(users, { as: "user", foreignKey: "user_id"});
   users.hasOne(groups, { as: "group", foreignKey: "user_id"});
+
+  events.belongsTo(groups, { as: "group", foreignKey: "group_id", onDelete: "cascade", hooks: true});
+  groups.hasMany(events, { as: "event", foreignKey: "group_id"});
   
   reviews.belongsTo(users, { as: "user", foreignKey: "user_id"});
   users.hasMany(reviews, { as: "reviews", foreignKey: "user_id"});

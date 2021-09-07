@@ -224,7 +224,7 @@
     margin: 25px;
 
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
 
     &-title {
       @include designSystemSubtitles;
@@ -235,6 +235,7 @@
     &-off { grid-area: off; }
     &-checked { grid-area: checked; }
     &-unchecked { grid-area: unchecked; }
+    &-disabled { grid-area: disabled-text; }
 
     &-checkbox {
       @include designSystemControlGrid;
@@ -247,6 +248,39 @@
       &--off-checked { margin-left: 19px; }
       &--on-unchecked { margin-left: 19px; }
       &--off-unchecked { margin-left: 19px; }
+    }
+
+    &-toggle-switch {
+      display: grid;
+
+      grid-template-columns: 1fr 1fr; 
+      grid-template-rows: 1fr 1fr 1fr 1fr; 
+      gap: 30px 30px; 
+      grid-template-areas: 
+        "title ."
+        "on switch-on"
+        "off switch-off"
+        "disabled-text switch-disabled";
+    
+      justify-items: center;
+      align-items: center;
+    
+      & p {
+        text-transform: uppercase;
+        font-size: 14px;
+      }
+    
+      &--on {
+        grid-area: switch-on;
+      }
+
+      &--off {
+        grid-area: switch-off;
+      }
+
+      &--disabled {
+        grid-area: switch-disabled;
+      }
     }
   }
 }
@@ -284,4 +318,7 @@
 .design-system__colors { grid-area: color-grid; }
 .design-system__icons { grid-area: icon-grid; }
 .design-system__buttons { grid-area: button-grid; }
-.design-system__controls { grid-area: control-grid; }
+.design-system__controls {
+  grid-area: control-grid;
+  height: min-content;
+}

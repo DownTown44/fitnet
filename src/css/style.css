@@ -143,7 +143,7 @@
   .design-system__control-container {
     margin: 25px;
     display: flex;
-    justify-content: space-between; }
+    justify-content: space-around; }
     .design-system__control-container-title {
       font-size: 18px;
       color: #686868;
@@ -158,6 +158,8 @@
       grid-area: checked; }
     .design-system__control-container-unchecked {
       grid-area: unchecked; }
+    .design-system__control-container-disabled {
+      grid-area: disabled-text; }
     .design-system__control-container-checkbox {
       display: grid;
       grid-template-columns: 1fr 1fr 1fr;
@@ -204,6 +206,23 @@
         margin-left: 19px; }
       .design-system__control-container-radio-button--off-unchecked {
         margin-left: 19px; }
+    .design-system__control-container-toggle-switch {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: 1fr 1fr 1fr 1fr;
+      gap: 30px 30px;
+      grid-template-areas: "title ." "on switch-on" "off switch-off" "disabled-text switch-disabled";
+      justify-items: center;
+      align-items: center; }
+      .design-system__control-container-toggle-switch p {
+        text-transform: uppercase;
+        font-size: 14px; }
+      .design-system__control-container-toggle-switch--on {
+        grid-area: switch-on; }
+      .design-system__control-container-toggle-switch--off {
+        grid-area: switch-off; }
+      .design-system__control-container-toggle-switch--disabled {
+        grid-area: switch-disabled; }
 
 .color-preview {
   width: 200px;
@@ -234,7 +253,8 @@
   grid-area: button-grid; }
 
 .design-system__controls {
-  grid-area: control-grid; }
+  grid-area: control-grid;
+  height: min-content; }
 
 html {
   box-sizing: border-box;
@@ -719,6 +739,41 @@ body {
   .sport-field-create__plus-icon {
     font-size: 25px;
     color: #939393; }
+
+.toggle-switch__checkbox {
+  position: relative;
+  width: 50px;
+  height: 30px;
+  appearance: none;
+  outline: none;
+  cursor: pointer;
+  border: 2px solid #55939C;
+  border-radius: 20px;
+  background-color: #FBFBFB;
+  transition: all .3s ease-in-out; }
+  .toggle-switch__checkbox:before {
+    content: '';
+    position: absolute;
+    width: 18px;
+    height: 18px;
+    margin: 4px;
+    top: 0;
+    left: 1px;
+    border-radius: 50%;
+    background-color: #85BFC8;
+    transition: all .3s ease-in-out; }
+  .toggle-switch__checkbox:checked {
+    background-color: #85BFC8;
+    border-color: #85BFC8; }
+    .toggle-switch__checkbox:checked:before {
+      background-color: #FBFBFB;
+      left: 20px; }
+  .toggle-switch__checkbox:disabled {
+    background-color: #FBFBFB;
+    border-color: #EDEDED;
+    pointer-events: none; }
+    .toggle-switch__checkbox:disabled:before {
+      background-color: #D3D3D3; }
 
 .double-button {
   width: 115px;

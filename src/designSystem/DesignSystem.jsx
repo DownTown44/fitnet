@@ -5,6 +5,7 @@ import Icon from '@material-ui/core/Icon';
 import Button from '../components/UI/Button';
 import CheckBox from '../components/UI/CheckBox';
 import RadioButton from '../components/UI/RadioButton'
+import ToggleSwitch from '../components/UI/ToggleSwitch';
 
 const DesignSystem = () => {
   return (
@@ -202,6 +203,16 @@ const DesignSystem = () => {
             <RadioButton additionalClass="design-system__control-container-radio-button--on-unchecked"></RadioButton>
             <RadioButton additionalClass="design-system__control-container-radio-button--off-checked" isChecked={true} isDisabled={true}></RadioButton>
             <RadioButton additionalClass="design-system__control-container-radio-button--off-unchecked" isDisabled={true}></RadioButton>
+          </div>
+
+          <div className="design-system__control-container-toggle-switch">
+            <h3 className="design-system__control-container-title">Toggle switch</h3>
+            <p className="design-system__control-container-on">On</p>
+            <p className="design-system__control-container-off">Off</p>
+            <p className="design-system__control-container-disabled">Disabled</p>
+            <ToggleSwitch isChecked={true} additionalClass="design-system__control-container-toggle-switch--on"></ToggleSwitch>
+            <ToggleSwitch isChecked={false} additionalClass="design-system__control-container-toggle-switch--off"></ToggleSwitch>
+            <ToggleSwitch isDisabled={true} additionalClass="design-system__control-container-toggle-switch--disabled"></ToggleSwitch>
           </div>
         </div>
 

@@ -39,7 +39,7 @@ function App() {
   
   useEffect(() => {
     const loggedInUser = JSON.parse(sessionStorage.getItem('userData'));
-    setIsAuth(loggedInUser ? true : false);
+    setIsAuth(!!loggedInUser);
   }, []);
 
   // This useEffect on specific locations changes the property of the layout

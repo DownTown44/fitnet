@@ -29,7 +29,8 @@ import updateEventDBH from './dbHandlers/updateEventDBH.js'
 import updateGroupDBH from './dbHandlers/updateGroupDBH.js'
 import selectGroups from './dbHandlers/selectGroups.js';
 import selectGroupMemberByGroupId from './dbHandlers/selectGroupMemberByGroupId.js';
-import group_members from './models/group_members.js';
+import selectGroupEvents from './dbHandlers/selectGroupEvents.js';
+import selectUsersGroups from './dbHandlers/selectUsersGroups.js';
 
 const { Sequelize } = sequelize_all;
 const { host, port, user, password, database } = dbconfig;
@@ -389,6 +390,28 @@ export const getFacilityById = async (id) => {
     result.pictures = JSON.parse(pictures);
 
     return result;
+  } catch (err) {
+    console.log(err);
+    throw serverConnectionError;
+  }
+}
+
+export const getGroupEvents = async (id) => {
+  try {
+    const result = await selectGroupEvents(models['events'], id, serverConnectionError);
+
+    return JSON.parse(result);
+  } catch (err) {
+    console.log(err);
+    throw serverConnectionError;
+  }
+}
+
+export const getUsersGroups = async (id) => {
+  try {
+    const result = await selectUsersGroups(models['group_members'], id, serverConnectionError);
+
+    return JSON.parse(result);
   } catch (err) {
     console.log(err);
     throw serverConnectionError;

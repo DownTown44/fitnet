@@ -7,11 +7,12 @@ import {
   userIsMemberOfEvent,
   joinUserIntoEvent,
   getEventById,
-  getEverythingOf,
   getLastMinuteEvents,
   getNextWeekEvents,
   deleteEventById,
   updateEvent,
+  getGroupEvents,
+  getEverythingWithAccessOf,
 } from '../../database/dbHandler.js';
 import camelCasify from '../util/camelCasify.js'
 import { checkToken } from '../middleware/jwtCheck.js'; 
@@ -24,6 +25,8 @@ const eventDTO = (data) => {
   const {
     event_id,
     accessibility_id,
+    accessibility,
+    group_id,
     type_id,
     owner_id,
     name,
@@ -33,12 +36,16 @@ const eventDTO = (data) => {
   
   dto.eventId = event_id;
   dto.accessibilityId = accessibility_id;
+  dto.groupId = group_id;
   dto.typeId = type_id;
   dto.ownerId = owner_id;
   dto.name = name;
   dto.address = address;
   dto.startDate = start_date;
-  
+  if (accessibility) {
+    dto.accessibility = accessibility.accessibility_name;
+  }
+
   return dto;
 }
 
@@ -103,8 +110,15 @@ router.post('/:id/leave', checkToken, async (req, res) => {
 });
 
 router.get('/', async (req, res) => {
+  const groupId = req.query.groupId;
   try {
-    const result = await getEverythingOf('events');
+    let result;
+    if (!groupId) {
+      result = await getEverythingWithAccessOf('events');
+    } else {
+      result = await getGroupEvents(groupId);
+    }
+    
     result.forEach((element, index, array) => {
       array[index] = eventDTO(element);
     });

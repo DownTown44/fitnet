@@ -15,6 +15,7 @@ const CreateEvent = (props) => {
   const [eventData, setEventData] = useState({
     accessibilityId: 1,
     typeId: 1,
+    groupId: null,
     ownerType: JSON.parse(sessionStorage.getItem('userData')).role,
     name: '',
     description: '',
@@ -29,6 +30,7 @@ const CreateEvent = (props) => {
 
   const [accessibilityOptions, setAccessibilityOptions] = useState([]);
   const { id } = useParams();
+  const location = useLocation();
 
   useEffect(() => {
     getAccessibilities().then((result) => {
@@ -41,6 +43,25 @@ const CreateEvent = (props) => {
       });
     }
   }, []);
+
+  useEffect(() => {
+    if (eventData.accessibilityId === '4') {
+      setEventData((prevState) => {
+        return {
+          ...prevState,
+          groupId: location.state.groupId
+        }
+      });
+    // we need to set back the groupId to null if accessibilityId isnt equals to 4
+    } else {
+      setEventData((prevState) => {
+        return {
+          ...prevState,
+          groupId: null
+        }
+      });
+    }
+  }, [eventData.accessibilityId]);
 
   const handleChange = (event, stateName) => {
     setEventData((prevState) => {

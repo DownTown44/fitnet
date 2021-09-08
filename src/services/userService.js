@@ -81,8 +81,7 @@ const getGroupMember = async (userId, groupId) => {
 
     return res.data.isMember;
   } catch (err) {
-    console.log(err);
-
+    return [];
   }
 }
 

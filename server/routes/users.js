@@ -3,7 +3,8 @@ import express from 'express';
 import {
   getUsersByName,
   getEventParticipants,
-  getGroupParticipants
+  getGroupParticipants,
+  getUsersGroups
 } from '../../database/dbHandler.js';
 
 const router = express.Router();
@@ -51,7 +52,7 @@ router.get('/eventUsers', async (req, res) => {
 
     res.status(200);
     res.json(result);
-  } catch {
+  } catch (error) {
     res.status(400);
     res.json({});
   }
@@ -68,11 +69,28 @@ router.get('/groupUsers', async (req, res) => {
 
     res.status(200);
     res.json(result);
-  } catch {
+  } catch (error) {
     res.status(400);
     res.json({});
   }
 });
 
+router.get('/:id/groups', async (req, res) => {
+  try {
+    const userId = req.params.id;
+    const result = await getUsersGroups(userId);
+    let resultList = [];
+
+    for (const element of result) {
+      resultList.push(element.group_id);
+    }
+
+    res.status(200);
+    res.json(resultList);
+  } catch (error) {
+    res.status(400);
+    res.json({});
+  }
+});
 
 export default router;

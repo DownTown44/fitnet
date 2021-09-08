@@ -2,9 +2,9 @@
   margin: 25px;
   display: grid;
   grid-template-columns: 1fr 1.1fr 0.9fr;
-  grid-template-rows: 0.5fr 1.2fr 1.3fr;
+  grid-template-rows: 0.5fr 1.2fr 0.5fr 0.4fr;
   gap: 30px 30px;
-  grid-template-areas: "color-grid icon-grid icon-grid" "color-grid button-grid button-grid" "control-grid control-grid control-grid"; }
+  grid-template-areas: "color-grid icon-grid icon-grid" "color-grid button-grid button-grid" "control-grid control-grid control-grid" "tab-nav-grid . ."; }
   .design-system > div {
     display: flex;
     flex-direction: column;
@@ -223,6 +223,15 @@
         grid-area: switch-off; }
       .design-system__control-container-toggle-switch--disabled {
         grid-area: switch-disabled; }
+  .design-system__tab-container {
+    margin: auto;
+    margin-top: 35px;
+    height: 40%;
+    width: 60%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center; }
 
 .color-preview {
   width: 200px;
@@ -255,6 +264,9 @@
 .design-system__controls {
   grid-area: control-grid;
   height: min-content; }
+
+.design-system__tab {
+  grid-area: tab-nav-grid; }
 
 html {
   box-sizing: border-box;
@@ -739,6 +751,34 @@ body {
   .sport-field-create__plus-icon {
     font-size: 25px;
     color: #939393; }
+
+.tab-navigation {
+  width: 100%; }
+  .tab-navigation__tabs {
+    height: 40px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center; }
+  .tab-navigation__tab {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    width: 100%;
+    border-bottom: 2px solid #939393;
+    cursor: pointer;
+    font-size: 16px;
+    text-transform: uppercase;
+    font-weight: bold;
+    color: #939393;
+    display: flex;
+    justify-content: center;
+    align-items: center; }
+    .tab-navigation__tab--active {
+      color: #36676E;
+      border-bottom: 3px solid #36676E; }
+    .tab-navigation__tab--inactive {
+      color: #EDEDED;
+      pointer-events: none; }
 
 .toggle-switch__checkbox {
   position: relative;

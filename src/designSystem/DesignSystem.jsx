@@ -6,8 +6,36 @@ import Button from '../components/UI/Button';
 import CheckBox from '../components/UI/CheckBox';
 import RadioButton from '../components/UI/RadioButton'
 import ToggleSwitch from '../components/UI/ToggleSwitch';
+import TabNav from '../components/Navigation/TabNav';
 
 const DesignSystem = () => {
+  const tabs = [
+    {id : '1',
+     tabTitle: "Pressed",
+     tabContent: ''
+    },
+    {id : '2',
+     tabTitle: "Active",
+     tabContent: ''
+    },
+    {id : '3',
+     inactive: true,
+     tabTitle: "Inactive",
+     tabContent: ''
+    }
+  ]
+
+  const tabsSmall = [
+    {id : '1',
+     tabTitle: "Pressed",
+     tabContent: ''
+    },
+    {id : '2',
+     tabTitle: "Active",
+     tabContent: ''
+    }
+  ]
+
   return (
     <div className="design-system">
       <div className="design-system__colors">
@@ -216,6 +244,14 @@ const DesignSystem = () => {
           </div>
         </div>
 
+      </div>
+
+      <div className="design-system__tab">
+        <h2>Tab</h2>
+        <div className="design-system__tab-container">
+          <TabNav data={tabs}/>
+          <TabNav data={tabsSmall}/>
+        </div>
       </div>
     </div>
   );

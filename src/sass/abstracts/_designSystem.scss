@@ -3,12 +3,13 @@
 
   display: grid; 
   grid-template-columns: 1fr 1.1fr 0.9fr; 
-  grid-template-rows: 0.5fr 1.2fr 1.3fr; 
+  grid-template-rows: 0.5fr 1.2fr 0.5fr 0.4fr; 
   gap: 30px 30px; 
   grid-template-areas: 
     "color-grid icon-grid icon-grid"
     "color-grid button-grid button-grid"
-    "control-grid control-grid control-grid"; 
+    "control-grid control-grid control-grid"
+    "tab-nav-grid . ."; 
 
   & > div {
     @include designContainerBoxStyle;
@@ -283,6 +284,18 @@
       }
     }
   }
+
+  &__tab-container {
+    margin: auto;
+    margin-top: 35px;
+    height: 40%;
+    width: 60%;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+  }
 }
 
 .color-preview {
@@ -315,10 +328,18 @@
   }
 }
 
+
 .design-system__colors { grid-area: color-grid; }
+
 .design-system__icons { grid-area: icon-grid; }
+
 .design-system__buttons { grid-area: button-grid; }
+
 .design-system__controls {
   grid-area: control-grid;
   height: min-content;
+}
+
+.design-system__tab {
+  grid-area: tab-nav-grid;
 }

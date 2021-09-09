@@ -3,13 +3,13 @@
 
   display: grid; 
   grid-template-columns: 1fr 1.1fr 0.9fr; 
-  grid-template-rows: 0.5fr 1.2fr 0.5fr 0.4fr; 
+  grid-template-rows: 0.7fr 1fr 0.5fr 0.4fr; 
   gap: 30px 30px; 
   grid-template-areas: 
     "color-grid icon-grid icon-grid"
     "color-grid button-grid button-grid"
     "control-grid control-grid control-grid"
-    "tab-nav-grid . ."; 
+    "tab-nav-grid avatars-grid avatars-grid"; 
 
   & > div {
     @include designContainerBoxStyle;
@@ -133,14 +133,11 @@
       width: 60%;
 
       display: flex;
+      justify-content: space-between;
+      align-items: center;
       flex-wrap: wrap;
       margin: 0 auto;
-
     }
-  }
-
-  &__buttons {
-    height: 700px;
   }
 
   &__button-container {
@@ -296,6 +293,50 @@
     justify-content: space-between;
     align-items: center;
   }
+
+  &__avatars-container {
+    display: grid; 
+    grid-template-columns: repeat(3, 1fr); 
+    column-gap: 80px;
+    grid-template-rows: 1fr; 
+    grid-template-areas: "no-picture normal removable"; 
+
+    // Center avatars!!
+
+    margin: 0 auto;
+    margin-top: 50px;
+
+    & > div {
+      height: 150px;
+
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      align-items: center;
+
+      & > p {
+        font-size: 16px;
+        text-transform: uppercase;
+      }
+
+      & div {
+        display: flex;
+        justify-content: center;
+      }
+    }
+  }
+
+  &__avatars--no-picture {
+    grid-area: no-picture;
+  }
+
+  &__avatars--normal {
+    grid-area: normal;
+  }
+
+  &__avatars--removable {
+    grid-area: removable;
+  }
 }
 
 .color-preview {
@@ -342,4 +383,8 @@
 
 .design-system__tab {
   grid-area: tab-nav-grid;
+}
+
+.design-system__avatars {
+  grid-area: avatars-grid;
 }

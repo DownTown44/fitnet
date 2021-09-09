@@ -2,9 +2,9 @@
   margin: 25px;
   display: grid;
   grid-template-columns: 1fr 1.1fr 0.9fr;
-  grid-template-rows: 0.5fr 1.2fr 0.5fr 0.4fr;
+  grid-template-rows: 0.7fr 1fr 0.5fr 0.4fr;
   gap: 30px 30px;
-  grid-template-areas: "color-grid icon-grid icon-grid" "color-grid button-grid button-grid" "control-grid control-grid control-grid" "tab-nav-grid . ."; }
+  grid-template-areas: "color-grid icon-grid icon-grid" "color-grid button-grid button-grid" "control-grid control-grid control-grid" "tab-nav-grid avatars-grid avatars-grid"; }
   .design-system > div {
     display: flex;
     flex-direction: column;
@@ -83,10 +83,10 @@
     .design-system__icon-container-icons {
       width: 60%;
       display: flex;
+      justify-content: space-between;
+      align-items: center;
       flex-wrap: wrap;
       margin: 0 auto; }
-  .design-system__buttons {
-    height: 700px; }
   .design-system__button-container {
     margin: auto 25px;
     height: 600px;
@@ -232,6 +232,32 @@
     flex-direction: column;
     justify-content: space-between;
     align-items: center; }
+  .design-system__avatars-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    column-gap: 80px;
+    grid-template-rows: 1fr;
+    grid-template-areas: "no-picture normal removable";
+    margin: 0 auto;
+    margin-top: 50px; }
+    .design-system__avatars-container > div {
+      height: 150px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      align-items: center; }
+      .design-system__avatars-container > div > p {
+        font-size: 16px;
+        text-transform: uppercase; }
+      .design-system__avatars-container > div div {
+        display: flex;
+        justify-content: center; }
+  .design-system__avatars--no-picture {
+    grid-area: no-picture; }
+  .design-system__avatars--normal {
+    grid-area: normal; }
+  .design-system__avatars--removable {
+    grid-area: removable; }
 
 .color-preview {
   width: 200px;
@@ -267,6 +293,9 @@
 
 .design-system__tab {
   grid-area: tab-nav-grid; }
+
+.design-system__avatars {
+  grid-area: avatars-grid; }
 
 html {
   box-sizing: border-box;
@@ -815,6 +844,34 @@ body {
     .toggle-switch__checkbox:disabled:before {
       background-color: #D3D3D3; }
 
+.user-avatar {
+  width: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: left;
+  margin-bottom: 15px; }
+  .user-avatar__wrapper {
+    display: inline-block;
+    position: relative;
+    width: 45px;
+    height: 45px;
+    overflow: hidden;
+    border-radius: 50%;
+    margin-right: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center; }
+  .user-avatar img {
+    width: auto; }
+  .user-avatar p {
+    font-size: 16px;
+    font-weight: bold; }
+  .user-avatar .cross-button {
+    margin-left: auto;
+    font-size: 20px;
+    color: #E25858;
+    cursor: pointer; }
+
 .double-button {
   width: 115px;
   display: flex;
@@ -826,6 +883,9 @@ body {
     cursor: pointer;
     width: 20px;
     height: 20px; }
+
+.user-list {
+  padding: 20px; }
 
 .header {
   position: relative;

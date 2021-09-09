@@ -7,6 +7,9 @@ import CheckBox from '../components/UI/CheckBox';
 import RadioButton from '../components/UI/RadioButton'
 import ToggleSwitch from '../components/UI/ToggleSwitch';
 import TabNav from '../components/Navigation/TabNav';
+import User from '../components/UserList/User';
+
+import exampleUserPicture from '../noProdAssets/userExample.jpg';
 
 const DesignSystem = () => {
   const tabs = [
@@ -251,6 +254,24 @@ const DesignSystem = () => {
         <div className="design-system__tab-container">
           <TabNav data={tabs}/>
           <TabNav data={tabsSmall}/>
+        </div>
+      </div>
+
+      <div className="design-system__avatars">
+        <h2>Avatars</h2>
+        <div className="design-system__avatars-container">
+          <div className="design-system__avatars--no-picture">
+            <p>Without picture</p>
+            <User profilePicture={false}>John Milton</User>
+          </div>
+          <div className="design-system__avatars--normal">
+            <p>Normal</p>
+            <User profilePicture={exampleUserPicture}>Casey Jackson</User>
+          </div>
+          <div className="design-system__avatars--removable">
+            <p>Removable</p>
+            <User profilePicture={exampleUserPicture} removable={true}>Casey Jackson</User>
+          </div>
         </div>
       </div>
     </div>

@@ -9,7 +9,6 @@ import Text from '../UI/Text';
 const LoginForm = (props) => {
   const history = useHistory();
 
-  // TODO: save owner and user id on login
   const [loginFailMessage, setLoginFailMessage] = useState('');
   const [loginData, setLoginData] = useState({
     email: '',

@@ -13,6 +13,8 @@ import {
   updateEvent,
   getGroupEvents,
   getEverythingWithAccessOf,
+  getEventsByDate,
+  getEventDates,
 } from '../../database/dbHandler.js';
 import camelCasify from '../util/camelCasify.js'
 import { checkToken } from '../middleware/jwtCheck.js'; 
@@ -28,7 +30,6 @@ const eventDTO = (data) => {
     accessibility,
     group_id,
     type_id,
-    owner_id,
     name,
     address,
     start_date
@@ -38,7 +39,6 @@ const eventDTO = (data) => {
   dto.accessibilityId = accessibility_id;
   dto.groupId = group_id;
   dto.typeId = type_id;
-  dto.ownerId = owner_id;
   dto.name = name;
   dto.address = address;
   dto.startDate = start_date;
@@ -88,7 +88,7 @@ router.post('/:id/remove', checkToken, async (req, res) => {
   }
 });
 
-// TODO: Check if the user is already a group participant
+// TODO: Check if the user is already an event participant
 router.post('/:id/join', checkToken, async (req, res) => {
   try {
     const result = await joinUserIntoEvent(req.params.id, req.body.user_id);
@@ -130,6 +130,22 @@ router.get('/', async (req, res) => {
   }
 });
 
+router.get('/actual', async (req, res) => {
+  try {
+    const result = await getEventsByDate(req.query.date);
+    
+    result.forEach((element, index, array) => {
+      array[index] = eventDTO(element);
+    });
+
+    res.json(result);
+  } catch (error) {
+    console.log(error);
+    res.status(500);
+    res.json({});
+  }
+});
+
 router.get('/lastMinute', async (req, res) => {
   try {
     const date = new Date(`${req.query.date} UTC-0:00`);
@@ -160,6 +176,25 @@ router.get('/nextWeek', async (req, res) => {
     res.status(400);
     res.json({});
   }
+});
+
+router.get('/dates', async (req, res) => {
+  try {
+    const result = await getEventDates();
+
+    result.forEach((element, index, array) => {
+      array[index] = element.start_date.split('T')[0];
+    });
+
+    const uniqeResult = [...new Set(result)];
+
+    res.status(200);
+    res.json(uniqeResult);
+  } catch (error) {
+    console.log(error);
+    res.status(400);
+    res.json({});
+  } 
 });
 
 router.get('/:id', checkToken, async (req, res) => {

@@ -74,7 +74,7 @@ const CreateEvent = (props) => {
 
   const isValid = (obj) => {
     for (let key in obj) {
-      if (obj[key] === '' || obj[key] === null) {
+      if (key !== 'groupId' && (obj[key] === '' || obj[key] === null)) {
         return false;
       }
     }
@@ -86,7 +86,7 @@ const CreateEvent = (props) => {
     event.preventDefault();
     // TODO: on submit typeId must be set based on type of 
     // event and who created it (ex. facility creates another kind of event) 
-
+    console.log(isValid(eventData));
     if (isValid(eventData)) {
       const result = await createEvent(eventData);
       if(result.created) {

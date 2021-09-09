@@ -35,6 +35,3 @@ export {
   logout,
   signup
 };
-
-// TODO: If the token expires, than we have to logouted on the next request
-// TODO: On error of every request that needs token, we need to redirect the user on the login page and clear the session storage

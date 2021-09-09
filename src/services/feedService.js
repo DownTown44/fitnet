@@ -8,7 +8,7 @@ const getLastMinuteEvents = async () => {
     const res = await axios.get('/events/lastMinute', { params: { date: dateString } });
 
     return res.data;
-  } catch {
+  } catch (err) {
     return [];
   }
 } 
@@ -20,12 +20,34 @@ const getNextWeekEvents = async () => {
     const res = await axios.get('/events/nextWeek', { params: { date: dateString } });
 
     return res.data;
-  } catch {
+  } catch (err) {
     return [];
   }
-} 
+}
+
+const getEvents = async (date) => {
+  try {
+    const res = await axios.get('/events/actual', {params: {date: date}});
+
+    return res.data;
+  } catch (err) {
+    return [];
+  }
+}
+
+const getEventDates = async () => {
+  try {
+    const res = await axios.get('/events/dates');
+
+    return res.data;
+  } catch (err) {
+    return [];
+  }
+}
 
 export {
   getLastMinuteEvents,
-  getNextWeekEvents
+  getNextWeekEvents,
+  getEvents,
+  getEventDates,
 }

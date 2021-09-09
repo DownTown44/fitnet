@@ -15,7 +15,7 @@ const CreateEvent = (props) => {
   const [eventData, setEventData] = useState({
     accessibilityId: 1,
     typeId: 1,
-    groupId: 0,
+    groupId: null,
     ownerType: JSON.parse(sessionStorage.getItem('userData')).role,
     name: '',
     description: '',
@@ -57,7 +57,7 @@ const CreateEvent = (props) => {
       setEventData((prevState) => {
         return {
           ...prevState,
-          groupId: 0
+          groupId: null
         }
       });
     }
@@ -74,7 +74,7 @@ const CreateEvent = (props) => {
 
   const isValid = (obj) => {
     for (let key in obj) {
-      if (obj[key] === '' || obj[key] === null) {
+      if (key !== 'groupId' && (obj[key] === '' || obj[key] === null)) {
         return false;
       }
     }

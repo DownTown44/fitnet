@@ -15,14 +15,14 @@ const EventCards = (props) => {
 
   useEffect(() => {
     userData = JSON.parse(sessionStorage.getItem('userData'));
+    if (userData) {
+      getUsersGroups(userData.userId).then((result) => {
+        setGroupIds(result);
+      });
+    }
     if (!props.calendarEvents) {
       getEvents(props.groupId).then((result) => {
         setEvents(result);
-        if (userData) {
-          getUsersGroups(userData.userId).then((result) => {
-            setGroupIds(result);
-          });
-        }
       });
     }
   }, []);
@@ -30,11 +30,6 @@ const EventCards = (props) => {
   useEffect(() => {
     if (props.events) {
       setEvents(props.events);
-      if (userData) {
-        getUsersGroups(userData.userId).then((result) => {
-          setGroupIds(result);
-        });
-      }
     }
   }, [props.events]);
 

@@ -188,8 +188,6 @@ router.get('/dates', async (req, res) => {
 
     const uniqeResult = [...new Set(result)];
 
-    console.log(uniqeResult);
-
     res.status(200);
     res.json(uniqeResult);
   } catch (error) {

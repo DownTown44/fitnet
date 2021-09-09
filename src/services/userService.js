@@ -81,8 +81,7 @@ const getGroupMember = async (userId, groupId) => {
 
     return res.data.isMember;
   } catch (err) {
-    console.log(err);
-
+    return [];
   }
 }
 
@@ -102,6 +101,7 @@ const joinUserToGroup = async (userId, groupId) => {
 
     return result.data;
   } catch (err) {
+    return false;
     // TODO: Error modal >_< 
   }
 }

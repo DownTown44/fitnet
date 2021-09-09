@@ -960,12 +960,19 @@ body {
     color: #E25858;
     cursor: pointer; }
 
-.double-button {
-  width: 115px;
+.user-navigation {
   display: flex;
-  justify-content: space-around;
+  flex-direction: column;
   align-items: flex-start; }
+
+.double-button {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start; }
+  .double-button:not(:last-child) {
+    margin-bottom: 5px; }
   .double-button__list-button {
+    width: 150px;
     cursor: pointer; }
   .double-button__add-button {
     cursor: pointer;

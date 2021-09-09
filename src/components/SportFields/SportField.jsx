@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 
 import { MdCancel } from 'react-icons/md';
 
-import Text from '../UI/Text/Text';
+import Text from '../UI/Text';
 
 const SportField = (props) => {
   return (
@@ -21,7 +21,7 @@ const SportField = (props) => {
           <Text>{props.price}</Text>
         </div>
       </div>
-      <MdCancel className="sport-field__cancel-button" onClick={props.onRemove}/>
+      {props.discardable && <MdCancel className="sport-field__cancel-button" onClick={props.onRemove}/>}
     </div>
   );
 }
@@ -32,6 +32,11 @@ SportField.propTypes = {
   description: PropTypes.string.isRequired,
   price: PropTypes.string.isRequired,
   onRemove: PropTypes.func.isRequired,
+  discardable: PropTypes.bool
+}
+
+SportField.defaultProps = {
+  discardable: false
 }
 
 export default SportField;

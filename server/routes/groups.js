@@ -8,7 +8,8 @@ import camelCasify from '../util/camelCasify.js';
 import {
   createGroup,
   getGroupById,
-  getEverythingWithAccessOf,
+  getDetailedGroupsData,
+  getGroupMemberByGroupId,
   inviteUserToGroup,
   removeUserFromGroup,
   joinUserIntoGroup,
@@ -18,6 +19,7 @@ import {
 } from '../../database/dbHandler.js';
 import { checkToken } from '../middleware/jwtCheck.js';
 import prevImpersonation from '../middleware/prevImpersonation.js';
+import fs from 'fs';
 
 const router = express.Router();
 
@@ -140,10 +142,17 @@ router.post('/:id/leave', async (req, res) => {
 
 router.get('/', async (req, res) => {
   try {
-    const result = await getEverythingWithAccessOf('groups');
+    const result = await getDetailedGroupsData();
     result.forEach((element, index, array) => {
       array[index] = groupDTO(element);
-    });
+    }); 
+
+    // Connecting group members to groups
+    for (const element of result) {
+      const members = await getGroupMemberByGroupId(element.groupId);
+      element.members = members;
+    }
+
     res.json(result);
   } catch (error) {
     console.log(error);
@@ -168,7 +177,7 @@ router.get('/:id/member', async (req, res) => {
   try {
     const result = await userIsMemberOfGroup(req.params.id, req.query.userId);
 
-    if (result.length) {
+    if (result) {
       res.status(200);
       res.json({
         isMember: true,
@@ -193,6 +202,9 @@ router.get('/:id/member', async (req, res) => {
 
 router.delete('/:id', checkToken, async (req, res) => {
   try {
+    const groupResult = await getGroupById(req.params.id);
+    await fs.unlinkSync(path.join(process.cwd(), `server/assets/${groupResult[0].picture}`));
+    
     const result = await deleteGroupById(req.params.id);
     if (result) {
       res.status(200);
@@ -230,17 +242,11 @@ router.patch('/:id', checkToken, imageUpload.single('image'), async (req, res) =
       id: req.params.id,
       groupData: data
     }
-    const result = await updateGroup(groupData);
+    await updateGroup(groupData);
 
-    if (result[0]) {
-      res.status(200);
-      res.json({result: 'Update is successful', created: true, id: req.params.id})
+    res.status(200);
+    res.json({result: 'Update is successful', created: true, id: req.params.id})
 
-      return;
-    }
-
-    res.status(400);
-    res.json({result: 'Update failed', created: false});
   } catch (error) {
     res.status(500);
     res.json({result: 'Server error. Update failed',  created: false});

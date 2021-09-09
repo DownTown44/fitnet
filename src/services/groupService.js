@@ -28,6 +28,16 @@ const getGroupById = async (id) => {
   }
 }
 
+const getUsersGroups = async (userId) => {
+  try {
+    const res = await axios.get(`users/${userId}/groups`);
+
+    return res.data;
+  } catch (err) {
+    return [];
+  }
+}
+
 const deleteGroupById = async (id) => {
   try {
     const res = await axios.delete(`/groups/${id}`);
@@ -42,7 +52,7 @@ const updateGroup = async (id, groupData) => {
     const res = await axios.patch(`/groups/${id}`, groupData, {headers: {'Content-Type': `multipart/form-data`}});
     return res.data;
   } catch (err) {
-    return null;
+    return false;
   }
 }
 
@@ -50,6 +60,7 @@ export {
   createGroup,
   getGroups,
   getGroupById,
+  getUsersGroups,
   deleteGroupById,
-  updateGroup
+  updateGroup,
 };

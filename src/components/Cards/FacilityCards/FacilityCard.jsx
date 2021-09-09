@@ -4,26 +4,24 @@ import PropTypes from 'prop-types';
 import Text from '../../UI/Text';
 import Button from '../../UI/Button';
 
-const GroupCard = (props) => {
+const FacilityCard = (props) => {
   return (
     <div>
       <div onClick={props.onOpen}>
-        <img src={props.src} alt="group" />
+        <img src={props.src} alt="facility"/>
         <Text htmlTag="h3">{props.title}</Text>
+        <Text htmlTag="p">{props.address}</Text>
       </div>
-      <Button onClick={props.onClick}>{props.buttonText}</Button>
     </div>
   );
 }
 
-GroupCard.propTypes = {
+
+FacilityCard.propTypes = {
   src: PropTypes.string.isRequired,
-  alt: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
-  buttonText: PropTypes.string.isRequired,
-  onClick: PropTypes.func.isRequired,
-  onOpen: PropTypes.func.isRequired
+  address: PropTypes.string.isRequired,
+  onOpen: PropTypes.func.isRequired,
 }
 
-
-export default GroupCard;
+export default FacilityCard;

@@ -154,7 +154,7 @@ const CreateGroup = (props) => {
         onChange={(event) => handleImageUpload(event)}
       />
       {preview && <DiscardableImage src={preview} onRemove={() => handleImageRemove()}/>}
-      <Select optionList={accessibilityOptions} onChange={(event) => handleChange(event, 'accessibilityId')}>A csoport láthatósága:</Select>
+      <Select optionList={accessibilityOptions} current={groupData.accessibilityId} onChange={(event) => handleChange(event, 'accessibilityId')}>A csoport láthatósága:</Select>
       {
         props.edit ?
         <Button onClick={(event) => onModify(event)}>Csoport módosítása</Button> :

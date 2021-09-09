@@ -14,6 +14,7 @@ import SearchUsers from './Search/SearchUsers';
 import UserList from './UserList/UserList';
 import Modal from './UI/Modal';
 import Dialog from './Dialog/Dialog';
+import EventCards from './Cards/EventCards/EventCards';
 
 const Group = () => {
   const [isOwner, setIsOwner] = useState(false);
@@ -91,6 +92,10 @@ const Group = () => {
     history.push(`/groups/${id}/edit`);
   }
 
+  const onEventCreate = async () => { 
+    history.push({pathname: '/events/create', state: groupData});
+  }
+
   return (
     <div className="center">
       <Text htmlTag="h3">{groupData.name}</Text>
@@ -120,7 +125,7 @@ const Group = () => {
         /> :
         <UserList users={usersData}/>
       }
-      {groupData.userId === userData.userId && <Button onClick={() => {setIsDeletion(true)}}>Törlés</Button>}
+      {isOwner && <Button onClick={() => {setIsDeletion(true)}}>Törlés</Button>}
       {
         isDeletion && 
         <Modal isShown={isDeletion} closeModal={() => {setIsDeletion(!isDeletion)}}>
@@ -132,6 +137,8 @@ const Group = () => {
         isJoined && !isOwner && 
         <Button onClick={() => onLeave()}>Kilépés</Button>
       }
+      {isJoined && <Button onClick={() => onEventCreate()}>Esemény létrehozása</Button>}
+      <EventCards groupId={id} />
     </div>
   );
 }

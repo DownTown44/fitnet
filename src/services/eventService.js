@@ -10,9 +10,13 @@ const createEvent = async (eventData) => {
   }
 }
 
-const getEvents = async () => {
+const getEvents = async (groupId) => {
   try {
-    const res = await axios.get('/events');
+    const res = await axios.get('/events', {
+      params: {
+        groupId: groupId
+      }
+    });
     return res.data;
   } catch (err) {
     return [];

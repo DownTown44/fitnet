@@ -5,4 +5,12 @@ const instance = axios.create({
   withCredentials: true,
 });
 
+instance.interceptors.response.use((res) => res, (error) => {
+  const { status } = error.response;
+  if (status === 403) {
+    sessionStorage.clear();
+    window.location.reload();
+  }
+});
+
 export default instance;

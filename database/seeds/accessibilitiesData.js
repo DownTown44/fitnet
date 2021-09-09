@@ -8,6 +8,9 @@ const accessibilitiesData = [
   {
     accessibility_name: "invisible"
   }, 
+  {
+    accessibility_name: "group_private"
+  }, 
 ];
 
 export { accessibilitiesData };

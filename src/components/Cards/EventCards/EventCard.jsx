@@ -8,7 +8,7 @@ const EventCard = (props) => {
   return (
     <div>
       <div onClick={props.onOpen}>
-        <img src={props.src} alt={props.alt} />
+        <img src={props.src} alt="event" />
         <Text htmlTag="h3">{props.title}</Text>
         <Text htmlTag="p">{props.date}</Text>
         <Text htmlTag="p">{props.address}</Text>
@@ -20,7 +20,6 @@ const EventCard = (props) => {
 
 EventCard.propTypes = {
   src: PropTypes.string.isRequired,
-  alt: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
   date: PropTypes.string.isRequired,
   address: PropTypes.string.isRequired,

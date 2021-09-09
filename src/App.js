@@ -6,6 +6,8 @@ import Layout from './hoc/Layout';
 import Feed from './containers/Feed';
 import SignUpForm from './components/Forms/SignUpForm';
 import LoginForm from './components/Forms/LoginForm';
+import FacilityCards from './components/Cards/FacilityCards/FacilityCards';
+import Facility from './components/Facility';
 import CreateEvent from './components/Forms/CreateEvent';
 import EventCards from './components/Cards/EventCards/EventCards';
 import Event from './components/Event';
@@ -30,15 +32,21 @@ function App() {
     result && setLayoutShown(true);
   };
 
-  const onLogout = () => {
-    logout();
+  const onLogout = async () => {
+    await logout();
     setIsAuth(false);
-    history.push('/');
+    window.location.reload();
   }
   
+  useEffect(() => {
+    const loggedInUser = JSON.parse(sessionStorage.getItem('userData'));
+    setIsAuth(!!loggedInUser);
+  }, []);
+
   // This useEffect on specific locations changes the property of the layout
   // ex. in some locations the sidedrawers should not be mounted
   useEffect(() => {
+
     if(!isAuth) {
       switch (location.pathname) {
         case '/signup':
@@ -47,6 +55,10 @@ function App() {
 
         case '/login':
           setLayoutShown(location.pathname !== "/login")
+          break;
+
+        case '/':
+          setLayoutShown(location.pathname == "/")
           break;
 
         default:
@@ -66,7 +78,20 @@ function App() {
       <Route path="/login">
         <LoginForm onLoginAttempt={onLoginAttempt}/>
       </Route>
-      <Redirect to="/" />
+      {/* Facilities can be seen also by guests */}
+      <Route path="/facilities" exact>
+        <FacilityCards/>
+      </Route>
+      <Route path="/facilities/:id">
+        <Facility/>
+      </Route>
+      
+      {/* Events can be seen also by guest */}
+      <Route path="/events" exact>
+        <EventCards />
+      </Route>
+
+      <Redirect to="/login" />
     </Switch>
   );
 
@@ -76,19 +101,13 @@ function App() {
         <Route path="/" exact>
           <Feed />
         </Route>
-        <Route path="/groups/" exact>
-          <GroupCards />
+        <Route path="/facilities" exact>
+          <FacilityCards/>
         </Route>
-        <Route path="/groups/create">
-          <CreateGroup />
+        <Route path="/facilities/:id">
+          <Facility/>
         </Route>
-        <Route path="/groups/:id" exact>
-          <Group/>
-        </Route>
-        <Route path="/groups/:id/edit">
-          <CreateGroup edit={true}/>
-        </Route>
-        <Route path="/events/" exact>
+        <Route path="/events" exact>
           <EventCards />
         </Route>
         <Route path="/events/create">
@@ -99,6 +118,18 @@ function App() {
         </Route>
         <Route path="/events/:id/edit">
           <CreateEvent edit={true}/>
+        </Route>
+        <Route path="/groups" exact>
+          <GroupCards />
+        </Route>
+        <Route path="/groups/create">
+          <CreateGroup />
+        </Route>
+        <Route path="/groups/:id" exact>
+          <Group/>
+        </Route>
+        <Route path="/groups/:id/edit">
+          <CreateGroup edit={true}/>
         </Route>
         <Redirect to="/" />
       </Switch>

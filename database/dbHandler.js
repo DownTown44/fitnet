@@ -15,6 +15,9 @@ import selectGroupById from './dbHandlers/selectGroupById.js';
 import selectAll from './dbHandlers/selectAll.js';
 import selectLastMinuteEvents from './dbHandlers/selectLastMinuteEvents.js';
 import selectNextWeekEvents from './dbHandlers/selectNextWeekEvents.js';
+import selectFacilityById from './dbHandlers/selectFacilityById.js';
+import selectFieldsByFacilityId from './dbHandlers/selectFieldsByFacilityId.js';
+import selectPictureByFacilityId from './dbHandlers/selectPictureByFacilityId.js';
 import selectEventParticipants from './dbHandlers/selectEventParticipants.js';
 import selectGroupParticipants from './dbHandlers/selectGroupParticipants.js';
 import selectAllWithAccess from './dbHandlers/selectAllWithAccess.js';
@@ -24,6 +27,12 @@ import deleteGroup from './dbHandlers/deleteGroup.js';
 import deleteEvent from './dbHandlers/deleteEvent.js';
 import updateEventDBH from './dbHandlers/updateEventDBH.js'
 import updateGroupDBH from './dbHandlers/updateGroupDBH.js'
+import selectGroups from './dbHandlers/selectGroups.js';
+import selectGroupMemberByGroupId from './dbHandlers/selectGroupMemberByGroupId.js';
+import selectGroupEvents from './dbHandlers/selectGroupEvents.js';
+import selectUsersGroups from './dbHandlers/selectUsersGroups.js';
+import selectEventsByDate from './dbHandlers/selectEventsByDate.js';
+import selectEventDates from './dbHandlers/selectEventDates.js';
 
 const { Sequelize } = sequelize_all;
 const { host, port, user, password, database } = dbconfig;
@@ -253,6 +262,17 @@ export const getEverythingWithAccessOf = async (model) => {
   }
 }
 
+export const getDetailedGroupsData = async () => {
+  try {
+    const result = await selectGroups(models['groups'], serverConnectionError);
+
+    return JSON.parse(result);
+  } catch(err) {
+    console.log(err);
+    throw serverConnectionError;
+  }
+}
+
 export const getEventById = async (id) => {
   try {
     const result = await selectEventById(models['events'], id, serverConnectionError);
@@ -314,6 +334,18 @@ export const getEventParticipants = async (eventId) => {
 export const getGroupParticipants = async (groupId) => {
   try {
     const result = await selectGroupParticipants(models['users'], groupId, serverConnectionError);
+
+    return JSON.parse(result);
+  } catch (err) {
+    console.log(err);
+    throw serverConnectionError;
+  }
+}
+
+export const getGroupMemberByGroupId = async (groupId) => {
+  try {
+    const result = await selectGroupMemberByGroupId(models['group_members'], groupId, serverConnectionError);
+    
     return JSON.parse(result);
   } catch (err) {
     console.log(err);
@@ -342,6 +374,67 @@ export const userIsMemberOfEvent = async (eventId, userId) => {
       user_id: userId
     }
     const result = await selectFromEventMembers(models['event_members'], data, serverConnectionError);
+    return JSON.parse(result);
+  } catch (err) {
+    console.log(err);
+    throw serverConnectionError;
+  }
+}
+
+export const getFacilityById = async (id) => {
+  try {
+    const facilities = await selectFacilityById(models['facilities'], id, serverConnectionError);
+    const fields = await selectFieldsByFacilityId(models['fields'], id, serverConnectionError);
+    const pictures = await selectPictureByFacilityId(models['facility_pictures'], id, serverConnectionError);
+
+    const result = JSON.parse(facilities)[0];
+    result.fields = JSON.parse(fields);
+    result.pictures = JSON.parse(pictures);
+
+    return result;
+  } catch (err) {
+    console.log(err);
+    throw serverConnectionError;
+  }
+}
+
+export const getGroupEvents = async (id) => {
+  try {
+    const result = await selectGroupEvents(models['events'], id, serverConnectionError);
+
+    return JSON.parse(result);
+  } catch (err) {
+    console.log(err);
+    throw serverConnectionError;
+  }
+}
+
+export const getUsersGroups = async (id) => {
+  try {
+    const result = await selectUsersGroups(models['group_members'], id, serverConnectionError);
+
+    return JSON.parse(result);
+  } catch (err) {
+    console.log(err);
+    throw serverConnectionError;
+  }
+}
+
+export const getEventsByDate = async (date) => {
+  try {
+    const result = await selectEventsByDate(models['events'], date, serverConnectionError);
+
+    return JSON.parse(result);
+  } catch (err) {
+    console.log(err);
+    throw serverConnectionError;
+  }
+}
+
+export const getEventDates = async () => {
+  try {
+    const result = await selectEventDates(models['events'], serverConnectionError);
+
     return JSON.parse(result);
   } catch (err) {
     console.log(err);

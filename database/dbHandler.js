@@ -32,6 +32,7 @@ import selectGroupMemberByGroupId from './dbHandlers/selectGroupMemberByGroupId.
 import selectGroupEvents from './dbHandlers/selectGroupEvents.js';
 import selectUsersGroups from './dbHandlers/selectUsersGroups.js';
 import selectEventsByDate from './dbHandlers/selectEventsByDate.js';
+import selectEventDates from './dbHandlers/selectEventDates.js';
 
 const { Sequelize } = sequelize_all;
 const { host, port, user, password, database } = dbconfig;
@@ -422,6 +423,17 @@ export const getUsersGroups = async (id) => {
 export const getEventsByDate = async (date) => {
   try {
     const result = await selectEventsByDate(models['events'], date, serverConnectionError);
+
+    return JSON.parse(result);
+  } catch (err) {
+    console.log(err);
+    throw serverConnectionError;
+  }
+}
+
+export const getEventDates = async () => {
+  try {
+    const result = await selectEventDates(models['events'], serverConnectionError);
 
     return JSON.parse(result);
   } catch (err) {

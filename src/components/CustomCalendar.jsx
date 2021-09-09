@@ -1,7 +1,7 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Calendar from 'react-calendar';
 import moment from 'moment';
-import { getEvents } from '../services/feedService'
+import { getEventDates, getEvents } from '../services/feedService'
 import EventCards from './Cards/EventCards/EventCards';
 
 const CustomCalendar = () => {
@@ -11,6 +11,13 @@ const CustomCalendar = () => {
   // https://github.com/wojtekmaj/react-calendar
   const [date, setDate] = useState(new Date());
   const [events, setEvents] = useState([]);
+  const [eventDates, setEventDates] = useState([]);
+
+  useEffect(() => {
+    getEventDates().then((result) => {
+      setEventDates(result);
+    });
+  }, []);
 
   const onDateChange = (newDate) => {
     setDate(newDate);
@@ -24,6 +31,11 @@ const CustomCalendar = () => {
       <Calendar
         onChange={onDateChange}
         value={date}
+        tileClassName={({ date, view }) => {
+          if(eventDates.find((x) => x === moment(date).format('YYYY-MM-DD'))){
+            return  'event-reminder';
+          }
+        }}
       />
       <EventCards calendarEvents={true} events={events}/>
     </div>

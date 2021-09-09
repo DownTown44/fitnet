@@ -14,6 +14,7 @@ import {
   getGroupEvents,
   getEverythingWithAccessOf,
   getEventsByDate,
+  getEventDates,
 } from '../../database/dbHandler.js';
 import camelCasify from '../util/camelCasify.js'
 import { checkToken } from '../middleware/jwtCheck.js'; 
@@ -175,6 +176,27 @@ router.get('/nextWeek', async (req, res) => {
     res.status(400);
     res.json({});
   }
+});
+
+router.get('/dates', async (req, res) => {
+  try {
+    const result = await getEventDates();
+
+    result.forEach((element, index, array) => {
+      array[index] = element.start_date.split('T')[0];
+    });
+
+    const uniqeResult = [...new Set(result)];
+
+    console.log(uniqeResult);
+
+    res.status(200);
+    res.json(uniqeResult);
+  } catch (error) {
+    console.log(error);
+    res.status(400);
+    res.json({});
+  } 
 });
 
 router.get('/:id', checkToken, async (req, res) => {

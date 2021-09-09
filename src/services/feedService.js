@@ -35,8 +35,19 @@ const getEvents = async (date) => {
   }
 }
 
+const getEventDates = async () => {
+  try {
+    const res = await axios.get('/events/dates');
+
+    return res.data;
+  } catch (err) {
+    return [];
+  }
+}
+
 export {
   getLastMinuteEvents,
   getNextWeekEvents,
   getEvents,
+  getEventDates,
 }

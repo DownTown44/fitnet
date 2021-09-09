@@ -88,7 +88,7 @@ router.post('/:id/remove', checkToken, async (req, res) => {
   }
 });
 
-// TODO: Check if the user is already a group participant
+// TODO: Check if the user is already an event participant
 router.post('/:id/join', checkToken, async (req, res) => {
   try {
     const result = await joinUserIntoEvent(req.params.id, req.body.user_id);

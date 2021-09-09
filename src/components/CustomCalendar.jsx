@@ -5,9 +5,6 @@ import { getEventDates, getEvents } from '../services/feedService'
 import EventCards from './Cards/EventCards/EventCards';
 
 const CustomCalendar = () => {
-  // TODO: when server is ready, we need to render notifications on the days and 
-  // add onclick to them
-  // TODO: Calendar needs styling
   // https://github.com/wojtekmaj/react-calendar
   const [date, setDate] = useState(new Date());
   const [events, setEvents] = useState([]);

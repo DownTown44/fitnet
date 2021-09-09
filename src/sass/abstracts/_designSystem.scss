@@ -3,13 +3,14 @@
 
   display: grid; 
   grid-template-columns: 1fr 1.1fr 0.9fr; 
-  grid-template-rows: 0.7fr 1fr 0.5fr 0.4fr; 
+  grid-template-rows: 0.7fr 1fr 0.5fr 0.4fr 0.5fr; 
   gap: 30px 30px; 
   grid-template-areas: 
     "color-grid icon-grid icon-grid"
     "color-grid button-grid button-grid"
     "control-grid control-grid control-grid"
-    "tab-nav-grid avatars-grid avatars-grid"; 
+    "tab-nav-grid avatars-grid avatars-grid"
+    "input-grid input-grid input-grid"; 
 
   & > div {
     @include designContainerBoxStyle;
@@ -337,6 +338,27 @@
   &__avatars--removable {
     grid-area: removable;
   }
+
+  &__input-container {
+    margin: 25px;
+    font-size: 16px;
+
+    display: flex;
+    justify-content: space-around;
+
+    & > div {
+      height: 400px;
+
+      display: flex;
+      flex-direction: column;
+      justify-content: space-around;
+
+      & > p {
+        margin-left: 10px;
+        text-transform: uppercase;
+      }
+    }
+  }
 }
 
 .color-preview {
@@ -369,6 +391,20 @@
   }
 }
 
+.focused-input {
+  border: 1px solid $primary-green !important;
+  background-color: $neutral-bright-white !important;
+
+  & .input-box__icon {
+    transform: scale(0) !important;
+  }
+
+  & input {
+    background-color: $neutral-bright-white !important;
+    transform: translateX(-25px) !important;
+  }
+}
+
 
 .design-system__colors { grid-area: color-grid; }
 
@@ -387,4 +423,8 @@
 
 .design-system__avatars {
   grid-area: avatars-grid;
+}
+
+.design-system__input {
+  grid-area: input-grid;
 }

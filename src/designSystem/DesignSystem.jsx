@@ -8,6 +8,7 @@ import RadioButton from '../components/UI/RadioButton'
 import ToggleSwitch from '../components/UI/ToggleSwitch';
 import TabNav from '../components/Navigation/TabNav';
 import User from '../components/UserList/User';
+import Input from '../components/UI/Input';
 
 import exampleUserPicture from '../noProdAssets/userExample.jpg';
 
@@ -271,6 +272,130 @@ const DesignSystem = () => {
           <div className="design-system__avatars--removable">
             <p>Removable</p>
             <User profilePicture={exampleUserPicture} removable={true}>Casey Jackson</User>
+          </div>
+        </div>
+      </div>
+
+      <div className="design-system__input">
+        <h2>Input</h2>
+        <div className="design-system__input-container">
+          <div>
+            <p>Default</p>
+            <Input 
+              type="text"
+              size="large"
+              iconName='person'
+              placeholder="Default 18x Regular"/>
+
+            <Input 
+              type="text"
+              size="medium"
+              iconName='person'
+              placeholder="16x Regular"/>
+
+            <Input 
+              type="text"
+              size="small"
+              iconName='person'
+              placeholder="14x Regular"/>
+          </div>
+          <div>
+            <p>Active</p>
+            <Input 
+              type="text"
+              size="large"
+              iconName='person'
+              placeholder="Active 18x Regular"
+              additionalClass="focused-input"/>
+
+            <Input 
+              type="text"
+              size="medium"
+              iconName='person'
+              placeholder="16x Regular"
+              additionalClass="focused-input"/>
+
+            <Input 
+              type="text"
+              size="small"
+              iconName='person'
+              placeholder="14x Regular"
+              additionalClass="focused-input"/>
+          </div>
+          <div>
+            <p>Error</p>
+            <Input 
+              type="text"
+              size="large"
+              iconName='person'
+              placeholder="Error 18x Regular"
+              invalid="error"
+              validationLabel="Something's wrong"/>
+
+            <Input 
+              type="text"
+              size="medium"
+              iconName='person'
+              placeholder="16x Regular"
+              invalid="error"
+              validationLabel="Something's wrong"/>
+
+            <Input 
+              type="text"
+              size="small"
+              iconName='person'
+              placeholder="14x Regular"
+              invalid="error"
+              validationLabel="Something's wrong"/>
+          </div>
+          <div>
+            <p>Warning</p>
+            <Input 
+              type="text"
+              size="large"
+              iconName='person'
+              placeholder="Warning 18x Regular"
+              invalid="warning"
+              validationLabel="Filling required"/>
+
+            <Input 
+              type="text"
+              size="medium"
+              iconName='person'
+              placeholder="16x Regular"
+              invalid="warning"
+              validationLabel="Filling required"/>
+
+            <Input 
+              type="text"
+              size="small"
+              iconName='person'
+              placeholder="14x Regular"
+              invalid="warning"
+              validationLabel="Filling required"/>
+          </div>
+          <div>
+            <p>Disabled</p>
+            <Input 
+              type="text"
+              size="large"
+              iconName='person'
+              placeholder="Disabled 18x Regular"
+              isDisabled={true}/>
+
+            <Input 
+              type="text"
+              size="medium"
+              iconName='person'
+              placeholder="16x Regular"
+              isDisabled={true}/>
+
+            <Input 
+              type="text"
+              size="small"
+              iconName='person'
+              placeholder="14x Regular"
+              isDisabled={true}/>
           </div>
         </div>
       </div>

@@ -13,6 +13,7 @@ import {
   updateEvent,
   getGroupEvents,
   getEverythingWithAccessOf,
+  getEventsByDate,
 } from '../../database/dbHandler.js';
 import camelCasify from '../util/camelCasify.js'
 import { checkToken } from '../middleware/jwtCheck.js'; 
@@ -28,7 +29,6 @@ const eventDTO = (data) => {
     accessibility,
     group_id,
     type_id,
-    owner_id,
     name,
     address,
     start_date
@@ -38,7 +38,6 @@ const eventDTO = (data) => {
   dto.accessibilityId = accessibility_id;
   dto.groupId = group_id;
   dto.typeId = type_id;
-  dto.ownerId = owner_id;
   dto.name = name;
   dto.address = address;
   dto.startDate = start_date;
@@ -122,6 +121,22 @@ router.get('/', async (req, res) => {
     result.forEach((element, index, array) => {
       array[index] = eventDTO(element);
     });
+    res.json(result);
+  } catch (error) {
+    console.log(error);
+    res.status(500);
+    res.json({});
+  }
+});
+
+router.get('/actual', async (req, res) => {
+  try {
+    const result = await getEventsByDate(req.query.date);
+    
+    result.forEach((element, index, array) => {
+      array[index] = eventDTO(element);
+    });
+
     res.json(result);
   } catch (error) {
     console.log(error);

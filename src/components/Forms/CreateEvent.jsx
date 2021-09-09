@@ -15,7 +15,7 @@ const CreateEvent = (props) => {
   const [eventData, setEventData] = useState({
     accessibilityId: 1,
     typeId: 1,
-    groupId: null,
+    groupId: 0,
     ownerType: JSON.parse(sessionStorage.getItem('userData')).role,
     name: '',
     description: '',
@@ -57,7 +57,7 @@ const CreateEvent = (props) => {
       setEventData((prevState) => {
         return {
           ...prevState,
-          groupId: null
+          groupId: 0
         }
       });
     }
@@ -86,7 +86,7 @@ const CreateEvent = (props) => {
     event.preventDefault();
     // TODO: on submit typeId must be set based on type of 
     // event and who created it (ex. facility creates another kind of event) 
-
+    console.log(isValid(eventData));
     if (isValid(eventData)) {
       const result = await createEvent(eventData);
       if(result.created) {

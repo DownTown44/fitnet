@@ -9,6 +9,8 @@ import ToggleSwitch from '../components/UI/ToggleSwitch';
 import TabNav from '../components/Navigation/TabNav';
 import User from '../components/UserList/User';
 import Input from '../components/UI/Input';
+import Dropdown from '../components/UI/Dropdown/Dropdown';
+import SearchBar from '../components/UI/SearchBar';
 
 import exampleUserPicture from '../noProdAssets/userExample.jpg';
 
@@ -36,9 +38,26 @@ const DesignSystem = () => {
     },
     {id : '2',
      tabTitle: "Active",
-     tabContent: ''
+     tabContent: '',
     }
   ]
+
+  const options = [
+    {value: '1',
+     text: "Option 1"
+    },
+    {value: '2',
+     text: "Option 2"
+    },
+    {value: '3',
+     text: "Option 3"
+    },
+  ]
+
+  // if we don't give a function to the dropdown it throws an exception
+  const logSelected = (value) => {
+    console.log(value);
+  }
 
   return (
     <div className="design-system">
@@ -396,6 +415,34 @@ const DesignSystem = () => {
               iconName='person'
               placeholder="14x Regular"
               isDisabled={true}/>
+          </div>
+        </div>
+      </div>
+
+      <div className="design-system__dropdown">
+        <h2>Dropdown</h2>
+        <div className="design-system__dropdown-container">
+          <div>
+            <p>Default</p>
+            <Dropdown optionList={options} placeholder="Select an option" returnSelected={logSelected}/>
+          </div>
+          <div>
+            <p>Disabled</p>
+            <Dropdown optionList={options} placeholder="Select an option" disabled/>
+          </div>
+        </div>
+      </div>
+
+      <div className="design-system__search-bar">
+        <h2>Search bar</h2>
+        <div className="design-system__search-bar-container">
+          <div>
+            <p>Default</p>
+            <SearchBar placeholder="Keresés" />
+          </div>
+          <div>
+            <p>Disabled</p>
+            <SearchBar placeholder="Keresés" disabled/>
           </div>
         </div>
       </div>

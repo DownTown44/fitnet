@@ -8,7 +8,7 @@ import { getAccessibilities } from '../../services/accessibilityService';
 import Input from '../UI/Input';
 import CheckBox from '../UI/CheckBox';
 import Button from '../UI/Button';
-import Select from '../UI/Select';
+import Dropdown from '../UI/Dropdown/Dropdown';
 
 const CreateEvent = (props) => {
   const history = useHistory();
@@ -34,6 +34,7 @@ const CreateEvent = (props) => {
 
   useEffect(() => {
     getAccessibilities().then((result) => {
+      // TODO: Accessibility options will need to have a value, a text, and boolean named default
       setAccessibilityOptions(result);
     });
 
@@ -68,6 +69,15 @@ const CreateEvent = (props) => {
       return {
         ...prevState,
         [stateName]: stateName === 'repeat' ? event.target.checked : event.target.value,
+      };
+    });
+  };
+
+  const handleChangeSelect = (value) => {
+    setEventData((prevState) => {
+      return {
+        ...prevState,
+        accessibilityId: value,
       };
     });
   };
@@ -169,7 +179,7 @@ const CreateEvent = (props) => {
         label="Befejezés"
       />
 
-      <Select optionList={accessibilityOptions} onChange={event => handleChange(event, 'accessibilityId')}>Az esemény láthatósága</Select>
+      <Dropdown optionList={accessibilityOptions} placeholder="Az esemény láthatósága" returnSelected={handleChangeSelect}/>
 
       {
         props.edit ?

@@ -3,14 +3,16 @@
 
   display: grid; 
   grid-template-columns: 1fr 1.1fr 0.9fr; 
-  grid-template-rows: 0.7fr 1fr 0.5fr 0.4fr 0.5fr; 
+  grid-template-rows: 0.7fr 1fr 0.5fr 0.4fr 0.5fr 0.55fr 0.4fr; 
   gap: 30px 30px; 
   grid-template-areas: 
     "color-grid icon-grid icon-grid"
     "color-grid button-grid button-grid"
     "control-grid control-grid control-grid"
     "tab-nav-grid avatars-grid avatars-grid"
-    "input-grid input-grid input-grid"; 
+    "input-grid input-grid input-grid"
+    "dropdown-grid . ."
+    "search-bar-grid . ."; 
 
   & > div {
     @include designContainerBoxStyle;
@@ -359,6 +361,48 @@
       }
     }
   }
+
+  &__dropdown-container {
+    margin: 25px;
+    font-size: 16px;
+
+    display: flex;
+    justify-content: space-around;
+
+    & > div {
+      height: 150px;
+
+      display: flex;
+      flex-direction: column;
+      justify-content: space-around;
+
+      & > p {
+        margin-left: 10px;
+        text-transform: uppercase;
+      }
+    }
+  }
+
+  &__search-bar-container {
+    margin: 25px;
+    font-size: 16px;
+
+    display: flex;
+    justify-content: space-around;
+
+    & > div {
+      height: 150px;
+
+      display: flex;
+      flex-direction: column;
+      justify-content: space-around;
+
+      & > p {
+        margin-left: 10px;
+        text-transform: uppercase;
+      }
+    }
+  }
 }
 
 .color-preview {
@@ -427,4 +471,12 @@
 
 .design-system__input {
   grid-area: input-grid;
+}
+
+.design-system__dropdown {
+  grid-area: dropdown-grid;
+}
+
+.design-system__search-bar {
+  grid-area: search-bar-grid;
 }

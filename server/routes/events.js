@@ -90,14 +90,21 @@ router.post('/:id/remove', checkToken, async (req, res) => {
   }
 });
 
-// TODO: Check if the user is already an event participant
 router.post('/:id/join', checkToken, async (req, res) => {
   try {
-    const result = await joinUserIntoEvent(req.params.id, req.body.user_id);
+    const isMemeber = await userIsMemberOfEvent(req.params.id, req.body.user_id);
 
-    res.json(result);
+    if (!isMemeber) {
+      try {
+        const result = await joinUserIntoEvent(req.params.id, req.body.user_id);
+
+        res.json(result);
+      } catch (error) {
+        console.log(error);
+      }
+    }
   } catch (error) {
-
+    console.log(error);
   }
 });
 

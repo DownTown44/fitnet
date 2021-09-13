@@ -11,19 +11,27 @@ const EventCards = (props) => {
   const [events, setEvents] = useState([]);
   const [groupIds, setGroupIds] = useState([]);
   const history = useHistory();
-  const userData = JSON.parse(sessionStorage.getItem('userData'));
+  let userData;
 
   useEffect(() => {
+    userData = JSON.parse(sessionStorage.getItem('userData'));
+    if (userData) {
+      getUsersGroups(userData.userId).then((result) => {
+        setGroupIds(result);
+      });
+    }
+    if (!props.calendarEvents) {
       getEvents(props.groupId).then((result) => {
         setEvents(result);
-        if (userData) {
-          getUsersGroups(userData.userId).then((result) => {
-            setGroupIds(result);
-          });
-        }
       });
-
+    }
   }, []);
+
+  useEffect(() => {
+    if (props.events) {
+      setEvents(props.events);
+    }
+  }, [props.events]);
 
   // Checks if the user is member of the group that created the event
   const isMember = (groupId, groupIdList) => {
@@ -31,7 +39,7 @@ const EventCards = (props) => {
   }
 
   return (
-    <div className="center">
+    <div className={props.calendarEvents ? '' : "center"}>
       {events.length !== 0 ? events.map((element) => {
         if (element.accessibility === 'public' ||
           element.accessibility === 'private' ||

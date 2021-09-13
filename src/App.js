@@ -34,7 +34,7 @@ function App() {
   const onLogout = async () => {
     await logout();
     setIsAuth(false);
-    history.push('/');
+    window.location.reload();
   }
   
   useEffect(() => {

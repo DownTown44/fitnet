@@ -34,6 +34,7 @@ const CreateEvent = (props) => {
 
   useEffect(() => {
     // TODO: If event cration is called from outside of group, we should not list group_private range
+    // TODO: Accessibility options shoould be good on group ccreation too
     getAccessibilities().then((result) => {
       setAccessibilityOptions(result);
     });

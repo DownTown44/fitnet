@@ -9,6 +9,8 @@ const FacilityCards = () => {
   const [facilities, setFacilities] = useState([]);
   const history = useHistory();
 
+  const userData = JSON.parse(sessionStorage.getItem('userData'));
+
   useEffect(() => {
     getFacilities().then((result) => {
       setFacilities(result);
@@ -18,8 +20,7 @@ const FacilityCards = () => {
   return (
     <div className="center">
       {facilities.length !== 0 ? facilities.map((facility) => {
-        // TODO: owner should see inactive facility too
-        if (facility.active) {
+        if (facility.active || (userData && userData.userId === facility.userId)) {
           return (
             <FacilityCard
               key={facility.facilityId}

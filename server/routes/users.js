@@ -1,4 +1,5 @@
 import express from 'express';
+import userDTO from '../util/userDTO.js';
 
 import {
   getUsersByName,
@@ -19,6 +20,7 @@ router.get('/', async (req, res) => {
     res.status(200);
     res.json(result);
   } catch (error) {
+    console.log(error);
     res.status(400);
     res.json({});
   }

@@ -33,6 +33,7 @@ const CreateEvent = (props) => {
   const location = useLocation();
 
   useEffect(() => {
+    // TODO: If event cration is called from outside of group, we should not list group_private range
     getAccessibilities().then((result) => {
       setAccessibilityOptions(result);
     });

@@ -10,9 +10,8 @@ import {
   getGroupById,
   getDetailedGroupsData,
   getGroupMemberByGroupId,
-  inviteUserToGroup,
+  insertUserToGroup,
   removeUserFromGroup,
-  joinUserIntoGroup,
   userIsMemberOfGroup,
   deleteGroupById,
   updateGroup,
@@ -99,7 +98,7 @@ router.post('/', checkToken, imageUpload.single('image'), prevImpersonation, asy
 
 router.post('/:id/invite', async (req, res) => {
   try {
-    const result = await inviteUserToGroup(req.params.id, req.body);
+    const result = await insertUserToGroup(req.params.id, req.body.user_id);
 
     res.status(200);
     res.send(result);
@@ -125,8 +124,12 @@ router.post('/:id/join', checkToken, async (req, res) => {
   try {
     const isMember = await userIsMemberOfGroup(req.params.id, req.body.user_id);
     if (!isMember) {
-      const result = await joinUserIntoGroup(req.params.id, req.body.user_id);
-      res.json(result);
+      try {
+        const result = await insertUserToGroup(req.params.id, req.body.user_id);
+        res.json(result);
+      } catch (err) {
+        console.log(err);
+      }
     } else {
       res.json({});
     }

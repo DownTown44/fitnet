@@ -63,9 +63,6 @@ export const checkConnection = async () => {
 }
 
 // Data insertion
-// TODO: We need to validate the incoming data (ex. so users cant create events on another users id)
-
-// Data insertion
 export const createEvent = async (data) => {
   try {
     const result = await insertEvent(data, models['events'], serverConnectionError);
@@ -138,29 +135,17 @@ export const registerUser = async (data) => {
   }
 }
 
-// TODO: invite and join are the same, put them into one
-export const inviteUserToGroup = async (groupId, body) => {
+export const insertUserToGroup = async (groupId, user_id) => {
   try {
     const data = {
       group_id: groupId,
-      user_id: body.user_id
+      user_id: user_id
     };
 
     const result = await insertUser(data, models['group_members'], serverConnectionError);
 
     return result;
   } catch(err) {
-    console.log(err);
-  }
-}
-
-export const joinUserIntoGroup = async (groupId, userId) => {
-  try {
-    const data = { group_id: groupId, user_id: userId };
-    const result = await insertUser(data, models['group_members'], serverConnectionError);
-
-    return result;
-  } catch (err) {
     console.log(err);
   }
 }

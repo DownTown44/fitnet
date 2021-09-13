@@ -15,9 +15,11 @@ import {
   joinUserIntoGroup,
   userIsMemberOfGroup,
   deleteGroupById,
-  updateGroup
+  updateGroup,
+  getGroupParticipants,
 } from '../../database/dbHandler.js';
 import { checkToken } from '../middleware/jwtCheck.js';
+import userDTO from '../util/userDTO.js';
 import prevImpersonation from '../middleware/prevImpersonation.js';
 import fs from 'fs';
 
@@ -170,6 +172,23 @@ router.get('/:id', async (req, res) => {
   } catch (error) {
     res.status(500);
     res.send(`${error}\nPlease try again later`);
+  }
+});
+
+router.get('/:id/users', async (req, res) => {
+  try {
+    const groupId = req.params.id;
+
+    const result = await getGroupParticipants(groupId);
+    result.forEach((element, index, array) => {
+      array[index] = userDTO(element);
+    });
+
+    res.status(200);
+    res.json(result);
+  } catch (error) {
+    res.status(400);
+    res.json({});
   }
 });
 

@@ -1,12 +1,10 @@
 import axios from '../axios';
 
-// TODO: RESTful api correctly => events/:id/users;
-
 // EVENTS
 
 const getEventUsers = async (eventId) => {
   try {
-    const res = await axios.get('/users/eventUsers', {params: { eventId: eventId }});
+    const res = await axios.get(`/events/${eventId}/users`);
     return res.data;
   } catch (err) {
     return [];
@@ -68,7 +66,7 @@ const userLeaveEvent = async (userId, eventId) => {
 
 const getGroupUsers = async (groupId) => {
   try {
-    const res = await axios.get('/users/groupUsers', {params: {groupId: groupId}});
+    const res = await axios.get(`/groups/${groupId}/users`);
     return res.data;
   } catch (err) {
     return [];

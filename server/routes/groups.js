@@ -121,14 +121,17 @@ router.post('/:id/remove', async (req, res) => {
   }
 });
 
-// TODO: Check if the user is already a group participant
 router.post('/:id/join', checkToken, async (req, res) => {
   try {
-    const result = await joinUserIntoGroup(req.params.id, req.body.user_id);
-
-    res.json(result);
+    const isMember = await userIsMemberOfGroup(req.params.id, req.body.user_id);
+    if (!isMember) {
+      const result = await joinUserIntoGroup(req.params.id, req.body.user_id);
+      res.json(result);
+    } else {
+      res.json({});
+    }
   } catch (error) {
-
+    res.json({});
   }
 });
 

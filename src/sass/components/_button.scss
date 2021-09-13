@@ -79,17 +79,36 @@
 // Icon button
 .icon-button {
   border-radius: 15px;
-  padding: 7px 8px;
-  padding-bottom: 3px;
-  display: inline-block;
-
-  color: $primary-grey;
-  background-color: $secondary-light-green;
+  width: 36px;
+  height: 36px;
+  padding: 0;
   box-shadow: $shadow-light;
 
-  &:active {
-    color: $secondary-grey;
-    background-color: $secondary-lightest-green;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  &--menu {
+    color: $primary-grey;
+    background-color: $secondary-light-green;
+  
+    &:active {
+      color: $secondary-grey;
+      background-color: $secondary-lightest-green;
+    }
+  }
+
+  &--event {
+    color: $neutral-white;
+    background-color: $secondary-grey;
+  
+    &:active {
+      background-color: $secondary-light-grey;
+    }
+    
+    & .material-icons {
+      font-size: 35px !important;
+    }
   }
 }
 

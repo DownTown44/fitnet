@@ -11,6 +11,7 @@ import User from '../components/UserList/User';
 import Input from '../components/UI/Input';
 import Dropdown from '../components/UI/Dropdown/Dropdown';
 import SearchBar from '../components/UI/SearchBar';
+import EventCard from '../components/Cards/EventCards/EventCard';
 
 import exampleUserPicture from '../noProdAssets/userExample.jpg';
 
@@ -178,7 +179,7 @@ const DesignSystem = () => {
               <Icon>done</Icon>
               BUTTON
             </Button>
-            <Button additionalClass="icon-button">
+            <Button additionalClass="icon-button icon-button--menu">
               <Icon>menu</Icon>
             </Button>
           </div>
@@ -443,6 +444,20 @@ const DesignSystem = () => {
           <div>
             <p>Disabled</p>
             <SearchBar placeholder="Keresés" disabled/>
+          </div>
+        </div>
+      </div>
+
+      <div className="design-system__cards">
+        <h2>Cards</h2>
+        <div className="design-system__cards-container">
+          <div>
+            <p>Simple events</p>
+            <EventCard 
+              title="Lábtenisz" 
+              date="2021/Sep/27 15:00"
+              address="Septimia Wellness központ"
+              buttonIcon={<Icon>add</Icon>}/>
           </div>
         </div>
       </div>

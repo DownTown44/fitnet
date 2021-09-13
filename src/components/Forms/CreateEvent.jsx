@@ -33,16 +33,26 @@ const CreateEvent = (props) => {
   const location = useLocation();
 
   useEffect(() => {
-    getAccessibilities().then((result) => {
+    getAccessibilities().then((options) => {
       // TODO: Accessibility options will need to have a value, a text, and boolean named default
-      setAccessibilityOptions(result);
-    });
+      setAccessibilityOptions(options);
 
-    if (props.edit) {
-      getEventById(id).then((result) => {
-        setEventData(result);
-      });
-    }
+      if (props.edit) {
+        getEventById(id).then((result) => {
+          setEventData(result);
+          
+          options.map((option, index) => {
+            if (option.value == result.accessibilityId) {
+              option.default = true;
+              const newOptions = [...options];
+              newOptions[index] = option;
+              
+              setAccessibilityOptions(newOptions);
+            }
+          });
+        });
+      }
+    });
   }, []);
 
   useEffect(() => {
@@ -68,10 +78,19 @@ const CreateEvent = (props) => {
     setEventData((prevState) => {
       return {
         ...prevState,
-        [stateName]: stateName === 'repeat' ? event.target.checked : event.target.value,
+        [stateName]: event.target.value,
       };
     });
   };
+
+  const handleChangeCheckbox = (event, stateName) => {
+    setEventData((prevState) => {
+      return {
+        ...prevState,
+        [stateName]: event.target.checked ? true : false,
+      };
+    });
+  }
 
   const handleChangeSelect = (value) => {
     setEventData((prevState) => {
@@ -159,7 +178,7 @@ const CreateEvent = (props) => {
       />
 
       <CheckBox
-        onChange={event => handleChange(event, 'repeat')}
+        onChange={event => handleChangeCheckbox(event, 'repeat')}
         isChecked={eventData.repeat}
       >
         Ismétlődő esemény

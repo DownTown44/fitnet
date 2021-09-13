@@ -4,7 +4,7 @@
   grid-template-columns: 1fr 1.1fr 0.9fr;
   grid-template-rows: 0.7fr 1fr 0.5fr 0.4fr 0.5fr 0.55fr 0.4fr;
   gap: 30px 30px;
-  grid-template-areas: "color-grid icon-grid icon-grid" "color-grid button-grid button-grid" "control-grid control-grid control-grid" "tab-nav-grid avatars-grid avatars-grid" "input-grid input-grid input-grid" "dropdown-grid . ." "search-bar-grid . ."; }
+  grid-template-areas: "color-grid icon-grid icon-grid" "color-grid button-grid button-grid" "control-grid control-grid control-grid" "tab-nav-grid avatars-grid avatars-grid" "input-grid input-grid input-grid" "dropdown-grid cards-grid cards-grid" "search-bar-grid cards-grid cards-grid"; }
   .design-system > div {
     display: flex;
     flex-direction: column;
@@ -297,6 +297,19 @@
       .design-system__search-bar-container > div > p {
         margin-left: 10px;
         text-transform: uppercase; }
+  .design-system__cards-container {
+    margin: 25px;
+    font-size: 16px;
+    display: flex;
+    justify-content: space-around; }
+    .design-system__cards-container > div {
+      height: 350px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-around; }
+      .design-system__cards-container > div > p {
+        margin-left: 10px;
+        text-transform: uppercase; }
 
 .color-preview {
   width: 200px;
@@ -354,6 +367,9 @@
 .design-system__search-bar {
   grid-area: search-bar-grid; }
 
+.design-system__cards {
+  grid-area: cards-grid; }
+
 html {
   box-sizing: border-box;
   font-size: 62.5%; }
@@ -379,6 +395,76 @@ body {
 .material-icons.md30 {
   font-size: 30px;
   margin: 15px; }
+
+.event-card {
+  height: 280px;
+  width: 240px;
+  padding: 12px;
+  border-radius: 20px;
+  box-shadow: 0px 4px 15px 3px rgba(38, 38, 38, 0.1);
+  background-color: #FEFEFE;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; }
+  .event-card__image-container {
+    position: relative;
+    margin: 0 auto;
+    margin-bottom: 8px;
+    height: 140px;
+    width: 210px;
+    border-radius: 12px;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center; }
+  .event-card__date {
+    position: absolute;
+    top: 8px;
+    left: 8px;
+    height: 36px;
+    width: 36px;
+    color: #FEFEFE;
+    font-weight: bold;
+    background: rgba(85, 147, 156, 0.8);
+    border-radius: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center; }
+    .event-card__date--small {
+      font-size: 10px; }
+    .event-card__date--big {
+      font-size: 16px; }
+  .event-card__bookmark {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    height: 36px;
+    width: 36px;
+    background: rgba(85, 147, 156, 0.8);
+    border-radius: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center; }
+    .event-card__bookmark .material-icons {
+      color: #FEFEFE;
+      font-size: 28px; }
+  .event-card h3 {
+    font-size: 20px;
+    font-weight: bold; }
+  .event-card__join {
+    display: flex;
+    justify-content: left;
+    align-items: center; }
+    .event-card__join-location {
+      color: #36676E;
+      font-size: 18px !important; }
+    .event-card__join p {
+      font-size: 11px;
+      color: #5A7270; }
+    .event-card__join button {
+      margin-left: auto; }
 
 .backdrop {
   width: 100%;
@@ -438,15 +524,26 @@ body {
 
 .icon-button {
   border-radius: 15px;
-  padding: 7px 8px;
-  padding-bottom: 3px;
-  display: inline-block;
-  color: #344544;
-  background-color: #E2ECDB;
-  box-shadow: 0px 2px 4px 1px #E0E0E0; }
-  .icon-button:active {
-    color: #5A7270;
-    background-color: #F1FFE7; }
+  width: 36px;
+  height: 36px;
+  padding: 0;
+  box-shadow: 0px 2px 4px 1px #E0E0E0;
+  display: flex;
+  justify-content: center;
+  align-items: center; }
+  .icon-button--menu {
+    color: #344544;
+    background-color: #E2ECDB; }
+    .icon-button--menu:active {
+      color: #5A7270;
+      background-color: #F1FFE7; }
+  .icon-button--event {
+    color: #FBFBFB;
+    background-color: #5A7270; }
+    .icon-button--event:active {
+      background-color: #879E9D; }
+    .icon-button--event .material-icons {
+      font-size: 35px !important; }
 
 .icon-button .material-icons {
   font-size: 25px; }

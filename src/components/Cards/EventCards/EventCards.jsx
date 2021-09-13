@@ -46,14 +46,12 @@ const EventCards = (props) => {
           isMember(element.groupId, groupIds)) {
             return (
               <EventCard
+                id={element.eventId}
                 key={element.eventId}
-                src="noImage"
                 title={element.name}
                 date={element.startDate}
                 address={element.address}
-                buttonText="Csatlakozás"
                 onOpen={() => history.push(`/events/${element.eventId}`)}
-                onClick={() => console.log("Event button clicked")}
               />
             );
         }

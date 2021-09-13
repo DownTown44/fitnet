@@ -11,8 +11,8 @@
     "control-grid control-grid control-grid"
     "tab-nav-grid avatars-grid avatars-grid"
     "input-grid input-grid input-grid"
-    "dropdown-grid . ."
-    "search-bar-grid . ."; 
+    "dropdown-grid cards-grid cards-grid"
+    "search-bar-grid cards-grid cards-grid"; 
 
   & > div {
     @include designContainerBoxStyle;
@@ -403,6 +403,27 @@
       }
     }
   }
+
+  &__cards-container {
+    margin: 25px;
+    font-size: 16px;
+
+    display: flex;
+    justify-content: space-around;
+
+    & > div {
+      height: 350px;
+
+      display: flex;
+      flex-direction: column;
+      justify-content: space-around;
+
+      & > p {
+        margin-left: 10px;
+        text-transform: uppercase;
+      }
+    }
+  }
 }
 
 .color-preview {
@@ -479,4 +500,8 @@
 
 .design-system__search-bar {
   grid-area: search-bar-grid;
+}
+
+.design-system__cards {
+  grid-area: cards-grid;
 }

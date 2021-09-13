@@ -137,7 +137,9 @@ const Group = () => {
         isJoined && !isOwner && 
         <Button onClick={() => onLeave()}>Kilépés</Button>
       }
-      {isJoined && <Button onClick={() => onEventCreate()}>Esemény létrehozása</Button>}
+      {
+        (isJoined || isOwner) &&
+        <Button onClick={() => onEventCreate()}>Esemény létrehozása</Button>}
       <EventCards groupId={id} />
     </div>
   );

@@ -33,10 +33,15 @@ const CreateEvent = (props) => {
   const location = useLocation();
 
   useEffect(() => {
-    // TODO: If event cration is called from outside of group, we should not list group_private range
-    // TODO: Accessibility options shoould be good on group ccreation too
     getAccessibilities().then((result) => {
-      setAccessibilityOptions(result);
+      if (location.state) {
+        // if we mount this componenet from group view, then we need everything except invisible
+        result.splice(2, 1);
+        setAccessibilityOptions(result);
+      } else {
+        // if we mount this componenet out of group view, then we need everything except invisible, and group private
+        setAccessibilityOptions(result.slice(0, result.length - 2));
+      }
     });
 
     if (props.edit) {
@@ -86,8 +91,7 @@ const CreateEvent = (props) => {
 
   const onSubmit = async (event) => {
     event.preventDefault();
-    // TODO: on submit typeId must be set based on type of 
-    // event and who created it (ex. facility creates another kind of event) 
+    // TODO: on submit typeId must be set based on type of event and who created it (ex. facility creates another kind of event) 
     console.log(isValid(eventData));
     if (isValid(eventData)) {
       const result = await createEvent(eventData);

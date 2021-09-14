@@ -31,7 +31,8 @@ const groupDTO = (data) => {
     group_id,
     accessibility_id,
     name,
-    accessibility
+    accessibility,
+    picture
   } = data;
   
   dto.userId = user_id;
@@ -39,6 +40,7 @@ const groupDTO = (data) => {
   dto.accessibilityId = accessibility_id;
   dto.name = name;
   dto.accessibility = accessibility.accessibility_name;
+  dto.picture = picture;
 
   return dto;
 }

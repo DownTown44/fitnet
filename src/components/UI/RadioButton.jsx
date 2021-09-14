@@ -2,9 +2,12 @@ import PropTypes from 'prop-types';
 
 const RadioButton = (props) => {
   return (
-    <div>
-      <input type="radio" onChange={props.onChange} checked={props.isChecked} disabled={props.isDisabled} />
-      <label>{props.children}</label>
+    <div className={`radio-button ${props.additionalClass}`}>
+      <input type="radio" className="radio-button__input" onChange={props.onChange} checked={props.isChecked} disabled={props.isDisabled} />
+      <label className="radio-button__label">
+        <span className="radio-button__button"></span>
+        {props.children}
+      </label>
     </div>
   );
 };

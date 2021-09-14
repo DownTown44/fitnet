@@ -8,7 +8,7 @@ import { getAccessibilities } from '../../services/accessibilityService';
 import Input from '../UI/Input';
 import CheckBox from '../UI/CheckBox';
 import Button from '../UI/Button';
-import Select from '../UI/Select';
+import Dropdown from '../UI/Dropdown/Dropdown';
 
 const CreateEvent = (props) => {
   const history = useHistory();
@@ -33,22 +33,34 @@ const CreateEvent = (props) => {
   const location = useLocation();
 
   useEffect(() => {
-    getAccessibilities().then((result) => {
+    getAccessibilities().then((options) => {
+      // TODO: Accessibility options will need to have a value, a text, and boolean named default
       if (location.state) {
         // if we mount this componenet from group view, then we need everything except invisible
-        result.splice(2, 1);
-        setAccessibilityOptions(result);
+        options.splice(2, 1);
+        setAccessibilityOptions(options);
       } else {
         // if we mount this componenet out of group view, then we need everything except invisible, and group private
-        setAccessibilityOptions(result.slice(0, result.length - 2));
+        options = options.slice(0, options.length - 2);
+        setAccessibilityOptions(options);
+      }
+
+      if (props.edit) {
+        getEventById(id).then((result) => {
+          setEventData(result);
+          
+          options.map((option, index) => {
+            if (option.value == result.accessibilityId) {
+              option.default = true;
+              const newOptions = [...options];
+              newOptions[index] = option;
+              
+              setAccessibilityOptions(newOptions);
+            }
+          });
+        });
       }
     });
-
-    if (props.edit) {
-      getEventById(id).then((result) => {
-        setEventData(result);
-      });
-    }
   }, []);
 
   useEffect(() => {
@@ -74,7 +86,25 @@ const CreateEvent = (props) => {
     setEventData((prevState) => {
       return {
         ...prevState,
-        [stateName]: stateName === 'repeat' ? event.target.checked : event.target.value,
+        [stateName]: event.target.value,
+      };
+    });
+  };
+
+  const handleChangeCheckbox = (event, stateName) => {
+    setEventData((prevState) => {
+      return {
+        ...prevState,
+        [stateName]: event.target.checked ? true : false,
+      };
+    });
+  }
+
+  const handleChangeSelect = (value) => {
+    setEventData((prevState) => {
+      return {
+        ...prevState,
+        accessibilityId: value,
       };
     });
   };
@@ -154,7 +184,7 @@ const CreateEvent = (props) => {
       />
 
       <CheckBox
-        onChange={event => handleChange(event, 'repeat')}
+        onChange={event => handleChangeCheckbox(event, 'repeat')}
         isChecked={eventData.repeat}
       >
         Ismétlődő esemény
@@ -174,7 +204,7 @@ const CreateEvent = (props) => {
         label="Befejezés"
       />
 
-      <Select optionList={accessibilityOptions} onChange={event => handleChange(event, 'accessibilityId')}>Az esemény láthatósága</Select>
+      <Dropdown optionList={accessibilityOptions} placeholder="Az esemény láthatósága" returnSelected={handleChangeSelect}/>
 
       {
         props.edit ?

@@ -1,0 +1,54 @@
+.radio-button {
+  &__input {
+    display: none;
+  }
+
+  &__label {
+    font-size: 16px;
+    cursor: pointer;
+    position: relative;
+    padding-left: 4.5rem;
+  }
+
+  &__button {
+    height: 30px;
+    width: 30px;
+    border: 3px solid $primary-grey;
+    border-radius: 50%;
+
+    display: inline-block;
+    position: absolute;
+    left: 0;
+    top: -.4rem;
+  
+    &::after {
+      content: "";
+      opacity: 0;
+      display: block;
+      height: 16px;
+      width: 16px;
+      border-radius: 50%;
+      left: 50%;
+      top: 50%;
+      background-color: $primary-grey;
+      
+      position: absolute;
+      transform: translate(-50%, -50%);
+      transition: opacity .2s;
+    }
+  }
+  
+  &__input:checked ~ &__label &__button::after {
+    opacity: 1;
+  }
+
+  &__input:disabled ~ &__label &__button::after {
+    pointer-events: none;
+    background-color: $neutral-lighter;
+  }
+
+  &__input:disabled ~ &__label &__button {
+    pointer-events: none;
+    border-color: $neutral-lightest;
+  }
+}

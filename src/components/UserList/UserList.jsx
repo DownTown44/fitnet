@@ -58,7 +58,7 @@ const UserList = (props) => {
           return (
             <User 
               key={user.userId} 
-              profilePicture="NoImage" 
+              profilePicture={user.profilePicture} 
               removable={true} 
               onRemove={() => onRemove(user.userId)}
             >
@@ -69,7 +69,7 @@ const UserList = (props) => {
           return (
             <User 
               key={user.userId} 
-              profilePicture="NoImage" 
+              profilePicture={user.profilePicture} 
               invitable={true} 
               onInvite={() => onInvite(user.userId)}
             >
@@ -80,7 +80,7 @@ const UserList = (props) => {
           return (
             <User 
               key={user.userId} 
-              profilePicture="NoImage"
+              profilePicture={user.profilePicture} 
             >
               {`${user.lastName} ${user.firstName}`}
             </User>

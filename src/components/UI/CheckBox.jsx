@@ -1,9 +1,20 @@
 import PropTypes from 'prop-types';
 
+import Icon from '@material-ui/core/Icon';
+
 const CheckBox = (props) => {
   return (
-    <div>
-      <input type="checkbox" onChange={props.onChange} checked={props.isChecked} disabled={props.isDisabled} />
+    <div className={`checkbox ${props.additionalClass}`}>
+      <div className="checkbox__container">
+        <input 
+          className="checkbox-styled" 
+          type="checkbox"  
+          onChange={props.onChange} 
+          checked={props.isChecked} 
+          disabled={props.isDisabled}
+        />
+        <Icon className="md30 checkbox__icon" onClick={props.onChange}>done</Icon>
+      </div>
       <label>{props.children}</label>
     </div>
   );

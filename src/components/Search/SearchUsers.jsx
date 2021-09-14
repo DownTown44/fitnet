@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 
 import { getUsers } from '../../services/searchService';
-import Input from '../UI/Input';
+import SearchBar from '../UI/SearchBar';
 import UserList from '../UserList/UserList';
 
 const SearchUsers = (props) => {
@@ -53,12 +53,11 @@ const SearchUsers = (props) => {
 
   return (
     <div>
-      <Input 
-        type="text"
+      <SearchBar 
         placeholder="Keresés" 
         value={searchField}
         onChange={(event) => setSearchField(event.target.value)}
-      ></Input>
+      ></SearchBar>
       <UserList 
         users={filteredUsers} 
         invitable={props.invitable} 

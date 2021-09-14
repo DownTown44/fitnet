@@ -1,4 +1,5 @@
 import express from 'express';
+import moment from 'moment';
 
 import { 
   createEvent,
@@ -129,6 +130,8 @@ router.get('/', async (req, res) => {
     }
     
     result.forEach((element, index, array) => {
+      const date = new Date(element.start_date);
+      array[index].start_date = moment(date).format('YYYY/MMM/DD hh:mm');
       array[index] = eventDTO(element);
     });
     res.json(result);

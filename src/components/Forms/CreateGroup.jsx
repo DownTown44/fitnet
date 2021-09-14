@@ -7,7 +7,7 @@ import { useHistory, useParams } from 'react-router-dom';
 import { createGroup, getGroupById, updateGroup } from '../../services/groupService';
 import { getAccessibilities } from '../../services/accessibilityService';
 import Input from '../UI/Input';
-import Select from '../UI/Select';
+import Dropdown from '../UI/Dropdown/Dropdown';
 import Text from '../UI/Text';
 import Textarea from '../UI/Textarea';
 import Button from '../UI/Button';
@@ -62,6 +62,15 @@ const CreateGroup = (props) => {
       };
     });
   }
+
+  const handleChangeSelect = (value) => {
+    setGroupData((prevState) => {
+      return {
+        ...prevState,
+        accessibilityId: value,
+      };
+    });
+  };
 
   const handleImageUpload = (event) => {
     // Reading image object from the event
@@ -155,7 +164,7 @@ const CreateGroup = (props) => {
         onChange={(event) => handleImageUpload(event)}
       />
       {preview && <DiscardableImage src={preview} onRemove={() => handleImageRemove()}/>}
-      <Select optionList={accessibilityOptions} current={groupData.accessibilityId} onChange={(event) => handleChange(event, 'accessibilityId')}>A csoport láthatósága:</Select>
+      <Dropdown optionList={accessibilityOptions} placeholder="Az csoport láthatósága" returnSelected={handleChangeSelect}/>
       {
         props.edit ?
         <Button onClick={(event) => onModify(event)}>Csoport módosítása</Button> :

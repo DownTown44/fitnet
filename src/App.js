@@ -14,6 +14,7 @@ import Event from './components/Event';
 import CreateGroup from './components/Forms/CreateGroup';
 import GroupCards from './components/Cards/GroupCards/GroupCards';
 import Group from './components/Group';
+import DesignSystem from './designSystem/DesignSystem';
 
 import './css/style.css';
 
@@ -136,9 +137,15 @@ function App() {
   };
 
   return (
-    <Layout isShown={layoutShown} isAuth={isAuth} onLogout={onLogout}>
-      {routes}
-    </Layout>
+    <>
+      {location.pathname === '/designSystem' ? 
+        <Route path="/designSystem" exact>
+          <DesignSystem />
+        </Route> :
+        <Layout isShown={layoutShown} isAuth={isAuth} onLogout={onLogout}>
+          {routes}
+        </Layout>}
+    </>
   );
 }
 

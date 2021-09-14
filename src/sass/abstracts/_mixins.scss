@@ -23,7 +23,7 @@
 /////////////////////
 
 @mixin commonBox {
-  border: 1px solid $grey-base;
+  border: 1px solid $neutral;
   width: 100%;
 
   display: flex;
@@ -32,19 +32,19 @@
 
   h3 {
     font-size: 2rem;
-    color: $grey-dark;
+    color: $neutral-darkest;
     margin: 0 auto;
   }
 
   p {
     font-size: 1.5rem;
-    color: $grey-base;
+    color: $neutral;
     margin: 0 auto;
   }
 }
 
 @mixin commonBoxCreate {
-  border: 1px solid $grey-base;
+  border: 1px solid $neutral;
   width: 100%;
   cursor: pointer;
 
@@ -59,7 +59,7 @@
 
   p {
     font-size: 1.5rem;
-    color: $grey-base;
+    color: $neutral;
     margin-right: auto;
     margin-left: 35%;
   }
@@ -69,4 +69,51 @@
       transform: translateY(-2px);
     }
   }
+}
+
+@mixin designContainerBoxStyle {
+  display: flex;
+    flex-direction: column;
+    border-radius: 5px;
+    box-shadow: $form-shadow;
+
+    & h2 {
+      font-size: 24px;
+      font-weight: bold;
+      margin-top: 15px;
+      margin-left: 15px;
+    }
+}
+
+@mixin designSystemSubtitles {
+  font-size: 18px;
+  color: $neutral-darker;
+  font-weight: bold;
+  margin: 15px;
+}
+
+@mixin designSystemControlGrid {
+  display: grid;
+
+  grid-template-columns: 1fr 1fr 1fr; 
+  grid-template-rows: 1fr 1fr 1fr 1fr; 
+  gap: 30px 30px; 
+  grid-template-areas: 
+    "title . ."
+    ". on off"
+    "checked on-checked off-checked"
+    "unchecked on-unchecked off-unchecked";
+
+  justify-items: center;
+  align-items: center;
+
+  & p {
+    text-transform: uppercase;
+    font-size: 14px;
+  }
+
+  &--on-checked { grid-area: on-checked; }
+  &--off-checked { grid-area: off-checked; }
+  &--on-unchecked { grid-area: on-unchecked; }
+  &--off-unchecked { grid-area: off-unchecked; }
 }

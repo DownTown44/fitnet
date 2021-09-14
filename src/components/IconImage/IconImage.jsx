@@ -1,11 +1,14 @@
 import PropTypes from 'prop-types';
+
 import CrossIcon from './CrossIcon';
 import Icon from '../Icon'
 
 const IconImage = (props) => {
   return (
-    <div>
-      <Icon src={props.src} alt={props.alt} />
+    <div className={props.className}>
+      <div className={`${props.className}__wrapper`}>
+        <img src={props.src} alt={props.alt} />
+      </div>
       <p>{props.children}</p>
       {props.removable && <CrossIcon onClick={props.onRemove} />}
     </div>

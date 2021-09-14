@@ -93,9 +93,9 @@ router.post('/:id/remove', checkToken, async (req, res) => {
 
 router.post('/:id/join', checkToken, async (req, res) => {
   try {
-    const isMemeber = await userIsMemberOfEvent(req.params.id, req.body.user_id);
+    const isMember = await userIsMemberOfEvent(req.params.id, req.body.user_id);
 
-    if (!isMemeber) {
+    if (!isMember) {
       try {
         const result = await joinUserIntoEvent(req.params.id, req.body.user_id);
 

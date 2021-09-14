@@ -35,7 +35,15 @@ const CreateEvent = (props) => {
   useEffect(() => {
     getAccessibilities().then((options) => {
       // TODO: Accessibility options will need to have a value, a text, and boolean named default
-      setAccessibilityOptions(options);
+      if (location.state) {
+        // if we mount this componenet from group view, then we need everything except invisible
+        options.splice(2, 1);
+        setAccessibilityOptions(options);
+      } else {
+        // if we mount this componenet out of group view, then we need everything except invisible, and group private
+        options = options.slice(0, options.length - 2);
+        setAccessibilityOptions(options);
+      }
 
       if (props.edit) {
         getEventById(id).then((result) => {
@@ -113,9 +121,7 @@ const CreateEvent = (props) => {
 
   const onSubmit = async (event) => {
     event.preventDefault();
-    // TODO: on submit typeId must be set based on type of 
-    // event and who created it (ex. facility creates another kind of event) 
-    console.log(isValid(eventData));
+    // TODO: on submit typeId must be set based on type of event and who created it (ex. facility creates another kind of event) 
     if (isValid(eventData)) {
       const result = await createEvent(eventData);
       if(result.created) {

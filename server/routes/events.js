@@ -14,11 +14,13 @@ import {
   updateEvent,
   getGroupEvents,
   getEverythingWithAccessOf,
+  getEventParticipants,
   getEventsByDate,
   getEventDates,
 } from '../../database/dbHandler.js';
-import camelCasify from '../util/camelCasify.js'
 import { checkToken } from '../middleware/jwtCheck.js'; 
+import camelCasify from '../util/camelCasify.js'
+import userDTO from '../util/userDTO.js';
 import prevImpersonation from '../middleware/prevImpersonation.js';
 
 const router = express.Router();
@@ -89,14 +91,21 @@ router.post('/:id/remove', checkToken, async (req, res) => {
   }
 });
 
-// TODO: Check if the user is already an event participant
 router.post('/:id/join', checkToken, async (req, res) => {
   try {
-    const result = await joinUserIntoEvent(req.params.id, req.body.user_id);
+    const isMember = await userIsMemberOfEvent(req.params.id, req.body.user_id);
 
-    res.json(result);
+    if (!isMember) {
+      try {
+        const result = await joinUserIntoEvent(req.params.id, req.body.user_id);
+
+        res.json(result);
+      } catch (error) {
+        console.log(error);
+      }
+    }
   } catch (error) {
-
+    console.log(error);
   }
 });
 
@@ -209,6 +218,24 @@ router.get('/:id', checkToken, async (req, res) => {
   } catch (error) {
     res.status(500);
     res.send(`${error}\nPlease try again later`);
+  }
+});
+
+router.get('/:id/users', async (req, res) => {
+  try {
+    const eventId = req.params.id;
+
+    const result = await getEventParticipants(eventId);
+    result.forEach((element, index, array) => {
+      array[index] = userDTO(element);
+    });
+
+    res.status(200);
+    res.json(result);
+  } catch (error) {
+    console.log(error);
+    res.status(400);
+    res.json({});
   }
 });
 

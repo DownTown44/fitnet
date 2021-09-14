@@ -4,14 +4,14 @@ const groupsData = [
     accessibility_id: 1,
     name: 'SoccerGroup',
     description: 'A group for soccer players',
-    picture: 'none'
+    picture: 'noProdAssets/soccerGroup.jpeg'
   },
   {
     user_id: 2,
     accessibility_id: 2,
     name: 'Basket Case',
     description: 'Basket ball goup',
-    picture: 'none'
+    picture: 'noProdAssets/basketballGroup.jpeg'
   },
   {
     user_id: 3,

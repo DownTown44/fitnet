@@ -47,6 +47,7 @@ const EventCards = (props) => {
             return (
               <EventCard
                 id={element.eventId}
+                isPrivate={element.accessibility === 'private'}
                 key={element.eventId}
                 title={element.name}
                 date={element.startDate}

@@ -81,7 +81,7 @@
   border-radius: 15px;
   width: 36px;
   height: 36px;
-  padding: 0;
+  padding: 4px;
   box-shadow: $shadow-light;
 
   display: flex;
@@ -98,7 +98,7 @@
     }
   }
 
-  &--event {
+  &--card {
     color: $neutral-white;
     background-color: $secondary-grey;
   
@@ -107,7 +107,7 @@
     }
     
     & .material-icons {
-      font-size: 35px !important;
+      font-size: 25px !important;
     }
   }
 }

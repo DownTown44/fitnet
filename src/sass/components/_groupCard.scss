@@ -1,0 +1,50 @@
+.group-card {
+  height: 280px;
+  width: 240px;
+  padding: 12px;
+  border-radius: 20px;
+  box-shadow: $shadow-card;
+  background-color: $neutral-bright-white;
+  
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  &__image-container {
+    margin: 0 auto;
+    margin-bottom: 8px;
+    height: 140px;
+    width: 210px;
+    border-radius: 12px;
+    overflow: hidden;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  & h3 {
+    font-size: 20px;
+    font-weight: bold;
+  }
+
+  &__join {
+    display: flex;
+    justify-content: left;
+    align-items: center;
+
+    &-tags {
+      color: $primary-blue;
+      font-size: 18px !important;
+    }
+
+    & p {
+      font-size: 11px;
+      color: $secondary-grey;
+    }
+
+    & button {
+      margin-left: auto;
+    }
+  }
+}

@@ -12,8 +12,10 @@ import Input from '../components/UI/Input';
 import Dropdown from '../components/UI/Dropdown/Dropdown';
 import SearchBar from '../components/UI/SearchBar';
 import EventCard from '../components/Cards/EventCards/EventCard';
+import GroupCard from '../components/Cards/GroupCards/GroupCard';
 
 import exampleUserPicture from '../noProdAssets/userExample.jpg';
+import groupExample from '../noProdAssets/groupExample.jpg';
 
 const DesignSystem = () => {
   const tabs = [
@@ -452,12 +454,17 @@ const DesignSystem = () => {
         <h2>Cards</h2>
         <div className="design-system__cards-container">
           <div>
-            <p>Simple events</p>
+            <p>Simple event</p>
             <EventCard 
               title="Lábtenisz" 
               date="2021/Sep/27 15:00"
-              address="Septimia Wellness központ"
-              buttonIcon={<Icon>add</Icon>}/>
+              address="Septimia Wellness központ"/>
+          </div>
+          <div>
+            <p>Group</p>
+            <GroupCard
+              src={groupExample}
+              title="Rugby Udvarhely"/>
           </div>
         </div>
       </div>

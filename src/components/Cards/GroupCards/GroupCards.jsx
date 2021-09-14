@@ -35,10 +35,14 @@ const GroupCards = () => {
             element.accessibility === 'private' ||
             element.userId === userData.userId ||
             isMember(userData.userId, element)) {
+
+          console.log(element);
           return (
             <GroupCard
+              id={element.groupId}
               key={element.groupId}
-              src="noImage"
+              isPrivate={element.accessibility === 'private'}
+              src={`http://localhost:8080/${element.picture}`}
               title={element.name}
               buttonText="Megnyitás"
               onOpen={() => history.push(`/groups/${element.groupId}`)}

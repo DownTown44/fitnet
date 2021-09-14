@@ -78,19 +78,27 @@ const EventCard = (props) => {
           </div>
           <img src={images.random()} alt="event" />
         </div>
+        
         <Text htmlTag="h3">{props.title}</Text>
       </div>
       <div className="event-card__join">
         <Icon className="event-card__join-location">place</Icon>
         <Text htmlTag="p">{props.address}</Text>
-        {isJoined ? 
-          <Button 
-            additionalClass="icon-button icon-button--event" 
-            onClick={() => onLeave()}>{<Icon>done</Icon>}</Button> :
-          <Button 
-            additionalClass="icon-button icon-button--event" 
-            onClick={() => onJoin()}>{<Icon>add</Icon>}</Button>
-        }
+        {isJoined ?
+        <Button
+          additionalClass="icon-button icon-button--card"
+          onClick={() => onLeave()}
+        >
+          {<Icon>done</Icon>}
+        </Button> :
+        <Button
+          additionalClass="icon-button icon-button--card"
+          isDisabled={props.isPrivate}
+          onClick={() => onJoin()}
+        >
+          {props.isPrivate ? <Icon>lock</Icon> : <Icon>add</Icon>}
+        </Button>
+      }
       </div>
     </div>
   );

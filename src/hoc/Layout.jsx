@@ -16,7 +16,9 @@ const Layout = (props) => {
       {sideDrawer ?
         <SideDrawer onLogout={props.onLogout} isAuth={props.isAuth} closeSideDrawer={toggelSideDrawer}/> :
         <>
-          <Header isAuth={props.isAuth} onLogout={props.onLogout} menuOnClick={() => toggelSideDrawer()}/>
+          {props.location.pathname == '/' && 
+            <Header isAuth={props.isAuth} onLogout={props.onLogout} menuOnClick={() => toggelSideDrawer()}/>
+          }
           {props.children}
         </>
       }

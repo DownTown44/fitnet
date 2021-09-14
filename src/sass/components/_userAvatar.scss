@@ -1,0 +1,40 @@
+.user-avatar {
+  width: 200px;
+
+  display: flex;
+  align-items: center;
+  justify-content: left;
+
+  margin-bottom: 15px;
+
+  &__wrapper {
+    display: inline-block;
+    position: relative;
+    width: 45px;
+    height: 45px;
+    overflow: hidden;
+    border-radius: 50%;
+
+    margin-right: 10px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  & img {
+    width: auto;
+  }
+
+  & p {
+    font-size: 16px;
+    font-weight: bold;
+  }
+
+  & .cross-button {
+    margin-left: auto;
+    font-size: 20px;
+    color: $secondary-red;
+    cursor: pointer;
+  }
+}

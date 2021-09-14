@@ -24,7 +24,7 @@
 .sport-field {
   &__card {
     width: 18rem;
-    background-color: $grey-light;
+    background-color: $neutral-lighter;
     margin-left: 4rem;
   
     display: flex;
@@ -65,7 +65,7 @@
   ///////////////
   &-create {
     width: 18rem;
-    background-color: $grey-light;
+    background-color: $neutral-lighter;
     border-radius: 3px;
 
     display: flex;
@@ -97,7 +97,7 @@
 
     &__plus-icon {
       font-size: 25px;
-      color: $grey-base;
+      color: $neutral;
     }
   }
 }

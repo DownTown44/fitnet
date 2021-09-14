@@ -1,0 +1,132 @@
+.button {
+  padding: 13px 25px;
+  border: none;
+  border-radius: 20px;
+
+  font-family: 'Roboto Condensed';
+  font-weight: bold;
+  font-size: 14px;
+  letter-spacing: 0.1em;
+
+  cursor: pointer;
+
+  // Normal buttons
+  &-normal {
+    color: $neutral-white;
+    background-color: $secondary-grey;
+
+    &:active {
+      background-color: $secondary-light-grey;
+    }
+
+    // Normal buttons with icon
+    &--iconed {
+      color: $neutral-white;
+      background-color: $secondary-blue;
+
+      display: flex;
+      justify-content: center;
+      align-items: center;   
+
+      &:active {
+        color: $neutral-lightest;
+        background-color: $secondary-light-blue;
+      }
+    }
+
+    &--iconed .material-icons {
+      margin-left: 6px;
+    }
+  }
+
+  // Outlined buttons
+  &-outlined {
+    border: 2px solid $primary-grey;
+    padding: 11px 25px;
+
+    color: $primary-grey;
+    background-color: white;
+
+    &:active {
+      border-color: $secondary-grey;
+      color: $secondary-grey;
+    }
+  
+    // Outlined buttons with icon
+    &--iconed {
+      border: 2px solid $primary-grey;
+      padding: 11px 25px;
+  
+      color: $primary-grey;
+      background-color: white;
+  
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      &:active {
+        color: $secondary-grey;
+        border-color: $secondary-grey;
+      }
+    }
+  
+    &--iconed .material-icons {
+      margin-right: 6px;
+    }
+  }
+}
+
+// Icon button
+.icon-button {
+  border-radius: 15px;
+  width: 36px;
+  height: 36px;
+  padding: 4px;
+  box-shadow: $shadow-light;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  &--menu {
+    color: $primary-grey;
+    background-color: $secondary-light-green;
+  
+    &:active {
+      color: $secondary-grey;
+      background-color: $secondary-lightest-green;
+    }
+  }
+
+  &--card {
+    color: $neutral-white;
+    background-color: $secondary-grey;
+  
+    &:active {
+      background-color: $secondary-light-grey;
+    }
+    
+    & .material-icons {
+      font-size: 25px !important;
+    }
+  }
+}
+
+.icon-button .material-icons {
+  font-size: 25px;
+}
+
+.button-normal:disabled,
+.button-normal--iconed:disabled,
+.icon-button:disabled {
+  background-color: $neutral-lightest;
+  color: $neutral-lighter;
+  pointer-events: none;
+}
+
+.button-outlined:disabled,
+.button-outlined--iconed:disabled {
+  border-color: $neutral-lightest;
+  color: $neutral-lighter;
+  pointer-events: none;
+}

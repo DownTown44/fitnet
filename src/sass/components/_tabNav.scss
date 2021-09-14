@@ -1,0 +1,40 @@
+.tab-navigation {
+  width: 100%;
+
+  &__tabs {
+    height: 40px;
+    width: 100%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  &__tab {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    width: 100%;
+    
+    border-bottom: 2px solid $neutral;
+    cursor: pointer;
+
+    font-size: 16px;
+    text-transform: uppercase;
+    font-weight: bold;
+    color: $neutral;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+    &--active {
+      color: $primary-blue;
+      border-bottom: 3px solid $primary-blue;
+    }
+
+    &--inactive { 
+      color: $neutral-lightest;
+      pointer-events: none;
+    }
+  }
+}

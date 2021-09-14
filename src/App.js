@@ -24,12 +24,11 @@ function App() {
   const location = useLocation();
   const history = useHistory();
 
-  const [ layoutShown, setLayoutShown ] = useState(true);
   const [ isAuth, setIsAuth ] = useState(false);
 
   const onLoginAttempt = (result) => {
     setIsAuth(result);
-    result && setLayoutShown(true);
+    console.log("LOGIN")
   };
 
   const onLogout = async () => {
@@ -42,30 +41,6 @@ function App() {
     const loggedInUser = JSON.parse(sessionStorage.getItem('userData'));
     setIsAuth(!!loggedInUser);
   }, []);
-
-  // This useEffect on specific locations changes the property of the layout
-  // ex. in some locations the sidedrawers should not be mounted
-  useEffect(() => {
-
-    if(!isAuth) {
-      switch (location.pathname) {
-        case '/signup':
-          setLayoutShown(location.pathname !== "/signup")
-          break;
-
-        case '/login':
-          setLayoutShown(location.pathname !== "/login")
-          break;
-
-        case '/':
-          setLayoutShown(location.pathname == "/")
-          break;
-
-        default:
-          break;
-      };
-    };
-  }, [location]);
 
   let routes = (
     <Switch>
@@ -142,7 +117,7 @@ function App() {
         <Route path="/designSystem" exact>
           <DesignSystem />
         </Route> :
-        <Layout isShown={layoutShown} isAuth={isAuth} onLogout={onLogout}>
+        <Layout isAuth={isAuth} onLogout={onLogout}>
           {routes}
         </Layout>}
     </>

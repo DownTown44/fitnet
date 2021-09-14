@@ -1,16 +1,21 @@
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 
 import Header from '../components/Header/Header';
-import CalendarMenu from '../containers/CalendarMenu';
-import UserControls from '../containers/UserControls';
+import SideDrawer from '../components/Navigation/SideDrawer';
 
 const Layout = (props) => {
+  const [sideDrawer, setSideDrawer] = useState(false);
+
+  const toggelSideDrawer = () => {
+    setSideDrawer((prevState) => !prevState);
+  }
+
   return (
     <div className="layout">
-      <Header isAuth={props.isAuth} onLogout={props.onLogout} menuOnClick={() => console.log("Menu mounted")}/>
-      {props.isShown && <CalendarMenu/>}
+      <Header isAuth={props.isAuth} onLogout={props.onLogout} menuOnClick={() => toggelSideDrawer()}/>
+      {sideDrawer && <SideDrawer onLogout={props.onLogout} isAuth={props.isAuth} closeSideDrawer={toggelSideDrawer}/>}
       {props.children}
-      {props.isShown && <UserControls/>}
     </div>
   );
 }

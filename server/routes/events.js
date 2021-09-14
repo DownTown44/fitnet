@@ -95,7 +95,7 @@ router.post('/:id/join', checkToken, async (req, res) => {
   try {
     const isMember = await userIsMemberOfEvent(req.params.id, req.body.user_id);
 
-    if (!isMember) {
+    if (!isMember.length) {
       try {
         const result = await joinUserIntoEvent(req.params.id, req.body.user_id);
 

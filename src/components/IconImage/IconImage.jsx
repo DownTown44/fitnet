@@ -1,7 +1,6 @@
 import PropTypes from 'prop-types';
 
 import CrossIcon from './CrossIcon';
-import Icon from '../Icon'
 
 const IconImage = (props) => {
   return (

@@ -12,10 +12,14 @@ const Layout = (props) => {
   }
 
   return (
-    <div className="layout">
-      <Header isAuth={props.isAuth} onLogout={props.onLogout} menuOnClick={() => toggelSideDrawer()}/>
-      {sideDrawer && <SideDrawer onLogout={props.onLogout} isAuth={props.isAuth} closeSideDrawer={toggelSideDrawer}/>}
-      {props.children}
+    <div className={`layout ${sideDrawer ? "layout--hidden" : ""}`}>
+      {sideDrawer ?
+        <SideDrawer onLogout={props.onLogout} isAuth={props.isAuth} closeSideDrawer={toggelSideDrawer}/> :
+        <>
+          <Header isAuth={props.isAuth} onLogout={props.onLogout} menuOnClick={() => toggelSideDrawer()}/>
+          {props.children}
+        </>
+      }
     </div>
   );
 }

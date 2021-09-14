@@ -1,6 +1,12 @@
 .layout {
+  height: max-content;
   background-color: $neutral-white;
 
   display: flex;
   flex-direction: column;
+
+  &--hidden {
+    height: 100vh;
+    background: $gradient-blue-green-vertical;
+  }
 }

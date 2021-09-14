@@ -39,7 +39,7 @@ const EventCards = (props) => {
   }
 
   return (
-    <div className={props.calendarEvents ? '' : "center"}>
+    <div>
       {events.length !== 0 ? events.map((element) => {
         if (element.accessibility === 'public' ||
           element.accessibility === 'private' ||

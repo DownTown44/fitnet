@@ -4,7 +4,7 @@ import Icon from '@material-ui/core/Icon';
 
 const NavButton = (props) => {
   return (
-    <div className="navButton" onClick={props.onClick}>
+    <div className={`navButton ${props.additionalClass}`} onClick={props.onClick}>
       <Link to={props.to}>{props.children}</Link>
       <Icon>{props.icon}</Icon>
     </div>

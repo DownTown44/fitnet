@@ -19,6 +19,8 @@ import { checkToken, decodeToken } from './middleware/jwtCheck.js';
 const app = express();
 const port = 8080;
 
+// BUG: DANGER. SESSION STORAGE ISNT READ ONLY. WE CANT STORE USERID THERE. WE NEED TO SEND IT ON EVERY REQUEST
+
 app.use(cors({ origin: 'http://localhost:3000', credentials: true }));
 
 app.use(cookieParser());

@@ -31,6 +31,7 @@ const CreateGroup = (props) => {
 
   useEffect(() => {
     getAccessibilities().then((result) => {
+      result.splice(3, 1);
       setAccessibilityOptions(result);
     });
 

@@ -10,14 +10,15 @@ import {
   getGroupById,
   getDetailedGroupsData,
   getGroupMemberByGroupId,
-  inviteUserToGroup,
+  insertUserToGroup,
   removeUserFromGroup,
-  joinUserIntoGroup,
   userIsMemberOfGroup,
   deleteGroupById,
-  updateGroup
+  updateGroup,
+  getGroupParticipants,
 } from '../../database/dbHandler.js';
 import { checkToken } from '../middleware/jwtCheck.js';
+import userDTO from '../util/userDTO.js';
 import prevImpersonation from '../middleware/prevImpersonation.js';
 import fs from 'fs';
 
@@ -99,7 +100,7 @@ router.post('/', checkToken, imageUpload.single('image'), prevImpersonation, asy
 
 router.post('/:id/invite', async (req, res) => {
   try {
-    const result = await inviteUserToGroup(req.params.id, req.body);
+    const result = await insertUserToGroup(req.params.id, req.body.user_id);
 
     res.status(200);
     res.send(result);
@@ -121,14 +122,21 @@ router.post('/:id/remove', async (req, res) => {
   }
 });
 
-// TODO: Check if the user is already a group participant
 router.post('/:id/join', checkToken, async (req, res) => {
   try {
-    const result = await joinUserIntoGroup(req.params.id, req.body.user_id);
-
-    res.json(result);
+    const isMember = await userIsMemberOfGroup(req.params.id, req.body.user_id);
+    if (!isMember) {
+      try {
+        const result = await insertUserToGroup(req.params.id, req.body.user_id);
+        res.json(result);
+      } catch (err) {
+        console.log(err);
+      }
+    } else {
+      res.json({});
+    }
   } catch (error) {
-
+    res.json({});
   }
 });
 
@@ -172,6 +180,23 @@ router.get('/:id', async (req, res) => {
   } catch (error) {
     res.status(500);
     res.send(`${error}\nPlease try again later`);
+  }
+});
+
+router.get('/:id/users', async (req, res) => {
+  try {
+    const groupId = req.params.id;
+
+    const result = await getGroupParticipants(groupId);
+    result.forEach((element, index, array) => {
+      array[index] = userDTO(element);
+    });
+
+    res.status(200);
+    res.json(result);
+  } catch (error) {
+    res.status(400);
+    res.json({});
   }
 });
 

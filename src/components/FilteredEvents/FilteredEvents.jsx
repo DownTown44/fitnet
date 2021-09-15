@@ -32,7 +32,7 @@ const FilteredEvents = (props) => {
             onClick={() => console.log("Event button clicked")}
           />
         );
-      }) : <Text>{props.altText}</Text>}
+      }) : <Text htmlTag="h1">{props.altText}</Text>}
     </div>
   );
 }

@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import PropTypes from 'prop-types';
+import Icon from '@material-ui/core/Icon';
 
 import { getEvents } from '../../../services/eventService';
 import Text from '../../UI/Text';
 import EventCard from './EventCard';
 import { getUsersGroups } from '../../../services/groupService';
+import NavButton from '../../UI/NavButton';
 
 const EventCards = (props) => {
   const [events, setEvents] = useState([]);
@@ -39,24 +41,31 @@ const EventCards = (props) => {
   }
 
   return (
-    <div className={props.calendarEvents ? '' : "center"}>
-      {events.length !== 0 ? events.map((element) => {
-        if (element.accessibility === 'public' ||
-          element.accessibility === 'private' ||
-          isMember(element.groupId, groupIds)) {
-            return (
-              <EventCard
-                id={element.eventId}
-                isPrivate={element.accessibility === 'private'}
-                key={element.eventId}
-                title={element.name}
-                date={element.startDate}
-                address={element.address}
-                onOpen={() => history.push(`/events/${element.eventId}`)}
-              />
-            );
-        }
-      }) : <Text>Nincsenek események</Text>}
+    <div className="event-cards">
+      <div className="event-cards__control">
+        <NavButton to="/" icon="arrow_back">Események</NavButton>
+        <Icon>search</Icon>
+      </div>
+      <Text htmlTag="h3">Összes esemény</Text>
+      <div className="event-cards__cards">
+        {events.length !== 0 ? events.map((element) => {
+          if (element.accessibility === 'public' ||
+            element.accessibility === 'private' ||
+            isMember(element.groupId, groupIds)) {
+              return (
+                <EventCard
+                  id={element.eventId}
+                  isPrivate={element.accessibility === 'private'}
+                  key={element.eventId}
+                  title={element.name}
+                  date={element.startDate}
+                  address={element.address}
+                  onOpen={() => history.push(`/events/${element.eventId}`)}
+                />
+              );
+          }
+        }) : <Text>Nincsenek események</Text>}
+      </div>
     </div>
   );
 };

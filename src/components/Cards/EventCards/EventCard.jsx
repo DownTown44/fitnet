@@ -22,9 +22,11 @@ const EventCard = (props) => {
   const userData = JSON.parse(sessionStorage.getItem('userData'));
 
   useEffect(() => {
-    getEventMember(userData.userId, props.id).then((res) => {
-      setIsJoined(res);
-    });
+    if (userData) {
+      getEventMember(userData.userId, props.id).then((res) => {
+        setIsJoined(res);
+      });
+    }
   }, [])
 
   const images = [basketball_field, basketball, football_field, football, sport_kit, table_tennis, tennis_racket];
@@ -93,10 +95,10 @@ const EventCard = (props) => {
         </Button> :
         <Button
           additionalClass="icon-button icon-button--card"
-          isDisabled={props.isPrivate}
+          isDisabled={props.isPrivate || !userData}
           onClick={() => onJoin()}
         >
-          {props.isPrivate ? <Icon>lock</Icon> : <Icon>add</Icon>}
+          {props.isPrivate || !userData ? <Icon>lock</Icon> : <Icon>add</Icon>}
         </Button>
       }
       </div>

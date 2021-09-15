@@ -117,7 +117,7 @@ function App() {
         <Route path="/designSystem" exact>
           <DesignSystem />
         </Route> :
-        <Layout isAuth={isAuth} onLogout={onLogout}>
+        <Layout isAuth={isAuth} onLogout={onLogout} location={location}>
           {routes}
         </Layout>}
     </>

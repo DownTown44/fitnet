@@ -1,0 +1,40 @@
+.sign-up-form {
+  height: 100vh;
+
+  & a {
+    list-style: none;
+    text-decoration: none;
+
+    color: $secondary-light-blue;
+  }
+
+  & .nav-back {
+    width: 25px;
+
+    & div {
+      height: 25px;
+      margin-top: 10px;
+      margin-bottom: 10px;
+
+      display: inline-block;
+
+      & .material-icons {
+        font-size: 25px;
+      }
+    }
+  }
+  
+  & .input-box .input-box__field {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  & h1 {
+    font-weight: bolder;
+  }
+
+  & .button, & p {
+    margin-left: auto;
+    margin-right: auto;
+  }
+}

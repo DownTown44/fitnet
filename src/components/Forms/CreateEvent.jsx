@@ -9,6 +9,8 @@ import Input from '../UI/Input';
 import CheckBox from '../UI/CheckBox';
 import Button from '../UI/Button';
 import Dropdown from '../UI/Dropdown/Dropdown';
+import Text from '../UI/Text';
+import Icon from '@material-ui/core/Icon';
 
 const CreateEvent = (props) => {
   const history = useHistory();
@@ -41,6 +43,7 @@ const CreateEvent = (props) => {
         setAccessibilityOptions(options);
       } else {
         // if we mount this componenet out of group view, then we need everything except invisible, and group private
+        console.log(options);
         options = options.slice(0, options.length - 2);
         setAccessibilityOptions(options);
       }
@@ -142,76 +145,82 @@ const CreateEvent = (props) => {
   }
 
   return (
-    <form className="form center">
-      <Input 
-        type="text"
-        onChange={event => handleChange(event, 'name')}
-        value={eventData.name}
-        label="Név"
-        placeholder="Név"
-      />
+    <div className="form create-event-form">
+      <Text htmlTag="h1">Esemény létrehozása</Text>
+      <form>
+        <Input 
+          type="text"
+          onChange={event => handleChange(event, 'name')}
+          value={eventData.name}
+          placeholder="Név"
+        />
 
-      <Input 
-        type="text"
-        onChange={event => handleChange(event, 'description')}
-        value={eventData.description}
-        label="Leírás"
-        placeholder="Leírás"
-      />
+        <Input 
+          type="text"
+          onChange={event => handleChange(event, 'description')}
+          value={eventData.description}
+          placeholder="Leírás"
+        />
 
-      <Input 
-        type="text"
-        onChange={event => handleChange(event, 'address')}
-        value={eventData.address}
-        label="Cím"
-        placeholder="Cím"
-      />
+        <Input 
+          type="text"
+          onChange={event => handleChange(event, 'address')}
+          value={eventData.address}
+          placeholder="Cím"
+        />
 
-      <Input 
-        type="number"
-        onChange={event => handleChange(event, 'minParticipant')}
-        value={eventData.minParticipant}
-        label="Minimum Résztvevő (opcionális)"
-        placeholder="Min"
-      />
+        <Input 
+          type="number"
+          onChange={event => handleChange(event, 'minParticipant')}
+          value={eventData.minParticipant}
+          label="Minimum Résztvevő (opcionális)"
+          placeholder="Min"
+        />
 
-      <Input 
-        type="number"
-        onChange={event => handleChange(event, 'maxParticipant')}
-        value={eventData.maxParticipant}
-        label="Maximum Résztvevő (opcionális)"
-        placeholder="Max"
-      />
+        <Input 
+          type="number"
+          onChange={event => handleChange(event, 'maxParticipant')}
+          value={eventData.maxParticipant}
+          label="Maximum Résztvevő (opcionális)"
+          placeholder="Max"
+        />
 
-      <CheckBox
-        onChange={event => handleChangeCheckbox(event, 'repeat')}
-        isChecked={eventData.repeat}
-      >
-        Ismétlődő esemény
-      </CheckBox>
+        <CheckBox
+          onChange={event => handleChangeCheckbox(event, 'repeat')}
+          isChecked={eventData.repeat}
+        >
+          Ismétlődő esemény
+        </CheckBox>
 
-      <Input 
-        type="datetime-local"
-        onChange={event => handleChange(event, 'startDate')}
-        value={eventData.startDate}
-        label="Kezdés"
-      />
+        <Input 
+          type="datetime-local"
+          onChange={event => handleChange(event, 'startDate')}
+          value={eventData.startDate}
+          label="Kezdés"
+        />
 
-      <Input 
-        type="datetime-local"
-        onChange={event => handleChange(event, 'endDate')}
-        value={eventData.endDate}
-        label="Befejezés"
-      />
+        <Input 
+          type="datetime-local"
+          onChange={event => handleChange(event, 'endDate')}
+          value={eventData.endDate}
+          label="Befejezés"
+        />
 
-      <Dropdown optionList={accessibilityOptions} placeholder="Az esemény láthatósága" returnSelected={handleChangeSelect}/>
+        <Dropdown optionList={accessibilityOptions} placeholder="Az esemény láthatósága" returnSelected={handleChangeSelect}/>
 
-      {
-        props.edit ?
-        <Button onClick={(event) => onModify(event)}>Esemény módosítása</Button> :
-        <Button onClick={(event) => onSubmit(event)}>Esemény létrehozása</Button>
-      }
-    </form>
+        {
+          props.edit ?
+          <Button additionalClass="button-normal--iconed" onClick={(event) => onModify(event)}>
+            Esemény módosítása
+            <Icon>add</Icon>
+          </Button> :
+          <Button additionalClass="button-normal--iconed" onClick={(event) => onSubmit(event)}>
+            Esemény létrehozása
+            <Icon>add</Icon>
+          </Button>
+        }
+      </form>
+    </div>
   );
 };
 

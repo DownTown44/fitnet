@@ -686,6 +686,23 @@ body {
     pointer-events: none;
     color: #EDEDED; }
 
+.create-event-form .input-box {
+  margin: 25px 0px; }
+  .create-event-form .input-box .input-box__field {
+    margin-left: auto;
+    margin-right: auto; }
+
+.create-event-form .dropdown {
+  margin: 25px auto; }
+
+.create-event-form h1 {
+  font-weight: bolder; }
+
+.create-event-form .button {
+  margin-bottom: 50px;
+  margin-left: auto;
+  margin-right: auto; }
+
 .discardable-image {
   display: flex; }
   .discardable-image__image {
@@ -756,70 +773,6 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: space-around; }
-
-.login-form {
-  height: 100vh; }
-  .login-form a {
-    list-style: none;
-    text-decoration: none;
-    color: #85BFC8; }
-  .login-form .nav-back {
-    width: 25px; }
-    .login-form .nav-back div {
-      height: 25px;
-      margin-top: 10px;
-      margin-bottom: 10px;
-      display: inline-block; }
-      .login-form .nav-back div .material-icons {
-        font-size: 25px; }
-  .login-form__logo {
-    width: 150px;
-    height: 50px;
-    margin: 50px auto; }
-  .login-form .input-box .input-box__field {
-    margin-left: auto;
-    margin-right: auto; }
-  .login-form__warning-message {
-    font-size: 12px;
-    color: #F4CF09;
-    font-weight: bold; }
-  .login-form h1 {
-    font-weight: bolder; }
-  .login-form .auth-options {
-    display: flex;
-    justify-content: space-between;
-    align-items: center; }
-    .login-form .auth-options div {
-      display: flex;
-      justify-content: flex-start;
-      align-items: center; }
-  .login-form .button, .login-form p {
-    margin-left: auto;
-    margin-right: auto; }
-
-.sign-up-form {
-  height: 100vh; }
-  .sign-up-form a {
-    list-style: none;
-    text-decoration: none;
-    color: #85BFC8; }
-  .sign-up-form .nav-back {
-    width: 25px; }
-    .sign-up-form .nav-back div {
-      height: 25px;
-      margin-top: 10px;
-      margin-bottom: 10px;
-      display: inline-block; }
-      .sign-up-form .nav-back div .material-icons {
-        font-size: 25px; }
-  .sign-up-form .input-box .input-box__field {
-    margin-left: auto;
-    margin-right: auto; }
-  .sign-up-form h1 {
-    font-weight: bolder; }
-  .sign-up-form .button, .sign-up-form p {
-    margin-left: auto;
-    margin-right: auto; }
 
 .group-card {
   height: 280px;
@@ -940,6 +893,46 @@ body {
       color: #E25858; }
     .input-box__validation-label--warning {
       color: #F4CF09; }
+
+.login-form {
+  height: 100vh; }
+  .login-form a {
+    list-style: none;
+    text-decoration: none;
+    color: #85BFC8; }
+  .login-form .nav-back {
+    width: 25px; }
+    .login-form .nav-back div {
+      height: 25px;
+      margin-top: 10px;
+      margin-bottom: 10px;
+      display: inline-block; }
+      .login-form .nav-back div .material-icons {
+        font-size: 25px; }
+  .login-form__logo {
+    width: 150px;
+    height: 50px;
+    margin: 50px auto; }
+  .login-form .input-box .input-box__field {
+    margin-left: auto;
+    margin-right: auto; }
+  .login-form__warning-message {
+    font-size: 12px;
+    color: #F4CF09;
+    font-weight: bold; }
+  .login-form h1 {
+    font-weight: bolder; }
+  .login-form .auth-options {
+    display: flex;
+    justify-content: space-between;
+    align-items: center; }
+    .login-form .auth-options div {
+      display: flex;
+      justify-content: flex-start;
+      align-items: center; }
+  .login-form .button, .login-form p {
+    margin-left: auto;
+    margin-right: auto; }
 
 .modal {
   position: fixed;
@@ -1096,6 +1089,30 @@ body {
     .side-drawer .navButton .material-icons {
       font-size: 25px;
       color: #344544; }
+
+.sign-up-form {
+  height: 100vh; }
+  .sign-up-form a {
+    list-style: none;
+    text-decoration: none;
+    color: #85BFC8; }
+  .sign-up-form .nav-back {
+    width: 25px; }
+    .sign-up-form .nav-back div {
+      height: 25px;
+      margin-top: 10px;
+      margin-bottom: 10px;
+      display: inline-block; }
+      .sign-up-form .nav-back div .material-icons {
+        font-size: 25px; }
+  .sign-up-form .input-box .input-box__field {
+    margin-left: auto;
+    margin-right: auto; }
+  .sign-up-form h1 {
+    font-weight: bolder; }
+  .sign-up-form .button, .sign-up-form p {
+    margin-left: auto;
+    margin-right: auto; }
 
 .sport-fields {
   display: flex; }

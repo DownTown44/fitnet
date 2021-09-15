@@ -1,38 +1,40 @@
 .feed {
-  &>div {
+  &__section {
+    margin-top: 25px;
+
     display: flex;
     flex-direction: column;
     align-items: center;
-  }
 
-  & h2 {
-    width: 100%;
-    margin-top: 15px;
-    margin-left: 25px;
-    margin-right: auto;
-    font-weight: bold;
-    font-size: 20px;
-
-    display: flex;
-    align-items: center;
-
-    // TODO: fix the anchor in h2 lumberjack method, put them separately into a div or smth
-    & a {
-      list-style: none;
-      text-decoration: none;
-      font-size: 14px;
+    & .filtered-events {
       margin-left: auto;
-      margin-right: 40px;
-
-      font-weight: normal;
-      color: $secondary-light-blue;
+      margin-right: auto;
+      margin-top: 20px;
+      font-size: 10px;
     }
   }
 
-  & h1 {
-    margin-left: auto;
-    margin-right: auto;
-    font-size: 20px;
+  &__title {
+    width: 100%;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    & h2 {
+      margin-left: 25px;
+      font-weight: bold;
+      font-size: 20px;
+    }
+
+    & a {
+      margin-right: 10px;
+      list-style: none;
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: normal;
+      color: $secondary-light-blue;
+    }
   }
 
   & .event-card {

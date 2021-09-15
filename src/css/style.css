@@ -769,33 +769,33 @@ body {
   .dropdown__selected {
     color: black; }
 
-.feed > div {
+.feed__section {
+  margin-top: 25px;
   display: flex;
   flex-direction: column;
   align-items: center; }
+  .feed__section .filtered-events {
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 20px;
+    font-size: 10px; }
 
-.feed h2 {
+.feed__title {
   width: 100%;
-  margin-top: 15px;
-  margin-left: 25px;
-  margin-right: auto;
-  font-weight: bold;
-  font-size: 20px;
   display: flex;
-  align-items: center; }
-  .feed h2 a {
+  align-items: center;
+  justify-content: space-between; }
+  .feed__title h2 {
+    margin-left: 25px;
+    font-weight: bold;
+    font-size: 20px; }
+  .feed__title a {
+    margin-right: 10px;
     list-style: none;
     text-decoration: none;
     font-size: 14px;
-    margin-left: auto;
-    margin-right: 40px;
     font-weight: normal;
     color: #85BFC8; }
-
-.feed h1 {
-  margin-left: auto;
-  margin-right: auto;
-  font-size: 20px; }
 
 .feed .event-card {
   margin: 8px auto; }

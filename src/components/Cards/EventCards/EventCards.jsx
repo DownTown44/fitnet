@@ -7,8 +7,8 @@ import { getEvents } from '../../../services/eventService';
 import { getUsersGroups } from '../../../services/groupService';
 import Text from '../../UI/Text';
 import EventCard from './EventCard';
-import NavButton from '../../UI/NavButton';
 import Button from '../../UI/Button';
+import TopNav from '../../Navigation/TopNav';
 
 const EventCards = (props) => {
   const [events, setEvents] = useState([]);
@@ -43,10 +43,10 @@ const EventCards = (props) => {
 
   return (
     <div className="event-cards">
-      <div className="event-cards__control">
-        <NavButton to="/" icon="arrow_back">Események</NavButton>
-        <Icon>search</Icon>
-      </div>
+      <TopNav 
+        to="/"
+        title="Események"
+        iconName="search"/>
       <Button additionalClass="button-normal--iconed" isDisabled={!userData} onClick={() => history.push('events/create')}>
         Esemény
         <Icon>add</Icon>

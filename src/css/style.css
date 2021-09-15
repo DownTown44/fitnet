@@ -401,30 +401,6 @@ body {
 .event-cards > *:not(:last-child) {
   margin-bottom: 20px; }
 
-.event-cards__control {
-  height: 60px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center; }
-  .event-cards__control .navButton {
-    margin-left: 20px;
-    display: flex;
-    flex-direction: row-reverse;
-    align-items: center; }
-    .event-cards__control .navButton a {
-      list-style: none;
-      text-decoration: none;
-      margin-left: 10px;
-      color: #344544;
-      font-size: 24px;
-      font-weight: bold; }
-    .event-cards__control .navButton .material-icons {
-      margin-right: 0; }
-  .event-cards__control .material-icons {
-    color: #344544;
-    margin-right: 20px;
-    font-size: 25px; }
-
 .event-cards > button {
   margin-left: auto;
   margin-right: 20px; }
@@ -836,30 +812,6 @@ body {
 .group-cards > *:not(:last-child) {
   margin-bottom: 20px; }
 
-.group-cards__control {
-  height: 60px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center; }
-  .group-cards__control .navButton {
-    margin-left: 20px;
-    display: flex;
-    flex-direction: row-reverse;
-    align-items: center; }
-    .group-cards__control .navButton a {
-      list-style: none;
-      text-decoration: none;
-      margin-left: 10px;
-      color: #344544;
-      font-size: 24px;
-      font-weight: bold; }
-    .group-cards__control .navButton .material-icons {
-      margin-right: 0; }
-  .group-cards__control .material-icons {
-    color: #344544;
-    margin-right: 20px;
-    font-size: 25px; }
-
 .group-cards > button {
   margin-left: auto;
   margin-right: 20px; }
@@ -998,20 +950,19 @@ body {
       color: #F4CF09; }
 
 .login-form {
-  height: 100vh; }
+  height: 100%; }
   .login-form a {
     list-style: none;
     text-decoration: none;
     color: #85BFC8; }
   .login-form .nav-back {
-    width: 25px; }
-    .login-form .nav-back div {
-      height: 25px;
-      margin-top: 10px;
-      margin-bottom: 10px;
-      display: inline-block; }
-      .login-form .nav-back div .material-icons {
-        font-size: 25px; }
+    width: 50%;
+    height: 25px;
+    margin-top: 10px;
+    margin-bottom: 10px; }
+    .login-form .nav-back .material-icons {
+      font-size: 25px;
+      color: #344544; }
   .login-form__logo {
     width: 150px;
     height: 50px;
@@ -1026,6 +977,7 @@ body {
   .login-form h1 {
     font-weight: bolder; }
   .login-form .auth-options {
+    font-size: 12px;
     display: flex;
     justify-content: space-between;
     align-items: center; }
@@ -1036,6 +988,8 @@ body {
   .login-form .button, .login-form p {
     margin-left: auto;
     margin-right: auto; }
+  .login-form p {
+    font-size: 12px; }
 
 .modal {
   position: fixed;
@@ -1194,20 +1148,19 @@ body {
       color: #344544; }
 
 .sign-up-form {
-  height: 100vh; }
+  height: 100%; }
   .sign-up-form a {
     list-style: none;
     text-decoration: none;
     color: #85BFC8; }
   .sign-up-form .nav-back {
-    width: 25px; }
-    .sign-up-form .nav-back div {
-      height: 25px;
-      margin-top: 10px;
-      margin-bottom: 10px;
-      display: inline-block; }
-      .sign-up-form .nav-back div .material-icons {
-        font-size: 25px; }
+    width: 50%;
+    height: 25px;
+    margin-top: 10px;
+    margin-bottom: 10px; }
+    .sign-up-form .nav-back .material-icons {
+      font-size: 25px;
+      color: #344544; }
   .sign-up-form .input-box .input-box__field {
     margin-left: auto;
     margin-right: auto; }
@@ -1216,6 +1169,8 @@ body {
   .sign-up-form .button, .sign-up-form p {
     margin-left: auto;
     margin-right: auto; }
+  .sign-up-form p {
+    font-size: 12px; }
 
 .sport-fields {
   display: flex; }
@@ -1532,10 +1487,33 @@ body {
       font-size: 25px; }
 
 .layout {
-  height: max-content;
   background-color: #FBFBFB;
   display: flex;
   flex-direction: column; }
   .layout--hidden {
     height: 100vh;
     background: linear-gradient(180deg, #85BFC8 0%, #E2ECDB 100%); }
+
+.top-nav {
+  height: 60px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center; }
+  .top-nav .navButton {
+    margin-left: 20px;
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: center; }
+    .top-nav .navButton a {
+      list-style: none;
+      text-decoration: none;
+      margin-left: 10px;
+      color: #344544;
+      font-size: 24px;
+      font-weight: bold; }
+    .top-nav .navButton .material-icons {
+      margin-right: 0; }
+  .top-nav .material-icons {
+    color: #344544;
+    margin-right: 20px;
+    font-size: 25px; }

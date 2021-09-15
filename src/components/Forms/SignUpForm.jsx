@@ -8,6 +8,7 @@ import { signup } from '../../services/authenticationService';
 import Input from '../UI/Input';
 import Button from '../UI/Button';
 import Text from '../UI/Text';
+import NavButton from '../UI/NavButton';
 
 const SignUpForm = () => {
   const history = useHistory();
@@ -131,9 +132,7 @@ const SignUpForm = () => {
   return (
     <form className="form sign-up-form">
       <div className="nav-back">
-        <div onClick={() => {history.push('/')}} className="nav-back__button">
-          <Icon>arrow_back</Icon>
-        </div>
+        <NavButton to="/" icon="arrow_back" />
       </div>
 
       <Text htmlTag="h1">Regisztráció</Text>

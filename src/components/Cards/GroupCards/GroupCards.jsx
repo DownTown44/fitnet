@@ -6,8 +6,8 @@ import Icon from '@material-ui/core/Icon';
 import { getGroups } from '../../../services/groupService';
 import Text from '../../UI/Text';
 import GroupCard from './GroupCard';
-import NavButton from '../../UI/NavButton';
 import Button from '../../UI/Button';
+import TopNav from '../../Navigation/TopNav';
 
 const GroupCards = () => {
   const [groups, setGroups] = useState([]);
@@ -34,10 +34,10 @@ const GroupCards = () => {
 
   return (
     <div className="group-cards">
-      <div className="group-cards__control">
-        <NavButton to="/" icon="arrow_back">Csoportok</NavButton>
-        <Icon>search</Icon>
-      </div>
+      <TopNav 
+        to="/"
+        title="Csoportok"
+        iconName="search"/>
       <Button additionalClass="button-normal--iconed" isDisabled={!userData} onClick={() => history.push('groups/create')}>
         Csoport
         <Icon>add</Icon>

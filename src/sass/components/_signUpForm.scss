@@ -1,6 +1,6 @@
 .sign-up-form {
-  height: 100vh;
-
+  height: 100%;
+  
   & a {
     list-style: none;
     text-decoration: none;
@@ -9,18 +9,15 @@
   }
 
   & .nav-back {
-    width: 25px;
+    width: 50%;
 
-    & div {
-      height: 25px;
-      margin-top: 10px;
-      margin-bottom: 10px;
+    height: 25px;
+    margin-top: 10px;
+    margin-bottom: 10px;
 
-      display: inline-block;
-
-      & .material-icons {
-        font-size: 25px;
-      }
+    & .material-icons {
+      font-size: 25px;
+      color: $primary-grey;
     }
   }
   
@@ -36,5 +33,10 @@
   & .button, & p {
     margin-left: auto;
     margin-right: auto;
+  }
+
+  
+  & p {
+    font-size: 12px;
   }
 }

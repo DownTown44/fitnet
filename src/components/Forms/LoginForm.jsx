@@ -8,6 +8,7 @@ import Button from '../UI/Button';
 import Text from '../UI/Text';
 import Logo from '../Logo';
 import ToggleSwitch from '../UI/ToggleSwitch';
+import NavButton from '../UI/NavButton';
 
 import FitnetLogo from '../../assets/logo/logo.svg';
 
@@ -48,9 +49,7 @@ const LoginForm = (props) => {
   return (
     <div className="form login-form">
       <div className="nav-back">
-        <div onClick={() => {history.push('/')}} className="nav-back__button">
-          <Icon>arrow_back</Icon>
-        </div>
+        <NavButton to="/" icon="arrow_back" />
       </div>
       <Logo className="login-form__logo" src={FitnetLogo} />
       <Text htmlTag="h1">Bejelentkezés</Text>
@@ -80,7 +79,7 @@ const LoginForm = (props) => {
       </div>
       
       <Button additionalClass="button-normal--iconed" onClick={(event) => onSubmit(event)}>
-        BEJELNTKEZÉS
+        BEJELENTKEZÉS
         <Icon>login</Icon>
       </Button>
       <Text htmlTag="p">...vagy <a href="/">folytasd vendégként.</a></Text>

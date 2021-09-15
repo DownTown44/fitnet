@@ -710,20 +710,78 @@ body {
     color: black; }
 
 .form {
-  padding: 5rem 10rem;
-  border-radius: 15px;
-  box-shadow: 27px 27px 54px #cccccc, -27px -27px 54px #f4f4f4;
-  height: min-content;
-  width: min-content;
+  height: auto;
+  width: auto;
+  padding: 0px 35px;
   grid-area: center;
   justify-self: center;
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center; }
+  justify-content: space-around; }
+
+.login-form {
+  height: 100vh; }
+  .login-form a {
+    list-style: none;
+    text-decoration: none;
+    color: #85BFC8; }
+  .login-form .nav-back {
+    width: 25px; }
+    .login-form .nav-back div {
+      height: 25px;
+      margin-top: 10px;
+      margin-bottom: 10px;
+      display: inline-block; }
+      .login-form .nav-back div .material-icons {
+        font-size: 25px; }
+  .login-form__logo {
+    width: 150px;
+    height: 50px;
+    margin: 50px auto; }
+  .login-form .input-box .input-box__field {
+    margin-left: auto;
+    margin-right: auto; }
+  .login-form__warning-message {
+    font-size: 12px;
+    color: #F4CF09;
+    font-weight: bold; }
+  .login-form h1 {
+    font-weight: bolder; }
+  .login-form .auth-options {
+    display: flex;
+    justify-content: space-between;
+    align-items: center; }
+    .login-form .auth-options div {
+      display: flex;
+      justify-content: flex-start;
+      align-items: center; }
+  .login-form .button, .login-form p {
+    margin-left: auto;
+    margin-right: auto; }
 
 .sign-up-form {
-  padding: 6rem 12rem; }
+  height: 100vh; }
+  .sign-up-form a {
+    list-style: none;
+    text-decoration: none;
+    color: #85BFC8; }
+  .sign-up-form .nav-back {
+    width: 25px; }
+    .sign-up-form .nav-back div {
+      height: 25px;
+      margin-top: 10px;
+      margin-bottom: 10px;
+      display: inline-block; }
+      .sign-up-form .nav-back div .material-icons {
+        font-size: 25px; }
+  .sign-up-form .input-box .input-box__field {
+    margin-left: auto;
+    margin-right: auto; }
+  .sign-up-form h1 {
+    font-weight: bolder; }
+  .sign-up-form .button, .sign-up-form p {
+    margin-left: auto;
+    margin-right: auto; }
 
 .group-card {
   height: 280px;
@@ -774,7 +832,7 @@ body {
     margin-right: 8px; }
   .input-box__field {
     width: 250px;
-    height: 50px;
+    height: 45px;
     padding: 7px;
     border-radius: 15px;
     margin-bottom: 6px;

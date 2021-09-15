@@ -4,13 +4,7 @@
   grid-template-columns: 1fr 1.1fr 0.9fr;
   grid-template-rows: 0.7fr 1fr 0.5fr 0.4fr 0.5fr 0.55fr 0.4fr;
   gap: 30px 30px;
-  grid-template-areas: "color-grid icon-grid icon-grid"
- "color-grid button-grid button-grid"
- "control-grid control-grid control-grid"
- "tab-nav-grid avatars-grid avatars-grid"
- "input-grid input-grid input-grid"
- "dropdown-grid cards-grid cards-grid"
- "search-bar-grid cards-grid cards-grid"; }
+  grid-template-areas: "color-grid icon-grid icon-grid" "color-grid button-grid button-grid" "control-grid control-grid control-grid" "tab-nav-grid avatars-grid avatars-grid" "input-grid input-grid input-grid" "dropdown-grid cards-grid cards-grid" "search-bar-grid cards-grid cards-grid"; }
   .design-system > div {
     display: flex;
     flex-direction: column;
@@ -173,10 +167,7 @@
       grid-template-columns: 1fr 1fr 1fr;
       grid-template-rows: 1fr 1fr 1fr 1fr;
       gap: 30px 30px;
-      grid-template-areas: "title . ."
- ". on off"
- "checked on-checked off-checked"
- "unchecked on-unchecked off-unchecked";
+      grid-template-areas: "title . ." ". on off" "checked on-checked off-checked" "unchecked on-unchecked off-unchecked";
       justify-items: center;
       align-items: center; }
       .design-system__control-container-checkbox p {
@@ -195,10 +186,7 @@
       grid-template-columns: 1fr 1fr 1fr;
       grid-template-rows: 1fr 1fr 1fr 1fr;
       gap: 30px 30px;
-      grid-template-areas: "title . ."
- ". on off"
- "checked on-checked off-checked"
- "unchecked on-unchecked off-unchecked";
+      grid-template-areas: "title . ." ". on off" "checked on-checked off-checked" "unchecked on-unchecked off-unchecked";
       justify-items: center;
       align-items: center; }
       .design-system__control-container-radio-button p {
@@ -225,10 +213,7 @@
       grid-template-columns: 1fr 1fr;
       grid-template-rows: 1fr 1fr 1fr 1fr;
       gap: 30px 30px;
-      grid-template-areas: "title ."
- "on switch-on"
- "off switch-off"
- "disabled-text switch-disabled";
+      grid-template-areas: "title ." "on switch-on" "off switch-off" "disabled-text switch-disabled";
       justify-items: center;
       align-items: center; }
       .design-system__control-container-toggle-switch p {
@@ -719,12 +704,33 @@ body {
   margin: 25px auto; }
 
 .create-event-form h1 {
+  margin-top: 25px;
   font-weight: bolder; }
 
 .create-event-form .button {
   margin-bottom: 50px;
   margin-left: auto;
   margin-right: auto; }
+
+.create-group-form form {
+  height: 500px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center; }
+
+.create-group-form .input-box {
+  margin: 25px 0px; }
+
+.create-group-form textarea {
+  width: 100%; }
+
+.create-group-form .dropdown {
+  margin: 25px; }
+
+.create-group-form h1 {
+  margin-top: 25px;
+  font-weight: bolder; }
 
 .discardable-image {
   display: flex; }
@@ -788,78 +794,13 @@ body {
     color: black; }
 
 .form {
+  background-color: white;
   height: auto;
   width: auto;
   padding: 0px 35px;
-  grid-area: center;
-  justify-self: center;
   display: flex;
   flex-direction: column;
   justify-content: space-around; }
-
-.login-form {
-  height: 100vh; }
-  .login-form a {
-    list-style: none;
-    text-decoration: none;
-    color: #85BFC8; }
-  .login-form .nav-back {
-    width: 25px; }
-    .login-form .nav-back div {
-      height: 25px;
-      margin-top: 10px;
-      margin-bottom: 10px;
-      display: inline-block; }
-      .login-form .nav-back div .material-icons {
-        font-size: 25px; }
-  .login-form__logo {
-    width: 150px;
-    height: 50px;
-    margin: 50px auto; }
-  .login-form .input-box .input-box__field {
-    margin-left: auto;
-    margin-right: auto; }
-  .login-form__warning-message {
-    font-size: 12px;
-    color: #F4CF09;
-    font-weight: bold; }
-  .login-form h1 {
-    font-weight: bolder; }
-  .login-form .auth-options {
-    display: flex;
-    justify-content: space-between;
-    align-items: center; }
-    .login-form .auth-options div {
-      display: flex;
-      justify-content: flex-start;
-      align-items: center; }
-  .login-form .button, .login-form p {
-    margin-left: auto;
-    margin-right: auto; }
-
-.sign-up-form {
-  height: 100vh; }
-  .sign-up-form a {
-    list-style: none;
-    text-decoration: none;
-    color: #85BFC8; }
-  .sign-up-form .nav-back {
-    width: 25px; }
-    .sign-up-form .nav-back div {
-      height: 25px;
-      margin-top: 10px;
-      margin-bottom: 10px;
-      display: inline-block; }
-      .sign-up-form .nav-back div .material-icons {
-        font-size: 25px; }
-  .sign-up-form .input-box .input-box__field {
-    margin-left: auto;
-    margin-right: auto; }
-  .sign-up-form h1 {
-    font-weight: bolder; }
-  .sign-up-form .button, .sign-up-form p {
-    margin-left: auto;
-    margin-right: auto; }
 
 .group-cards > *:not(:last-child) {
   margin-bottom: 20px; }

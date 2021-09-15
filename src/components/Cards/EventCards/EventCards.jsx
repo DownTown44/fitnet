@@ -4,9 +4,9 @@ import PropTypes from 'prop-types';
 import Icon from '@material-ui/core/Icon';
 
 import { getEvents } from '../../../services/eventService';
+import { getUsersGroups } from '../../../services/groupService';
 import Text from '../../UI/Text';
 import EventCard from './EventCard';
-import { getUsersGroups } from '../../../services/groupService';
 import NavButton from '../../UI/NavButton';
 import Button from '../../UI/Button';
 
@@ -14,6 +14,7 @@ const EventCards = (props) => {
   const [events, setEvents] = useState([]);
   const [groupIds, setGroupIds] = useState([]);
   const history = useHistory();
+
   const userData = JSON.parse(sessionStorage.getItem('userData'));
 
   useEffect(() => {

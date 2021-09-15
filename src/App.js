@@ -22,7 +22,6 @@ function App() {
   // To get the current location
   // We need it to change the layouts prop based on this
   const location = useLocation();
-  const history = useHistory();
 
   const [ isAuth, setIsAuth ] = useState(false);
 

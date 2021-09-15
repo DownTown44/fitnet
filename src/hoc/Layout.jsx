@@ -5,6 +5,7 @@ import Header from '../components/Header/Header';
 import SideDrawer from '../components/Navigation/SideDrawer';
 
 const Layout = (props) => {
+  const { innerWidth: width, innerHeight: height } = window;
   const [sideDrawer, setSideDrawer] = useState(false);
 
   const toggelSideDrawer = () => {
@@ -12,7 +13,7 @@ const Layout = (props) => {
   }
 
   return (
-    <div className={`layout ${sideDrawer ? "layout--hidden" : ""}`}>
+    <div className={`layout ${sideDrawer ? "layout--hidden" : ""}`} style={{height: height}}>
       {sideDrawer ?
         <SideDrawer onLogout={props.onLogout} isAuth={props.isAuth} closeSideDrawer={toggelSideDrawer}/> :
         <>

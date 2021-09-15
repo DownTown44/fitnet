@@ -19,10 +19,12 @@ import DesignSystem from './designSystem/DesignSystem';
 import './css/style.css';
 
 function App() {
+  const { innerWidth: width, innerHeight: height } = window;
+  document.body.style.height = height;
+
   // To get the current location
   // We need it to change the layouts prop based on this
   const location = useLocation();
-
   const [ isAuth, setIsAuth ] = useState(false);
 
   const onLoginAttempt = (result) => {

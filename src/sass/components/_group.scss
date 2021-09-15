@@ -1,0 +1,39 @@
+.group {
+  display: flex;
+  flex-direction: column;
+  
+
+  &__image-container {
+    margin: 20px auto;
+    height: 150px;
+    width: 270px;
+    border-radius: 12px;
+    overflow: hidden;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  & h3 {
+    font-size: 20px;
+    color: $neutral-darkest;
+    font-weight: bold;
+
+    margin: 0 auto;
+  }
+
+  &__info {
+    margin: 15px 0  ;
+    font-size: 14px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+
+    & p:first-child {
+      font-weight: bold;
+    }
+  }
+}

@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 
 function TabNav(props){
-  const [visibleTab, setVisibleTab] = useState(props.data[0].id)
+  const [visibleTab, setVisibleTab] = useState(props.tabs[0].id)
 
-  const listTitles = props.data.map((item) => 
+  const listTitles = props.tabs.map((item) => 
     <li 
       onClick={() => {
         !item.inactive && setVisibleTab(item.id)
@@ -15,7 +15,7 @@ function TabNav(props){
     >{item.tabTitle}</li>
   );
                                    
-  const listContent = props.data.map((item) => 
+  const listContent = props.tabs.map((item) => 
       <div style={visibleTab === item.id ? {} : {display: 'none'}}>{item.tabContent}</div>
   );
   

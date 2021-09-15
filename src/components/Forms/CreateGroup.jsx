@@ -12,6 +12,7 @@ import Text from '../UI/Text';
 import Textarea from '../UI/Textarea';
 import Button from '../UI/Button';
 import DiscardableImage from '../ImageUpload/DiscardableImage';
+import TopNav from '../Navigation/TopNav';
 
 const CreateGroup = (props) => {
   const history = useHistory();
@@ -133,6 +134,7 @@ const CreateGroup = (props) => {
 
   return (
     <div className="form create-group-form">
+      <TopNav to="/groups"/>
       <Text htmlTag="h1">Csoport létrehozása</Text>
       <form>
         <Input 
@@ -140,6 +142,7 @@ const CreateGroup = (props) => {
           onChange={(event) => handleChange(event, 'name')}
           value={groupData.name}
           placeholder="Csoport neve"
+          iconName="groups"
         />
         <Textarea
           onChange={(event) => handleChange(event, 'description')}
@@ -166,7 +169,7 @@ const CreateGroup = (props) => {
           onChange={(event) => handleImageUpload(event)}
         />
         {preview && <DiscardableImage src={preview} onRemove={() => handleImageRemove()}/>}
-        <Dropdown optionList={accessibilityOptions} placeholder="Az csoport láthatósága" returnSelected={handleChangeSelect}/>
+        <Dropdown optionList={accessibilityOptions} placeholder="A csoport láthatósága" returnSelected={handleChangeSelect}/>
         {
           props.edit ?
           <Button additionalClass="button-normal--iconed" onClick={(event) => onModify(event)}>

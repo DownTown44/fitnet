@@ -15,6 +15,8 @@ import UserList from './UserList/UserList';
 import Modal from './UI/Modal';
 import Dialog from './Dialog/Dialog';
 import EventCards from './Cards/EventCards/EventCards';
+import TopNav from './Navigation/TopNav';
+import TabNav from './Navigation/TabNav';
 
 const Group = () => {
   const [isOwner, setIsOwner] = useState(false);
@@ -96,15 +98,24 @@ const Group = () => {
     history.push({pathname: '/events/create', state: groupData});
   }
 
-  return (
-    <div className="center">
-      <Text htmlTag="h3">{groupData.name}</Text>
+  let description = (
+    <>
       <Text>{groupData.description}</Text>
       {/* if the user is the owner don't show the join button */}
-      <img src={`http://localhost:8080/${groupData.picture}`}/>
       {groupData.accessibilityId !== 2 && !isJoined && !isOwner && 
         <Button onClick={() => onJoin()}>Csatlakozás</Button>
       }
+      {isOwner && <Button onClick={() => onModify()}>Módosítás</Button>}
+      {
+        isJoined && !isOwner && 
+        <Button onClick={() => onLeave()}>Kilépés</Button>
+      }
+      {isOwner && <Button onClick={() => {setIsDeletion(true)}}>Törlés</Button>}
+    </>
+  );
+
+  let members = (
+    <>
       {isOwner && <Button onClick={() => setShowSearch(!showSearch)}>Meghívás</Button>}
       {
         showSearch &&
@@ -125,22 +136,55 @@ const Group = () => {
         /> :
         <UserList users={usersData}/>
       }
-      {isOwner && <Button onClick={() => {setIsDeletion(true)}}>Törlés</Button>}
+    </>
+  );
+
+  let events = (
+    <>
+      {(isJoined || isOwner) &&
+        <Button onClick={() => onEventCreate()}>Esemény létrehozása</Button>}
+      <EventCards groupId={id} />
+    </>
+  );
+
+  const tabs = [
+    {id: 0,
+     tabTitle: "Leírás",
+     tabContent: description
+    },
+    {id: 1,
+     tabTitle: "Tagok",
+     tabContent: members
+    },
+    {id: 2,
+     tabTitle: "Események",
+     tabContent: events
+    }
+  ];
+
+  return (
+    <div className="group">
+      <TopNav
+        to="/groups"
+        iconName="more_vert"
+      />
+      <div className="group__image-container">
+        <img src={`http://localhost:8080/${groupData.picture}`}/>
+      </div>
+      <Text htmlTag="h3">{groupData.name}</Text>
+      <div className="group__info">
+        <Text>{usersData.length}</Text>
+        <Text>Tag</Text>
+      </div>
+
+      <TabNav tabs={tabs} />
+     
       {
         isDeletion && 
         <Modal isShown={isDeletion} closeModal={() => {setIsDeletion(!isDeletion)}}>
           <Dialog onAccept={onAcceptDelete} onDecline={() => {setIsDeletion(!isDeletion)}}>Biztos vagy benne, hogy törölni szeretnéd?</Dialog>
         </Modal>
       }
-      {isOwner && <Button onClick={() => onModify()}>Módosítás</Button>}
-      {
-        isJoined && !isOwner && 
-        <Button onClick={() => onLeave()}>Kilépés</Button>
-      }
-      {
-        (isJoined || isOwner) &&
-        <Button onClick={() => onEventCreate()}>Esemény létrehozása</Button>}
-      <EventCards groupId={id} />
     </div>
   );
 }

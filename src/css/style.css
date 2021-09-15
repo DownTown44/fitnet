@@ -692,14 +692,14 @@ body {
   height: 500px;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: space-around;
   align-items: center; }
 
 .create-group-form .input-box {
   margin: 25px 0px; }
 
 .create-group-form textarea {
-  width: 100%; }
+  width: 80%; }
 
 .create-group-form .dropdown {
   margin: 25px; }
@@ -713,9 +713,12 @@ body {
   .discardable-image__image {
     max-height: 8rem; }
   .discardable-image__cancelButton {
-    font-size: 2rem;
-    margin-left: -2rem;
-    cursor: pointer; }
+    font-size: 25px;
+    margin-left: -20px;
+    cursor: pointer;
+    color: rgba(52, 69, 68, 0.8);
+    border-radius: 50%;
+    background-color: #FBFBFB; }
 
 .dropdown {
   width: 250px;
@@ -773,10 +776,36 @@ body {
   background-color: white;
   height: auto;
   width: auto;
-  padding: 0px 35px;
   display: flex;
   flex-direction: column;
   justify-content: space-around; }
+
+.group {
+  display: flex;
+  flex-direction: column; }
+  .group__image-container {
+    margin: 20px auto;
+    height: 150px;
+    width: 270px;
+    border-radius: 12px;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center; }
+  .group h3 {
+    font-size: 20px;
+    color: #262626;
+    font-weight: bold;
+    margin: 0 auto; }
+  .group__info {
+    margin: 15px 0;
+    font-size: 14px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center; }
+    .group__info p:first-child {
+      font-weight: bold; }
 
 .group-cards > *:not(:last-child) {
   margin-bottom: 20px; }
@@ -928,7 +957,8 @@ body {
     width: 50%;
     height: 25px;
     margin-top: 10px;
-    margin-bottom: 10px; }
+    margin-bottom: 10px;
+    margin-left: 25px; }
     .login-form .nav-back .material-icons {
       font-size: 25px;
       color: #344544; }
@@ -944,9 +974,11 @@ body {
     color: #F4CF09;
     font-weight: bold; }
   .login-form h1 {
-    font-weight: bolder; }
+    font-weight: bold;
+    margin-left: 40px; }
   .login-form .auth-options {
     font-size: 12px;
+    margin-left: 35px;
     display: flex;
     justify-content: space-between;
     align-items: center; }
@@ -1126,7 +1158,8 @@ body {
     width: 50%;
     height: 25px;
     margin-top: 10px;
-    margin-bottom: 10px; }
+    margin-bottom: 10px;
+    margin-left: 25px; }
     .sign-up-form .nav-back .material-icons {
       font-size: 25px;
       color: #344544; }
@@ -1134,7 +1167,8 @@ body {
     margin-left: auto;
     margin-right: auto; }
   .sign-up-form h1 {
-    font-weight: bolder; }
+    font-weight: bolder;
+    margin-left: 40px; }
   .sign-up-form .button, .sign-up-form p {
     margin-left: auto;
     margin-right: auto; }
@@ -1345,6 +1379,14 @@ body {
     .tab-navigation__tab--inactive {
       color: #EDEDED;
       pointer-events: none; }
+
+.textarea {
+  outline: none;
+  padding: 7px;
+  border: none;
+  border-radius: 10px;
+  box-shadow: 0px 1px 4px #E0E0E0;
+  background-color: #FBFBFB; }
 
 .toggle-switch__checkbox {
   position: relative;

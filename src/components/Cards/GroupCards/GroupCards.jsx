@@ -1,9 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
+import Icon from '@material-ui/core/Icon';
+
 
 import { getGroups } from '../../../services/groupService';
 import Text from '../../UI/Text';
 import GroupCard from './GroupCard';
+import NavButton from '../../UI/NavButton';
+import Button from '../../UI/Button';
 
 const GroupCards = () => {
   const [groups, setGroups] = useState([]);
@@ -29,26 +33,37 @@ const GroupCards = () => {
   }
 
   return (
-    <div className="center">
-      {groups.length !== 0 ? groups.map((element) => {
-        if (element.accessibility === 'public' ||
-            element.accessibility === 'private' ||
-            element.userId === userData.userId ||
-            isMember(userData.userId, element)) {
-          return (
-            <GroupCard
-              id={element.groupId}
-              key={element.groupId}
-              isPrivate={element.accessibility === 'private'}
-              src={`http://localhost:8080/${element.picture}`}
-              title={element.name}
-              buttonText="Megnyitás"
-              onOpen={() => history.push(`/groups/${element.groupId}`)}
-              onClick={() => console.log("Group button clicked")}
-            />
-          );
-        }
-      }) : <Text>Nincsenek csoportok</Text> }
+    <div className="group-cards">
+      <div className="group-cards__control">
+        <NavButton to="/" icon="arrow_back">Csoportok</NavButton>
+        <Icon>search</Icon>
+      </div>
+      <Button additionalClass="button-normal--iconed" isDisabled={!userData} onClick={() => history.push('groups/create')}>
+        Csoport
+        <Icon>add</Icon>
+      </Button>
+      <Text htmlTag="h3">Összes csoport</Text>
+      <div className="group-cards__cards">
+        {groups.length !== 0 ? groups.map((element) => {
+          if (element.accessibility === 'public' ||
+              element.accessibility === 'private' ||
+              element.userId === userData.userId ||
+              isMember(userData.userId, element)) {
+            return (
+              <GroupCard
+                id={element.groupId}
+                key={element.groupId}
+                isPrivate={element.accessibility === 'private'}
+                src={`http://localhost:8080/${element.picture}`}
+                title={element.name}
+                buttonText="Megnyitás"
+                onOpen={() => history.push(`/groups/${element.groupId}`)}
+                onClick={() => console.log("Group button clicked")}
+              />
+            );
+          }
+        }) : <Text>Nincsenek csoportok</Text> }
+      </div>
     </div>
   );
 }

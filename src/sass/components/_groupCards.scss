@@ -1,4 +1,4 @@
-.event-cards {
+.group-cards {
   & > *:not(:last-child) {
     margin-bottom: 20px;
   }
@@ -56,84 +56,35 @@
     flex-direction: column;
     align-items: center;
 
-    & .event-card {
+    & .group-card {
       margin-bottom: 30px;
     }
   }
 }
 
-.event-card {
+.group-card {
   height: 280px;
-  width: 75vw;
+  width: 240px;
   padding: 12px;
   border-radius: 20px;
   box-shadow: $shadow-card;
   background-color: $neutral-bright-white;
-
+  
   display: flex;
   flex-direction: column;
   justify-content: space-between;
 
   &__image-container {
-    position: relative;
-
     margin: 0 auto;
     margin-bottom: 8px;
     height: 140px;
-    width: 98%;
+    width: 210px;
     border-radius: 12px;
     overflow: hidden;
 
     display: flex;
     justify-content: center;
     align-items: center;
-  }
-
-  &__date {
-    position: absolute;
-    top: 8px;
-    left: 8px;
-
-    height: 36px;
-    width: 36px;
-    color: $neutral-bright-white;
-    font-weight: bold;
-    background: rgba($secondary-blue, 0.8);
-    border-radius: 50%;
-
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-
-    &--small {
-      font-size: 10px;
-    }
-
-    &--big {
-      font-size: 16px;
-    }
-  }
-
-  &__bookmark {
-    position: absolute;
-    top: 8px;
-    right: 8px;
-
-    height: 36px;
-    width: 36px;
-    background: rgba($secondary-blue, 0.8);
-    border-radius: 50%;
-
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-
-    & .material-icons {
-      color: $neutral-bright-white;
-      font-size: 28px;
-    }
   }
 
   & h3 {
@@ -146,7 +97,7 @@
     justify-content: left;
     align-items: center;
 
-    &-location {
+    &-tags {
       color: $primary-blue;
       font-size: 18px !important;
     }

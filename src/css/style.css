@@ -118,6 +118,7 @@
         justify-content: center;
         align-items: center; }
       .design-system__button-container-buttons .button.normal-iconed-pressed .material-icons {
+        font-size: 20px;
         margin-left: 6px; }
       .design-system__button-container-buttons .button.outlined-iconed-pressed {
         border: 2px solid #344544;
@@ -129,7 +130,8 @@
         justify-content: center;
         align-items: center; }
       .design-system__button-container-buttons .button.outlined-iconed-pressed .material-icons {
-        margin-right: 6px; }
+        margin-right: 6px;
+        font-size: 20px; }
       .design-system__button-container-buttons .button.icon-button-pressed {
         border-radius: 15px;
         padding: 7px 8px;
@@ -423,6 +425,10 @@ body {
     margin-right: 20px;
     font-size: 25px; }
 
+.event-cards > button {
+  margin-left: auto;
+  margin-right: 20px; }
+
 .event-cards > h3 {
   font-size: 20px;
   color: #262626;
@@ -438,7 +444,7 @@ body {
 
 .event-card {
   height: 280px;
-  width: 240px;
+  width: 75vw;
   padding: 12px;
   border-radius: 20px;
   box-shadow: 0px 4px 15px 3px rgba(38, 38, 38, 0.1);
@@ -451,7 +457,7 @@ body {
     margin: 0 auto;
     margin-bottom: 8px;
     height: 140px;
-    width: 210px;
+    width: 98%;
     border-radius: 12px;
     overflow: hidden;
     display: flex;
@@ -539,6 +545,7 @@ body {
         color: #EDEDED;
         background-color: #85BFC8; }
     .button-normal--iconed .material-icons {
+      font-size: 20px;
       margin-left: 6px; }
   .button-outlined {
     border: 2px solid #344544;
@@ -560,7 +567,8 @@ body {
         color: #5A7270;
         border-color: #5A7270; }
     .button-outlined--iconed .material-icons {
-      margin-right: 6px; }
+      margin-right: 6px;
+      font-size: 20px; }
 
 .icon-button {
   border-radius: 15px;
@@ -762,6 +770,50 @@ body {
 
 .sign-up-form {
   padding: 6rem 12rem; }
+
+.group-cards > *:not(:last-child) {
+  margin-bottom: 20px; }
+
+.group-cards__control {
+  height: 60px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center; }
+  .group-cards__control .navButton {
+    margin-left: 20px;
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: center; }
+    .group-cards__control .navButton a {
+      list-style: none;
+      text-decoration: none;
+      margin-left: 10px;
+      color: #344544;
+      font-size: 24px;
+      font-weight: bold; }
+    .group-cards__control .navButton .material-icons {
+      margin-right: 0; }
+  .group-cards__control .material-icons {
+    color: #344544;
+    margin-right: 20px;
+    font-size: 25px; }
+
+.group-cards > button {
+  margin-left: auto;
+  margin-right: 20px; }
+
+.group-cards > h3 {
+  font-size: 20px;
+  color: #262626;
+  margin-left: 20px;
+  font-weight: bold; }
+
+.group-cards__cards {
+  display: flex;
+  flex-direction: column;
+  align-items: center; }
+  .group-cards__cards .group-card {
+    margin-bottom: 30px; }
 
 .group-card {
   height: 280px;

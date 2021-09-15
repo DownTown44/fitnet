@@ -4,19 +4,20 @@ import PropTypes from 'prop-types';
 import Icon from '@material-ui/core/Icon';
 
 import { getEvents } from '../../../services/eventService';
+import { getUsersGroups } from '../../../services/groupService';
 import Text from '../../UI/Text';
 import EventCard from './EventCard';
-import { getUsersGroups } from '../../../services/groupService';
 import NavButton from '../../UI/NavButton';
+import Button from '../../UI/Button';
 
 const EventCards = (props) => {
   const [events, setEvents] = useState([]);
   const [groupIds, setGroupIds] = useState([]);
   const history = useHistory();
-  let userData;
+
+  const userData = JSON.parse(sessionStorage.getItem('userData'));
 
   useEffect(() => {
-    userData = JSON.parse(sessionStorage.getItem('userData'));
     if (userData) {
       getUsersGroups(userData.userId).then((result) => {
         setGroupIds(result);
@@ -46,6 +47,10 @@ const EventCards = (props) => {
         <NavButton to="/" icon="arrow_back">Események</NavButton>
         <Icon>search</Icon>
       </div>
+      <Button additionalClass="button-normal--iconed" isDisabled={!userData} onClick={() => history.push('events/create')}>
+        Esemény
+        <Icon>add</Icon>
+      </Button>
       <Text htmlTag="h3">Összes esemény</Text>
       <div className="event-cards__cards">
         {events.length !== 0 ? events.map((element) => {

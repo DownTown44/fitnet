@@ -592,6 +592,48 @@ body {
   color: #D3D3D3;
   pointer-events: none; }
 
+.calendar-menu {
+  display: flex;
+  flex-direction: column;
+  align-items: center; }
+
+.react-calendar {
+  width: 300px;
+  border: none;
+  font-family: 'Roboto Condensed', sans-serif; }
+  .react-calendar__month-view__weekdays {
+    justify-content: space-between; }
+    .react-calendar__month-view__weekdays__weekday {
+      max-width: 30px !important;
+      width: 100%;
+      margin-left: 5px;
+      margin-right: 5px; }
+  .react-calendar__month-view__days {
+    justify-content: space-between; }
+  .react-calendar__tile {
+    max-width: 30px !important;
+    height: 30px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center; }
+    .react-calendar__tile--active {
+      border-radius: 10px;
+      background: #879E9D;
+      color: black; }
+      .react-calendar__tile--active:enabled:hover, .react-calendar__tile--active:enabled:focus {
+        background: #879E9D; }
+  .react-calendar button {
+    margin: 5px;
+    font-family: 'Roboto Condensed', sans-serif; }
+    .react-calendar button.react-calendar__navigation__label {
+      font-weight: bold; }
+
+.event-reminder {
+  border-radius: 50%;
+  background-color: #F4CF09;
+  font-weight: bold; }
+
 .slider {
   position: relative;
   height: 25rem;
@@ -784,6 +826,37 @@ body {
       background-color: #FBFBFB; }
   .dropdown__selected {
     color: black; }
+
+.feed__section {
+  margin-top: 25px;
+  display: flex;
+  flex-direction: column;
+  align-items: center; }
+  .feed__section .filtered-events {
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 20px;
+    font-size: 10px; }
+
+.feed__title {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between; }
+  .feed__title h2 {
+    margin-left: 25px;
+    font-weight: bold;
+    font-size: 20px; }
+  .feed__title a {
+    margin-right: 10px;
+    list-style: none;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: normal;
+    color: #85BFC8; }
+
+.feed .event-card {
+  margin: 8px auto; }
 
 .form {
   background-color: white;

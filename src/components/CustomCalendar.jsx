@@ -3,6 +3,7 @@ import Calendar from 'react-calendar';
 import moment from 'moment';
 import { getEventDates, getEvents } from '../services/feedService'
 import EventCards from './Cards/EventCards/EventCards';
+import 'react-calendar/dist/Calendar.css';
 
 const CustomCalendar = () => {
   // https://github.com/wojtekmaj/react-calendar
@@ -19,6 +20,7 @@ const CustomCalendar = () => {
   const onDateChange = (newDate) => {
     setDate(newDate);
     getEvents(moment(newDate).format('YYYY-MM-DD 00:00')).then((result) => {
+      console.log(result);
       setEvents(result);
     });
   }

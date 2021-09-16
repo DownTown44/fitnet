@@ -15,7 +15,7 @@ const selectEventsByDate = async (model, date, errMessage) => {
             },
           },
           {
-            end_date: {
+            start_date: {
               [seq.Op.lt]: endDate,
             },
           },

@@ -115,7 +115,7 @@ const CreateEvent = (props) => {
 
   const isValid = (obj) => {
     for (let key in obj) {
-      if (key !== 'groupId' && (obj[key] === '' || obj[key] === null)) {
+      if (key !== 'groupId' && (obj[key] === '' || obj[key] === null) || obj[key] === undefined) {
         return false;
       }
     }

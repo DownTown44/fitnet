@@ -38,13 +38,15 @@ const eventDTO = (data) => {
     start_date
   } = data;
   
+  const date = new Date(start_date);
+
   dto.eventId = event_id;
   dto.accessibilityId = accessibility_id;
   dto.groupId = group_id;
   dto.typeId = type_id;
   dto.name = name;
   dto.address = address;
-  dto.startDate = start_date;
+  dto.startDate = moment(date).format('YYYY/MMM/DD hh:mm');
   if (accessibility) {
     dto.accessibility = accessibility.accessibility_name;
   }
@@ -134,6 +136,8 @@ router.get('/', async (req, res) => {
       array[index].start_date = moment(date).format('YYYY/MMM/DD hh:mm');
       array[index] = eventDTO(element);
     });
+
+    console.log(result);
     res.json(result);
   } catch (error) {
     console.log(error);
@@ -145,11 +149,11 @@ router.get('/', async (req, res) => {
 router.get('/actual', async (req, res) => {
   try {
     const result = await getEventsByDate(req.query.date);
-    
+
     result.forEach((element, index, array) => {
       array[index] = eventDTO(element);
     });
-
+    
     res.json(result);
   } catch (error) {
     console.log(error);

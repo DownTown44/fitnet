@@ -149,11 +149,11 @@ router.get('/', async (req, res) => {
 router.get('/actual', async (req, res) => {
   try {
     const result = await getEventsByDate(req.query.date);
-    
+
     result.forEach((element, index, array) => {
       array[index] = eventDTO(element);
     });
-
+    
     res.json(result);
   } catch (error) {
     console.log(error);

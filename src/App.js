@@ -15,6 +15,7 @@ import CreateGroup from './components/Forms/CreateGroup';
 import GroupCards from './components/Cards/GroupCards/GroupCards';
 import Group from './components/Group';
 import DesignSystem from './designSystem/DesignSystem';
+import CustomCalendar from './components/CustomCalendar';
 
 import './css/style.css';
 
@@ -106,6 +107,9 @@ function App() {
         </Route>
         <Route path="/groups/:id/edit">
           <CreateGroup edit={true}/>
+        </Route>
+        <Route path="/calendar">
+          <CustomCalendar />
         </Route>
         <Redirect to="/" />
       </Switch>

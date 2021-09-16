@@ -137,7 +137,6 @@ router.get('/', async (req, res) => {
       array[index] = eventDTO(element);
     });
 
-    console.log(result);
     res.json(result);
   } catch (error) {
     console.log(error);

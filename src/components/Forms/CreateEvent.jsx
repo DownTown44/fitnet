@@ -37,7 +37,6 @@ const CreateEvent = (props) => {
 
   useEffect(() => {
     getAccessibilities().then((options) => {
-      // TODO: Accessibility options will need to have a value, a text, and boolean named default
       if (location.state) {
         // if we mount this componenet from group view, then we need everything except invisible
         options.splice(2, 1);
@@ -68,7 +67,8 @@ const CreateEvent = (props) => {
   }, []);
 
   useEffect(() => {
-    if (eventData.accessibilityId === '4') {
+    if (location.state) {
+      console.log(location.state.groupId);
       setEventData((prevState) => {
         return {
           ...prevState,

@@ -68,7 +68,6 @@ const CreateEvent = (props) => {
 
   useEffect(() => {
     if (location.state) {
-      console.log(location.state.groupId);
       setEventData((prevState) => {
         return {
           ...prevState,

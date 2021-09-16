@@ -58,7 +58,6 @@ const GroupCards = () => {
                 title={element.name}
                 buttonText="Megnyitás"
                 onOpen={() => history.push(`/groups/${element.groupId}`)}
-                onClick={() => console.log("Group button clicked")}
               />
             );
           }

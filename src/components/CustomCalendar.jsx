@@ -1,9 +1,11 @@
 import { useState, useEffect } from 'react';
 import Calendar from 'react-calendar';
 import moment from 'moment';
+
 import { getEventDates, getEvents } from '../services/feedService'
 import EventCards from './Cards/EventCards/EventCards';
 import 'react-calendar/dist/Calendar.css';
+import TopNav from './Navigation/TopNav';
 
 const CustomCalendar = () => {
   // https://github.com/wojtekmaj/react-calendar
@@ -26,7 +28,8 @@ const CustomCalendar = () => {
   }
 
   return (
-    <div className="calendar-menu left">
+    <div className="calendar-menu">
+      <TopNav to='/' />
       <Calendar
         onChange={onDateChange}
         value={date}
@@ -36,7 +39,7 @@ const CustomCalendar = () => {
           }
         }}
       />
-      <EventCards calendarEvents={true} events={events}/>
+      <EventCards calendarEvents={true} events={events} hideNav/>
     </div>
   );
 }

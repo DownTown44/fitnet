@@ -498,7 +498,7 @@ body {
   z-index: 9;
   left: 0;
   top: 0;
-  background-color: rgba(0, 0, 0, 0.4); }
+  background-color: rgba(0, 0, 0, 0.3); }
 
 .button {
   padding: 13px 25px;
@@ -596,6 +596,16 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center; }
+  .calendar-menu > :first-child {
+    margin-right: auto; }
+  .calendar-menu .event-cards {
+    margin-top: 25px;
+    display: flex;
+    flex-direction: column;
+    align-items: center; }
+    .calendar-menu .event-cards h3 {
+      margin-left: auto;
+      margin-right: auto; }
 
 .react-calendar {
   width: 300px;
@@ -908,6 +918,14 @@ body {
     .group__members .button-outlined--iconed {
       margin-top: 20px;
       margin-bottom: 20px; }
+    .group__members .user-list {
+      display: flex;
+      flex-direction: column; }
+      .group__members .user-list .user {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        padding: 0 40px; }
   .group__events {
     display: flex;
     flex-direction: column;
@@ -917,6 +935,44 @@ body {
       margin-bottom: 20px;
       margin-left: auto;
       margin-right: 15px; }
+  .group__menu {
+    background-color: #EDEDED;
+    border-radius: 12px;
+    width: 100%;
+    box-shadow: 0px 4px 15px 3px rgba(38, 38, 38, 0.1);
+    display: flex;
+    flex-direction: column;
+    align-items: center; }
+    .group__menu button {
+      background-color: transparent;
+      border-radius: 0px;
+      width: 100%;
+      height: 50px; }
+      .group__menu button:not(:last-child) {
+        border-bottom: 1px solid #D3D3D3; }
+  .group__deletion {
+    background-color: #EDEDED;
+    border-radius: 12px;
+    padding: 10px;
+    width: 100%;
+    height: 100px;
+    box-shadow: 0px 4px 15px 3px rgba(38, 38, 38, 0.1);
+    display: flex;
+    justify-content: center;
+    align-items: center; }
+    .group__deletion .dialog {
+      display: flex;
+      flex-direction: column; }
+      .group__deletion .dialog p {
+        font-size: 10px;
+        color: #262626;
+        margin-bottom: 20px; }
+      .group__deletion .dialog button {
+        background-color: transparent;
+        border-radius: 0px;
+        font-size: 12px; }
+      .group__deletion .dialog__buttons {
+        margin: 0 auto; }
 
 .group-cards > *:not(:last-child) {
   margin-bottom: 20px; }
@@ -1536,7 +1592,6 @@ body {
       background-color: #D3D3D3; }
 
 .user-avatar {
-  width: 200px;
   display: flex;
   align-items: center;
   justify-content: left; }
@@ -1581,8 +1636,7 @@ body {
   margin-top: 20px;
   margin-bottom: 20px;
   display: flex;
-  flex-direction: column;
-  align-items: center; }
+  flex-direction: column; }
   .user-list .user {
     margin-bottom: 15px; }
 

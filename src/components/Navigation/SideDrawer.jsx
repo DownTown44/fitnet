@@ -23,7 +23,7 @@ const AuthNav = (props) => {
           <NavButton icon="person" onClick={() => props.closeSideDrawer()}>Profilom</NavButton>
           <NavButton to="/events" icon="dashboard" onClick={() => props.closeSideDrawer()}>Események</NavButton>
           <NavButton to="/groups" icon="face" onClick={() => props.closeSideDrawer()}>Csoportok</NavButton>
-          <NavButton to="/facilities" icon="other_houses" onClick={() => props.closeSideDrawer()}>Sportlétesítmények</NavButton>
+          <NavButton icon="other_houses" onClick={() => props.closeSideDrawer()}>Sportlétesítmények</NavButton>
           <NavButton to="/calendar" icon="event_note" onClick={() => props.closeSideDrawer()}>Naptár</NavButton>
           <NavButton icon="bookmark" onClick={() => props.closeSideDrawer()}>Mentett események</NavButton>
           <NavButton icon="info" onClick={() => props.closeSideDrawer()}>Kapcsolat</NavButton>

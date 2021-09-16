@@ -83,6 +83,7 @@ const Group = () => {
   }
 
   const onLeave = async () => {
+    toggleMenu();
     const result = await userLeaveGroup(userData.userId, id);
 
     if (result.success) {
@@ -171,10 +172,15 @@ const Group = () => {
 
   return (
     <div className="group">
-      <TopNav
-        to="/groups"
-        iconName="more_vert"
-      />
+      {isJoined ? 
+        <TopNav
+          to="/groups"
+          iconName="more_vert"
+          onIconClick={() => toggleMenu()}
+        /> :
+        <TopNav to="/groups" />
+      }
+    
       <div className="group__image-container">
         <img src={`http://localhost:8080/${groupData.picture}`}/>
       </div>
@@ -186,19 +192,23 @@ const Group = () => {
 
       <TabNav tabs={tabs} />
 
-      {menuOpen && 
-        <div>
-          {isJoined && !isOwner && 
-            <Button additionalClass="button-normal" onClick={() => onLeave()}>Kilépés</Button>
-          }
-          {isOwner && <Button onClick={() => onModify()}>Módosítás</Button>}
-          {isOwner && <Button onClick={() => {setIsDeletion(true)}}>Törlés</Button>}
-        </div>
+      {menuOpen & !isDeletion && 
+        <Modal isShown={menuOpen} closeModal={() => toggleMenu()}>
+          <div className="group__menu">
+            {isJoined && !isOwner && 
+              <Button onClick={() => onLeave()}>Kilépés</Button>
+            }
+            {isOwner && <Button onClick={() => onModify()}>Módosítás</Button>}
+            {isOwner && <Button onClick={() => {setIsDeletion(true)}}>Törlés</Button>}     
+          </div>
+        </Modal>
       }
      
       {isDeletion && 
         <Modal isShown={isDeletion} closeModal={() => {setIsDeletion(!isDeletion)}}>
-          <Dialog onAccept={onAcceptDelete} onDecline={() => {setIsDeletion(!isDeletion)}}>Biztos vagy benne, hogy törölni szeretnéd?</Dialog>
+          <div className="group__deletion">
+            <Dialog onAccept={onAcceptDelete} onDecline={() => {setIsDeletion(!isDeletion)}}>Biztos vagy benne, hogy törölni szeretnéd?</Dialog>
+          </div>
         </Modal>
       }
     </div>

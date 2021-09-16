@@ -1,11 +1,39 @@
+.event-cards {
+  & > *:not(:last-child) {
+    margin-bottom: 20px;
+  }
+
+  & > button {
+    margin-left: auto;
+    margin-right: 20px;
+  }
+
+  & > h3 {
+    font-size: 20px;
+    color: $neutral-darkest;
+    margin-left: 30px;
+    font-weight: bold;
+  }
+
+  &__cards {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    & .event-card {
+      margin-bottom: 30px;
+    }
+  }
+}
+
 .event-card {
   height: 280px;
-  width: 240px;
+  width: 75vw;
   padding: 12px;
   border-radius: 20px;
   box-shadow: $shadow-card;
   background-color: $neutral-bright-white;
-  
+
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -16,7 +44,7 @@
     margin: 0 auto;
     margin-bottom: 8px;
     height: 140px;
-    width: 210px;
+    width: 98%;
     border-radius: 12px;
     overflow: hidden;
 

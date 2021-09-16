@@ -35,6 +35,7 @@
     }
 
     &--iconed .material-icons {
+      font-size: 20px;
       margin-left: 6px;
     }
   }
@@ -72,6 +73,7 @@
   
     &--iconed .material-icons {
       margin-right: 6px;
+      font-size: 20px;
     }
   }
 }
@@ -109,6 +111,12 @@
     & .material-icons {
       font-size: 25px !important;
     }
+  }
+
+  &--outlined {
+    color: $secondary-grey;
+    background-color: $neutral-white;
+    border: 2px solid $secondary-grey;
   }
 }
 

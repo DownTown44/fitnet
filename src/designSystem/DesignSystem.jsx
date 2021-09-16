@@ -275,8 +275,8 @@ const DesignSystem = () => {
       <div className="design-system__tab">
         <h2>Tab</h2>
         <div className="design-system__tab-container">
-          <TabNav data={tabs}/>
-          <TabNav data={tabsSmall}/>
+          <TabNav tabs={tabs}/>
+          <TabNav tabs={tabsSmall}/>
         </div>
       </div>
 

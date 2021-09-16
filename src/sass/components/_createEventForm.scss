@@ -1,0 +1,32 @@
+.create-event-form {
+  & .input-box {
+    margin: 25px 0px;
+
+    & p {
+      margin-left: 40px;
+      margin-bottom: 15px;
+      color: $neutral-darkest;
+    }
+
+    & .input-box__field {
+      margin-left: auto;
+      margin-right: auto;
+    }
+  }
+
+  & .dropdown {
+    margin: 25px auto;
+  }
+
+  & h1 {
+    margin-left: 40px;
+    margin-top: 25px;
+    font-weight: bolder;
+  }
+
+  & .button {
+    margin-bottom: 50px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}

@@ -1,17 +1,13 @@
 .user-avatar {
-  width: 200px;
-
   display: flex;
   align-items: center;
   justify-content: left;
 
-  margin-bottom: 15px;
-
   &__wrapper {
     display: inline-block;
     position: relative;
-    width: 45px;
-    height: 45px;
+    width: 35px;
+    height: 35px;
     overflow: hidden;
     border-radius: 50%;
 
@@ -27,14 +23,7 @@
   }
 
   & p {
-    font-size: 16px;
+    font-size: 14px;
     font-weight: bold;
-  }
-
-  & .cross-button {
-    margin-left: auto;
-    font-size: 20px;
-    color: $secondary-red;
-    cursor: pointer;
   }
 }

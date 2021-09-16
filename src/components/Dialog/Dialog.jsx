@@ -6,10 +6,12 @@ import Button from '../UI/Button';
 
 const Dialog = (props) => {
   return (
-    <div>
+    <div className="dialog">
       <Text>{props.children}</Text>
-      <Button onClick={props.onAccept}>Igen</Button>
-      <Button onClick={props.onDecline}>Nem</Button>
+      <div className="dialog__buttons">
+        <Button onClick={props.onAccept}>Igen</Button>
+        <Button onClick={props.onDecline}>Nem</Button>
+      </div>
     </div>
   );
 }

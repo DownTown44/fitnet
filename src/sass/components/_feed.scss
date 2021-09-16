@@ -1,2 +1,43 @@
 .feed {
+  &__section {
+    margin-top: 25px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    & .filtered-events {
+      margin-left: auto;
+      margin-right: auto;
+      margin-top: 20px;
+      font-size: 10px;
+    }
+  }
+
+  &__title {
+    width: 100%;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    & h2 {
+      margin-left: 25px;
+      font-weight: bold;
+      font-size: 20px;
+    }
+
+    & a {
+      margin-right: 10px;
+      list-style: none;
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: normal;
+      color: $secondary-light-blue;
+    }
+  }
+
+  & .event-card {
+    margin: 8px auto;
+  }
 }

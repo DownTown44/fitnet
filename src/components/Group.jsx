@@ -15,12 +15,16 @@ import UserList from './UserList/UserList';
 import Modal from './UI/Modal';
 import Dialog from './Dialog/Dialog';
 import EventCards from './Cards/EventCards/EventCards';
+import TopNav from './Navigation/TopNav';
+import TabNav from './Navigation/TabNav';
+import Icon from '@material-ui/core/Icon';
 
 const Group = () => {
   const [isOwner, setIsOwner] = useState(false);
   const [isJoined, setIsJoined] = useState(false);
   const [showSearch, setShowSearch] = useState(false);
   const [isDeletion, setIsDeletion] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
   const [groupData, setGroupData] = useState({});
   // usersData = membersData
   const [usersData, setUsersData] = useState([]);
@@ -59,6 +63,10 @@ const Group = () => {
     } 
   }, [groupData]);
 
+  const toggleMenu = () => {
+    setMenuOpen((prevProps) => !prevProps)
+  }
+
   const onUserListChange = async () => {
     // This will rerender the userlist after an invitation or delete
     const usersRes = await getGroupUsers(id);
@@ -75,6 +83,7 @@ const Group = () => {
   }
 
   const onLeave = async () => {
+    toggleMenu();
     const result = await userLeaveGroup(userData.userId, id);
 
     if (result.success) {
@@ -96,16 +105,23 @@ const Group = () => {
     history.push({pathname: '/events/create', state: groupData});
   }
 
-  return (
-    <div className="center">
-      <Text htmlTag="h3">{groupData.name}</Text>
+  let description = (
+    <div className="group__description">
       <Text>{groupData.description}</Text>
       {/* if the user is the owner don't show the join button */}
-      <img src={`http://localhost:8080/${groupData.picture}`}/>
       {groupData.accessibilityId !== 2 && !isJoined && !isOwner && 
-        <Button onClick={() => onJoin()}>Csatlakozás</Button>
+        <Button additionalClass="button-normal" onClick={() => onJoin()}>Csatlakozás</Button>
       }
-      {isOwner && <Button onClick={() => setShowSearch(!showSearch)}>Meghívás</Button>}
+    </div>
+  );
+
+  let members = (
+    <div className="group__members">
+      {isOwner && 
+        <Button additionalClass="button-outlined--iconed" onClick={() => setShowSearch(!showSearch)}>
+          {showSearch ? "Bezárás" : "Meghívás"}
+          <Icon>{showSearch ? "close" : "search"}</Icon>
+        </Button>}
       {
         showSearch &&
         <SearchUsers 
@@ -125,22 +141,76 @@ const Group = () => {
         /> :
         <UserList users={usersData}/>
       }
-      {isOwner && <Button onClick={() => {setIsDeletion(true)}}>Törlés</Button>}
-      {
-        isDeletion && 
-        <Modal isShown={isDeletion} closeModal={() => {setIsDeletion(!isDeletion)}}>
-          <Dialog onAccept={onAcceptDelete} onDecline={() => {setIsDeletion(!isDeletion)}}>Biztos vagy benne, hogy törölni szeretnéd?</Dialog>
+    </div>
+  );
+
+  let events = (
+    <div className="group__events">
+      {(isJoined || isOwner) &&
+        <Button additionalClass="button-normal--iconed" onClick={() => onEventCreate()}>
+          Esemény
+          <Icon>add</Icon>
+        </Button>}
+      <EventCards groupId={id} hideNav />
+    </div>
+  );
+
+  const tabs = [
+    {id: 0,
+     tabTitle: "Leírás",
+     tabContent: description
+    },
+    {id: 1,
+     tabTitle: "Tagok",
+     tabContent: members
+    },
+    {id: 2,
+     tabTitle: "Események",
+     tabContent: events
+    }
+  ];
+
+  return (
+    <div className="group">
+      {isJoined ? 
+        <TopNav
+          to="/groups"
+          iconName="more_vert"
+          onIconClick={() => toggleMenu()}
+        /> :
+        <TopNav to="/groups" />
+      }
+    
+      <div className="group__image-container">
+        <img src={`http://localhost:8080/${groupData.picture}`}/>
+      </div>
+      <Text htmlTag="h3">{groupData.name}</Text>
+      <div className="group__info">
+        <Text>{usersData.length}</Text>
+        <Text>Tag</Text>
+      </div>
+
+      <TabNav tabs={tabs} />
+
+      {menuOpen & !isDeletion && 
+        <Modal isShown={menuOpen} closeModal={() => toggleMenu()}>
+          <div className="group__menu">
+            {isJoined && !isOwner && 
+              <Button onClick={() => onLeave()}>Kilépés</Button>
+            }
+            {isOwner && <Button onClick={() => onModify()}>Módosítás</Button>}
+            {isOwner && <Button onClick={() => {setIsDeletion(true)}}>Törlés</Button>}     
+          </div>
         </Modal>
       }
-      {isOwner && <Button onClick={() => onModify()}>Módosítás</Button>}
-      {
-        isJoined && !isOwner && 
-        <Button onClick={() => onLeave()}>Kilépés</Button>
+     
+      {isDeletion && 
+        <Modal isShown={isDeletion} closeModal={() => {setIsDeletion(!isDeletion)}}>
+          <div className="group__deletion">
+            <Dialog onAccept={onAcceptDelete} onDecline={() => {setIsDeletion(!isDeletion)}}>Biztos vagy benne, hogy törölni szeretnéd?</Dialog>
+          </div>
+        </Modal>
       }
-      {
-        (isJoined || isOwner) &&
-        <Button onClick={() => onEventCreate()}>Esemény létrehozása</Button>}
-      <EventCards groupId={id} />
     </div>
   );
 }

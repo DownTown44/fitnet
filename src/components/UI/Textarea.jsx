@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 const Textarea = (props) => {
   return (
     <textarea
+      className="textarea"
       onChange={props.onChange}
       value={props.value}
       placeholder={props.placeholder}

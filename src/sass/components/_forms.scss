@@ -1,20 +1,10 @@
 .form {
-  padding: 5rem 10rem;
-  border-radius: 15px;
-  box-shadow: 27px 27px 54px #cccccc,
-              -27px -27px 54px #f4f4f4;
-  height: min-content;
-  width: min-content;
+  background-color: white;
 
-  grid-area: center;
-  justify-self: center;
+  height: auto;
+  width: auto;
 
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
-
-.sign-up-form {
-  padding: 6rem 12rem;
+  justify-content: space-around;
 }

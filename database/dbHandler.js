@@ -42,7 +42,7 @@ const sequelize = new Sequelize(`mysql://${user}:${password}@${host}:${port}/${d
       timestamps: false,
   },
   pool: {
-    max: 10,
+    max: 150,
     min: 0,
     acquire: 30000,
     idle: 1000
@@ -66,6 +66,14 @@ export const checkConnection = async () => {
 export const createEvent = async (data) => {
   try {
     const result = await insertEvent(data, models['events'], serverConnectionError);
+    
+    const resData = {
+      event_id: result,
+      user_id: data.user_id
+    };
+
+    await insertUser(resData, models['event_members'], serverConnectionError);
+
 
     return result;
   } catch(err) {
@@ -120,6 +128,13 @@ export const removeUserFromEvent = async (eventId, userId) => {
 export const createGroup = async (data) => {
   try {
     const result = await insertGroup(data, models['groups'], serverConnectionError);
+
+    const resData = {
+      group_id: result,
+      user_id: data.user_id
+    };
+
+    await insertUser(resData, models['group_members'], serverConnectionError);
 
     return result;
   } catch(err) {

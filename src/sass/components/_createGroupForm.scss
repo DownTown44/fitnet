@@ -1,0 +1,28 @@
+.create-group-form {
+  & form {
+    height: 500px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+  }
+
+  & .input-box {
+    margin: 25px 0px;
+  }
+
+  & textarea {
+    width: 80%;
+  }
+
+  & .dropdown {
+    margin: 25px;
+  }
+
+  & h1 {
+    margin-left: 40px;
+    margin-top: 25px;
+    font-weight: bolder;
+  }
+}

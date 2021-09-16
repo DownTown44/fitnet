@@ -5,7 +5,7 @@ const getAccessibilities = async () => {
     const res = await axios.get('/accessibilities');
     return res.data.reverse();
   } catch(err) {
-    return false;
+    return [];
   }
 }
 

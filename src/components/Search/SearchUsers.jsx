@@ -52,7 +52,7 @@ const SearchUsers = (props) => {
   }, [searchField, users]);
 
   return (
-    <div>
+    <>
       <SearchBar 
         placeholder="Keresés" 
         value={searchField}
@@ -63,7 +63,7 @@ const SearchUsers = (props) => {
         invitable={props.invitable} 
         actionDetails={props.actionDetails}
         parentRerender={props.parentRerender}/>
-    </div>
+    </>
   );
 }
 

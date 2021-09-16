@@ -15,21 +15,22 @@ import CreateGroup from './components/Forms/CreateGroup';
 import GroupCards from './components/Cards/GroupCards/GroupCards';
 import Group from './components/Group';
 import DesignSystem from './designSystem/DesignSystem';
+import CustomCalendar from './components/CustomCalendar';
 
 import './css/style.css';
 
 function App() {
+  const { innerWidth: width, innerHeight: height } = window;
+  document.body.style.height = height;
+
   // To get the current location
   // We need it to change the layouts prop based on this
   const location = useLocation();
-  const history = useHistory();
-
-  const [ layoutShown, setLayoutShown ] = useState(true);
   const [ isAuth, setIsAuth ] = useState(false);
 
   const onLoginAttempt = (result) => {
     setIsAuth(result);
-    result && setLayoutShown(true);
+    console.log("LOGIN")
   };
 
   const onLogout = async () => {
@@ -42,30 +43,6 @@ function App() {
     const loggedInUser = JSON.parse(sessionStorage.getItem('userData'));
     setIsAuth(!!loggedInUser);
   }, []);
-
-  // This useEffect on specific locations changes the property of the layout
-  // ex. in some locations the sidedrawers should not be mounted
-  useEffect(() => {
-
-    if(!isAuth) {
-      switch (location.pathname) {
-        case '/signup':
-          setLayoutShown(location.pathname !== "/signup")
-          break;
-
-        case '/login':
-          setLayoutShown(location.pathname !== "/login")
-          break;
-
-        case '/':
-          setLayoutShown(location.pathname == "/")
-          break;
-
-        default:
-          break;
-      };
-    };
-  }, [location]);
 
   let routes = (
     <Switch>
@@ -131,6 +108,9 @@ function App() {
         <Route path="/groups/:id/edit">
           <CreateGroup edit={true}/>
         </Route>
+        <Route path="/calendar">
+          <CustomCalendar />
+        </Route>
         <Redirect to="/" />
       </Switch>
     );
@@ -142,7 +122,7 @@ function App() {
         <Route path="/designSystem" exact>
           <DesignSystem />
         </Route> :
-        <Layout isShown={layoutShown} isAuth={isAuth} onLogout={onLogout}>
+        <Layout isAuth={isAuth} onLogout={onLogout} location={location}>
           {routes}
         </Layout>}
     </>

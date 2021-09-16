@@ -6,8 +6,11 @@
   }
 
   &__cancelButton {
-    font-size: 2rem;
-    margin-left: -2rem;
+    font-size: 25px;
+    margin-left: -20px;
     cursor: pointer;
+    color: rgba($primary-grey, .8);
+    border-radius: 50%;
+    background-color: $neutral-white;
   }
 }

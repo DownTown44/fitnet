@@ -1,10 +1,16 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
+import Icon from '@material-ui/core/Icon';
 
 import { login } from '../../services/authenticationService';
 import Input from '../UI/Input';
 import Button from '../UI/Button';
 import Text from '../UI/Text';
+import Logo from '../Logo';
+import ToggleSwitch from '../UI/ToggleSwitch';
+import NavButton from '../UI/NavButton';
+
+import FitnetLogo from '../../assets/logo/logo.svg';
 
 const LoginForm = (props) => {
   const history = useHistory();
@@ -41,12 +47,17 @@ const LoginForm = (props) => {
   };
 
   return (
-    <form className="form">
+    <div className="form login-form">
+      <div className="nav-back">
+        <NavButton to="/" icon="arrow_back" />
+      </div>
+      <Logo className="login-form__logo" src={FitnetLogo} />
+      <Text htmlTag="h1">Bejelentkezés</Text>
       <Input 
         type="email" 
         onChange={event => handleChange(event, 'email')} 
         value={loginData.email} 
-        label="E-mail"
+        iconName="person"
         placeholder="E-mail"
       />
 
@@ -54,13 +65,26 @@ const LoginForm = (props) => {
         type="password" 
         onChange={event => handleChange(event, 'password')} 
         value={loginData.password} 
-        label="Password"
-        placeholder="Password"
+        iconName="lock"
+        placeholder="Jelszó"
       />
-      <Text>{loginFailMessage}</Text>
+      <Text className="login-form__warning-message">{loginFailMessage}</Text>
 
-      <Button onClick={(event) => onSubmit(event)}>Bejelentkezés</Button>
-    </form>
+      <div className="auth-options">
+        <div>
+          <ToggleSwitch />
+          <Text htmlTag="p">Emlékezz rám</Text>
+        </div>
+        <Text htmlTag="p"><a>Elfelejtett jelszó?</a></Text>
+      </div>
+      
+      <Button additionalClass="button-normal--iconed" onClick={(event) => onSubmit(event)}>
+        BEJELENTKEZÉS
+        <Icon>login</Icon>
+      </Button>
+      <Text htmlTag="p">...vagy <a href="/">folytasd vendégként.</a></Text>
+      <Text htmlTag="p">Nincs még felhasználód? <a href="/signup">Regisztráció</a></Text>
+    </div>
   );
 }
 

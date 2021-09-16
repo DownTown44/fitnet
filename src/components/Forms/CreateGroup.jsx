@@ -12,6 +12,7 @@ import Text from '../UI/Text';
 import Textarea from '../UI/Textarea';
 import Button from '../UI/Button';
 import DiscardableImage from '../ImageUpload/DiscardableImage';
+import TopNav from '../Navigation/TopNav';
 
 const CreateGroup = (props) => {
   const history = useHistory();
@@ -132,45 +133,54 @@ const CreateGroup = (props) => {
   }
 
   return (
-    <form className="form center">
-      <Input 
-        type="text"
-        onChange={(event) => handleChange(event, 'name')}
-        value={groupData.name}
-        label="Csoport neve"
-        placeholder="Csoport neve"
-      />
-      <Text>Csoport leírása</Text>
-      <Textarea
-        onChange={(event) => handleChange(event, 'description')}
-        value={groupData.description}
-        placeholder="Csoport leírása"
-        rows="4" 
-        cols="60"
-        maxLength="2048"
-      />      
+    <div className="form create-group-form">
+      <TopNav to="/groups"/>
+      <Text htmlTag="h1">Csoport létrehozása</Text>
+      <form>
+        <Input 
+          type="text"
+          onChange={(event) => handleChange(event, 'name')}
+          value={groupData.name}
+          placeholder="Csoport neve"
+          iconName="groups"
+        />
+        <Textarea
+          onChange={(event) => handleChange(event, 'description')}
+          value={groupData.description}
+          placeholder="Csoport leírása"
+          rows="4" 
+          cols="60"
+          maxLength="2048"
+        />      
 
-      <Button onClick={(event) => {
-        event.preventDefault();
-        fileInputRef.current.click();
-      }}>Borítókép hozzáadása</Button>
+        <Button additionalClass="button-outlined" onClick={(event) => {
+          event.preventDefault();
+          fileInputRef.current.click();
+        }}>
+          Borítókép hozzáadása
+        </Button>
 
-      <input 
-        type="file" 
-        multiple
-        style={{display: "none"}} 
-        ref={fileInputRef}
-        accept="image/*"
-        onChange={(event) => handleImageUpload(event)}
-      />
-      {preview && <DiscardableImage src={preview} onRemove={() => handleImageRemove()}/>}
-      <Dropdown optionList={accessibilityOptions} placeholder="Az csoport láthatósága" returnSelected={handleChangeSelect}/>
-      {
-        props.edit ?
-        <Button onClick={(event) => onModify(event)}>Csoport módosítása</Button> :
-        <Button onClick={(event) => onSubmit(event)}>Csoport létrehozása</Button>
-      }
-    </form>
+        <input 
+          type="file" 
+          multiple
+          style={{display: "none"}} 
+          ref={fileInputRef}
+          accept="image/*"
+          onChange={(event) => handleImageUpload(event)}
+        />
+        {preview && <DiscardableImage src={preview} onRemove={() => handleImageRemove()}/>}
+        <Dropdown optionList={accessibilityOptions} placeholder="A csoport láthatósága" returnSelected={handleChangeSelect}/>
+        {
+          props.edit ?
+          <Button additionalClass="button-normal--iconed" onClick={(event) => onModify(event)}>
+            Csoport módosítása
+          </Button> :
+          <Button additionalClass="button-normal--iconed" onClick={(event) => onSubmit(event)}>
+            Csoport létrehozása
+          </Button>
+        }
+      </form>
+    </div>
   );
 }
 

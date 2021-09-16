@@ -43,14 +43,18 @@ const EventCards = (props) => {
 
   return (
     <div className="event-cards">
-      <TopNav 
-        to="/"
-        title="Események"
-        iconName="search"/>
-      <Button additionalClass="button-normal--iconed" isDisabled={!userData} onClick={() => history.push('events/create')}>
-        Esemény
-        <Icon>add</Icon>
-      </Button>
+      {!props.hideNav &&
+        <>
+          <TopNav 
+            to="/"
+            title="Események"
+            iconName="search"/>
+          <Button additionalClass="button-normal--iconed" isDisabled={!userData} onClick={() => history.push('events/create')}>
+            Esemény
+            <Icon>add</Icon>
+          </Button>
+        </>
+      }
       <Text htmlTag="h3">Összes esemény</Text>
       <div className="event-cards__cards">
         {events.length !== 0 ? events.map((element) => {

@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types';
 
-import CrossIcon from './CrossIcon';
+import Icon from '@material-ui/core/Icon';
+import Button from '../UI/Button';
 
 const IconImage = (props) => {
   return (
@@ -9,7 +10,6 @@ const IconImage = (props) => {
         <img src={props.src} alt={props.alt} />
       </div>
       <p>{props.children}</p>
-      {props.removable && <CrossIcon onClick={props.onRemove} />}
     </div>
   );
 }

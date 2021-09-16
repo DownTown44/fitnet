@@ -17,12 +17,14 @@ import Dialog from './Dialog/Dialog';
 import EventCards from './Cards/EventCards/EventCards';
 import TopNav from './Navigation/TopNav';
 import TabNav from './Navigation/TabNav';
+import Icon from '@material-ui/core/Icon';
 
 const Group = () => {
   const [isOwner, setIsOwner] = useState(false);
   const [isJoined, setIsJoined] = useState(false);
   const [showSearch, setShowSearch] = useState(false);
   const [isDeletion, setIsDeletion] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
   const [groupData, setGroupData] = useState({});
   // usersData = membersData
   const [usersData, setUsersData] = useState([]);
@@ -60,6 +62,10 @@ const Group = () => {
       setActionDetails((prevProps) => {return {...prevProps, id: groupData.groupId}});
     } 
   }, [groupData]);
+
+  const toggleMenu = () => {
+    setMenuOpen((prevProps) => !prevProps)
+  }
 
   const onUserListChange = async () => {
     // This will rerender the userlist after an invitation or delete
@@ -99,24 +105,22 @@ const Group = () => {
   }
 
   let description = (
-    <>
+    <div className="group__description">
       <Text>{groupData.description}</Text>
       {/* if the user is the owner don't show the join button */}
       {groupData.accessibilityId !== 2 && !isJoined && !isOwner && 
-        <Button onClick={() => onJoin()}>Csatlakozás</Button>
+        <Button additionalClass="button-normal" onClick={() => onJoin()}>Csatlakozás</Button>
       }
-      {isOwner && <Button onClick={() => onModify()}>Módosítás</Button>}
-      {
-        isJoined && !isOwner && 
-        <Button onClick={() => onLeave()}>Kilépés</Button>
-      }
-      {isOwner && <Button onClick={() => {setIsDeletion(true)}}>Törlés</Button>}
-    </>
+    </div>
   );
 
   let members = (
-    <>
-      {isOwner && <Button onClick={() => setShowSearch(!showSearch)}>Meghívás</Button>}
+    <div className="group__members">
+      {isOwner && 
+        <Button additionalClass="button-outlined--iconed" onClick={() => setShowSearch(!showSearch)}>
+          {showSearch ? "Bezárás" : "Meghívás"}
+          <Icon>{showSearch ? "close" : "search"}</Icon>
+        </Button>}
       {
         showSearch &&
         <SearchUsers 
@@ -136,15 +140,18 @@ const Group = () => {
         /> :
         <UserList users={usersData}/>
       }
-    </>
+    </div>
   );
 
   let events = (
-    <>
+    <div className="group__events">
       {(isJoined || isOwner) &&
-        <Button onClick={() => onEventCreate()}>Esemény létrehozása</Button>}
-      <EventCards groupId={id} />
-    </>
+        <Button additionalClass="button-normal--iconed" onClick={() => onEventCreate()}>
+          Esemény
+          <Icon>add</Icon>
+        </Button>}
+      <EventCards groupId={id} hideNav />
+    </div>
   );
 
   const tabs = [
@@ -178,9 +185,18 @@ const Group = () => {
       </div>
 
       <TabNav tabs={tabs} />
+
+      {menuOpen && 
+        <div>
+          {isJoined && !isOwner && 
+            <Button additionalClass="button-normal" onClick={() => onLeave()}>Kilépés</Button>
+          }
+          {isOwner && <Button onClick={() => onModify()}>Módosítás</Button>}
+          {isOwner && <Button onClick={() => {setIsDeletion(true)}}>Törlés</Button>}
+        </div>
+      }
      
-      {
-        isDeletion && 
+      {isDeletion && 
         <Modal isShown={isDeletion} closeModal={() => {setIsDeletion(!isDeletion)}}>
           <Dialog onAccept={onAcceptDelete} onDecline={() => {setIsDeletion(!isDeletion)}}>Biztos vagy benne, hogy törölni szeretnéd?</Dialog>
         </Modal>

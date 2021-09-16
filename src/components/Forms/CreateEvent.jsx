@@ -11,6 +11,7 @@ import Button from '../UI/Button';
 import Dropdown from '../UI/Dropdown/Dropdown';
 import Text from '../UI/Text';
 import Icon from '@material-ui/core/Icon';
+import TopNav from '../Navigation/TopNav';
 
 const CreateEvent = (props) => {
   const history = useHistory();
@@ -146,6 +147,7 @@ const CreateEvent = (props) => {
 
   return (
     <div className="form create-event-form">
+      <TopNav to="/events"/>      
       <Text htmlTag="h1">Esemény létrehozása</Text>
       <form>
         <Input 

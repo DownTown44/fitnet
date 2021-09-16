@@ -11,6 +11,7 @@ import Text from '../UI/Text';
 
 const UserList = (props) => {
   const [users, setUsers] = useState([]);
+  const userData = JSON.parse(sessionStorage.getItem('userData'));
 
   useEffect(() => {
     setUsers(props.users);
@@ -57,9 +58,9 @@ const UserList = (props) => {
         if (props.removable) {
           return (
             <User 
-              key={user.userId} 
+              key={user.userId}
               profilePicture={user.profilePicture} 
-              removable={true} 
+              removable={userData.userId === user.userId ? false : true} 
               onRemove={() => onRemove(user.userId)}
             >
               {`${user.lastName} ${user.firstName}`}

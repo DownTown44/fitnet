@@ -439,11 +439,11 @@ const DesignSystem = () => {
       <div className="design-system__search-bar">
         <h2>Search bar</h2>
         <div className="design-system__search-bar-container">
-          <div>
+          <div className="design-system__search-bar--static">
             <p>Default</p>
             <SearchBar placeholder="Keresés" />
           </div>
-          <div>
+          <div className="design-system__search-bar--static">
             <p>Disabled</p>
             <SearchBar placeholder="Keresés" disabled/>
           </div>

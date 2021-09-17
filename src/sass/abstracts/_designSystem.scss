@@ -388,6 +388,7 @@
   &__search-bar-container {
     margin: 25px;
     font-size: 16px;
+    width: 650px;
 
     display: flex;
     justify-content: space-around;
@@ -423,6 +424,10 @@
       & > p {
         margin-left: 10px;
         text-transform: uppercase;
+      }
+
+      & > div {
+        width: 250px;
       }
     }
   }
@@ -502,6 +507,10 @@
 
 .design-system__search-bar {
   grid-area: search-bar-grid;
+
+  &--static .search-bar {
+    width: 300px;
+  }
 }
 
 .design-system__cards {

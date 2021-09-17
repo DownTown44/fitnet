@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { useHistory, useParams, useLocation } from 'react-router-dom';
 
+import mapAccessibilities from '../../util/mapAccessibilities';
 import { createEvent, getEventById, updateEvent } from '../../services/eventService';
 import { getAccessibilities } from '../../services/accessibilityService';
 
@@ -37,6 +38,7 @@ const CreateEvent = (props) => {
 
   useEffect(() => {
     getAccessibilities().then((options) => {
+      mapAccessibilities(options);
       if (location.state) {
         // if we mount this componenet from group view, then we need everything except invisible
         options.splice(2, 1);

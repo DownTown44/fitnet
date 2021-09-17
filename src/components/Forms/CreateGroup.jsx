@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import FormData from 'form-data';
 import { useHistory, useParams } from 'react-router-dom';
 
-
+import mapAccessibilities from '../../util/mapAccessibilities';
 import { createGroup, getGroupById, updateGroup } from '../../services/groupService';
 import { getAccessibilities } from '../../services/accessibilityService';
 import Input from '../UI/Input';
@@ -32,6 +32,7 @@ const CreateGroup = (props) => {
 
   useEffect(() => {
     getAccessibilities().then((result) => {
+      mapAccessibilities(result);
       result.splice(3, 1);
       setAccessibilityOptions(result);
     });

@@ -76,7 +76,7 @@ const EventCards = (props) => {
           if (element.accessibility === 'public' ||
             element.accessibility === 'private' ||
             isMember(element.groupId, groupIds)) {
-              const image = images.random();
+              const image = images.random()
               return (
                 <EventCard
                   id={element.eventId}

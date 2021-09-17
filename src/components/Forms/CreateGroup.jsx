@@ -113,7 +113,7 @@ const CreateGroup = (props) => {
   
       const result = await createGroup(formData);
       if (result.created) {
-        history.push(`/groups/${result.id}`)
+        history.push({pathname: `/groups/${result.id}`, state: {createForm: true}});
       }
     }
   }
@@ -128,7 +128,7 @@ const CreateGroup = (props) => {
 
       const result = await updateGroup(id, formData);
       if (result.created) {
-        history.push(`/groups/${result.id}`);
+        history.push({pathname: `/groups/${result.id}`, state: {createForm: true}});
       }
     }
   }

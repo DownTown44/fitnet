@@ -18,6 +18,15 @@ import Dialog from './Dialog/Dialog';
 import TopNav from './Navigation/TopNav';
 import TabNav from './Navigation/TabNav';
 
+import basketball_field from '../assets/eventImages/basketball-field.jpg';
+import basketball from '../assets/eventImages/basketball.jpg';
+import football_field from '../assets/eventImages/football-field.jpg';
+import football from '../assets/eventImages/football.jpg';
+import sport_kit from '../assets/eventImages/sport-kit.jpg';
+import table_tennis from '../assets/eventImages/table-tennis.jpg';
+import tennis_racket from '../assets/eventImages/tennis-racket.jpg';
+
+
 const Event = () => {
   const [isOwner, setIsOwner] = useState(false);
   const [isJoined, setIsJoined] = useState(false);
@@ -31,13 +40,21 @@ const Event = () => {
     type: "event",
     id: null
   });
-
+  
   const { id } = useParams();
   const history = useHistory();
   const location = useLocation();
-
+  
+  const images = [basketball_field, basketball, football_field, football, sport_kit, table_tennis, tennis_racket];
+  
+  Array.prototype.random = function () {
+    return this[Math.floor((Math.random()*this.length))];
+  }
+  
+  const [dummyImage, setDummyImage] = useState(images.random());
+  
   const userData = JSON.parse(sessionStorage.getItem('userData'));
-
+  
   // Sending request to ge data and participants of event
   useEffect(() => {
     (async () => {
@@ -117,7 +134,7 @@ const Event = () => {
         <Icon>people</Icon>
         <Text htmlTag="p">{`${eventData.minParticipant} - ${eventData.maxParticipant} személy`}</Text>
       </div>
-      <Text htmlTag="p">{eventData.description}</Text>
+      <Text htmlTag="p" className="description">{eventData.description}</Text>
       {eventData.accessibilityId !== 2 && !isJoined && !isOwner && 
         <Button additionalClass="button-normal" onClick={() => onJoin()}>Csatlakozás</Button>
       }
@@ -168,14 +185,21 @@ const Event = () => {
     <div className="event">
       {isJoined ? 
         <TopNav
-          to="/events"
+          onClick={() => {
+            if(location.state.createForm) {
+              console.log(location.state)
+              history.go(-3)
+            } else {
+              history.go(-2)
+            }
+          }}
           iconName="more_vert"
           onIconClick={() => toggleMenu()}
         /> :
-        <TopNav to="/events" iconName="more_vert" />
+        <TopNav onClick={() => history.go(-2)} iconName="more_vert" />
       }
       <div className="event__image">
-        <img src={location.state} />
+        <img src={location.state ? location.state.image ? location.state.image : dummyImage : dummyImage} />
       </div>
       <Text htmlTag="h3">{eventData.name}</Text>
       <TabNav tabs={tabs} />

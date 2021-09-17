@@ -705,6 +705,8 @@ body {
     margin: 15px;
     position: absolute;
     transition: .2s ease-in-out; }
+  .checkbox label {
+    font-size: 16px; }
 
 .checkbox-styled {
   appearance: none;
@@ -869,7 +871,7 @@ body {
         color: #36676E;
         font-size: 20px;
         margin-right: 5px; }
-    .event__description > :last-child {
+    .event__description .description {
       color: #262626;
       font-size: 14px;
       margin-top: 5px; }

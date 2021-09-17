@@ -129,7 +129,7 @@ const CreateEvent = (props) => {
     if (isValid(eventData)) {
       const result = await createEvent(eventData);
       if(result.created) {
-        history.push(`/events/${result.id}`);
+        history.push({pathname: `/events/${result.id}`, state: {createForm: true, image: false}});
       }
     }
   }
@@ -140,14 +140,14 @@ const CreateEvent = (props) => {
     if (isValid(eventData)) {
       const result = await updateEvent(id, eventData);
       if (result.created) {
-        history.push(`/events/${result.id}`);
+        history.push({pathname: `/events/${result.id}`, state: {createForm: true, image: false}});
       }
     }
   }
 
   return (
     <div className="form create-event-form">
-      <TopNav to="/events"/>      
+      <TopNav onClick={() => history.go(-2)}/>      
       <Text htmlTag="h1">Esemény létrehozása</Text>
       <form>
         <Input 

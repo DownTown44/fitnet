@@ -6,7 +6,7 @@ import NavButton from '../UI/NavButton';
 const TopNav = (props) => {
   return (
     <div className="top-nav">
-      <NavButton to={props.to} icon="arrow_back">{props.title}</NavButton>
+      <NavButton to={props.to} icon="arrow_back" onClick={props.onClick}>{props.title}</NavButton>
       <Icon onClick={props.onIconClick}>{props.iconName}</Icon>
     </div>
   );

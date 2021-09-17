@@ -178,7 +178,7 @@ const Group = () => {
           iconName="more_vert"
           onIconClick={() => toggleMenu()}
         /> :
-        <TopNav to="/groups" />
+        <TopNav to="/groups" iconName="more_vert"/>
       }
     
       <div className="group__image-container">

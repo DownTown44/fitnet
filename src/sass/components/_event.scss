@@ -1,53 +1,52 @@
-.group {
+.event {
   display: flex;
   flex-direction: column;
-  
-  &__image-container {
-    margin: 20px auto;
-    height: 150px;
-    width: 270px;
-    border-radius: 12px;
-    overflow: hidden;
 
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  &__image {
+    width: 100%;
+    
+    & img {
+      width: 100%;
+      box-shadow: $shadow-light;
+    }
   }
 
   & h3 {
     font-size: 20px;
     color: $neutral-darkest;
-    font-weight: bold;
-
-    margin: 0 auto;
-  }
-
-  &__info {
-    margin: 15px 0;
-    font-size: 14px;
-
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    align-items: center;
-
-    & p:first-child {
-      font-weight: bold;
-    }
+    margin: 15px auto;
   }
 
   &__description {
-    margin: 30px;
+    padding: 15px;
 
     display: flex;
     flex-direction: column;
+    align-items: flex-start;
 
-    & p {
-      font-size: 14px;
-      margin-bottom: 30px;
+    &-info {
+      font-size: 12px;
+      color: $secondary-grey;
+      margin-bottom: 10px;
+
+      display: flex;
+      align-items: center;
+
+      & .material-icons {
+        color: $primary-blue;
+        font-size: 20px;
+        margin-right: 5px;
+      }
     }
-    
+
+    & > :last-child {
+      color: $neutral-darkest;
+      font-size: 14px;
+      margin-top: 5px;
+    }
+
     & .button-normal {
+      color: $neutral-bright-white;
       margin: 0 auto;
       margin-top: 15px;
     }
@@ -74,23 +73,6 @@
         justify-content: space-between;
         padding: 0 40px;
       }
-    }
-  }
-
-  &__events {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    
-    & .button-normal--iconed {
-      margin-top: 20px;
-      margin-bottom: 20px;
-      margin-left: auto;
-      margin-right: 15px;
-    }
-
-    & .event-cards {
-      padding-top: 15px;
     }
   }
 

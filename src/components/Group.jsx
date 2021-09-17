@@ -192,7 +192,7 @@ const Group = () => {
 
       <TabNav tabs={tabs} />
 
-      {menuOpen & !isDeletion && 
+      {menuOpen && !isDeletion && 
         <Modal isShown={menuOpen} closeModal={() => toggleMenu()}>
           <div className="group__menu">
             {isJoined && !isOwner && 

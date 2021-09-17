@@ -43,7 +43,6 @@ const CreateEvent = (props) => {
         setAccessibilityOptions(options);
       } else {
         // if we mount this componenet out of group view, then we need everything except invisible, and group private
-        console.log(options);
         options = options.slice(0, options.length - 2);
         setAccessibilityOptions(options);
       }

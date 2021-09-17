@@ -76,7 +76,7 @@ const EventCards = (props) => {
           if (element.accessibility === 'public' ||
             element.accessibility === 'private' ||
             isMember(element.groupId, groupIds)) {
-              const image = images.random()
+              const image = images.random();
               return (
                 <EventCard
                   id={element.eventId}
@@ -86,7 +86,7 @@ const EventCards = (props) => {
                   date={element.startDate}
                   address={element.address}
                   image={image}
-                  onOpen={() => history.push({pathname: `/events/${element.eventId}`, state: image})}
+                  onOpen={() => history.push({pathname: `/events/${element.eventId}`, state: {image: image}})}
                 />
               );
           }

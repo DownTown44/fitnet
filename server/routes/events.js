@@ -132,8 +132,6 @@ router.get('/', async (req, res) => {
     }
     
     result.forEach((element, index, array) => {
-      const date = new Date(element.start_date);
-      array[index].start_date = moment(date).format('YYYY/MMM/DD hh:mm');
       array[index] = eventDTO(element);
     });
 
@@ -216,6 +214,10 @@ router.get('/:id', checkToken, async (req, res) => {
   try {
     const result = await getEventById(req.params.id);
     result[0].type = result[0].type.type_name;
+
+    const date = new Date(result[0].start_date);
+    result[0].start_date = moment(date).format('YYYY/MMM/DD hh:mm');
+
     res.status(200);
     res.send(camelCasify(result[0]));
   } catch (error) {

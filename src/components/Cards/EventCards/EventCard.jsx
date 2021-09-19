@@ -8,15 +8,6 @@ import Button from '../../UI/Button';
 
 import Icon from '@material-ui/core/Icon';
 
-import basketball_field from '../../../assets/eventImages/basketball-field.jpg';
-import basketball from '../../../assets/eventImages/basketball.jpg';
-import football_field from '../../../assets/eventImages/football-field.jpg';
-import football from '../../../assets/eventImages/football.jpg';
-import sport_kit from '../../../assets/eventImages/sport-kit.jpg';
-import table_tennis from '../../../assets/eventImages/table-tennis.jpg';
-import tennis_racket from '../../../assets/eventImages/tennis-racket.jpg';
-
-
 const EventCard = (props) => {
   const [isJoined, setIsJoined] = useState(false);
   const userData = JSON.parse(sessionStorage.getItem('userData'));
@@ -28,12 +19,6 @@ const EventCard = (props) => {
       });
     }
   }, [])
-
-  const images = [basketball_field, basketball, football_field, football, sport_kit, table_tennis, tennis_racket];
-
-  Array.prototype.random = function () {
-    return this[Math.floor((Math.random()*this.length))];
-  }
 
   const fromattedDate = {
     year: '',
@@ -78,7 +63,7 @@ const EventCard = (props) => {
             {/*TODO: bookmark logic */}
             <Icon>bookmark_border</Icon>
           </div>
-          <img src={images.random()} alt="event" />
+          <img src={props.image} alt="event" />
         </div>
         
         <Text htmlTag="h3">{props.title}</Text>

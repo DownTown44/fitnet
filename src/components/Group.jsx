@@ -178,7 +178,7 @@ const Group = () => {
           iconName="more_vert"
           onIconClick={() => toggleMenu()}
         /> :
-        <TopNav to="/groups" />
+        <TopNav to="/groups" iconName="more_vert"/>
       }
     
       <div className="group__image-container">
@@ -192,7 +192,7 @@ const Group = () => {
 
       <TabNav tabs={tabs} />
 
-      {menuOpen & !isDeletion && 
+      {menuOpen && !isDeletion && 
         <Modal isShown={menuOpen} closeModal={() => toggleMenu()}>
           <div className="group__menu">
             {isJoined && !isOwner && 

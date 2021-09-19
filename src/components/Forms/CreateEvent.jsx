@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { useHistory, useParams, useLocation } from 'react-router-dom';
 
+import mapAccessibilities from '../../util/mapAccessibilities';
 import { createEvent, getEventById, updateEvent } from '../../services/eventService';
 import { getAccessibilities } from '../../services/accessibilityService';
 
@@ -37,13 +38,13 @@ const CreateEvent = (props) => {
 
   useEffect(() => {
     getAccessibilities().then((options) => {
+      mapAccessibilities(options);
       if (location.state) {
         // if we mount this componenet from group view, then we need everything except invisible
         options.splice(2, 1);
         setAccessibilityOptions(options);
       } else {
         // if we mount this componenet out of group view, then we need everything except invisible, and group private
-        console.log(options);
         options = options.slice(0, options.length - 2);
         setAccessibilityOptions(options);
       }
@@ -128,7 +129,7 @@ const CreateEvent = (props) => {
     if (isValid(eventData)) {
       const result = await createEvent(eventData);
       if(result.created) {
-        history.push(`/events/${result.id}`);
+        history.push({pathname: `/events/${result.id}`, state: {createForm: true, image: false}});
       }
     }
   }
@@ -139,14 +140,14 @@ const CreateEvent = (props) => {
     if (isValid(eventData)) {
       const result = await updateEvent(id, eventData);
       if (result.created) {
-        history.push(`/events/${result.id}`);
+        history.push({pathname: `/events/${result.id}`, state: {createForm: true, image: false}});
       }
     }
   }
 
   return (
     <div className="form create-event-form">
-      <TopNav to="/events"/>      
+      <TopNav onClick={() => history.go(-2)}/>      
       <Text htmlTag="h1">Esemény létrehozása</Text>
       <form>
         <Input 

@@ -53,7 +53,7 @@ const UserList = (props) => {
 
   return (
     <div className="user-list">
-      {users.length !== 0 ? users.map((user) => {
+      {users.length !== 0 && users.map((user) => {
         // TODO: Make this cleaner
         if (props.removable) {
           return (
@@ -87,7 +87,7 @@ const UserList = (props) => {
             </User>
           );
         }
-      }) : <Text>Nincsenek felhasználók</Text>}
+      })}
     </div>
   );
 }

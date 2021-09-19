@@ -16,6 +16,7 @@ import GroupCard from '../components/Cards/GroupCards/GroupCard';
 
 import exampleUserPicture from '../noProdAssets/userExample.jpg';
 import groupExample from '../noProdAssets/groupExample.jpg';
+import eventExample from '../noProdAssets/eventExample.jpeg';
 
 const DesignSystem = () => {
   const tabs = [
@@ -439,11 +440,11 @@ const DesignSystem = () => {
       <div className="design-system__search-bar">
         <h2>Search bar</h2>
         <div className="design-system__search-bar-container">
-          <div>
+          <div className="design-system__search-bar--static">
             <p>Default</p>
             <SearchBar placeholder="Keresés" />
           </div>
-          <div>
+          <div className="design-system__search-bar--static">
             <p>Disabled</p>
             <SearchBar placeholder="Keresés" disabled/>
           </div>
@@ -458,7 +459,8 @@ const DesignSystem = () => {
             <EventCard 
               title="Lábtenisz" 
               date="2021/Sep/27 15:00"
-              address="Septimia Wellness központ"/>
+              address="Septimia Wellness központ"
+              image={eventExample}/>
           </div>
           <div>
             <p>Group</p>

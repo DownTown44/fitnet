@@ -10,10 +10,25 @@ import EventCard from './EventCard';
 import Button from '../../UI/Button';
 import TopNav from '../../Navigation/TopNav';
 
+import basketball_field from '../../../assets/eventImages/basketball-field.jpg';
+import basketball from '../../../assets/eventImages/basketball.jpg';
+import football_field from '../../../assets/eventImages/football-field.jpg';
+import football from '../../../assets/eventImages/football.jpg';
+import sport_kit from '../../../assets/eventImages/sport-kit.jpg';
+import table_tennis from '../../../assets/eventImages/table-tennis.jpg';
+import tennis_racket from '../../../assets/eventImages/tennis-racket.jpg';
+
+
 const EventCards = (props) => {
   const [events, setEvents] = useState([]);
   const [groupIds, setGroupIds] = useState([]);
   const history = useHistory();
+
+  const images = [basketball_field, basketball, football_field, football, sport_kit, table_tennis, tennis_racket];
+
+  Array.prototype.random = function () {
+    return this[Math.floor((Math.random()*this.length))];
+  }
 
   const userData = JSON.parse(sessionStorage.getItem('userData'));
 
@@ -61,6 +76,7 @@ const EventCards = (props) => {
           if (element.accessibility === 'public' ||
             element.accessibility === 'private' ||
             isMember(element.groupId, groupIds)) {
+              const image = images.random();
               return (
                 <EventCard
                   id={element.eventId}
@@ -69,7 +85,8 @@ const EventCards = (props) => {
                   title={element.name}
                   date={element.startDate}
                   address={element.address}
-                  onOpen={() => history.push(`/events/${element.eventId}`)}
+                  image={image}
+                  onOpen={() => history.push({pathname: `/events/${element.eventId}`, state: {image: image}})}
                 />
               );
           }

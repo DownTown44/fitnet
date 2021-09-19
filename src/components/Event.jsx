@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { useParams, useHistory } from 'react-router-dom';
+import { useParams, useHistory, useLocation } from 'react-router-dom';
+import Icon from '@material-ui/core/Icon';
 
 import { 
   getEventUsers, 
@@ -14,12 +15,24 @@ import SearchUsers from './Search/SearchUsers';
 import UserList from './UserList/UserList';
 import Modal from './UI/Modal';
 import Dialog from './Dialog/Dialog';
+import TopNav from './Navigation/TopNav';
+import TabNav from './Navigation/TabNav';
+
+import basketball_field from '../assets/eventImages/basketball-field.jpg';
+import basketball from '../assets/eventImages/basketball.jpg';
+import football_field from '../assets/eventImages/football-field.jpg';
+import football from '../assets/eventImages/football.jpg';
+import sport_kit from '../assets/eventImages/sport-kit.jpg';
+import table_tennis from '../assets/eventImages/table-tennis.jpg';
+import tennis_racket from '../assets/eventImages/tennis-racket.jpg';
+
 
 const Event = () => {
   const [isOwner, setIsOwner] = useState(false);
   const [isJoined, setIsJoined] = useState(false);
   const [showSearch, setShowSearch] = useState(false);
   const [isDeletion, setIsDeletion] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
   const [eventData, setEventData] = useState({});
   // usersData = participantsData
   const [usersData, setUsersData] = useState([]);
@@ -27,12 +40,21 @@ const Event = () => {
     type: "event",
     id: null
   });
-
+  
   const { id } = useParams();
   const history = useHistory();
-
+  const location = useLocation();
+  
+  const images = [basketball_field, basketball, football_field, football, sport_kit, table_tennis, tennis_racket];
+  
+  Array.prototype.random = function () {
+    return this[Math.floor((Math.random()*this.length))];
+  }
+  
+  const [dummyImage, setDummyImage] = useState(images.random());
+  
   const userData = JSON.parse(sessionStorage.getItem('userData'));
-
+  
   // Sending request to ge data and participants of event
   useEffect(() => {
     (async () => {
@@ -60,6 +82,10 @@ const Event = () => {
     } 
   }, [eventData]);
 
+  const toggleMenu = () => {
+    setMenuOpen((prevProps) => !prevProps)
+  }
+
   const onUserListChange = async () => {
     // This will rerender the userlist after an invitation or delete
     const usersRes = await getEventUsers(id);
@@ -76,6 +102,7 @@ const Event = () => {
   }
   
   const onLeave = async () => {
+    toggleMenu();
     const result = await userLeaveEvent(userData.userId, id);
 
     if (result.success) {
@@ -93,21 +120,34 @@ const Event = () => {
     history.push(`/events/${id}/edit`);
   }
 
-  return (
-    <div>
-      <Text htmlTag="h2">{eventData.name}</Text>
-      <Text htmlTag="p">{eventData.description}</Text>
-      <Text htmlTag="p">{eventData.address}</Text>
-      <Text htmlTag="p">{`Minimum: ${eventData.minParticipant}`}</Text>
-      <Text htmlTag="p">{`Maximum: ${eventData.maxParticipant}`}</Text>
-      <Text htmlTag="p">{`Kezdő időpont: ${eventData.startDate}`}</Text>
-      <Text htmlTag="p">{`Befejezési időpont: ${eventData.endDate}`}</Text>
-      <Text htmlTag="p">{eventData.endDate === 1 ? "Ismétlődő esemény" : "Egyszeri esemény"}</Text>
-      <Text htmlTag="p">{eventData.type}</Text>
+  let description = (
+    <div className="event__description">
+      <div className="event__description-info">
+        <Icon>place</Icon>
+        <Text htmlTag="p">{eventData.address}</Text>
+      </div>
+      <div className="event__description-info">
+        <Icon>schedule</Icon>
+        <Text htmlTag="p">{eventData.startDate}</Text>
+      </div>
+      <div className="event__description-info">
+        <Icon>people</Icon>
+        <Text htmlTag="p">{`${eventData.minParticipant} - ${eventData.maxParticipant} személy`}</Text>
+      </div>
+      <Text htmlTag="p" className="description">{eventData.description}</Text>
       {eventData.accessibilityId !== 2 && !isJoined && !isOwner && 
-        <Button onClick={() => onJoin()}>Csatlakozás</Button>
+        <Button additionalClass="button-normal" onClick={() => onJoin()}>Csatlakozás</Button>
       }
-      {isOwner && <Button onClick={() => setShowSearch(!showSearch)}>Meghívás</Button>}
+    </div>
+  );
+
+  let members = (
+    <div className="event__members">
+      {isOwner && 
+        <Button additionalClass="button-outlined--iconed" onClick={() => setShowSearch(!showSearch)}>
+          {showSearch ? "Bezárás" : "Meghívás"}
+          <Icon>{showSearch ? "close" : "search"}</Icon>
+        </Button>}
       {
         showSearch &&
         <SearchUsers 
@@ -127,17 +167,61 @@ const Event = () => {
         /> :
         <UserList users={usersData}/>
       }
-      {isOwner && <Button onClick={() => {setIsDeletion(true)}}>Törlés</Button>}
-      {
-        isDeletion && 
-        <Modal isShown={isDeletion} closeModal={() => {setIsDeletion(!isDeletion)}}>
-          <Dialog onAccept={onAcceptDelete} onDecline={() => {setIsDeletion(!isDeletion)}}>Biztos vagy benne, hogy törölni szeretnéd?</Dialog>
+    </div>
+  );
+
+  const tabs = [
+    {id: 0,
+     tabTitle: "Leírás",
+     tabContent: description
+    },
+    {id: 1,
+     tabTitle: "Tagok",
+     tabContent: members
+    }
+  ];
+
+  return (
+    <div className="event">
+      {isJoined ? 
+        <TopNav
+          onClick={() => {
+            if(location.state.createForm) {
+              console.log(location.state)
+              history.go(-3)
+            } else {
+              history.go(-2)
+            }
+          }}
+          iconName="more_vert"
+          onIconClick={() => toggleMenu()}
+        /> :
+        <TopNav onClick={() => history.go(-2)} iconName="more_vert" />
+      }
+      <div className="event__image">
+        <img src={location.state ? location.state.image ? location.state.image : dummyImage : dummyImage} />
+      </div>
+      <Text htmlTag="h3">{eventData.name}</Text>
+      <TabNav tabs={tabs} />
+
+      {menuOpen && !isDeletion && 
+        <Modal isShown={menuOpen} closeModal={() => toggleMenu()}>
+          <div className="event__menu">
+            {isJoined && !isOwner && 
+              <Button onClick={() => onLeave()}>Kilépés</Button>
+            }
+            {isOwner && <Button onClick={() => onModify()}>Módosítás</Button>}
+            {isOwner && <Button onClick={() => {setIsDeletion(true)}}>Törlés</Button>}     
+          </div>
         </Modal>
       }
-      {isOwner && <Button onClick={() => onModify()}>Módosítás</Button>}
-      {
-        isJoined && !isOwner && 
-        <Button onClick={() => onLeave()}>Kilépés</Button>
+ 
+      {isDeletion && 
+        <Modal isShown={isDeletion} closeModal={() => {setIsDeletion(!isDeletion)}}>
+          <div className="event__deletion">
+            <Dialog onAccept={onAcceptDelete} onDecline={() => {setIsDeletion(!isDeletion)}}>Biztos vagy benne, hogy törölni szeretnéd?</Dialog>
+          </div>
+        </Modal>
       }
     </div>
   );
